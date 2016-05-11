@@ -1,0 +1,31 @@
+<ion-view view-title="报修单">
+  <!-- <ion-header-bar align-title="center" class="bar-positive">
+    <h1 class="title">报修单</h1>
+      <div class="buttons">
+        <button class="button icon ion-plus-round"></button>
+      </div>
+  </ion-header-bar> -->
+  <div class="bar bar-subheader bar-light">
+    <div class="button-bar">
+      <a class="button button-clear">全部</a>
+      <a class="button button-clear">按创建时间</a>
+      <a class="button button-clear">降序</a>
+    </div>
+  </div>
+  <ion-content class="content has-subheader">
+    <ion-list>
+      <div class="item item-divider"></div>
+      <ion-item class="item" ng-repeat="form in forms" type="item-text-wrap"
+        <h2>保修单号：{{form.NO}}</h2>
+        <p>状态：{{form.status}}</p>
+        <p>分值：{{form.value}}</p>
+        <p>客户姓名：{{form.clientName}}</p>
+        <p>服务项目：{{form.type}}</p>
+        <p>工程师：{{form.engineerName}}</p>
+        <p>销售人员：{{form.salesName}}</p>
+        <p>创建时间：{{form.time}}</p>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
