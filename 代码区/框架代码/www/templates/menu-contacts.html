@@ -1,0 +1,21 @@
+  <ion-view view-title="公司黄页">
+    <!-- <div class="bar bar-header" align-title="center" style="background-color:transparent;border: none;">
+        <h1 class="title positive-bg dark">生活黄页</h1>
+     </div> -->
+       <div class="bar bar-subheader bar-stable item-input-inset">
+         <label class="item-input-wrapper">
+            <i class="ion-search dark"></i>
+            <input type="text" placeholder="搜索">   
+        </label>
+      </div>
+     
+      <ion-content class="has-subheader">
+        
+          <div class"list">
+             <ion-item class="item-icon-right" ng-repeat="Phone in Phones" type="item-text-wrap" href="#/Phone/{{chat.id}}">
+               <h2> {{Phone.name}}</h2>
+               <i class="icon ion-chevron-right icon-accessory"></i>
+             </ion-item>
+           </div>
+      </ion-content>
+  </ion-view>
