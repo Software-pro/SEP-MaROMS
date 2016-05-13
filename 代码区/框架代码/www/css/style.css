@@ -1,1 +1,126 @@
 /* Empty. Add your own CSS if you like */
+
+/****************   全局css   ********************/
+/*
+ * 因为现在不知道真机中跑出的字体是什么
+ *（我隐约记得看到了lib中的字体设置？？或许兼容ios or Android自带的字体）
+ * 目前（因为浏览器自带的字体太丑了）使用微软雅黑or华文细黑
+ */
+#fontSet
+{
+	font-family: 'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;
+}
+
+/*对原来的蓝色的bar进行修改（重写）*/
+.bar.bar-positive
+{
+    background-color: #00BFFF; 
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-color: #00BFFF;
+    height: 60px;
+    line-height: 0px;
+    /*padding-bottom: 10px;
+    margin-bottom: 10px;*/
+
+    background-image: linear-gradient(0deg, #0c60ee, #0c60ee 50%, transparent 50%);
+    color: #fff;
+}
+/*nav-bar的标题格式*/
+.bar.bar-positive .title
+{
+	color: #fff;
+	font-size: 25px;
+}
+
+#blackFont
+{
+	color: #000000;
+}
+#divideLine
+{
+	color: #DDDDDD;
+	border-style: dotted;
+	width: 100%;
+}
+
+
+/****************   css in menu   ********************/
+#menuHeader
+{
+	background-color:#00BFFF;
+	height: 50px;
+}
+
+
+
+
+/****************   css in viewForms.html   ********************/
+#subHeader
+{
+	height: 38px;
+	margin-top: 16px;
+	border-top-width: 6px;
+	border-bottom-width: 1px;
+	padding: 0; 
+	padding-left: 25px;
+	padding-right: 25px;
+}
+#subHeaderContent
+{
+	height: 31px;
+	border-width: 0;
+}
+#subHeaderSelect
+{
+	font-size: 14px;
+	border-width: 0;
+	padding: 0;
+	width: 32%;
+	height: 100%;
+}
+#subHeaderOption
+{
+	padding: 0;
+	text-align: center;
+}
+#listItem
+{
+	border-style:solid;
+	border-top-width:15px;
+	border-color:#DDDDDD;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+#formTitle
+{
+	font-size: 1.3em;
+	color: #000000;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+#formValueBackground
+{
+	width: 50px;
+	height: 50px;
+	background-color:#00BFFF;
+	border-radius:25px;
+	position:absolute;
+	right: 25px;
+	top: 20px;
+}
+#formValue
+{
+	height:50px;
+	line-height:50px;
+	display:block;
+	color:#FFF;
+	text-align: center;
+	font-size: 150%;
+}
+#formDivider
+{
+	background-color: #AAAAAA;
+	padding: 0;
+	margin: 0;
+}

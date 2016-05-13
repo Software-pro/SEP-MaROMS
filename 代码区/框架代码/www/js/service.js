@@ -31,10 +31,19 @@ angular.module('starter.service',[])
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
+
+
+  ////////////////////////////////////////////////////
+  // 在这里需要与后台统一传输的数据。。
+  // 1. 传入id（记录顺序。。或许不太重要，以后可删掉）
+  // 2. 传入报修单状态展示的颜色（前端比较笨QwQ，没做出来根据文字改变颜色的。。）
+  ///////////////////////////////////////////////////////////
+
  var forms = [{
     id: 1,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -44,7 +53,8 @@ angular.module('starter.service',[])
   }, {
     id: 2,
     NO: 'bx131220233',
-    status: '未接',
+    status: '已审核',
+    statusColor: '#444444',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -55,6 +65,7 @@ angular.module('starter.service',[])
     id: 3,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -65,6 +76,7 @@ angular.module('starter.service',[])
     id: 4,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -75,6 +87,7 @@ angular.module('starter.service',[])
     id: 5,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',

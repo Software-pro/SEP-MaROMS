@@ -1,29 +1,99 @@
-<ion-view view-title="报修单">
+<ion-view view-title="报修单" id="fontSet">
   <!-- <ion-header-bar align-title="center" class="bar-positive">
     <h1 class="title">报修单</h1>
       <div class="buttons">
         <button class="button icon ion-plus-round"></button>
       </div>
   </ion-header-bar> -->
-  <div class="bar bar-subheader bar-light">
-    <div class="button-bar">
-      <a class="button button-clear">全部</a>
-      <a class="button button-clear">按创建时间</a>
-      <a class="button button-clear">降序</a>
+  <div class="bar bar-subheader bar-light" id="subHeader">
+    <div id="subHeaderContent">
+    <!-- TODO：
+      需要后台协助对选择框的内容进行整改。。
+      如：未接单的报修单不允许按照审核时间排序 -->
+
+      <!-- <span class="item item-input item-select" style="width: 33%; padding: 0; border-width: 0; margin: 0;"> -->
+        
+        <select id="subHeaderSelect">
+          <option id="subHeaderOption" selected="">全部</option>
+          <option id="subHeaderOption">未接单</option>
+          <option id="subHeaderOption">已接单</option>
+          <option id="subHeaderOption">已完成</option>
+          <option id="subHeaderOption">已审核</option>
+        </select>
+     <!--  </span>
+      <span class="item item-input item-select" style="width: 33%; padding: 0; border-width: 0; margin: 0;"> -->
+        <select id="subHeaderSelect">
+          <option id="subHeaderOption" selected="">按创建时间</option>
+          <option id="subHeaderOption">按接单时间</option>
+          <option id="subHeaderOption">按完成时间</option>
+          <option id="subHeaderOption">按审核时间</option>
+        </select>
+     <!--  </span> -->
+      <!-- <a class="button button-clear" style="font-size: 14px; border-width: 0;">全部</a>
+      <a class="button button-clear" style="font-size: 14px; border-width: 0;">按创建时间</a> -->
+
+      <!-- TODO:　
+        需要js协助对下面button进行点击之后的改变动作：
+        降序 <-> 升序 -->
+      <a class="button button-clear" id="subHeaderSelect">降序 <i class="ion-ios-arrow-thin-down"></i></a>
     </div>
   </div>
   <ion-content class="content has-subheader">
+  <!-- <ion-content class="content has-subheader" overflow-scroll="true"> -->
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+    </ion-refresher>
     <ion-list>
-      <div class="item item-divider"></div>
-      <ion-item class ="item" ng-repeat="form in forms" type="item-text-wrap"
-        <h2>保修单号：{{form.NO}}</h2>
-        <p>状态：{{form.status}}</p>
-        <p>分值：{{form.value}}</p>
-        <p>客户姓名：{{form.clientName}}</p>
-        <p>服务项目：{{form.type}}</p>
-        <p>工程师：{{form.engineerName}}</p>
-        <p>销售人员：{{form.salesName}}</p>
-        <p>创建时间：{{form.time}}</p>
+      <!-- <div class="item item-divider"></div> -->
+      <ion-item class="item" ng-repeat="form in forms" type="item-text-wrap" id="listItem">
+      <!-- collection-repeat? -->
+        <!-- <div id="formDivider"><br></div> -->
+        <p id="formTitle" >
+          报修单号：{{form.NO}}
+        </p>
+        <p style="margin-top: 10px;">
+          状态：
+          <span style="color: {{form.statusColor}}">
+            {{form.status}}
+          </span>
+        </p>
+        <div>
+          <div id="formValueBackground">
+            <span id="formValue">
+              {{form.value}}
+            </span>
+          </div>
+        </div>
+        <hr size=1 id="divideLine">
+        <p>
+          客户姓名：
+          <span id="blackFont">
+            {{form.clientName}}
+          </span>
+        </p>
+        <p>
+          服务项目：
+          <span id="blackFont">
+            {{form.type}}
+          </span>
+        </p>
+        <p>
+          工程师：
+          <span id="blackFont">
+            {{form.engineerName}}
+          </span>
+        </p>
+        <p>
+          销售人员：
+          <span id="blackFont">
+            {{form.salesName}}
+          </span>
+        </p>
+        <p>
+          创建时间：
+          <span id="blackFont">
+            {{form.time}}
+          </span>
+        </p>
 
       </ion-item>
     </ion-list>
