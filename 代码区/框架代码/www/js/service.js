@@ -112,4 +112,39 @@ angular.module('starter.service',[])
       return null;
     }
   };
-});
+})
+
+.factory('Informations',function() {
+  var informations = [{
+    id:01,
+    name:'翟微',
+    position:'工程师',
+    img:'img/photo1.jpg'
+  }];
+
+  return {
+    all:function() {
+      return informations;
+    }
+  };
+})
+
+.factory('Message_infos',function() {
+  var message_infos = [{
+    id:01,
+    title:'分值改动通知',
+    full_information:'派单员小李修改了报修单XXXXXXXX的分值',
+    img:'img/photo1.jpg'
+  },{
+    id:02,
+    title:'待办事项通知',
+    full_information:'接下来你要做的是添加小李为派单员',
+    img:'img/ionic.png'
+  }];
+
+  return {
+    all:function() {
+      return message_infos;
+    }
+  };
+}) 

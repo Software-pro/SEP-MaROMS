@@ -22,3 +22,11 @@ angular.module('starter.controllers',[])
     $scope.$broadcast("scroll.refreshComplete");
   };
 })
+
+.controller("myCtrl",function($scope,Informations) {
+	$scope.informations = Informations.all(); 
+})
+
+.controller("messageCtrl",function($scope,Message_infos) {
+	$scope.message_infos = Message_infos.all(); 
+})
