@@ -23,7 +23,6 @@ angular.module('starter.controllers',[])
   	};
 
   	$scope.newFormClicked = function(){
-  		alert("hello");
   		$state.go('app.viewForms-newForm');
   	}
   	$scope.menu1Var = true;
@@ -170,6 +169,16 @@ angular.module('starter.controllers',[])
 	$scope.message_infos = Message_infos.all(); 
 })
 
-.controller("newFormCtrl",function() {
-	
+.controller("newFormCtrl",function($scope,$state) {
+	$scope.saveNewForm = function(){
+		alert("Add a new form!");
+		$state.go('app.viewForms');
+	}
+	$scope.cancelNewForm = function(){
+		$state.go('app.viewForms');
+	}
+})
+
+.controller("detailCtrl",function($scope){
+
 })

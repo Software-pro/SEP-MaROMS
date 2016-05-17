@@ -1,0 +1,89 @@
+<ion-view view-title="表单详情" id="fontSet">
+
+<!-- <div class="item item-avatar">
+            <img src="http://ionicframework.com/img/docs/mcfly.jpg">
+            <h2>Marty McFly</h2>
+            <p>November 05, 1955</p>
+          </div>
+ -->
+       <div class="list">
+
+        <div class="item">
+          报修单号:{{number}}
+          <p>状态：{{state}}</p>
+<!-- 
+          <span class="item-note">
+            {{state}}
+          </span> -->
+        </div>
+
+      </div>
+
+      <div class="list">
+
+      <div class="item " href="#">
+        客户姓名：{{clientname}}
+      </div>
+      
+      <div class = "item item-button-right"> 
+        客户电话：{{clientphone}}
+        <button class = "button button-positive">
+          <i class = "icon ion-ios-telephone"></i>
+        </button>
+      </div>
+
+      <div class="item" href="#">
+            客户单位：{{clientunit}}
+      </div>
+     <div class="item" href="#">
+            客户地址：{{clientaddr}}
+          </div>
+    </div>
+
+
+    <div class="list">
+
+    <div class="item" href="#">
+        服务项目：{{service}}
+    </div>
+
+     <div class = "item item-button-right"> 
+        工程师：{{engineer}}
+        <button class = "button button-positive">
+          <i class = "icon ion-information"></i>
+        </button>
+     </div>
+
+    <div class="item item-button-right">
+            销售人员：{{salesman}}
+            <button class = "button button-positive">
+              <i class = "icon ion-information"></i>
+            </button>
+    </div>
+    <div class="item" href="#">
+            出库单号：{{stocknumber}}
+    </div>
+
+ 
+    </div>
+
+    <div class="list">
+
+    <div class="item" href="#">
+        创建时间：{{createtime}}
+    </div>
+
+    <div class="item" href="#">
+        接单时间：{{accepttime}}
+    </div>
+
+    <div class="item" href="#">
+            完成时间：{{finishtime}}
+    </div>
+    <div class="item" href="#">
+            审核时间：{{checktime}}
+    </div>
+
+    </div>
+
+</ion-view>

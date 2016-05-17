@@ -81,5 +81,15 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
         }
       }
     })
+
+    .state('app.viewForms-detail',{
+      url:'/viewForms/viewForms-detail',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/viewForms-detail.html',
+          controller:'detailCtrl'
+        }
+      }
+    })
     ;     
 })
