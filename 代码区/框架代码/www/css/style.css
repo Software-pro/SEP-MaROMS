@@ -87,39 +87,69 @@
 }
 
 /****************   css in viewForms.html   ********************/
+/*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
 #subHeader
 {
-	height: 38px;
+	height: 46px;
 	margin-top: 16px;
-	border-top-width: 6px;
+	border-top-width: 10px;
 	border-bottom-width: 1px;
+	border-color: #EEEEEE;
 	padding: 0; 
-	padding-left: 25px;
-	padding-right: 25px;
+/*	padding-left: 25px;
+	padding-right: 25px;*/
 }
-#subHeaderContent
+/*button-bar形式呈现，**“|  全部  | 按创建时间 |  降序  |”**/
+#subHeaderBar
 {
-	height: 31px;
+	height: 35px;
 	border-width: 0;
 }
-#subHeaderSelect
+/*.button-bar .button 点击之后展开对应的菜单栏（list）*/
+#subHeaderMenu
 {
 	font-size: 14px;
 	border-width: 0;
 	padding: 0;
+	padding-top: 2px;
+	padding-bottom: 2px;
 	width: 32%;
 	height: 100%;
 }
-#subHeaderOption
+/*用于模拟菜单栏的list*/
+#subHeaderMenuList
+{
+	margin-top: 17px
+}
+/*用于模拟菜单栏的list的item*/
+#subHeaderMenuOption
+{
+	height: 37px;
+	padding-left: 10%;
+	padding-bottom: 7px;
+	padding-top: 7px;
+	background-color: #FAFAFA;
+	border-color: #DDDDDD;
+}
+/*用于模拟菜单栏的list的item中的文字css*/
+#subHeaderMenuContent
+{
+	font-size: 14px;
+	color: #444444;
+	font-weight: lighter;
+	/*margin-top: auto;
+	margin-bottom: auto;*/
+}
+/*#subHeaderOption
 {
 	padding: 0;
 	text-align: center;
-}
+}*/
 #listItem
 {
-	border-style:solid;
-	border-top-width:15px;
-	border-color:#DDDDDD;
+	border-style: solid;
+	border-top-width: 15px;
+	border-color: #EEEEEE;
 	padding-left: 25px;
 	padding-right: 25px;
 }

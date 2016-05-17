@@ -5,29 +5,33 @@
         <button class="button icon ion-plus-round"></button>
       </div>
   </ion-header-bar> -->
-  <div class="bar bar-subheader bar-light" id="subHeader">
-    <div id="subHeaderContent">
+
+
+
+  <!-- <div class="bar bar-subheader bar-light" id="subHeader">
+    <div id="subHeaderContent"> -->
+
     <!-- TODO：
       需要后台协助对选择框的内容进行整改。。
       如：未接单的报修单不允许按照审核时间排序 -->
 
       <!-- <span class="item item-input item-select" style="width: 33%; padding: 0; border-width: 0; margin: 0;"> -->
         
-        <select id="subHeaderSelect">
+       <!--  <select id="subHeaderSelect">
           <option id="subHeaderOption" selected="">全部</option>
           <option id="subHeaderOption">未接单</option>
           <option id="subHeaderOption">已接单</option>
           <option id="subHeaderOption">已完成</option>
           <option id="subHeaderOption">已审核</option>
-        </select>
+        </select> -->
      <!--  </span>
       <span class="item item-input item-select" style="width: 33%; padding: 0; border-width: 0; margin: 0;"> -->
-        <select id="subHeaderSelect">
+        <!-- <select id="subHeaderSelect">
           <option id="subHeaderOption" selected="">按创建时间</option>
           <option id="subHeaderOption">按接单时间</option>
           <option id="subHeaderOption">按完成时间</option>
           <option id="subHeaderOption">按审核时间</option>
-        </select>
+        </select> -->
      <!--  </span> -->
       <!-- <a class="button button-clear" style="font-size: 14px; border-width: 0;">全部</a>
       <a class="button button-clear" style="font-size: 14px; border-width: 0;">按创建时间</a> -->
@@ -35,10 +39,64 @@
       <!-- TODO:　
         需要js协助对下面button进行点击之后的改变动作：
         降序 <-> 升序 -->
-      <a class="button button-clear" id="subHeaderSelect">降序 <i class="ion-ios-arrow-thin-down"></i></a>
+  <!--     <a class="button button-clear" id="subHeaderSelect">降序 <i class="ion-ios-arrow-thin-down"></i></a>
     </div>
-  </div>
-  <ion-content class="content has-subheader">
+  </div> -->
+
+  <div class="bar bar-subheader bar-light" id="subHeader">
+    <div class="button-bar" id="subHeaderBar">
+    <!-- TODO：
+      需要后台协助对选择框的内容进行整改。。
+      如：未接单的报修单不允许按照审核时间排序 -->
+
+      <a class="button button-clear" id="subHeaderMenu" ng-click="menu1()" style="background-color: {{menu1Color}}">{{menu1Content}}<i class="ion-ios-arrow-down"></i></a>
+      <a class="button button-clear" id="subHeaderMenu" ng-click="menu2()" style="background-color: {{menu2Color}}">{{menu2Content}}<i class="ion-ios-arrow-down"></i></a>
+
+      <!-- TODO:　
+        需要js协助对下面button进行点击之后的改变动作：
+        降序 <-> 升序 -->
+      <a class="button button-clear" id="subHeaderMenu" ng-click="menu3()">{{menu3Content}}<i class="{{menu3Icon}}"></i></a>
+    </div>
+  </div> 
+  
+  <ul class="list has-subheader" id="subHeaderMenuList" ng-hide="menu1Var">
+    <li class="item" id="subHeaderMenuOption" ng-click="chooseAll()">
+      <span id="subHeaderMenuContent">全部</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="chooseUnordered()">
+      <span id="subHeaderMenuContent">未接单</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="chooseOrdered()">
+      <span id="subHeaderMenuContent">已接单</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="chooseAccomplished()">
+      <span id="subHeaderMenuContent">已完成</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="chooseChecked()">
+      <span id="subHeaderMenuContent">已审核</span>
+    </li>
+  </ul>
+
+  <ul class="list has-subheader" id="subHeaderMenuList" ng-hide="menu2Var">
+    <li class="item" id="subHeaderMenuOption" ng-click="sortByCreateTime()">
+      <span id="subHeaderMenuContent">按创建时间</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="sortByOrderTime()">
+      <span id="subHeaderMenuContent">按接单时间</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="sortByAccomplishTime()">
+      <span id="subHeaderMenuContent">按完成时间</span>
+    </li>
+    <li class="item" id="subHeaderMenuOption" ng-click="sortByCheckTime()">
+      <span id="subHeaderMenuContent">按审核时间</span>
+    </li>
+  </ul>
+
+
+
+
+
+  <ion-content class="content has-subheader" style="margin-top: 17px; background-color: #EEEEEE">
   <!-- <ion-content class="content has-subheader" overflow-scroll="true"> -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>
