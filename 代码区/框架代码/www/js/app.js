@@ -70,5 +70,16 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
            controller: 'messageCtrl'
         }
        }
-    });     
+    })
+
+    .state('app.viewForms-newForm',{
+      url:'/viewForms/viewForms-newForm',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/viewForms-newForm.html',
+          controller: 'newFormCtrl'
+        }
+      }
+    })
+    ;     
 })

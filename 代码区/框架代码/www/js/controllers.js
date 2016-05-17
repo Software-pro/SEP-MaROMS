@@ -14,7 +14,7 @@ angular.module('starter.controllers',[])
 	$scope.Phones = phones.all(); 
 })
 
-.controller('ViewFormsCtrl', function($scope,Forms) {
+.controller('ViewFormsCtrl', function($scope,Forms, $state) {
 	$scope.forms = Forms.all();
 
 	$scope.doRefresh = function() {
@@ -22,6 +22,10 @@ angular.module('starter.controllers',[])
     $scope.$broadcast("scroll.refreshComplete");
   	};
 
+  	$scope.newFormClicked = function(){
+  		alert("hello");
+  		$state.go('app.viewForms-newForm');
+  	}
   	$scope.menu1Var = true;
   	$scope.menu2Var = true;
   	
@@ -164,4 +168,8 @@ angular.module('starter.controllers',[])
 
 .controller("messageCtrl",function($scope,Message_infos) {
 	$scope.message_infos = Message_infos.all(); 
+})
+
+.controller("newFormCtrl",function() {
+	
 })
