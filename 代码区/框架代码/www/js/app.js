@@ -50,5 +50,25 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
            controller: 'contactsCtrl'
         }
        }
-    });   
+    })
+
+    .state('app.my',{
+       url:'/my',
+       views: {
+         'menuContent': {
+           templateUrl:'templates/menu-my.html',
+           controller: 'myCtrl'
+        }
+       }
+    })
+
+    .state('app.message',{
+       url:'/message',
+       views: {
+         'menuContent': {
+           templateUrl:'templates/menu-message.html',
+           controller: 'messageCtrl'
+        }
+       }
+    });     
 })

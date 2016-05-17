@@ -31,10 +31,19 @@ angular.module('starter.service',[])
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
+
+
+  ////////////////////////////////////////////////////
+  // 在这里需要与后台统一传输的数据。。
+  // 1. 传入id（记录顺序。。或许不太重要，以后可删掉）
+  // 2. 传入报修单状态展示的颜色（前端比较笨QwQ，没做出来根据文字改变颜色的。。）
+  ///////////////////////////////////////////////////////////
+
  var forms = [{
     id: 1,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -44,7 +53,8 @@ angular.module('starter.service',[])
   }, {
     id: 2,
     NO: 'bx131220233',
-    status: '未接',
+    status: '已审核',
+    statusColor: '#444444',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -55,6 +65,7 @@ angular.module('starter.service',[])
     id: 3,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -65,6 +76,7 @@ angular.module('starter.service',[])
     id: 4,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -75,6 +87,7 @@ angular.module('starter.service',[])
     id: 5,
     NO: 'bx131220233',
     status: '未接',
+    statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
@@ -99,4 +112,39 @@ angular.module('starter.service',[])
       return null;
     }
   };
-});
+})
+
+.factory('Informations',function() {
+  var informations = [{
+    id:01,
+    name:'翟微',
+    position:'工程师',
+    img:'img/photo1.jpg'
+  }];
+
+  return {
+    all:function() {
+      return informations;
+    }
+  };
+})
+
+.factory('Message_infos',function() {
+  var message_infos = [{
+    id:01,
+    title:'分值改动通知',
+    full_information:'派单员小李修改了报修单XXXXXXXX的分值',
+    img:'img/photo1.jpg'
+  },{
+    id:02,
+    title:'待办事项通知',
+    full_information:'接下来你要做的是添加小李为派单员',
+    img:'img/ionic.png'
+  }];
+
+  return {
+    all:function() {
+      return message_infos;
+    }
+  };
+}) 
