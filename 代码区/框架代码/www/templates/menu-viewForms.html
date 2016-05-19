@@ -76,8 +76,8 @@
     <ion-list>
       <!-- <div class="item item-divider"></div> -->
 
-      <ion-item class="item" ng-repeat="form in forms" type="item-text-wrap" id="listItem" href="#/app/viewForms/{{form.id}}">
-
+      <ion-item class="item" ng-repeat="form in forms" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
+ <!-- href="#/app/viewForms/{{form.id}}" -->
       <!-- collection-repeat? -->
         <!-- <div id="formDivider"><br></div> -->
         <p id="formTitle" >

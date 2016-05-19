@@ -14,7 +14,7 @@ angular.module('starter.controllers',[])
 	$scope.Phones = phones.all(); 
 })
 
-.controller('ViewFormsCtrl', function($scope,Forms, $state, $ionicBackdrop, $ionicPopover) {
+.controller('ViewFormsCtrl', function($scope,Forms, $state, $location) {
     $scope.forms = Forms.all();
 
     $scope.doRefresh = function() {
@@ -33,18 +33,39 @@ angular.module('starter.controllers',[])
      //      });
 
 
+    $scope.menu1Var = true;
+    $scope.menu2Var = true;
+    
+    $scope.menu1Content = '全部 ';
+    $scope.menu2Content = '按创建时间 ';
+    $scope.menu3Content = '降序 ';
+    $scope.menu3Icon = 'ion-ios-arrow-thin-down';
 
   	$scope.newFormClicked = function(){
-  		$state.go('app.viewForms-newForm');
-  	}
+      if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
+        $state.go('app.viewForms-newForm');
+      }
+      else {
+        $scope.menu1Var = true;
+        $scope.menu2Var = true;
+        $scope.menu1Color = '#FFFFFF';
+        $scope.menu2Color = '#FFFFFF';
+      }
+  	};
 
-  	$scope.menu1Var = true;
-  	$scope.menu2Var = true;
-  	
-  	$scope.menu1Content = '全部 ';
-  	$scope.menu2Content = '按创建时间 ';
-  	$scope.menu3Content = '降序 ';
-  	$scope.menu3Icon = 'ion-ios-arrow-thin-down';
+    $scope.itemClicked = function(formId) {
+      if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
+        $location.path("app/viewForms/" + formId);
+      }
+      else {
+        $scope.menu1Var = true;
+        $scope.menu2Var = true;
+        $scope.menu1Color = '#FFFFFF';
+        $scope.menu2Color = '#FFFFFF';
+      }
+      
+    }
+
   	$scope.menu1 = function() {
       $scope.menu2Var = true;
       $scope.menu2Color = '#FFFFFF';
