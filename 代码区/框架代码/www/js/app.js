@@ -83,6 +83,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
     .state('app.viewForms-detail',{
+
       url:'/viewForms/:formId',
       views: {
         'menuContent': {
@@ -94,4 +95,5 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
 
     //$urlRouterProvider.otherwise('/app/viewForms');     
+
 })

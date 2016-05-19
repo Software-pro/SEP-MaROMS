@@ -1,12 +1,15 @@
-<ion-view view-title="新建表单">
-    <div class = "list">
+<ion-view view-title="新建表单" id="fontSet">
+  <ion-nav-buttons side = "right">
+    <button class = "button button-clear" ng-click = "cancelNewForm()">Cancel</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class = "list  has-header">
       
-  
-      <label class = "item item-input">
+        <label class = "item item-input">
         <div class="input-label">客户姓名</div>
         <input type = "text" placeholder = "请填写客户的姓名">
       </label>
-      
+
        <label class = "item item-input">
         <div class="input-label">客户电话</div>
         <input type = "text" placeholder = "请填写客户的电话">
@@ -58,25 +61,15 @@
         </label>
          -->
 
+    <div>
+        <li class="item item-divider"></li>
+         <div class="padding">
+              <button type="submit" class="button button-block button-balanced" ng-click = "saveNewForm()">保存提交</button>
+          </div>
+          
     </div>
-<!-- 
-    <div class="item item-input item-select">
-      <div class="input-label">
-        Fighter
-      </div>
-      <select>
-        <option>ARC-170</option>
-        <option>A-wing</option>
-      </select>
-    </div> -->
-
-     <div class="padding">
-          <button type="submit" class="button button-block button-balanced">保存提交</button>
-      </div>
-      <div class="padding">
-          <button type="submit" class="button button-block button-assertive">撤销返回</button>
-      </div>
-
-
 </div>
+
+
+</ion-content>
   </ion-view>

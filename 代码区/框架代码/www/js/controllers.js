@@ -22,6 +22,7 @@ angular.module('starter.controllers',[])
       $scope.$broadcast("scroll.refreshComplete");
   	};
 
+
     // $scope.clickmenu = function() {
     //   alert("oooo");
     // }
@@ -31,6 +32,11 @@ angular.module('starter.controllers',[])
      //        $scope.popover = popover;
      //      });
 
+
+
+  	$scope.newFormClicked = function(){
+  		$state.go('app.viewForms-newForm');
+  	}
 
   	$scope.menu1Var = true;
   	$scope.menu2Var = true;
@@ -178,10 +184,16 @@ angular.module('starter.controllers',[])
 	$scope.message_infos = Message_infos.all(); 
 })
 
-.controller("newFormCtrl",function() {
-	
-})
-
 .controller("formDetailCtrl",function($scope, $stateParams, Forms) {
   $scope.form = Forms.get($stateParams.formId);
 })
+
+.controller("newFormCtrl",function($scope,$state) {
+	$scope.saveNewForm = function(){
+		alert("Add a new form!");
+		$state.go('app.viewForms');
+	}
+	$scope.cancelNewForm = function(){
+		$state.go('app.viewForms');
+	}
+});
