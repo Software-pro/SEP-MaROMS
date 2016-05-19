@@ -81,5 +81,17 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
         }
       }
     })
-    ;     
+
+    .state('app.viewForms-detail',{
+      url:'/viewForms/:formId',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/viewForms-detail.html',
+          controller: 'formDetailCtrl'
+        }
+      }
+    });
+
+
+    //$urlRouterProvider.otherwise('/app/viewForms');     
 })

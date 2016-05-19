@@ -14,18 +14,24 @@ angular.module('starter.controllers',[])
 	$scope.Phones = phones.all(); 
 })
 
-.controller('ViewFormsCtrl', function($scope,Forms, $state) {
-	$scope.forms = Forms.all();
+.controller('ViewFormsCtrl', function($scope,Forms, $state, $ionicBackdrop, $ionicPopover) {
+    $scope.forms = Forms.all();
 
-	$scope.doRefresh = function() {
-    //刷新--重新从后台载入数据
-    $scope.$broadcast("scroll.refreshComplete");
+    $scope.doRefresh = function() {
+      //刷新--重新从后台载入数据
+      $scope.$broadcast("scroll.refreshComplete");
   	};
 
-  	$scope.newFormClicked = function(){
-  		alert("hello");
-  		$state.go('app.viewForms-newForm');
-  	}
+    // $scope.clickmenu = function() {
+    //   alert("oooo");
+    // }
+     // $ionicPopover.fromTemplateUrl('menu1.html', {
+     //        scope: $scope
+     //      }).then(function(popover) {
+     //        $scope.popover = popover;
+     //      });
+
+
   	$scope.menu1Var = true;
   	$scope.menu2Var = true;
   	
@@ -44,6 +50,8 @@ angular.module('starter.controllers',[])
   		else {
   			$scope.menu1Color = '#FFFFFF';
   		}
+
+      //$scope.popover.show();
   	};
   	$scope.menu2 = function() {
       $scope.menu1Var = true;
@@ -172,4 +180,8 @@ angular.module('starter.controllers',[])
 
 .controller("newFormCtrl",function() {
 	
+})
+
+.controller("formDetailCtrl",function($scope, $stateParams, Forms) {
+  $scope.form = Forms.get($stateParams.formId);
 })
