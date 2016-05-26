@@ -1,37 +1,5 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet"> -->
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
-    <!-- ionic/angularjs js --><!-- 
-    <script src="lib/ionic/js/ionic.bundle.js"></script> -->
-
-    <!-- cordova script (this will be a 404 during development) -->
-   <!--  <script src="cordova.js"></script> -->
-
-    <!-- your app's js -->
-<!--     <script src="js/app.js"></script>
-    <script src="js/app2.js"></script>
-  </head>
-  <body ng-app="starter" ng-controller = "app2Ctrl">
-
-    <ion-pane>
-      <ion-header-bar class="bar-calm">
-        <button class = "button button-large button-clear icon-left ion-chevron-left"></button>
-        <h class="title">{{log}}</h>
-      </ion-header-bar>
- -->
- <ion-view view-title="报修单详情">
-      <ion-content>
+<ion-view view-title="报修单详情">
+  <ion-content>
 
 <!-- <div class="item item-avatar">
             <img src="http://ionicframework.com/img/docs/mcfly.jpg">
@@ -39,20 +7,16 @@
             <p>November 05, 1955</p>
           </div>
  -->
-       <div class="list">
+    <div class="list" style="margin-top: 16px;">
 
-        <div class="item">
-          报修单号:{{form.NO}}
-          <p>状态：{{form.status}}</p>
+      <div class="item">
+        <p style="font-size: 130%;">报修单号：{{form.NO}}</p>
+        <p>状态：{{form.status}}</p>
 <!-- 
           <span class="item-note">
             {{state}}
           </span> -->
-        </div>
-
       </div>
-
-      <div class="list">
 
       <div class="item " href="#">
         客户姓名：{{form.clientName}}
@@ -60,66 +24,58 @@
       
       <div class = "item item-button-right"> 
         客户电话：{{form.clientphone}}
-        <button class = "button button-positive">
-          <i class = "icon ion-ios-telephone"></i>
+        <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
+          <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF"></i>
         </button>
       </div>
 
       <div class="item" href="#">
-            客户单位：{{form.clientunit}}
+        客户单位：{{form.clientunit}}
       </div>
-     <div class="item" href="#">
-            客户地址：{{form.clientaddr}}
-          </div>
-    </div>
+      <div class="item" href="#">
+        客户地址：{{form.clientaddr}}
+      </div>
 
-
-    <div class="list">
-
-    <div class="item" href="#">
+      <div class="item" href="#">
         服务项目：{{form.service}}
-    </div>
+      </div>
 
-     <div class = "item item-button-right"> 
+      <div class = "item item-button-right"> 
         工程师：{{form.engineerName}}
         <button class = "button button-positive">
           <i class = "icon ion-information"></i>
         </button>
-     </div>
+      </div>
 
-    <div class="item item-button-right">
-            销售人员：{{form.salesName}}
-            <button class = "button button-positive">
-              <i class = "icon ion-information"></i>
-            </button>
-    </div>
-    <div class="item" href="#">
-            出库单号：{{form.stocknumber}}
-    </div>
+      <div class="item item-button-right">
+        销售人员：{{form.salesName}}
+        <button class = "button button-positive">
+          <i class = "icon ion-information"></i>
+        </button>
+      </div>
+      <div class="item" href="#">
+        出库单号：{{form.stocknumber}}
+      </div>
 
-    </div>
-
-    <div class="list">
-
-    <div class="item" href="#">
+      <div class="item" href="#">
         创建时间：{{form.time}}
-    </div>
+      </div>
 
-    <div class="item" href="#">
+      <div class="item" href="#">
         接单时间：{{form.accepttime}}
+      </div>
+
+      <div class="item" href="#">
+        完成时间：{{form.finishtime}}
+      </div>
+      <div class="item" href="#">
+        审核时间：{{form.checktime}}
+      </div>
+
     </div>
 
-    <div class="item" href="#">
-            完成时间：{{form.finishtime}}
-    </div>
-    <div class="item" href="#">
-            审核时间：{{form.checktime}}
-    </div>
-
-    </div>
-
-      </ion-content>
-      </ion-view>
+  </ion-content>
+</ion-view>
 <!--     </ion-pane>
 
  

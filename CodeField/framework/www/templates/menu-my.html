@@ -2,11 +2,11 @@
   <ion-content class="scroll-content has-header stable-bg light" >
    <div class="list">
    <li class="item item-divider"></li>
-   <ion-item class="item-avatar" ng-repeat="information in informations" type="item-text-wrap" href="#/informations/{{information.id}}">
-				<img src="{{information.img}}">
-				<h2>{{information.name}}</h2>
-				<p>{{information.position}}</p>
-			</ion-item> 
+      <ion-item class="item-avatar" type="item-text-wrap" href="#/informations/{{information.id}}">
+			<img ng-src="{{information.img}}">
+			<h2>{{information.name}}</h2>
+			<p>{{information.position}}</p>
+		</ion-item> 
    	<!--<li class="item-avatar">
    		<img src="img/photo.jpg">
    		<p>翟微</p>

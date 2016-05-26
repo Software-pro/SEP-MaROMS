@@ -197,8 +197,8 @@ angular.module('starter.controllers',[])
   	};
 })
 
-.controller("myCtrl",function($scope,Informations) {
-	$scope.informations = Informations.all(); 
+.controller("myCtrl",function($scope,PersonalInformation) {
+	$scope.information = PersonalInformation.get(); 
 })
 
 .controller("messageCtrl",function($scope,Message_infos) {

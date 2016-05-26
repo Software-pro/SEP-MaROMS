@@ -114,17 +114,16 @@ angular.module('starter.service',[])
   };
 })
 
-.factory('Informations',function() {
-  var informations = [{
+.factory('PersonalInformation',function() {
+  var personalInformation = {
     id:01,
     name:'翟微',
     position:'工程师',
     img:'img/photo1.jpg'
-  }];
-
+  };
   return {
-    all:function() {
-      return informations;
+    get: function() {
+      return personalInformation;
     }
   };
 })

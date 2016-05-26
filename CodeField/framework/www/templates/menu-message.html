@@ -3,7 +3,7 @@
     <div class="list">
       <li class="item item-divider"></li>
       <ion-item class="item-avatar item-button-right" ng-repeat="message_info in message_infos" type="item-text-wrap" href="#/message_infos/{{message_info.id}}">
-				<img src="{{message_info.img}}">
+				<img ng-src="{{message_info.img}}">
 				<h2>{{message_info.title}}</h2>
 				<p>{{message_info.full_information}}</p>
 		<ion-button class="button button-clear icon ion-ios-arrow-right"></ion-button>
