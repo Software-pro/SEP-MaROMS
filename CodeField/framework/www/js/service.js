@@ -1,20 +1,25 @@
 angular.module('starter.service',[])
 
-.factory('phones',function() {
+.factory('Phones',function() {
    
-   var Phones = [{
+   var phones = [{
+      id: 0,
    	  name: 'Aben',
    	  group: 'A',
    	  phonenum: '18305185997'
+
    }, {
+      id: 1,
    	  name: 'Benben',
    	  group: 'B',
    	  phonenum: '13778702182'
    	}, {
+      id: 2,
    		name: 'Zhuzhu',
    		group: 'Z',
    		phonenum: '15850552273'
    	}, {
+      id: 3,
    		name: 'Wenwen',
    		group: 'W',
    		phonenum: '15850552363'
@@ -22,9 +27,20 @@ angular.module('starter.service',[])
    
    return {
    	all: function() {
-   		return Phones;
-   	}
-   };
+   		return phones;
+   	},
+   remove: function(phone) {
+      phones.splice(phones.indexOf(phone), 1);
+    },
+    get: function(phoneId) {
+      for (var i = 0; i < phones.length; i++) {
+        if (i === parseInt(phoneId)) {
+          return phones[i];
+        }
+      }
+      return null;
+    }
+  };
 })
 
 .factory('Forms', function() {

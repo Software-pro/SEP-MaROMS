@@ -52,6 +52,16 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
        }
     })
 
+    .state('app.contact-detail', {
+      url:'/contacts/:phoneId',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/contact-detail.html',
+          controller: 'contactdetailCtrl'
+        }
+      }
+    })
+
     .state('app.my',{
        url:'/my',
        views: {
@@ -83,7 +93,6 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
     .state('app.viewForms-detail',{
-
       url:'/viewForms/:formId',
       views: {
         'menuContent': {

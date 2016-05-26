@@ -10,8 +10,8 @@ angular.module('starter.controllers',[])
 //   };
 // })
 
-.controller("contactsCtrl",function($scope,phones) {
-	$scope.Phones = phones.all(); 
+.controller("contactsCtrl",function($scope,Phones) {
+	$scope.phones = Phones.all(); 
 })
 
 .controller('ViewFormsCtrl', function($scope,Forms, $state, $location) {
@@ -207,6 +207,10 @@ angular.module('starter.controllers',[])
 
 .controller("formDetailCtrl",function($scope, $stateParams, Forms) {
   $scope.form = Forms.get($stateParams.formId);
+})
+
+.controller("contactdetailCtrl",function($scope, $stateParams,Phones) {
+  $scope.phone = Phones.get($stateParams.phoneId);
 })
 
 .controller("newFormCtrl",function($scope,$state) {

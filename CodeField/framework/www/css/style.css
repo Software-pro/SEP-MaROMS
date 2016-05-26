@@ -86,6 +86,12 @@
 	margin-top: 16px;
 }
 
+/******** for contacts-detail *******/
+#heaherdistancecontactdetail
+{
+	margin-top: 10px;
+}
+
 /****************   css in viewForms.html   ********************/
 /*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
 #subHeader
