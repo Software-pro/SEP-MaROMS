@@ -7,69 +7,66 @@
             <p>November 05, 1955</p>
           </div>
  -->
-    <div class="list" style="margin-top: 16px;">
+    <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
 
-      <div class="item">
-        <p style="font-size: 130%;">报修单号：{{form.NO}}</p>
-        <p>状态：{{form.status}}</p>
+      <div class="item" style="margin-top: 13px;">
+        <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
+        <p style="color: #AAAAAA;">状态： {{form.status}}</p>
 <!-- 
           <span class="item-note">
             {{state}}
           </span> -->
       </div>
 
-      <div class="item " href="#">
-        客户姓名：{{form.clientName}}
+      <div class="item" style="margin-top: 13px;" href="#">
+        客户姓名： {{form.clientName}}
       </div>
       
       <div class = "item item-button-right"> 
-        客户电话：{{form.clientphone}}
+        客户电话： {{form.clientphone}}
         <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
           <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF"></i>
         </button>
       </div>
 
       <div class="item" href="#">
-        客户单位：{{form.clientunit}}
+        客户单位： {{form.clientunit}}
       </div>
       <div class="item" href="#">
-        客户地址：{{form.clientaddr}}
+        客户地址： {{form.clientaddr}}
+      </div>
+
+      <div class="item" href="#" style="margin-top: 13px;">
+        服务项目： {{form.service}}
+      </div>
+
+      <div class = "item item-icon-right" ng-click="" style="margin-top: 13px;"> 
+        工程师： {{form.engineerName}}
+        <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
+      </div>
+
+      <div class="item item-icon-right" ng-click="">
+        销售人员： {{form.salesName}}
+        <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
+      </div>
+
+      <div class="item" href="#" style="margin-top: 13px;">
+        出库单号： {{form.stocknumber}}
       </div>
 
       <div class="item" href="#">
-        服务项目：{{form.service}}
-      </div>
-
-      <div class = "item item-button-right"> 
-        工程师：{{form.engineerName}}
-        <button class = "button button-positive">
-          <i class = "icon ion-information"></i>
-        </button>
-      </div>
-
-      <div class="item item-button-right">
-        销售人员：{{form.salesName}}
-        <button class = "button button-positive">
-          <i class = "icon ion-information"></i>
-        </button>
-      </div>
-      <div class="item" href="#">
-        出库单号：{{form.stocknumber}}
+        创建时间： {{form.time}}
       </div>
 
       <div class="item" href="#">
-        创建时间：{{form.time}}
+        接单时间： {{form.accepttime}}
       </div>
 
       <div class="item" href="#">
-        接单时间：{{form.accepttime}}
-      </div>
-
-      <div class="item" href="#">
-        完成时间：{{form.finishtime}}
+        完成时间： {{form.finishtime}}
       </div>
       <div class="item" href="#">
-        审核时间：{{form.checktime}}
+        审核时间： {{form.checktime}}
       </div>
 
     </div>
