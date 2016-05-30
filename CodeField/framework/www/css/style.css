@@ -114,6 +114,13 @@
 	margin-top: 0px;
 }
 
+/**********************/
+#selectbar
+{
+	width:100%; 
+	border:none;
+}
+
 /****************   css in viewForms.html   ********************/
 /*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
 #subHeader
