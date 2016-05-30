@@ -3,26 +3,34 @@ angular.module('starter.service',[])
 .factory('Phones',function() {
    
    var phones = [{
-      id: 0,
-   	  name: 'Aben',
    	  group: 'A',
-   	  phonenum: '18305185997'
-
+   	  persons: [{
+        id: 0, 
+        name: 'AZHU',
+        phonenum: '18305185997'
+      },{
+        id: 1,
+        name: 'AZZ',
+        phonenum: '15850552363'
+      }]
    }, {
-      id: 1,
-   	  name: 'Benben',
-   	  group: 'B',
-   	  phonenum: '13778702182'
-   	}, {
-      id: 2,
-   		name: 'Zhuzhu',
-   		group: 'Z',
-   		phonenum: '15850552273'
-   	}, {
-      id: 3,
-   		name: 'Wenwen',
-   		group: 'W',
-   		phonenum: '15850552363'
+      group: 'B',
+      persons: [{
+         id: 2,
+   	     name: 'Benben',
+   	     phonenum: '13778702182'
+       }]
+   	// }, {
+
+    //   id: 3,
+   	// 	name: 'Zhuzhu',
+   	// 	group: 'Z',
+   	// 	phonenum: '15850552273'
+   	// }, {
+    //   id: 3,
+   	// 	name: 'Wenwen',
+   	// 	group: 'W',
+   	// 	phonenum: '15850552363'
    }];
    
    return {
@@ -32,14 +40,39 @@ angular.module('starter.service',[])
    remove: function(phone) {
       phones.splice(phones.indexOf(phone), 1);
     },
-    get: function(phoneId) {
+    // getFromGroup:function(phoneId) {
+    //   for(var i=0;i<phones.length;i++) {
+    //     if(i === parseInt(phoneId))
+    //   }
+    // },
+    searchphone:function(phonename) {
       for (var i = 0; i < phones.length; i++) {
-        if (i === parseInt(phoneId)) {
-          return phones[i];
+          if(phones[i].group === phonename[0])
+            return phones[i];
+        // for(var j=0; j < phones[i].persons.length; j++) {
+        //    if (phones[i].persons[j].name === phonename) {
+        //      return phones[i].persons[j];
+        //   }
+        // }
+      }
+      return null;
+    },
+    get: function(personId) {
+      for (var i = 0; i < phones.length; i++) {
+        for(var j=0; j < phones[i].persons.length; j++) {
+           if (phones[i].persons[j].id === parseInt(personId)) {
+             return phones[i].persons[j];
+          }
         }
       }
       return null;
     }
+   /* getfromname: function(name) {
+      for(var i=0; i<phones.length; i++) {
+        if(phones[i].name === name)
+          return phones[i];
+      }
+    }*/
   };
 })
 

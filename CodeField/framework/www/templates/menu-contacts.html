@@ -3,19 +3,41 @@
         <h1 class="title positive-bg dark">生活黄页</h1>
      </div> -->
       <div class="bar bar-subheader bar-stable item-input-inset" id="searchBar">
-         <label class="item-input-wrapper">
+         <label class="item-input-wrapper" style="border:none">
             <i class="ion-search dark"></i>
-            <input type="text" placeholder="搜索">   
+            <input type="text" placeholder="搜索" ng-model="searchcontent" ng-change="search(searchcontent)">   
         </label>
       </div>
      
       <ion-content class="has-subheader" id="headerdistance">
-        
-          <div class"list">
-             <ion-item class="item-icon-right" ng-repeat="phone in phones" type="item-text-wrap" href="#/app/contacts/{{phone.id}}">
-               <h2> {{phone.name}}</h2>
-               <i class="icon ion-chevron-right icon-accessory"></i>
-             </ion-item>
+       <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+       </ion-refresher>
+         <li class="item item-divider"></li>
+          <div class="list" style="border:none">
+   
+   <!--if we have searched some thing-->       
+          <span ng-if="searchornot">
+                 <ion-item  id="navigator" type="item-text-wrap">
+                   <div style="line-height:6px;">{{phones.group}}</div>
+                 </ion-item>
+                 <ion-item class="item item-icon-right" ng-repeat="person in phones.persons" type="item-text-wrap" href="#/app/contacts/{{person.id}}" > 
+                   <h2> {{person.name}}</h2>
+                   <i class="icon ion-chevron-right icon-accessory"></i>
+                 </ion-item>
+          </span>
+           
+            <!--if we don't-->
+          <span ng-if="!searchornot">
+           <div class="list" ng-repeat="phone in phones">
+                 <ion-item  id="navigator" type="item-text-wrap">
+                   <div style="line-height:6px;">{{phone.group}}</div>
+                 </ion-item>
+                 <ion-item class="item item-icon-right" ng-repeat="person in phone.persons" type="item-text-wrap" href="#/app/contacts/{{person.id}}" > 
+                   <h2> {{person.name}}</h2>
+                   <i class="icon ion-chevron-right icon-accessory"></i>
+                 </ion-item>
+           </div>
+          </span>
            </div>
       </ion-content>
   </ion-view>

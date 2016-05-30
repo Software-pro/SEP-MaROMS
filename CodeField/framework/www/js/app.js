@@ -53,7 +53,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
     .state('app.contact-detail', {
-      url:'/contacts/:phoneId',
+      url:'/contacts/:personId',
       views: {
         'menuContent': {
           templateUrl:'templates/contact-detail.html',

@@ -10,8 +10,30 @@ angular.module('starter.controllers',[])
 //   };
 // })
 
-.controller("contactsCtrl",function($scope,Phones) {
-	$scope.phones = Phones.all(); 
+ .controller("contactsCtrl",function($scope,/* $stateParams, */Phones) {
+//	var content = document.getElementById("searchphone");
+  $scope.phones = Phones.all();
+  $scope.searchornot = false;
+   $scope.search = function() {
+      // var temp = Phones.searchphone($scope.searchcontent);
+       //if(temp != null)
+       //  $scope.phones = temp;
+        $scope.searchornot = true;
+        $scope.phones = Phones.searchphone($scope.searchcontent);
+        if($scope.phones === null)
+        {  $scope.searchornot = false;
+        }
+     };
+
+  $scope.doRefresh = function() {
+      //刷新--重新从后台载入数据
+      $scope.searchornot = false;
+      $scope.$broadcast("scroll.refreshComplete"); 
+      $scope.phones = Phones.all();
+    };
+ 
+  //$scope.contentshow = content;
+  
 })
 
 .controller('ViewFormsCtrl', function($scope,Forms, $state, $location) {
@@ -19,7 +41,7 @@ angular.module('starter.controllers',[])
 
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
-      $scope.$broadcast("scroll.refreshComplete");
+      $scope.$broadcast("scroll.refreshComplete");     
   	};
 
 
@@ -207,10 +229,11 @@ angular.module('starter.controllers',[])
 
 .controller("formDetailCtrl",function($scope, $stateParams, Forms) {
   $scope.form = Forms.get($stateParams.formId);
+  //$state.go('app.contact.view');
 })
 
 .controller("contactdetailCtrl",function($scope, $stateParams,Phones) {
-  $scope.phone = Phones.get($stateParams.phoneId);
+  $scope.person = Phones.get($stateParams.personId);
 })
 
 .controller("newFormCtrl",function($scope,$state) {

@@ -1,11 +1,17 @@
-<ion-view view-title="{{phone.name}}">
-  <ion-content class="has-subheader" id="headerdistancecontactdetail">
+<ion-view view-title="{{person.name}}">
+  <ion-content class="has-subheader">
+    <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
 
-    <p>
-      {{phone.name}}
-    </p>
-    <p>
-      {{phone.phonenum}}
-    </p>
+      <div class="item" style="margin-top: 13px;">
+      <p style="font-size: 130%; margin-bottom: 12px;">{{person.name}}</p>
+      </div>
+      <div class = "item item-button-right"> 
+          <p style="font-size: 130%; margin-bottom: 12px;">{{person.phonenum}}</p>
+        <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
+          <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF"></i>
+        </button>
+       </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
