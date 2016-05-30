@@ -3,7 +3,7 @@
     <button class = "button button-clear" ng-click = "cancelNewForm()" >清除</button>
   </ion-nav-buttons>
   <ion-content>
-    <div class = "list  has-header">
+    <div class = "list  list-inset">
       
         <label class = "item item-input">
         <div class="input-label">客户姓名</div>
@@ -44,28 +44,27 @@
             服务项目
           </div>
           <select id="selectbar">
+            <option>
             <option selected>服务一</option>
             <option>服务二</option>
             <option>服务三</option>
           </select>
         </label>
 
-    <!--   </div> -->
-      <!-- 
-        <label class="item item-input item-select">
-          <select>
-            <option>Blue</option>
-            <option>Green</option>
-            <option>Red</option>
-          </select>
-        </label>
-         -->
-
-    <div>
-        <li class="item item-divider"></li>
-         <div class="padding">
-              <button type="submit" class="button button-block button-balanced" ng-click = "saveNewForm()">保存提交</button>
+<!--  <div class="padding">
+            <button class="button button-block button-positive" ng-click="signIn(user)">
+              Sign-In
+            </button>
+            <p class="text-center">
+              <a href="#/forgot-password">Forgot password</a>
+            </p>
           </div>
+    <div> -->
+       
+         <div class="padding">
+              <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "saveNewForm()">保存提交</button>
+          </div>
+
           
     </div>
 </div>
