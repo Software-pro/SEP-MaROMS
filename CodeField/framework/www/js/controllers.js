@@ -242,6 +242,10 @@ angular.module('starter.controllers',[])
 		$state.go('app.viewForms');
 	}
 	$scope.cancelNewForm = function(){
-		$state.go('app.viewForms');
+    var tmp = document.getElementsByTagName("input");
+    for(var i = 0; i < tmp.length; i ++){
+      tmp[i].value = "";
+    }
+		//$state.go('app.viewForms');
 	}
 });
