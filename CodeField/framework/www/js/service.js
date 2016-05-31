@@ -193,6 +193,14 @@ angular.module('starter.service',[])
   return {
     all:function() {
       return message_infos;
+    },
+    get: function(message_infoId) {
+      for (var i = 0; i < message_infos.length; i++) {
+        if (i === parseInt(message_infoId)) {
+          return message_infos[i];
+        }
+      }
+      return null;
     }
   };
 }) 
