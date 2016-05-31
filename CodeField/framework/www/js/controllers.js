@@ -225,19 +225,13 @@ angular.module('starter.controllers',[])
 
 .controller("messageCtrl",function($scope,Message_infos) {
 	$scope.message_infos = Message_infos.all(); 
-  $scope.messageClicked = function(message_infoId) {
-        $location.path("app/message/" + message_infoId);
-        //$state.go("app.message-detail");
-      }
 })
 
 .controller("formDetailCtrl",function($scope, $stateParams, Forms) {
   $scope.form = Forms.get($stateParams.formId);
   //$state.go('app.contact.view');
 })
-.controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
-  $scope.message_info = Message_infos.get($stateParams.message_infoId);
-})
+
 .controller("contactdetailCtrl",function($scope, $stateParams,Phones) {
   $scope.person = Phones.get($stateParams.personId);
 })

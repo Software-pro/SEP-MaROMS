@@ -2,11 +2,16 @@
   <ion-content class="scroll-content has-header stable-bg light" >
    <div class="list">
    <li class="item item-divider"></li>
-      <ion-item class="item-avatar" type="item-text-wrap" href="#/app/personalInformation/{{personalInformation.id}}">
-			<img ng-src="{{personalInformation.img}}">
-			<h2>{{personalInformation.name}}</h2>
-			<p>{{personalInformation.position}}</p>
+      <ion-item class="item-avatar" type="item-text-wrap" href="#/informations/{{information.id}}">
+			<img ng-src="{{information.img}}">
+			<h2>{{information.name}}</h2>
+			<p>{{information.position}}</p>
 		</ion-item>
+   	<!--<li class="item-avatar">
+   		<img src="img/photo.jpg">
+   		<p>翟微</p>
+   		<p>工程师</p>
+   	</li> -->
    	<li class="item item-divider"></li>
    	<li class="item item-button-right">
    		<h2>个人信息</h2>
