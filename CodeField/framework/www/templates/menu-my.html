@@ -2,25 +2,21 @@
   <ion-content class="scroll-content has-header stable-bg light" >
    <div class="list">
    <li class="item item-divider"></li>
-      <ion-item class="item-avatar" type="item-text-wrap" href="#/informations/{{information.id}}">
-			<img ng-src="{{information.img}}">
-			<h2>{{information.name}}</h2>
-			<p>{{information.position}}</p>
+      <ion-item class="item-avatar" type="item-text-wrap" >
+			<img ng-src="{{personalinformation.img}}">
+			<h2>{{personalinformation.name}}</h2>
+			<p>{{personalinformation.position}}</p>
 		</ion-item>
-   	<!--<li class="item-avatar">
-   		<img src="img/photo.jpg">
-   		<p>翟微</p>
-   		<p>工程师</p>
-   	</li> -->
    	<li class="item item-divider"></li>
-   	<li class="item item-button-right">
+   	 <ion-item class="item item-icon-right"  type="item-text-wrap" href="#/app/my/my-detail" > 
    		<h2>个人信息</h2>
-   		<a class="button button-clear icon ion-ios-arrow-right"></a>
-   	</li>
+   		<i class="icon ion-chevron-right icon-accessory"></i>
+   	</ion-item>
    	<li class="item item-divider"></li>
-   	<li class="item item-button-right">
-   		<h2>分值统计</h2>
-   		<a class="button button-clear icon ion-ios-arrow-right"></a>
+   	<ion-item class="item item-icon-right"  type="item-text-wrap" href="#/app/my/mark" > 
+      <h2>分值统计</h2>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
    	</li>
   </div>
  </ion-content>

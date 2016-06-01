@@ -100,9 +100,37 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
           controller: 'formDetailCtrl'
         }
       }
+    })
+
+   .state('app.my-detail', {
+      url:'/my/my-detail',
+      views: {
+        'menuContent' : {
+          templateUrl:'templates/my-detail.html',
+          controller: 'myDetailCtrl'
+        }
+      }
+    })
+
+    .state('app.message-detail', {
+      url:'/message/:message_infoId',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/message-detail.html',
+          controller:'messageDetailCtrl'
+        }
+      }
+    })
+
+     .state('app.mark', {
+      url:'/my/mark',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/mark.html',
+          controller:'markCtrl'
+        }
+      }
     });
-
-
     //$urlRouterProvider.otherwise('/app/viewForms');     
 
 })

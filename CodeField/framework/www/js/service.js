@@ -168,12 +168,14 @@ angular.module('starter.service',[])
     id:01,
     name:'翟微',
     position:'工程师',
-    img:'img/photo1.jpg'
+    img:'img/photo1.jpg',
+    phonenum: '12312341234',
+    mark: 100
   };
   return {
     get: function() {
       return personalInformation;
-    }
+    },
   };
 })
 
@@ -193,6 +195,36 @@ angular.module('starter.service',[])
   return {
     all:function() {
       return message_infos;
+    },
+    get: function(message_infoId) {
+      for (var i = 0; i < message_infos.length; i++) {
+        if (i === parseInt(message_infoId)-1) {
+          return message_infos[i];
+        }
+      }
+      return null;
     }
   };
 }) 
+
+.factory("MarkChanges",function() {
+  var markChanges = [{
+    id:01,
+    value:+10,
+    title:"完成修理工作"
+  },{
+    id:02,
+    value:-10,
+    title:"遭到顾客投诉"
+  },{
+    id:03,
+    value:+20,
+    title:"顾客给出五星好评"
+  }];
+
+  return {
+    all:function() {
+      return markChanges;
+    }
+  };
+})

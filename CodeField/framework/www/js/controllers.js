@@ -220,7 +220,7 @@ angular.module('starter.controllers',[])
 })
 
 .controller("myCtrl",function($scope,PersonalInformation) {
-	$scope.information = PersonalInformation.get(); 
+	$scope.personalinformation = PersonalInformation.get(); 
 })
 
 .controller("messageCtrl",function($scope,Message_infos) {
@@ -231,7 +231,15 @@ angular.module('starter.controllers',[])
   $scope.form = Forms.get($stateParams.formId);
   //$state.go('app.contact.view');
 })
-
+.controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
+  $scope.message_info = Message_infos.get($stateParams.message_infoId);
+})
+.controller("myDetailCtrl", function($scope,  PersonalInformation) {
+  $scope.personalinformation = PersonalInformation.get();
+})
+.controller("markCtrl", function($scope, MarkChanges) {
+  $scope.markChanges = MarkChanges.all();
+})
 .controller("contactdetailCtrl",function($scope, $stateParams,Phones) {
   $scope.person = Phones.get($stateParams.personId);
 })
