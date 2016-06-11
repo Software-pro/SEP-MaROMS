@@ -92,6 +92,15 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
+    .state('app.viewForms-editForm',{
+      url:'/viewForms/viewForms-editForm',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/viewForms-editForm.html',
+          controller: 'editFormCtrl'
+        }
+      }
+    })
     .state('app.viewForms-detail',{
       url:'/viewForms/:formId',
       views: {

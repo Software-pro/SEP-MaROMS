@@ -26,14 +26,20 @@
         <input type = "text" placeholder = "请填写工作地址">
       </label>
       
-      <label class = "item item-input">
+      <label class = "item item-input" >
         <div class="input-label">销售人员</div>
-        <input type = "text" placeholder = "请填写销售员的姓名">
+        <select id="selectbar">
+            <option selected>请选择销售人员</option>
+            <option ng-repeat = "salesman in salesmans">{{salesman.name}}</option>
+          </select>
       </label>
       
-      <label class = "item item-input">
+      <label class = "item item-input" >
         <div class="input-label">工程师</div>
-        <input type = "text" placeholder = "请填写工程师的姓名">
+        <select id="selectbar" >
+            <option selected>请选择工程师</option>
+            <option ng-repeat = "engineer in engineers">{{engineer.name}}</option>
+        </select>
       </label>
       
 
@@ -44,8 +50,8 @@
             服务项目
           </div>
           <select id="selectbar">
-            <option>
-            <option selected>服务一</option>
+            <option selected>请选择服务</option>
+            <option>服务一</option>
             <option>服务二</option>
             <option>服务三</option>
           </select>

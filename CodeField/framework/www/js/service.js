@@ -76,6 +76,62 @@ angular.module('starter.service',[])
   };
 })
 
+.factory('PersonalInformations', function() {
+  var engineers = [{
+    id: 0,
+    NO: 'gc00001',
+    name:'Amy'
+  }, {
+    id: 1,
+    NO: 'gc00002',
+    name:'Andy'
+  }, {
+    id: 2,
+    NO: 'gc00003',
+    name:'Bob'
+  }]
+
+  var salesmans = [{
+    id: 0,
+    NO: 'xs00001',
+    name:'Cindy'
+  }, {
+    id: 1,
+    NO: 'xs00002',
+    name:'David'
+  }, {
+    id: 2,
+    NO: 'xs00003',
+    name:'Eric'
+  }]
+
+  var distributers = [{
+    id: 0,
+    NO: 'pd00001',
+    name:'Etone'
+  }, {
+    id: 1,
+    NO: 'pd00002',
+    name:'Frank'
+  }, {
+    id: 2,
+    NO: 'pd00003',
+    name:'Gracie'
+  }];
+
+  return {
+    all_engineer: function() {
+      return engineers
+    },
+    all_salesman: function() {
+      return salesmans
+    },
+    all_distributer: function() {
+      return distributers
+    }
+  }
+})
+
 .factory('Forms', function() {
   // Might use a resource here that returns a JSON array
 
@@ -87,7 +143,7 @@ angular.module('starter.service',[])
   // 1. 传入id（记录顺序。。或许不太重要，以后可删掉）
   // 2. 传入报修单状态展示的颜色（前端比较笨QwQ，没做出来根据文字改变颜色的。。）
   ///////////////////////////////////////////////////////////
-
+ 
  var forms = [{
     id: 1,
     NO: 'bx131220233',
@@ -146,6 +202,7 @@ angular.module('starter.service',[])
   }];
 
   return {
+    currentId: 0,
     all: function() {
       return forms;
     },
@@ -163,8 +220,8 @@ angular.module('starter.service',[])
   };
 })
 
-.factory('PersonalInformation',function() {
-  var personalInformation = {
+.factory('MyInformation',function() {
+  var myInformation = {
     id:01,
     name:'翟微',
     position:'工程师',
@@ -174,7 +231,7 @@ angular.module('starter.service',[])
   };
   return {
     get: function() {
-      return personalInformation;
+      return myInformation;
     },
   };
 })
