@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+
+    <!--your viewcontroller's js-->
+   <script src="js/controllers.js"></script>
+   <script src="js/service.js"></script>
+  </head>
+  
+  <body ng-app="starter" id="fontSet">
+   <ion-nav-view>
+   </ion-nav-view>
+   <ion-pane>
+      <ion-header-bar align="center" style="background-color:#00BFFF;border: none;">
+            <h1 class="title light" id="fontSet" style="font-size: 20px;">在线报修登录界面</h1>
+      </ion-header-bar>
+      <ion-content>
+      <div calss="scroll-content has-header padding">
+        
+        <div class="item-input">
+          <span class="input-label">用户名</span>
+          <input type="text" placeholder="zhang san">
+        </div>
+        <div class="item-input">
+          <span class="input-label">用户名</span>
+          <input type="text" placeholder="zhang san">
+        </div>
+        <div class="item-input">
+          <span class="input-label">密码</span>
+          <input type="password" placeholder="********">
+        </div>
+      <div class="item item-checkbox item-button-right" style="background-color:transparent;border:none;">
+          <div class="checkbox" >
+            <input type="checkbox"checked>
+          </div>
+          <p class="dark">记住密码</p>    
+          <button class="button button-clear button-positive">忘记密码？</button>
+      </div>
+      <div class="button-bar padding-left padding-right">
+        <a class="button button-block button-lightblue" href="#/app/viewForms">登录</a>
+      </div>
+      </div>     
+      </ion-content>
+    </ion-pane>
+   
+  </body>
+</html>

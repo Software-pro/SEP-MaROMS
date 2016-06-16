@@ -24,6 +24,11 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
+    .state('login',{
+      url:'/login',
+      templateUrl:'templates/login.html',
+      controller:'LoginCtrl'
+    })
 
    .state('app', {
     url: '/app',
@@ -140,6 +145,6 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
         }
       }
     });
-    //$urlRouterProvider.otherwise('/app/viewForms');     
+    $urlRouterProvider.otherwise('/login');     
 
 })
