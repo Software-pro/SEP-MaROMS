@@ -154,7 +154,8 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    creatTime: '2016-01-01 12:00',
+    time: '',
+    creatTime: '2016-01-03 12:00',
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 15:00'
@@ -168,21 +169,23 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    creatTime: '2016-01-01 12:00',
+    time: '',
+    creatTime: '2016-01-01 15:00',
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
   }, {
     id: 3,
     NO: 'bx131220733',
-    status: '未接',
+    status: '已接单',
     statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    creatTime: '2016-01-01 12:00',
+    time: '',
+    creatTime: '2016-07-01 12:00',
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
@@ -196,21 +199,23 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    creatTime: '2016-01-01 12:00',
+    time: '',
+    creatTime: '2016-01-01 12:20',
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
   }, {
     id: 5,
     NO: 'bx131220333',
-    status: '未接',
+    status: '已完成',
     statusColor: '#FF0000',
     value: 12,
     clientName: '彭滟茹',
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    creatTime: '2016-01-01 12:00',
+    time: '',
+    creatTime: '2016-04-01 12:00',
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-22 17:00'
@@ -231,6 +236,23 @@ angular.module('starter.service',[])
         }
       }
       return null;
+    },
+    setTime: function(timeKind) {
+      for (var i = 0; i < forms.length; i++) {
+        if (timeKind === "creatTime") {
+          forms[i].time = forms[i].creatTime;
+        }
+        else if (timeKind === "orderTakeTime") {
+          forms[i].time = forms[i].orderTakeTime;
+        }
+        else if (timeKind === "finishTime") {
+          forms[i].time = forms[i].finishTime;
+        }
+        else if (timeKind === "auditTime") {
+          forms[i].time = forms[i].auditTime;
+        }
+      }
+      return forms;
     }
   };
 })

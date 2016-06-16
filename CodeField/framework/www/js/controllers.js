@@ -38,7 +38,8 @@ angular.module('starter.controllers',[])
 })
 
 .controller('ViewFormsCtrl', function($scope,Forms, $state, $location) {
-    $scope.forms = Forms.all();
+    $scope.forms = Forms.setTime("creatTime");
+   // $scope.forms = Forms.all();
 
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
@@ -55,7 +56,8 @@ angular.module('starter.controllers',[])
      //      }).then(function(popover) {
      //        $scope.popover = popover;
      //      });
-    $scope.order = 'time';
+    $scope.order = 'creatTime';
+    $scope.timeLabel = '创建时间：';
 
     $scope.menu1Var = true;
     $scope.menu2Var = true;
@@ -127,13 +129,13 @@ angular.module('starter.controllers',[])
       $scope.menu2Color = '#FFFFFF';
 
       if ($scope.menu3Content == '降序 ') {
-        $scope.order = '-time';
+        $scope.order = '-creatTime';
         $scope.menu3Content = '升序 ';
         $scope.menu3Icon = 'ion-ios-arrow-thin-up';
 
       }
       else {
-        $scope.order = 'time';
+        $scope.order = 'creatTime';
         $scope.menu3Content = '降序 ';
         $scope.menu3Icon = 'ion-ios-arrow-thin-down';
       }
@@ -217,6 +219,8 @@ angular.module('starter.controllers',[])
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按创建时间 ';
+      $scope.forms = Forms.setTime("creatTime");
+      $scope.timeLabel = '创建时间：';
       /**TODO: 后台排序，更新forms**/
     };
     $scope.sortByOrderTime = function() {
@@ -226,6 +230,8 @@ angular.module('starter.controllers',[])
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按接单时间 ';
+      $scope.forms = Forms.setTime("orderTakeTime");
+      $scope.timeLabel = '接单时间：';
       /**TODO: 后台排序，更新forms**/
     };
     $scope.sortByAccomplishTime = function() {
@@ -235,6 +241,8 @@ angular.module('starter.controllers',[])
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按完成时间 ';
+      $scope.forms = Forms.setTime("finishTime");
+      $scope.timeLabel = '完成时间：';
       /**TODO: 后台排序，更新forms**/
     };
     $scope.sortByCheckTime = function() {
@@ -244,6 +252,8 @@ angular.module('starter.controllers',[])
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按审核时间 ';
+      $scope.forms = Forms.setTime("auditTime");
+      $scope.timeLabel = '审核时间：';
       /**TODO: 后台排序，更新forms**/
     };
 })
