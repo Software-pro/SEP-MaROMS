@@ -313,4 +313,8 @@ angular.module('starter.controllers',[])
     }
 		//$state.go('app.viewForms');
 	}
+})
+
+.controller("LoginCtrl",function($scope,$state) {
+  
 });

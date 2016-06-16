@@ -27,6 +27,16 @@
     color: #fff;
 }
 
+.button.button-positive.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #00BFFF; 
+
+      font-size: 15px;
+      font-family: 'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;
+}
+
 /*checkbox背景颜色*/
 .checkbox {
   position: relative;
