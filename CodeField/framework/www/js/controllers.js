@@ -1,5 +1,6 @@
 angular.module('starter.controllers',[])
 
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
 })
@@ -247,8 +248,12 @@ angular.module('starter.controllers',[])
     };
 })
 
-.controller("myCtrl",function($scope,MyInformation) {
+.controller("myCtrl",function($scope,$state,MyInformation) {
   $scope.myinformation = MyInformation.get(); 
+  $scope.exit = function(){
+    alert("haha");
+    $state.go('/');
+  }
 })
 
 .controller("messageCtrl",function($scope,Message_infos) {
