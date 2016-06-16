@@ -146,7 +146,7 @@ angular.module('starter.service',[])
  
  var forms = [{
     id: 1,
-    NO: 'bx131220233',
+    NO: 'bx131220237',
     status: '未接',
     statusColor: '#FF0000',
     value: 12,
@@ -154,7 +154,10 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    time: '2016-01-01 17:00'
+    creatTime: '2016-01-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 15:00'
   }, {
     id: 2,
     NO: 'bx131220233',
@@ -165,10 +168,13 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    time: '2016-01-01 17:00'
+    creatTime: '2016-01-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
   }, {
     id: 3,
-    NO: 'bx131220233',
+    NO: 'bx131220733',
     status: '未接',
     statusColor: '#FF0000',
     value: 12,
@@ -176,10 +182,13 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    time: '2016-01-01 17:00'
+    creatTime: '2016-01-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
   }, {
     id: 4,
-    NO: 'bx131220233',
+    NO: 'bx131220283',
     status: '未接',
     statusColor: '#FF0000',
     value: 12,
@@ -187,10 +196,13 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    time: '2016-01-01 17:00'
+    creatTime: '2016-01-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
   }, {
     id: 5,
-    NO: 'bx131220233',
+    NO: 'bx131220333',
     status: '未接',
     statusColor: '#FF0000',
     value: 12,
@@ -198,7 +210,10 @@ angular.module('starter.service',[])
     type: '安装调试',
     engineerName: '无',
     salesName: '张琴',
-    time: '2016-01-01 17:00'
+    creatTime: '2016-01-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-22 17:00'
   }];
 
   return {

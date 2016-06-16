@@ -50,13 +50,13 @@
       <li class="item" id="subHeaderMenuOption" ng-click="sortByCreateTime()">
         <span id="subHeaderMenuContent">按创建时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="sortByOrderTime()">
+      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled2" ng-click="sortByOrderTime()">
         <span id="subHeaderMenuContent">按接单时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="sortByAccomplishTime()">
+      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled3" ng-click="sortByAccomplishTime()">
         <span id="subHeaderMenuContent">按完成时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="sortByCheckTime()">
+      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled4" ng-click="sortByCheckTime()">
         <span id="subHeaderMenuContent">按审核时间</span>
       </li>
     </ul>
@@ -76,7 +76,7 @@
     <ion-list>
       <!-- <div class="item item-divider"></div> -->
 
-      <ion-item class="item" ng-repeat="form in forms" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
+      <ion-item class="item" ng-repeat="form in forms | orderBy:order" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
  <!-- href="#/app/viewForms/{{form.id}}" -->
       <!-- collection-repeat? -->
         <!-- <div id="formDivider"><br></div> -->
