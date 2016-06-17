@@ -71,6 +71,30 @@ angular.module('starter.controllers',[])
     $scope.menu2Disabled3 = false;
     $scope.menu2Disabled4 = false;
 
+    $scope.hideCancel = true;
+    $scope.searchcontent = '';
+
+    $scope.searchClick = function() {
+        $scope.hideCancel = false;
+    };
+    $scope.searchCancel = function() {
+        $scope.hideCancel = true;
+        $scope.searchcontent = '';
+        $scope.menu1Content = '全部 ';
+        $scope.menu2Content = '按创建时间 ';
+        $scope.menu3Content = '降序 ';
+        $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+    };
+
+    $scope.searchFilter = function(item) {
+      if ($scope.menu1Content === '全部 ' || $scope.menu1Content.indexOf(item.status)>=0) {
+        if ($scope.searchcontent === '') return true;
+        else return item.engineerName.indexOf($scope.searchcontent)>=0 || item.salesName.indexOf($scope.searchcontent)>=0;
+      }
+      return false;
+    }
+
+
     $scope.newFormClicked = function(){
       if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
         $state.go('app.viewForms-newForm');

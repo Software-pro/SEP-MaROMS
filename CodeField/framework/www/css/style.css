@@ -135,9 +135,9 @@
 /*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
 #subHeader
 {
-	height: 46px;
-	margin-top: 16px;
-	border-top-width: 10px;
+	height: 36px;
+	margin-top: 60px;
+	border-top-width: 1px;
 	border-bottom-width: 1px;
 	border-color: #EEEEEE;
 	padding: 0; 
@@ -154,17 +154,22 @@
 #subHeaderMenu
 {
 	font-size: 14px;
-	border-width: 0;
+	border-width: 0px;
+	border-bottom-width: 1px;
 	padding: 0;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	width: 32%;
 	height: 100%;
+	border-color: #DDDDDD;
 }
 /*用于模拟菜单栏的list*/
 #subHeaderMenuList
 {
-	margin-top: 17px
+/*	height: 20px;
+*/	top: 79px;
+
+	
 }
 /*用于模拟菜单栏的list的item*/
 #subHeaderMenuOption

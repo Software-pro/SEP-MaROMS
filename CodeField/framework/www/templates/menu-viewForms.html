@@ -2,9 +2,15 @@
   <ion-nav-buttons side = "right">
     <button class = "button button-clear icon ion-plus" ng-click = "newFormClicked()"></button>
   </ion-nav-buttons> 
-
+  <div class="bar bar-subheader bar-stable item-input-inset" id="searchBar">
+    <label class="item-input-wrapper" style="border:none">
+      <i class="ion-search dark"></i>
+      <input type="text" placeholder="搜索" ng-model="searchcontent" ng-click="searchClick()">
+    </label>
+    <button class="button-clear" style="padding-left: 10.667px; color: #00BFFF" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
+  </div>
   <div class="bar bar-subheader bar-light" id="subHeader">
-    <div class="button-bar" id="subHeaderBar">
+  <div class="button-bar" id="subHeaderBar">
     <!-- TODO：
       需要后台协助对选择框的内容进行整改。。
       如：未接单的报修单不允许按照审核时间排序 -->
@@ -69,17 +75,13 @@
 
 
 
-  <ion-content class="content has-subheader" style="margin-top: 17px; background-color: #EEEEEE">
+  <ion-content class="content has-subheader" style="margin-top: 40px; background-color: #EEEEEE">
   <!-- <ion-content class="content has-subheader" overflow-scroll="true"> -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>
     <ion-list>
-      <!-- <div class="item item-divider"></div> -->
 
-      <ion-item class="item" ng-repeat="form in forms | orderBy:order" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
- <!-- href="#/app/viewForms/{{form.id}}" -->
-      <!-- collection-repeat? -->
-        <!-- <div id="formDivider"><br></div> -->
+      <ion-item class="item" ng-repeat="form in forms | orderBy:order | filter: searchFilter" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
         <p id="formTitle" >
           报修单号：{{form.NO}}
         </p>
