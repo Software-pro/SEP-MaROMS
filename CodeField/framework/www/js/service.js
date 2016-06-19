@@ -232,7 +232,7 @@ angular.module('starter.service',[])
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
         if (i === parseInt(formId)) {
-          return forms[i];
+          return forms[i-1];
         }
       }
       return null;
@@ -261,7 +261,7 @@ angular.module('starter.service',[])
   var myInformation = {
     id:01,
     name:'翟微',
-    position:'工程师',
+    position:'派单员',
     img:'img/photo1.jpg',
     phonenum: '12312341234',
     mark: 100

@@ -8,9 +8,27 @@
       <div class = "item item-button-right"> 
           <p style="font-size: 130%; margin-bottom: 12px;">{{person.phonenum}}</p>
         <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
-          <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF"></i>
+          <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{person.phonenum}}"></i>
         </button>
        </div>
+       <div ng-switch="myinformation.position">
+       <div ng-switch-when="派单员">
+       <div class="item" style="margin-top: 13px;" href="#">
+        报修单查看
+      </div>
+       <div class="item" style="margin-top: 13px;" href="#">
+        分值统计查看
+      </div>
+      </div>
+        <div ng-switch-when="管理员">
+       <div class="item" style="margin-top: 13px;" href="#">
+        报修单查看
+      </div>
+       <div class="item" style="margin-top: 13px;" href="#">
+        分值统计查看
+      </div>
+      </div>
+      </div>
       </div>
     </div>
   </ion-content>

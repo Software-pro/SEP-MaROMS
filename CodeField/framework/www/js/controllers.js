@@ -300,9 +300,32 @@ angular.module('starter.controllers',[])
     Forms.currentId = $stateParams.formId;
   }
 })
-.controller("editFormCtrl",function($scope,Forms,MyInformation) {
+.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations) {
  $scope.form = Forms.get(Forms.currentId);
- $scope.position = MyInformation.get().position
+ $scope.myinformation = MyInformation.get();
+ $scope.engineers = PersonalInformations.all_engineer();
+  $scope.salesmans = PersonalInformations.all_salesman();
+  $scope.distributers = PersonalInformations.all_distributer();
+  $scope.deleteForm = function(){
+    alert("Delete this form!");
+    $state.go('app.viewForms');
+  }
+  $scope.submitForm = function(){
+    alert("订单已完成!");
+    $state.go('app.viewForms');
+  }
+  $scope.cancelOrderTaking = function(){
+    alert("取消接单!");
+    $state.go('app.viewForms');
+  }
+  $scope.reviewForm = function(){
+    alert("订单已审核!");
+    $state.go('app.viewForms');
+  }
+   $scope.takeForm = function(){
+    alert("已经接单");
+    $state.go('app.viewForms');
+  }
 })
 .controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
   $scope.message_info = Message_infos.get($stateParams.message_infoId);
@@ -313,24 +336,10 @@ angular.module('starter.controllers',[])
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
 })
-.controller("contactdetailCtrl",function($scope, $stateParams,Phones) {
+.controller("contactdetailCtrl",function($scope, $stateParams,Phones,MyInformation) {
   $scope.person = Phones.get($stateParams.personId);
+  $scope.myinformation = MyInformation.get();
 })
-
-.controller("newFormCtrl",function($scope,$state) {
-  $scope.saveNewForm = function(){
-    alert("Add a new form!");
-    $state.go('app.viewForms');
-  }
-  $scope.cancelNewForm = function(){
-    var tmp = document.getElementsByTagName("input");
-    for(var i = 0; i < tmp.length; i ++){
-      tmp[i].value = "";
-    }
-    //$state.go('app.viewForms');
-  }
-})
-
 
 .controller("newFormCtrl",function($scope,$state, PersonalInformations) {
 	$scope.engineers = PersonalInformations.all_engineer();
