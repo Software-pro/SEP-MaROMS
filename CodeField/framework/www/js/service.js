@@ -128,8 +128,30 @@ angular.module('starter.service',[])
     },
     all_distributer: function() {
       return distributers
+    },
+    get_information: function(currentNO) {
+     var firstNO = currentNO.substr(0,2); 
+     if(firstNO == 'gc') {
+      for(var int i=0; i<engineers.length;i++) {
+        if(engineers[i].NO == currentNO) {
+          return engineers[i];
+        }
+      }
+     }
+     else if(firstNO == 'xs') {
+       for(var int i=0; i<salesmans.length;i++) {
+        if(salesmans[i].NO == currentNO) {
+          return salesmans[i];
+        }
+     }
     }
-  }
+    else if(firstNO == 'pd') {
+      for(var int i=0; i<distributers.length;i++) {
+        if(distributers[i].NO == currentNO) {
+          return distributers[i];
+        }
+    }
+  };
 })
 
 .factory('Forms', function() {
@@ -145,7 +167,7 @@ angular.module('starter.service',[])
   ///////////////////////////////////////////////////////////
  
  var forms = [{
-    id: 1,
+    id: 0,
     NO: 'bx131220237',
     status: '未接',
     statusColor: '#FF0000',
@@ -160,7 +182,7 @@ angular.module('starter.service',[])
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 15:00'
   }, {
-    id: 2,
+    id: 1,
     NO: 'bx131220233',
     status: '已审核',
     statusColor: '#444444',
@@ -175,7 +197,7 @@ angular.module('starter.service',[])
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
   }, {
-    id: 3,
+    id:2,
     NO: 'bx131220733',
     status: '已接单',
     statusColor: '#FF0000',
@@ -190,7 +212,7 @@ angular.module('starter.service',[])
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
   }, {
-    id: 4,
+    id: 3
     NO: 'bx131220283',
     status: '未接',
     statusColor: '#FF0000',
@@ -205,7 +227,7 @@ angular.module('starter.service',[])
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
   }, {
-    id: 5,
+    id: 4,
     NO: 'bx131220333',
     status: '已完成',
     statusColor: '#FF0000',
@@ -232,7 +254,7 @@ angular.module('starter.service',[])
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
         if (i === parseInt(formId)) {
-          return forms[i-1];
+          return forms[i];
         }
       }
       return null;
@@ -275,12 +297,12 @@ angular.module('starter.service',[])
 
 .factory('Message_infos',function() {
   var message_infos = [{
-    id:01,
+    id:0,
     title:'分值改动通知',
     full_information:'派单员小李修改了报修单XXXXXXXX的分值',
     img:'img/photo1.jpg'
   },{
-    id:02,
+    id:1,
     title:'待办事项通知',
     full_information:'接下来你要做的是添加小李为派单员',
     img:'img/ionic.png'
@@ -292,7 +314,7 @@ angular.module('starter.service',[])
     },
     get: function(message_infoId) {
       for (var i = 0; i < message_infos.length; i++) {
-        if (i === parseInt(message_infoId)-1) {
+        if (i === parseInt(message_infoId)) {
           return message_infos[i];
         }
       }
@@ -303,15 +325,15 @@ angular.module('starter.service',[])
 
 .factory("MarkChanges",function() {
   var markChanges = [{
-    id:01,
+    id:0,
     value:+10,
     title:"完成修理工作"
   },{
-    id:02,
+    id:1,
     value:-10,
     title:"遭到顾客投诉"
   },{
-    id:03,
+    id:2,
     value:+20,
     title:"顾客给出五星好评"
   }];
