@@ -132,26 +132,28 @@ angular.module('starter.service',[])
     get_information: function(currentNO) {
      var firstNO = currentNO.substr(0,2); 
      if(firstNO == 'gc') {
-      for(var int i=0; i<engineers.length;i++) {
+      for(var i=0; i<engineers.length;i++) {
         if(engineers[i].NO == currentNO) {
           return engineers[i];
         }
       }
      }
      else if(firstNO == 'xs') {
-       for(var int i=0; i<salesmans.length;i++) {
+       for(var i=0; i<salesmans.length;i++) {
         if(salesmans[i].NO == currentNO) {
           return salesmans[i];
         }
-     }
-    }
+      }
+      }
     else if(firstNO == 'pd') {
-      for(var int i=0; i<distributers.length;i++) {
+      for(var ii=0; i<distributers.length;i++) {
         if(distributers[i].NO == currentNO) {
           return distributers[i];
         }
     }
-  };
+  }
+}
+};
 })
 
 .factory('Forms', function() {
@@ -212,7 +214,7 @@ angular.module('starter.service',[])
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
   }, {
-    id: 3
+    id: 3,
     NO: 'bx131220283',
     status: '未接',
     statusColor: '#FF0000',
