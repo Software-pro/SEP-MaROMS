@@ -77,6 +77,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
        }
     })
 
+    
     .state('app.message',{
        url:'/message',
        views: {
