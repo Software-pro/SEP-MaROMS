@@ -145,7 +145,16 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
           controller:'markCtrl'
         }
       }
-    });
+    })
+
+     .state('password-modify',{
+      url:'/password-modify',
+        cache:false,
+        templateUrl:'templates/password-modify.html',
+        controller:'passwordModifyCtrl'
+     }) 
+
+     ;
     $urlRouterProvider.otherwise('/login');     
 
 })
