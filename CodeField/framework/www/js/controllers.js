@@ -360,4 +360,39 @@ angular.module('starter.controllers',[])
 
 .controller("LoginCtrl",function($scope,$state) {
   
-});
+})
+.controller("passwordModifyCtrl",function($scope,$state){
+  $scope.goback = function(){
+    $state.go('app.my');
+  }
+  $scope.ensure = function(){
+      $state.go('app.my');
+      return;
+    var success = 1;//success=1说明修改密码成功。
+    var prev = document.getElementById("old-password");
+    var after1 = document.getElementById("new-password1");
+    var after2 = document.getElementById("new-password2");
+   
+    if(prev.value.length == 0 || after1.value.length == 0 || after2.value.length == 0){
+      alert("密码不能为空！");
+      return;
+    }
+    if(prev.value != "123456"){
+      alert("原密码不正确！");
+      return;
+    }
+    if(after1.value != after2.value){
+      alert("两次新密码不一致！");
+      return;
+    }
+
+    if(success == 1){
+      alert("密码修改成功！");
+      //这里需要与数据库交互，更新密码
+
+      $state.go('app.my');
+    }
+  }
+})
+
+;
