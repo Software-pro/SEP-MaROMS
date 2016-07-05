@@ -394,5 +394,14 @@ angular.module('starter.controllers',[])
     }
   }
 })
+.controller("passwordForgetCtrl",function($scope,$state){
+  $scope.goback = function(){
+    $state.go('login');
+  }
+  $scope.ensure = function(){
+    alert("申请提交成功，请等待管理员联系");
+    $state.go('login');
+  }
+})
 
 ;

@@ -149,11 +149,17 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
      .state('password-modify',{
       url:'/password-modify',
-        cache:false,
+        cache:false,//该页面无缓冲
         templateUrl:'templates/password-modify.html',
         controller:'passwordModifyCtrl'
      }) 
 
+     .state('password-forget',{
+      url:'/password-forget',
+        cache:false,//该页面无缓冲
+        templateUrl:'templates/password-forget.html',
+        controller:'passwordForgetCtrl'
+     })
      ;
     $urlRouterProvider.otherwise('/login');     
 
