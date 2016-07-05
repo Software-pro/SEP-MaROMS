@@ -83,14 +83,6 @@
 	height: 50px;
 }
 
-/***********/
-#searchBar
-{
-	margin-top: 16px;
-	/*height:20px;*/
-	border:none;
-}
-
 /*********/
 #headerdistance
 {
@@ -133,17 +125,7 @@
 
 /****************   css in viewForms.html   ********************/
 /*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
-#subHeader
-{
-	height: 36px;
-	margin-top: 60px;
-	border-top-width: 1px;
-	border-bottom-width: 1px;
-	border-color: #EEEEEE;
-	padding: 0; 
-/*	padding-left: 25px;
-	padding-right: 25px;*/
-}
+
 /*button-bar形式呈现，**“|  全部  | 按创建时间 |  降序  |”**/
 #subHeaderBar
 {
@@ -234,4 +216,29 @@
 	background-color: #AAAAAA;
 	padding: 0;
 	margin: 0;
+}
+
+/*******************filter-subHeader*************************/
+.filter-subHeader
+{
+	height: 36px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-color: #EEEEEE;
+	padding: 0; 
+}
+
+
+/********************search-bar**********************/
+.search-bar
+{
+	margin-top: 16px;
+	/*height:20px;*/
+	border:none;
+}
+
+.search-cancel
+{
+	padding-left: 10.667px;
+	color: #00BFFF;
 }
