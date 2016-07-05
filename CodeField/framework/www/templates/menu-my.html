@@ -3,14 +3,13 @@
    <div class="list">
    <li class="item item-divider"></li>
       <ion-item class="item-avatar" type="item-text-wrap" >
-			<img ng-src="{{myinformation.img}}">
+			<img ng-src="{{myinformation.img}}" on-hold="editphoto()">
 			<h2>{{myinformation.name}}</h2>
 			<p>{{myinformation.position}}</p>
 		</ion-item>
    	<li class="item item-divider"></li>
-   	 <ion-item class="item item-icon-right"  type="item-text-wrap" href="#/app/my/my-detail" > 
-   		<h2>个人信息</h2>
-   		<i class="icon ion-chevron-right icon-accessory"></i>
+   	 <ion-item class="item"  type="item-text-wrap" on-hold="editphonenum()"> 
+   		<h2>{{myinformation.phonenum}}</h2>
    	</ion-item>
    	<li class="item item-divider"></li>
    	<ion-item class="item item-icon-right"  type="item-text-wrap" href="#/app/my/mark" > 

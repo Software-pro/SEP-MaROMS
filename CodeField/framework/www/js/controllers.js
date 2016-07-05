@@ -1,4 +1,4 @@
-angular.module('starter.controllers',[])
+angular.module('starter.controllers',['ionic'])
 
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -282,8 +282,44 @@ angular.module('starter.controllers',[])
     };
 })
 
-.controller("myCtrl",function($scope,$state,MyInformation) {
+.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $timeout, MyInformation) {
   $scope.myinformation = MyInformation.get(); 
+  $scope.data={}
+  $scope.editphonenum = function() {
+    $ionicPopup.show({
+      template: "<input type = 'phonenum' ng-model='data.phonenum'>",
+      title:"请输入新的电话号码",
+      scope: $scope,
+      buttons: [
+        {
+            text: "取消" ,
+        },
+        {
+            text: "<b>保存</b>",
+            type: "button-positive",
+            onTap: function(e) {
+              $scope.myinformation.phonenum = $scope.data.phonenum;
+              return $scope.myinformation.phonenum;
+            }
+        }
+      ]
+    })
+  }
+  $scope.editphoto = function() {
+    var hideSheet = $ionicActionSheet.show({
+        titleText: "上传新头像",
+        buttons: [
+          {text: "拍照"},
+          {text: "从相册中选择"}
+        ],
+        buttonClicked: function(index) {
+          return true;
+        },
+        cancelText: "取消",
+        cancel: function() {         
+        }
+    })
+  }
   $scope.exit = function(){
     alert("haha");
     $state.go('/');
