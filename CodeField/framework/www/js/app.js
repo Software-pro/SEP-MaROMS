@@ -160,6 +160,16 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
         templateUrl:'templates/password-forget.html',
         controller:'passwordForgetCtrl'
      })
+
+     .state('app.detail-personalForms',{
+      url:'/detail-personalForms/:personId',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/detail-personalForms.html',
+          controller: 'PersonalFormsCtrl'
+        }
+      }
+    })
      ;
     $urlRouterProvider.otherwise('/login');     
 

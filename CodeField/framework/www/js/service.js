@@ -281,6 +281,126 @@ angular.module('starter.service',[])
   };
 })
 
+
+.factory('PersonalForms', function() {
+  ////////////////////////////////////////////////////
+  // 个人报修单列表：
+  // 通过http请求用户的个人id来获取列表数据
+  ///////////////////////////////////////////////////////////
+ 
+ var forms = [{
+    id: 0,
+    NO: 'bx131220237',
+    status: '未接',
+    statusColor: '#FF0000',
+    value: 12,
+    clientName: '彭滟茹',
+    type: '安装调试',
+    engineerName: '',
+    salesName: '王二麻',
+    time: '',
+    creatTime: '2016-01-03 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 15:00'
+  }, {
+    id: 1,
+    NO: 'bx131220233',
+    status: '已审核',
+    statusColor: '#444444',
+    value: 12,
+    clientName: '彭滟茹',
+    type: '安装调试',
+    engineerName: '王小利',
+    salesName: '王二麻',
+    time: '',
+    creatTime: '2016-01-01 15:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
+  }, {
+    id:2,
+    NO: 'bx131220733',
+    status: '已接单',
+    statusColor: '#FF0000',
+    value: 12,
+    clientName: '彭滟茹',
+    type: '安装调试',
+    engineerName: '刘达',
+    salesName: '王二麻',
+    time: '',
+    creatTime: '2016-07-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
+  }, {
+    id: 3,
+    NO: 'bx131220283',
+    status: '未接',
+    statusColor: '#FF0000',
+    value: 12,
+    clientName: '彭滟茹',
+    type: '安装调试',
+    engineerName: '',
+    salesName: '王二麻',
+    time: '',
+    creatTime: '2016-01-01 12:20',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
+  }, {
+    id: 4,
+    NO: 'bx131220333',
+    status: '已完成',
+    statusColor: '#FF0000',
+    value: 12,
+    clientName: '彭滟茹',
+    type: '安装调试',
+    engineerName: '李想',
+    salesName: '王二麻',
+    time: '',
+    creatTime: '2016-04-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-22 17:00'
+  }];
+
+  return {
+    currentId: 0,
+    all: function() {
+      return forms;
+    },
+    remove: function(form) {
+      forms.splice(forms.indexOf(form), 1);
+    },
+    get: function(formId) {
+      for (var i = 0; i < forms.length; i++) {
+        if (i === parseInt(formId)) {
+          return forms[i];
+        }
+      }
+      return null;
+    },
+    setTime: function(timeKind) {
+      for (var i = 0; i < forms.length; i++) {
+        if (timeKind === "creatTime") {
+          forms[i].time = forms[i].creatTime;
+        }
+        else if (timeKind === "orderTakeTime") {
+          forms[i].time = forms[i].orderTakeTime;
+        }
+        else if (timeKind === "finishTime") {
+          forms[i].time = forms[i].finishTime;
+        }
+        else if (timeKind === "auditTime") {
+          forms[i].time = forms[i].auditTime;
+        }
+      }
+      return forms;
+    }
+  };
+})
+
 .factory('MyInformation',function() {
   var myInformation = {
     id:01,

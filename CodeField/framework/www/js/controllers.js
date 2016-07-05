@@ -92,7 +92,7 @@ angular.module('starter.controllers',['ionic'])
         else return item.engineerName.indexOf($scope.searchcontent)>=0 || item.salesName.indexOf($scope.searchcontent)>=0;
       }
       return false;
-    }
+    };
 
 
     $scope.newFormClicked = function(){
@@ -118,7 +118,7 @@ angular.module('starter.controllers',['ionic'])
         $scope.menu2Color = '#FFFFFF';
       }
       
-    }
+    };
 
     $scope.menu1 = function() {
       $scope.menu2Var = true;
@@ -178,6 +178,7 @@ angular.module('starter.controllers',['ionic'])
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = false;
       /**TODO: 后台排序，更新forms**/
+
     };
     $scope.chooseUnordered = function() {
       $scope.menu1Var = true;
@@ -332,6 +333,7 @@ angular.module('starter.controllers',['ionic'])
 
 .controller("formDetailCtrl",function($scope, $stateParams, Forms) {
   $scope.form = Forms.get($stateParams.formId);
+  // TODO:get form by 'http'
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
   }
@@ -372,9 +374,14 @@ angular.module('starter.controllers',['ionic'])
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
 })
-.controller("contactdetailCtrl",function($scope, $stateParams,Phones,MyInformation) {
+.controller("contactdetailCtrl",function($scope, $stateParams, Phones, MyInformation, $location) {
   $scope.person = Phones.get($stateParams.personId);
   $scope.myinformation = MyInformation.get();
+
+  $scope.personalFormClicked = function() {
+    $location.path("app/detail-personalForms/" + $stateParams.personId);
+  }
+
 })
 
 .controller("newFormCtrl",function($scope,$state, PersonalInformations) {
@@ -438,6 +445,239 @@ angular.module('starter.controllers',['ionic'])
     alert("申请提交成功，请等待管理员联系");
     $state.go('login');
   }
+})
+
+.controller('PersonalFormsCtrl', function($scope, $stateParams, PersonalForms, $state, $location) {
+    $scope.forms = PersonalForms.setTime("creatTime");
+   // 后台搭建完成后通过 'http + $stateParams.personId' 获取数据
+
+    $scope.doRefresh = function() {
+      //刷新--重新从后台载入数据
+      $scope.forms = PersonalForms.all();
+      $scope.$broadcast("scroll.refreshComplete");     
+    };
+
+
+    // $scope.clickmenu = function() {
+    //   alert("oooo");
+    // }
+     // $ionicPopover.fromTemplateUrl('menu1.html', {
+     //        scope: $scope
+     //      }).then(function(popover) {
+     //        $scope.popover = popover;
+     //      });
+    $scope.order = 'creatTime';
+    $scope.timeLabel = '创建时间：';
+
+    $scope.menu1Var = true;
+    $scope.menu2Var = true;
+    
+    $scope.menu1Content = '全部 ';
+    $scope.menu2Content = '按创建时间 ';
+    $scope.menu3Content = '降序 ';
+    $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+
+    $scope.menu2Disabled2 = false;
+    $scope.menu2Disabled3 = false;
+    $scope.menu2Disabled4 = false;
+
+    $scope.hideCancel = true;
+    $scope.searchcontent = '';
+
+    $scope.searchClick = function() {
+        $scope.hideCancel = false;
+    }
+    $scope.searchCancel = function() {
+        $scope.hideCancel = true;
+        $scope.searchcontent = '';
+        $scope.menu1Content = '全部 ';
+        $scope.menu2Content = '按创建时间 ';
+        $scope.menu3Content = '降序 ';
+        $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+    }
+
+    $scope.searchFilter = function(item) {
+      if ($scope.menu1Content === '全部 ' || $scope.menu1Content.indexOf(item.status)>=0) {
+        if ($scope.searchcontent === '') return true;
+        else return item.engineerName.indexOf($scope.searchcontent)>=0 || item.salesName.indexOf($scope.searchcontent)>=0;
+      }
+      return false;
+    }
+
+    $scope.itemClicked = function(formId) {
+      if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
+        $location.path("app/viewForms/" + formId);
+      }
+      else {
+        $scope.menu1Var = true;
+        $scope.menu2Var = true;
+        $scope.menu1Color = '#FFFFFF';
+        $scope.menu2Color = '#FFFFFF';
+      }
+      
+    }
+
+    $scope.menu1 = function() {
+      $scope.menu2Var = true;
+      $scope.menu2Color = '#FFFFFF';
+
+      $scope.menu1Var = !$scope.menu1Var;
+      if ($scope.menu1Var == false) {
+        $scope.menu1Color = '#FAFAFA';
+      }
+      else {
+        $scope.menu1Color = '#FFFFFF';
+      }
+
+      //$scope.popover.show();
+    }
+    $scope.menu2 = function() {
+      $scope.menu1Var = true;
+      $scope.menu1Color = '#FFFFFF';
+
+      $scope.menu2Var = !$scope.menu2Var;
+      if ($scope.menu2Var == false) {
+        $scope.menu2Color = '#FAFAFA';
+      }
+      else {
+        $scope.menu2Color = '#FFFFFF';
+      }
+    }
+    $scope.menu3 = function() {
+      $scope.menu1Var = true;
+      $scope.menu1Color = '#FFFFFF';
+      $scope.menu2Var = true;
+      $scope.menu2Color = '#FFFFFF';
+
+      if ($scope.menu3Content == '降序 ') {
+        $scope.order = '-creatTime';
+        $scope.menu3Content = '升序 ';
+        $scope.menu3Icon = 'ion-ios-arrow-thin-up';
+
+      }
+      else {
+        $scope.order = 'creatTime';
+        $scope.menu3Content = '降序 ';
+        $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      }
+    }
+
+    $scope.chooseAll = function() {
+      $scope.menu1Var = true;
+      $scope.menu2Content = '按创建时间 ';
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu1Color = '#FFFFFF';
+
+      $scope.menu1Content = '全部 ';
+
+      $scope.menu2Disabled2 = false;
+      $scope.menu2Disabled3 = false;
+      $scope.menu2Disabled4 = false;
+      /**TODO: 后台排序，更新forms**/
+      
+    }
+    $scope.chooseUnordered = function() {
+      $scope.menu1Var = true;
+      $scope.menu2Content = '按创建时间 ';
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu1Color = '#FFFFFF';
+
+      $scope.menu1Content = '未接单 ';
+
+      $scope.menu2Disabled2 = true;
+      $scope.menu2Disabled3 = true;
+      $scope.menu2Disabled4 = true;
+      /**TODO: 后台排序，更新forms**/
+    }
+    $scope.chooseOrdered = function() {
+      $scope.menu1Var = true;
+      $scope.menu2Content = '按创建时间 ';
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu1Color = '#FFFFFF';
+
+      $scope.menu1Content = '已接单 ';
+
+      $scope.menu2Disabled2 = false;
+      $scope.menu2Disabled3 = true;
+      $scope.menu2Disabled4 = true;
+      /**TODO: 后台排序，更新forms**/
+    }
+    $scope.chooseAccomplished = function() {
+      $scope.menu1Var = true;
+      $scope.menu2Content = '按创建时间 ';
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu1Color = '#FFFFFF';
+
+      $scope.menu1Content = '已完成 ';
+
+      $scope.menu2Disabled2 = false;
+      $scope.menu2Disabled3 = false;
+      $scope.menu2Disabled4 = true;
+      /**TODO: 后台排序，更新forms**/
+    }
+    $scope.chooseChecked = function() {
+      $scope.menu1Var = true;
+      $scope.menu2Content = '按创建时间 ';
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu1Color = '#FFFFFF';
+
+      $scope.menu1Content = '已审核 ';
+
+      $scope.menu2Disabled2 = false;
+      $scope.menu2Disabled3 = false;
+      $scope.menu2Disabled4 = false;
+      /**TODO: 后台排序，更新forms**/
+    }
+
+    $scope.sortByCreateTime = function() {
+      $scope.menu2Var = true;
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu2Color = '#FFFFFF';
+
+      $scope.menu2Content = '按创建时间 ';
+      $scope.forms = PersonalForms.setTime("creatTime");
+      $scope.timeLabel = '创建时间：';
+      /**TODO: 后台排序，更新forms**/
+    }
+    $scope.sortByOrderTime = function() {
+      $scope.menu2Var = true;
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu2Color = '#FFFFFF';
+
+      $scope.menu2Content = '按接单时间 ';
+      $scope.forms = PersonalForms.setTime("orderTakeTime");
+      $scope.timeLabel = '接单时间：';
+      /**TODO: 后台排序，更新forms**/
+    }
+    $scope.sortByAccomplishTime = function() {
+      $scope.menu2Var = true;
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu2Color = '#FFFFFF';
+
+      $scope.menu2Content = '按完成时间 ';
+      $scope.forms = PersonalForms.setTime("finishTime");
+      $scope.timeLabel = '完成时间：';
+      /**TODO: 后台排序，更新forms**/
+    }
+    $scope.sortByCheckTime = function() {
+      $scope.menu2Var = true;
+      $scope.menu3Content = '降序 ';
+      $scope.menu3Icon = 'ion-ios-arrow-thin-down';
+      $scope.menu2Color = '#FFFFFF';
+
+      $scope.menu2Content = '按审核时间 ';
+      $scope.forms = PersonalForms.setTime("auditTime");
+      $scope.timeLabel = '审核时间：';
+      /**TODO: 后台排序，更新forms**/
+    }
 })
 
 ;
