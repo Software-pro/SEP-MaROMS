@@ -409,8 +409,8 @@ angular.module('starter.controllers',['ionic'])
     $state.go('app.my');
   }
   $scope.ensure = function(){
-      $state.go('app.my');
-      return;
+  //    $state.go('app.my');
+   //   return;
     var success = 1;//success=1说明修改密码成功。
     var prev = document.getElementById("old-password");
     var after1 = document.getElementById("new-password1");
@@ -420,10 +420,10 @@ angular.module('starter.controllers',['ionic'])
       alert("密码不能为空！");
       return;
     }
-    if(prev.value != "123456"){
-      alert("原密码不正确！");
-      return;
-    }
+    // if(prev.value != "123456"){
+    //   alert("原密码不正确！");
+    //   return;
+    // }
     if(after1.value != after2.value){
       alert("两次新密码不一致！");
       return;
@@ -442,6 +442,11 @@ angular.module('starter.controllers',['ionic'])
     $state.go('login');
   }
   $scope.ensure = function(){
+    var tmp = document.getElementById("phonenumber");
+    if(tmp.value.length === 0){
+      alert("输入为空！");
+      return;
+    }
     alert("申请提交成功，请等待管理员联系");
     $state.go('login');
   }
