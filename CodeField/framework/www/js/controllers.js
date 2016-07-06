@@ -11,33 +11,108 @@ angular.module('starter.controllers',['ionic'])
 //   };
 // })
 
- .controller("contactsCtrl",function($scope,/* $stateParams, */Phones) {
+ .controller("contactsCtrl",function($scope, Users) {
 //  var content = document.getElementById("searchphone");
-  $scope.phones = Phones.all();
-  $scope.searchornot = false;
-   $scope.search = function() {
-      // var temp = Phones.searchphone($scope.searchcontent);
-       //if(temp != null)
-       //  $scope.phones = temp;
-        $scope.searchornot = true;
-        $scope.phones = Phones.searchphone($scope.searchcontent);
-        if($scope.phones === null)
-        {  $scope.searchornot = false;
-        }
-     };
+  $scope.users = Users.all();
 
-  $scope.doRefresh = function() {
-      //刷新--重新从后台载入数据
-      $scope.searchornot = false;
-      $scope.$broadcast("scroll.refreshComplete"); 
-      $scope.phones = Phones.all();
+  var users = $scope.users;
+
+  var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  $scope.alphabet = iterateAlphabet();
+  var tmp = {};
+  for(var i = 0; i < str.length; i++)
+  {
+    var nextChar = str.charAt(i);
+    $scope.alphabet.push(nextChar);
+    tmp[nextChar] = [];
+  }
+
+
+  //Sort user list by first letter of name
+  for(i = 0; i < users.length; i++){
+    var letter=users[i].name.toUpperCase().charAt(0);
+    tmp[letter].push( users[i] );
+  }
+  $scope.sorted_users = tmp;
+
+  //Click letter event
+  $scope.gotoList = function(id){
+    $location.hash(id);
+    $ionicScrollDelegate.anchorScroll();
+  }
+
+  //Create alphabet object
+  function iterateAlphabet()
+  {
+     var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+     var numbers = new Array();
+     for(var i = 0; i < str.length; i++)
+     {
+        var nextChar = str.charAt(i);
+        numbers.push(nextChar);
+     }
+     return numbers;
+  }
+
+
+  $scope.groups = [];
+
+
+  for (var i = 0; i < 10; i++) {
+    $scope.groups[i] = {
+      name: i,
+      items: []
     };
+    for (var j=0; j<3; j++) {
+      $scope.groups[i].items.push(i + '-' + j);
+    }
+  }
+  
+  /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+
+
+
+
+
+
+
+  // $scope.searchornot = false;
+  //  $scope.search = function() {
+  //     // var temp = Phones.searchphone($scope.searchcontent);
+  //      //if(temp != null)
+  //      //  $scope.phones = temp;
+  //       $scope.searchornot = true;
+  //       $scope.phones = Phones.searchphone($scope.searchcontent);
+  //       if($scope.phones === null)
+  //       {  $scope.searchornot = false;
+  //       }
+  //    };
+
+  // $scope.doRefresh = function() {
+  //     //刷新--重新从后台载入数据
+  //     $scope.searchornot = false;
+  //     $scope.$broadcast("scroll.refreshComplete"); 
+  //     $scope.phones = Phones.all();
+  //   };
  
   //$scope.contentshow = content;
   
 })
 
-.controller('ViewFormsCtrl', function($scope,Forms, $state, $location) {
+.controller('ViewFormsCtrl', function($scope, Forms, $state, $location) {
     $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
 
@@ -374,8 +449,8 @@ angular.module('starter.controllers',['ionic'])
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
 })
-.controller("contactdetailCtrl",function($scope, $stateParams, Phones, MyInformation, $location) {
-  $scope.person = Phones.get($stateParams.personId);
+.controller("contactdetailCtrl",function($scope, $stateParams, Users, MyInformation, $location) {
+  $scope.person = Users.get($stateParams.id);
   $scope.myinformation = MyInformation.get();
 
   $scope.personalFormClicked = function() {
@@ -684,5 +759,7 @@ angular.module('starter.controllers',['ionic'])
       /**TODO: 后台排序，更新forms**/
     }
 })
+
+
 
 ;

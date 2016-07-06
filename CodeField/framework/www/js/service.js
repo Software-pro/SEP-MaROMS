@@ -1,68 +1,76 @@
 angular.module('starter.service',[])
 
-.factory('Phones',function() {
+.factory('Users',function() {
    
-   var phones = [{
-   	  group: 'A',
-   	  persons: [{
-        id: 0, 
-        name: 'AZHU',
-        phonenum: '18305185997'
-      },{
-        id: 1,
-        name: 'AZZ',
-        phonenum: '15850552363'
-      }]
+   var users = [{
+      id: 0,
+   	  name: 'angular'
    }, {
-      group: 'B',
-      persons: [{
-         id: 2,
-   	     name: 'Benben',
-   	     phonenum: '13778702182'
-       }]
-   	// }, {
-
-    //   id: 3,
-   	// 	name: 'Zhuzhu',
-   	// 	group: 'Z',
-   	// 	phonenum: '15850552273'
-   	// }, {
-    //   id: 3,
-   	// 	name: 'Wenwen',
-   	// 	group: 'W',
-   	// 	phonenum: '15850552363'
+      id: 1,
+      name: 'glu'
+   }, {
+      id: 2,
+      name: 'sara'
+   }, {
+      id: 3,
+      name: 'zek'
+   }, {
+      id: 4,
+      name: 'peck'
+   }, {
+      id: 5,
+      name: 'mother'
+   }, {
+      id: 6,
+      name: 'mary'
+   }, {
+      id: 7,
+      name: 'marii'
+   }, {
+      id: 8,
+      name: 'mack jack'
+   }, {
+      id: 9,
+      name: 'emmy'
+   }, {
+      id: 10,
+      name: 'xmen'
+   }, {
+      id: 11,
+      name: 'lucis'
+   }, {
+      id: 12,
+      name: 'smith'
    }];
    
    return {
    	all: function() {
-   		return phones;
+   		return users;
    	},
-   remove: function(phone) {
-      phones.splice(phones.indexOf(phone), 1);
+   remove: function(user) {
+      users.splice(users.indexOf(user), 1);
     },
-    // getFromGroup:function(phoneId) {
-    //   for(var i=0;i<phones.length;i++) {
-    //     if(i === parseInt(phoneId))
+    // getFromGroup:function(userId) {
+    //   for(var i=0;i<users.length;i++) {
+    //     if(i === parseInt(userId))
     //   }
     // },
-    searchphone:function(phonename) {
-      for (var i = 0; i < phones.length; i++) {
-          if(phones[i].group === phonename[0])
-            return phones[i];
-        // for(var j=0; j < phones[i].persons.length; j++) {
-        //    if (phones[i].persons[j].name === phonename) {
-        //      return phones[i].persons[j];
-        //   }
-        // }
-      }
-      return null;
-    },
-    get: function(personId) {
-      for (var i = 0; i < phones.length; i++) {
-        for(var j=0; j < phones[i].persons.length; j++) {
-           if (phones[i].persons[j].id === parseInt(personId)) {
-             return phones[i].persons[j];
-          }
+    // searchuser:function(username) {
+    //   for (var i = 0; i < phones.length; i++) {
+    //       if(users[i].group === phonename[0])
+    //         return users[i];
+    //     // for(var j=0; j < phones[i].persons.length; j++) {
+    //     //    if (users[i].persons[j].name === phonename) {
+    //     //      return phones[i].persons[j];
+    //     //   }
+    //     // }
+    //   }
+    //   return null;
+    // },
+    get: function(id) {
+      for (var i = 0; i < users.length; i++) {
+           if (users[i].id === parseInt(id)) {
+             return users[i];
         }
       }
       return null;

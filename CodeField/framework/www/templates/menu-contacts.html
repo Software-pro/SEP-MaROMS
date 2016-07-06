@@ -12,10 +12,10 @@
       <ion-content class="has-subheader" id="headerdistance">
        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
        </ion-refresher>
-         <li class="item item-divider"></li>
+        <!--  <li class="item item-divider"></li>
           <div class="list" style="border:none">
    
-   <!--if we have searched some thing-->       
+   if we have searched some thing 
           <span ng-if="searchornot">
                  <ion-item  id="navigator" type="item-text-wrap">
                    <div style="line-height:6px;">{{phones.group}}</div>
@@ -26,7 +26,7 @@
                  </ion-item>
           </span>
            
-            <!--if we don't-->
+            if we don't
           <span ng-if="!searchornot">
            <div class="list" ng-repeat="phone in phones">
                  <ion-item  id="navigator" type="item-text-wrap">
@@ -38,6 +38,16 @@
                  </ion-item>
            </div>
           </span>
-           </div>
+           </div> -->
+          <div data-ng-repeat="(letter, users) in sorted_users" class="alpha_list">
+            <div ng-show="{{users[0]}}" id="index_{{letter}}">
+              <ion-item class="item item-divider">
+                  {{letter}}
+              </ion-item>
+              <ion-item ng-repeat="user in users | orderBy: 'name'">
+                  {{user.name}}
+              </ion-item>
+            </div>
+          </div>
       </ion-content>
   </ion-view>
