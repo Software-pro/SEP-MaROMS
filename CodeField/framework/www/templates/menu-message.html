@@ -5,11 +5,22 @@
       <li class="item item-divider"></li>
       <ion-item class="item item-icon-right" ng-repeat="message_info in message_infos" type="item-text-wrap" 
        href="#/app/message/{{message_info.id}}">
-				<img ng-src="{{message_info.img}}">
+				<!-- <img ng-src="{{message_info.img}}"> -->
 				<h2>{{message_info.title}}</h2>
 				<p>{{message_info.full_information}}</p>
 		<i class="icon ion-chevron-right icon-accessory"></i>
 		</ion-item>
 	</div>
+ <a class="item my-item"
+        collection-repeat="item in getContacts()"
+        collection-item-height="getItemHeight(item)"
+        collection-item-width="getItemWidth(item)"
+        ng-href="https://www.google.com/#q={{item.first_name + '+' + item.last_name}}"
+        ng-style="{'line-height': getItemHeight(item) + 'px'}"
+        ng-class="{'item-divider': item.isLetter}">
+        <img ng-if="!item.isLetter" ng-src="{{message_info.img}}">
+       3333
+      </a>
+
   </ion-content>
 </ion-view>

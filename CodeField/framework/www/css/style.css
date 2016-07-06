@@ -6,6 +6,13 @@
  *（我隐约记得看到了lib中的字体设置？？或许兼容ios or Android自带的字体）
  * 目前（因为浏览器自带的字体太丑了）使用微软雅黑or华文细黑
  */
+ .item .icon .icon-badge{
+ 	position:absolute;
+ 	top:12px;
+ 	right:160px;
+ 	font-size:10px;
+ }
+
 #fontSet
 {
 	font-family: 'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;
