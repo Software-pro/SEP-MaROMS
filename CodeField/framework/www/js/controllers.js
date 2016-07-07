@@ -11,7 +11,7 @@ angular.module('starter.controllers',['ionic'])
 //   };
 // })
 
- .controller("contactsCtrl",function($scope, Users) {
+ .controller("contactsCtrl",function($scope, Users, $location, $ionicScrollDelegate) {
 //  var content = document.getElementById("searchphone");
   $scope.users = Users.all();
 
@@ -23,7 +23,6 @@ angular.module('starter.controllers',['ionic'])
   for(var i = 0; i < str.length; i++)
   {
     var nextChar = str.charAt(i);
-    $scope.alphabet.push(nextChar);
     tmp[nextChar] = [];
   }
 
@@ -84,32 +83,22 @@ angular.module('starter.controllers',['ionic'])
   };
 
 
+    $scope.hideCancel = true;
+    $scope.searchcontent = '';
 
+  $scope.searchClick = function() {
+      $scope.hideCancel = false;
+  };
+  $scope.searchCancel = function() {
+      $scope.hideCancel = true;
+      $scope.searchcontent = '';
+  };
 
+  $scope.searchFilter = function(user) {
+        if ($scope.searchcontent === '') return false;
+        else return user.name.indexOf($scope.searchcontent)>=0;
+    }
 
-
-
-  // $scope.searchornot = false;
-  //  $scope.search = function() {
-  //     // var temp = Phones.searchphone($scope.searchcontent);
-  //      //if(temp != null)
-  //      //  $scope.phones = temp;
-  //       $scope.searchornot = true;
-  //       $scope.phones = Phones.searchphone($scope.searchcontent);
-  //       if($scope.phones === null)
-  //       {  $scope.searchornot = false;
-  //       }
-  //    };
-
-  // $scope.doRefresh = function() {
-  //     //刷新--重新从后台载入数据
-  //     $scope.searchornot = false;
-  //     $scope.$broadcast("scroll.refreshComplete"); 
-  //     $scope.phones = Phones.all();
-  //   };
- 
-  //$scope.contentshow = content;
-  
 })
 
 .controller('ViewFormsCtrl', function($scope, Forms, $state, $location) {
@@ -446,9 +435,9 @@ angular.module('starter.controllers',['ionic'])
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
 })
-.controller("contactdetailCtrl",function($scope, $stateParams, Users, MyInformation, $location) {
-  $scope.person = Users.get($stateParams.id);
-  $scope.myinformation = MyInformation.get();
+.controller("contactdetailCtrl",function($scope, $stateParams, Users, PersonalInformations, $location) {
+  $scope.user = Users.get($stateParams.personId);
+  $scope.personalInformation = PersonalInformations.get($stateParams.personId);
 
   $scope.personalFormClicked = function() {
     $location.path("app/detail-personalForms/" + $stateParams.personId);
