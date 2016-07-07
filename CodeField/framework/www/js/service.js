@@ -85,83 +85,66 @@ angular.module('starter.service',[])
 })
 
 .factory('PersonalInformations', function() {
-  var engineers = [{
+  var users = [{
     id: 0,
     NO: 'gc00001',
+    position:'派单员',
     name:'Amy'
   }, {
     id: 1,
     NO: 'gc00002',
+    position:'派单员',
     name:'Andy'
   }, {
     id: 2,
     NO: 'gc00003',
+    position:'派单员',
     name:'Bob'
-  }]
-
-  var salesmans = [{
-    id: 0,
+  },{
+    id: 3,
     NO: 'xs00001',
+    position:'派单员',
     name:'Cindy'
   }, {
-    id: 1,
+    id: 4,
     NO: 'xs00002',
+    position:'派单员',
     name:'David'
   }, {
-    id: 2,
+    id: 5,
     NO: 'xs00003',
+    position:'派单员',
     name:'Eric'
-  }]
-
-  var distributers = [{
-    id: 0,
+  },{
+    id: 6,
     NO: 'pd00001',
+    position:'派单员',
     name:'Etone'
   }, {
-    id: 1,
+    id: 7,
     NO: 'pd00002',
+    position:'派单员',
     name:'Frank'
   }, {
-    id: 2,
+    id: 8,
     NO: 'pd00003',
+    position:'派单员',
     name:'Gracie'
   }];
 
   return {
-    all_engineer: function() {
-      return engineers
+    all: function() {
+      return users;
     },
-    all_salesman: function() {
-      return salesmans
-    },
-    all_distributer: function() {
-      return distributers
-    },
-    get_information: function(currentNO) {
-     var firstNO = currentNO.substr(0,2); 
-     if(firstNO == 'gc') {
-      for(var i=0; i<engineers.length;i++) {
-        if(engineers[i].NO == currentNO) {
-          return engineers[i];
+    get: function(id) {
+      for (var i = 0; i < users.length; i++) {
+           if (users[i].id === parseInt(id)) {
+             return users[i];
         }
       }
-     }
-     else if(firstNO == 'xs') {
-       for(var i=0; i<salesmans.length;i++) {
-        if(salesmans[i].NO == currentNO) {
-          return salesmans[i];
-        }
-      }
-      }
-    else if(firstNO == 'pd') {
-      for(var ii=0; i<distributers.length;i++) {
-        if(distributers[i].NO == currentNO) {
-          return distributers[i];
-        }
+      return null;
     }
-  }
-}
-};
+  };
 })
 
 .factory('Forms', function() {
