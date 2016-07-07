@@ -405,9 +405,7 @@ angular.module('starter.controllers',['ionic'])
 .controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations) {
  $scope.form = Forms.get(Forms.currentId);
  $scope.myinformation = MyInformation.get();
- $scope.engineers = PersonalInformations.all_engineer();
-  $scope.salesmans = PersonalInformations.all_salesman();
-  $scope.distributers = PersonalInformations.all_distributer();
+ $scope.users = PersonalInformations.all();
   $scope.deleteForm = function(){
     alert("Delete this form!");
     $state.go('app.viewForms');
