@@ -40,14 +40,22 @@
           </span>
            </div> -->
           <div data-ng-repeat="(letter, users) in sorted_users" class="alpha_list">
-            <div ng-show="{{users[0]}}" id="index_{{letter}}">
-              <ion-item class="item item-divider">
+            <!-- <div ng-show="{{users[0]}}" id="index_{{letter}}"> -->
+            <div id="index_{{letter}}">
+              <ion-item class="item item-divider" ng-show="{{users[0]}}"  style="border-width: 0;">
                   {{letter}}
               </ion-item>
-              <ion-item ng-repeat="user in users | orderBy: 'name'">
+              <ion-item ng-show="{{users[0]}}" ng-repeat="user in users | orderBy: 'name'"  style="border-width: 0; border-top-width: 1px; border-bottom-width: 1px; border-color: #f5f5f5;">
                   {{user.name}}
               </ion-item>
             </div>
           </div>
+
+          
       </ion-content>
+      <ul class="alpha_sidebar">
+            <li ng-click="gotoList('index_{{letter}}')" ng-repeat="letter in alphabet"> 
+                {{letter}}
+            </li>
+          </ul>
   </ion-view>

@@ -11,7 +11,7 @@ angular.module('starter.controllers',['ionic'])
 //   };
 // })
 
- .controller("contactsCtrl",function($scope, Users) {
+ .controller("contactsCtrl",function($scope, Users, $location, $ionicScrollDelegate) {
 //  var content = document.getElementById("searchphone");
   $scope.users = Users.all();
 
@@ -23,7 +23,6 @@ angular.module('starter.controllers',['ionic'])
   for(var i = 0; i < str.length; i++)
   {
     var nextChar = str.charAt(i);
-    $scope.alphabet.push(nextChar);
     tmp[nextChar] = [];
   }
 

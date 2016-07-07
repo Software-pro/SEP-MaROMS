@@ -249,3 +249,24 @@
 	padding-left: 10.667px;
 	color: #00BFFF;
 }
+
+
+/*********************contacts***************************/
+.alpha_sidebar{
+	position: absolute;
+	margin-top: 70px;
+	/*margin: 0 auto;*/
+	text-align: center;
+	/*margin-bottom: 10%;*/
+	/*top: 15%;*/
+	right: 	10px;
+	z-index: 100000
+}
+.alpha_sidebar li{
+	color: #49afcd;/*
+	margin-bottom: 6px;*/
+	cursor: pointer;
+}
+.alpha_list{
+	padding-right: 22px;
+}
