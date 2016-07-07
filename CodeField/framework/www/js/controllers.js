@@ -443,9 +443,6 @@ angular.module('starter.controllers',['ionic'])
 .controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
   $scope.message_info = Message_infos.get($stateParams.message_infoId);
 })
-.controller("myDetailCtrl", function($scope,  MyInformation) {
-  $scope.myinformation = MyInformation.get();
-})
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
 })
@@ -464,15 +461,53 @@ angular.module('starter.controllers',['ionic'])
   $scope.salesmans = PersonalInformations.all_salesman();
   $scope.distributers = PersonalInformations.all_distributer();
   $scope.saveNewForm = function(){
-		alert("Add a new form!");
+    var success = 1;//success=1说明报修单新建成功。
+    var clientname = document.getElementById("clientName");
+    var clientphone = document.getElementById("clientPhone");
+    var clientunit= document.getElementById("clientUnit");
+    var clientaddr = document.getElementById("clientAddr");
+    var salesname = document.getElementById("salesName");
+    var engineername = document.getElementById("engineerName");
+    if(clientname.value.length == 0) {
+        alert("客户姓名未填！");
+        return;
+    }
+    if(clientphone.value.length == 0) {
+      alert("客户电话未填！");
+      return;
+    }
+    if(clientunit.value.length == 0) {
+      alert("客户单位未填！");
+      return;
+    }
+    if(clientaddr.value.length == 0) {
+      alert("客户地址未填！");
+      return;
+    }
+    if(salesname.value === "请选择销售人员") {
+      alert("未选择销售员！");
+      return;
+    }
+      if(engineername.value === "请选择工程师") {
+      alert("未选择工程师！");
+      return;
+    }
+    if(success == 1) {
+    alert("Add a new form!");
 		$state.go('app.viewForms');
-	}
+  }
+}
 	$scope.cancelNewForm = function(){
     var tmp = document.getElementsByTagName("input");
     for(var i = 0; i < tmp.length; i ++){
       tmp[i].value = "";
     }
-		//$state.go('app.viewForms');
+   var salesname = document.getElementById("salesName");
+   salesname.value = "请选择销售人员";
+    var engineername = document.getElementById("engineerName");
+    engineername.value = "请选择工程师";
+    var servicename = document.getElementById('serviceName');
+    servicename.value = "请选择服务";
 	}
 })
 

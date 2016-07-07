@@ -7,28 +7,27 @@
       
         <label class = "item item-input">
         <div class="input-label">客户姓名</div>
-        <input type = "text" placeholder = "请填写客户的姓名">
+        <input id = "clientName" type = "text" placeholder = "请填写客户的姓名">
       </label>
 
        <label class = "item item-input">
         <div class="input-label">客户电话</div>
-        <input type = "text" placeholder = "请填写客户的电话">
+        <input id = "clientPhone" type = "text" placeholder = "请填写客户的电话">
       </label>
 
       <label class = "item item-input">
         <div class="input-label">客户地址</div>
-
-        <input type = "text" placeholder = "请填写详细地址">
+        <input id = "clientAddr" type = "text" placeholder = "请填写详细地址">
       </label>
 
       <label class = "item item-input">
         <div class="input-label">客户单位</div>
-        <input type = "text" placeholder = "请填写工作地址">
+        <input id="clientUnit" type = "text" placeholder = "请填写工作地址">
       </label>
       
       <label class = "item item-input" >
         <div class="input-label">销售人员</div>
-        <select id="selectbar">
+        <select id="salesName">
             <option selected>请选择销售人员</option>
             <option ng-repeat = "salesman in salesmans">{{salesman.name}}</option>
           </select>
@@ -36,7 +35,7 @@
       
       <label class = "item item-input" >
         <div class="input-label">工程师</div>
-        <select id="selectbar" >
+        <select id="engineerName" >
             <option selected>请选择工程师</option>
             <option ng-repeat = "engineer in engineers">{{engineer.name}}</option>
         </select>
@@ -49,11 +48,11 @@
           <div class="input-label">
             服务项目
           </div>
-          <select id="selectbar">
+          <select id="serviceName">
             <option selected>请选择服务</option>
-            <option>服务一</option>
-            <option>服务二</option>
-            <option>服务三</option>
+            <option>上门服务</option>
+            <option>送货服务</option>
+            <option>安装调试</option>
           </select>
         </label>
 
