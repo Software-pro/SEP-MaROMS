@@ -449,9 +449,10 @@ angular.module('starter.controllers',['ionic'])
 })
 
 .controller("newFormCtrl",function($scope,$state, PersonalInformations) {
-	$scope.engineers = PersonalInformations.all_engineer();
-  $scope.salesmans = PersonalInformations.all_salesman();
-  $scope.distributers = PersonalInformations.all_distributer();
+  $scope.users = PersonalInformations.all();
+	// $scope.engineers = PersonalInformations.all_engineer();
+ //  $scope.salesmans = PersonalInformations.all_salesman();
+ //  $scope.distributers = PersonalInformations.all_distributer();
   $scope.saveNewForm = function(){
 		alert("Add a new form!");
 		$state.go('app.viewForms');

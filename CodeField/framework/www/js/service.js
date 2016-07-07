@@ -4,43 +4,43 @@ angular.module('starter.service',[])
    
    var users = [{
       id: 0,
-   	  name: 'angular'
+      name: 'Steven'
    }, {
       id: 1,
-      name: 'glu'
+      name: 'Emma'
    }, {
       id: 2,
-      name: 'sara'
+      name: 'Sara'
    }, {
       id: 3,
-      name: 'zek'
+      name: 'David'
    }, {
       id: 4,
-      name: 'peck'
+      name: 'Paul'
    }, {
       id: 5,
-      name: 'mother'
+      name: 'Lucy'
    }, {
       id: 6,
-      name: 'mary'
+      name: 'Mary'
    }, {
       id: 7,
-      name: 'marii'
+      name: 'Martin'
    }, {
       id: 8,
-      name: 'mack jack'
+      name: 'Mack jack'
    }, {
       id: 9,
-      name: 'emmy'
+      name: 'Amy'
    }, {
       id: 10,
-      name: 'xmen'
+      name: 'Sam'
    }, {
       id: 11,
-      name: 'lucis'
+      name: 'Lucis'
    }, {
       id: 12,
-      name: 'smith'
+      name: 'Smith'
    }];
    
    return {
@@ -89,47 +89,67 @@ angular.module('starter.service',[])
     id: 0,
     NO: 'gc00001',
     position:'派单员',
-    name:'Amy'
+    name:'Steven'
   }, {
     id: 1,
     NO: 'gc00002',
-    position:'派单员',
-    name:'Andy'
+    position:'管理员',
+    name:'Emma'
   }, {
     id: 2,
     NO: 'gc00003',
     position:'派单员',
-    name:'Bob'
+    name:'Sara'
   },{
     id: 3,
     NO: 'xs00001',
-    position:'派单员',
-    name:'Cindy'
+    position:'工程师',
+    name:'David'
   }, {
     id: 4,
     NO: 'xs00002',
-    position:'派单员',
-    name:'David'
+    position:'销售员',
+    name:'Paul'
   }, {
     id: 5,
     NO: 'xs00003',
     position:'派单员',
-    name:'Eric'
+    name:'Lucy'
   },{
     id: 6,
     NO: 'pd00001',
-    position:'派单员',
-    name:'Etone'
+    position:'销售员',
+    name:'Mary'
   }, {
     id: 7,
     NO: 'pd00002',
-    position:'派单员',
-    name:'Frank'
+    position:'管理员',
+    name:'Martin'
   }, {
     id: 8,
-    NO: 'pd00003',
+    NO: 'xs00002',
+    position:'销售员',
+    name:'Mack jack'
+  }, {
+    id: 9,
+    NO: 'xs00003',
+    position:'工程师',
+    name:'Amy'
+  },{
+    id: 10,
+    NO: 'pd00001',
     position:'派单员',
-    name:'Gracie'
+    name:'Sam'
+  }, {
+    id: 11,
+    NO: 'pd00002',
+    position:'工程师',
+    name:'Lucis'
+  }, {
+    id: 12,
+    NO: 'pd00003',
+    position:'工程师',
+    name:'Smith'
   }];
 
   return {
@@ -165,10 +185,10 @@ angular.module('starter.service',[])
     status: '未接',
     statusColor: '#FF0000',
     value: 12,
-    clientName: '彭滟茹',
+    clientName: 'Cindy',
     type: '安装调试',
     engineerName: '',
-    salesName: '王二麻',
+    salesName: 'Mack jack',
     time: '',
     creatTime: '2016-01-03 12:00',
     orderTakeTime: '2016-02-01 12:00',
@@ -180,10 +200,10 @@ angular.module('starter.service',[])
     status: '已审核',
     statusColor: '#444444',
     value: 12,
-    clientName: '彭滟茹',
+    clientName: 'Frank',
     type: '安装调试',
     engineerName: '王小利',
-    salesName: '张琴',
+    salesName: 'Paul',
     time: '',
     creatTime: '2016-01-01 15:00',
     orderTakeTime: '2016-02-01 12:00',
@@ -195,7 +215,7 @@ angular.module('starter.service',[])
     status: '已接单',
     statusColor: '#FF0000',
     value: 12,
-    clientName: '彭滟茹',
+    clientName: 'Cindy',
     type: '安装调试',
     engineerName: '刘达',
     salesName: '王岩',
@@ -210,10 +230,10 @@ angular.module('starter.service',[])
     status: '未接',
     statusColor: '#FF0000',
     value: 12,
-    clientName: '彭滟茹',
+    clientName: 'Wendy',
     type: '安装调试',
     engineerName: '',
-    salesName: '刘琴',
+    salesName: 'Mary',
     time: '',
     creatTime: '2016-01-01 12:20',
     orderTakeTime: '2016-02-01 12:00',
@@ -225,7 +245,7 @@ angular.module('starter.service',[])
     status: '已完成',
     statusColor: '#FF0000',
     value: 12,
-    clientName: '彭滟茹',
+    clientName: 'Linda',
     type: '安装调试',
     engineerName: '李想',
     salesName: '张鑫',
@@ -234,6 +254,51 @@ angular.module('starter.service',[])
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-22 17:00'
+  }, {
+    id: 5,
+    NO: 'bx131220233',
+    status: '已审核',
+    statusColor: '#444444',
+    value: 12,
+    clientName: 'Frank',
+    type: '安装调试',
+    engineerName: '王小利',
+    salesName: 'Mack jack',
+    time: '',
+    creatTime: '2016-01-01 15:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
+  }, {
+    id: 6,
+    NO: 'bx131220733',
+    status: '已接单',
+    statusColor: '#FF0000',
+    value: 12,
+    clientName: 'Cindy',
+    type: '安装调试',
+    engineerName: '刘达',
+    salesName: '王岩',
+    time: '',
+    creatTime: '2016-07-01 12:00',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
+  }, {
+    id: 7,
+    NO: 'bx131220283',
+    status: '未接',
+    statusColor: '#FF0000',
+    value: 12,
+    clientName: 'Wendy',
+    type: '安装调试',
+    engineerName: '',
+    salesName: '刘琴',
+    time: '',
+    creatTime: '2016-01-01 12:20',
+    orderTakeTime: '2016-02-01 12:00',
+    finishTime: '2016-03-01 12:00',
+    auditTime: '2016-04-01 17:00'
   }];
 
   return {
