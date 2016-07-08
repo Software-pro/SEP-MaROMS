@@ -395,7 +395,7 @@ angular.module('starter.controllers',['ionic'])
   $scope.message_infos = Message_infos.all(); 
 })
 
-.controller("formDetailCtrl",function($scope, $stateParams, Forms) {
+.controller("formDetailCtrl",function($scope, $stateParams, Forms, $location) {
   $scope.form = Forms.get($stateParams.formId);
   // TODO:get form by 'http'
   $scope.editClick = function() {
@@ -406,6 +406,17 @@ angular.module('starter.controllers',['ionic'])
  $scope.form = Forms.get(Forms.currentId);
  $scope.myinformation = MyInformation.get();
  $scope.users = PersonalInformations.all();
+ $scope.yearNums = [];
+ for(var i=0;i<10; i++)
+    $scope.yearNums.push([i+2016].join(""));
+  $scope.dayNums = [];
+  for(var i=0; i<31;i++)
+    $scope.dayNums.push([i+1].join(""));
+  $scope.monthNames=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  $scope.hourNums=[];
+  for(var i=0; i<15; i++)
+      $scope.hourNums.push([i+8].join(""));
+    $scope.minuteNums=[0, 10, 20, 30, 40, 50];
   $scope.deleteForm = function(){
     alert("Delete this form!");
     $state.go('app.viewForms');
@@ -423,6 +434,16 @@ angular.module('starter.controllers',['ionic'])
     $state.go('app.viewForms');
   }
    $scope.takeForm = function(){
+    var success=1;
+    var year=document.getElementById("year");
+    var month=document.getElementById("month");
+    var day=document.getElementById("day");
+    var hour=document.getElementById("hour");
+    var minute=document.getElementById("minute");
+    if(year.value === "请选择年份" || month.value === "请选择月份" || day.value === "请选择日期" || hour.value === "请选择具体小时" || minute.value === "请选择具体分钟") {
+      alert("上门时间未填写完整！");
+      return;
+    }
     alert("已经接单");
     $state.go('app.viewForms');
   }
@@ -433,9 +454,10 @@ angular.module('starter.controllers',['ionic'])
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
 })
-.controller("contactdetailCtrl",function($scope, $stateParams, Users, PersonalInformations, $location) {
+.controller("contactdetailCtrl",function($scope, $stateParams, Users, PersonalInformations, $location, MyInformation) {
   $scope.user = Users.get($stateParams.personId);
   $scope.personalInformation = PersonalInformations.get($stateParams.personId);
+  $scope.myInformation = MyInformation.get();
 
   $scope.personalFormClicked = function() {
     $location.path("app/detail-personalForms/" + $stateParams.personId);

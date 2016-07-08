@@ -461,7 +461,7 @@ angular.module('starter.service',[])
   var myInformation = {
     id:01,
     name:'翟微',
-    position:'工程师',
+    position:'派单员',
     img:'img/photo1.jpg',
     phonenum: '12312341234',
     mark: 100
