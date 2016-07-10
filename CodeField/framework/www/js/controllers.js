@@ -393,6 +393,10 @@ angular.module('starter.controllers',['ionic'])
 
 .controller("messageCtrl",function($scope,Message_infos) {
   $scope.message_infos = Message_infos.all(); 
+  $scope.doRefresh = function(){
+    $scope.$broadcast('scroll.refreshComplete');
+  }
+
 })
 
 .controller("formDetailCtrl",function($scope, $stateParams, Forms, $location) {
@@ -806,5 +810,19 @@ angular.module('starter.controllers',['ionic'])
 })
 
 
+.controller('markModifyCtrl', function($scope,$http){
+  $scope.click = function(){
+    alert("haha");
+    var inp = document.getElementByTag("span");
+    // if({{message_info.type}} === 1){
+    //   inp.innerHTML = "已读"
+    // }
+    alert(inp.innerHTML);
+  }
+
+})
+.controller('messagePasswordForgetCtrl',function($scope){
+  
+})
 
 ;

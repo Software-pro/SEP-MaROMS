@@ -270,3 +270,14 @@
 .alpha_list{
 	padding-right: 22px;
 }
+
+#unreadCountBackground
+{
+	width: 20px;
+	height: 20px;
+	background-color:#00BFFF;
+	border-radius:25px;
+	position:absolute;
+	right: 25px;
+	top: 20px;
+}

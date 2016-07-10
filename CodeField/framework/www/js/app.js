@@ -117,9 +117,29 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
+    .state('app.message-modify',{
+      url:'/message/0',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/message-modify.html',
+          controller:'markModifyCtrl'
+        }
+      }
+
+    })
+
+    .state('app.message-passwordforget',{
+      url:'/message/1',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/message-passwordforget.html',
+          controller:'messagePasswordForgetCtrl'
+        }
+      }
+    })
 
     .state('app.message-detail', {
-      url:'/message/:message_infoId',
+      url:'/message',
       views: {
         'menuContent': {
           templateUrl:'templates/message-detail.html',

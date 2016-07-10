@@ -475,15 +475,36 @@ angular.module('starter.service',[])
 
 .factory('Message_infos',function() {
   var message_infos = [{
-    id:0,
+    type:0,
     title:'分值改动通知',
-    full_information:'派单员小李修改了报修单XXXXXXXX的分值',
-    img:'img/photo1.jpg'
-  },{
-    id:1,
-    title:'待办事项通知',
-    full_information:'接下来你要做的是添加小李为派单员',
-    img:'img/ionic.png'
+    full_information:'派单员小李修改了报修单的分值',
+    tag:0,
+    state:'未读',
+    format:"badge icon-badge assertive"
+  },
+  {
+    type:1,
+    title:'密码找回通知',
+    full_information:'用户gc13122001申请找回登录密码',
+    tag:0,
+    state:'未读',
+    format:"badge icon-badge assertive"
+  },
+  {
+    type:0,
+    title:'分值改动通知',
+    full_information:'派单员小李修改了报修单的分值',
+    tag:1,
+    state:'已读',
+    format:"badge icon-badge"
+  },
+  {
+    type:2,
+    title:' 其它事项通知',
+    full_information:'添加小李为派单员',
+    tag:1,
+    state:'已读',
+    format:"badge icon-badge"
   }];
 
   return {
