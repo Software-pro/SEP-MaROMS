@@ -499,9 +499,9 @@ angular.module('starter.service',[])
     format:"badge icon-badge"
   },
   {
-    type:2,
-    title:' 其它事项通知',
-    full_information:'添加小李为派单员',
+    type:1,
+    title:'密码修改通知',
+    full_information:'用户gc13122001修改了登录密码',
     tag:1,
     state:'已读',
     format:"badge icon-badge"
