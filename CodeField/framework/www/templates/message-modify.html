@@ -25,39 +25,19 @@
        <p> 服务项目： {{form.service}}</p>
       </div>
 
-      <div class = "item item-icon-right" ng-click="" style="margin-top: 13px;"> 
+      <div class = "item item-icon-right" style="margin-top: 13px;"> 
       <p>  工程师： {{form.engineerName}}</p>
+      <p> 销售人员： {{form.salesName}}</p>
+      <p>派单员： {{form.distributerName}}</p>
       </div>
-
-      <div class="item item-icon-right" ng-click="">
-        销售人员： {{form.salesName}}
-      </div>
-      <div class="item item-icon-right" ng-click="">
-        <p>派单员： {{form.distributerName}}</p>
-      </div>
-      <div class="item item-button-right" ng-click="">
-        派单员电话： {{form.distributerphone}}
-        <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
-          <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.distributerphone}}"></i>
-        </button>
-      </div>
+     
       <div class="item" href="#" style="margin-top: 13px;">
-        出库单号： {{form.stocknumber}}
-      </div>
-
-      <div class="item" href="#">
-        创建时间： {{form.time}}
-      </div>
-
-      <div class="item" href="#">
-        接单时间： {{form.accepttime}}
-      </div>
-
-      <div class="item" href="#">
-        完成时间： {{form.finishtime}}
-      </div>
-      <div class="item" href="#">
-        审核时间： {{form.checktime}}
+        <p>出库单号： {{form.stocknumber}}</p>
+    
+        <p>创建时间： {{form.time}}</p>
+        <p>接单时间： {{form.accepttime}}</p>
+        <p>完成时间： {{form.finishtime}}</p>
+        <p>审核时间： {{form.checktime}}</p>
       </div>
 
     </div>
