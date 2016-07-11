@@ -29,7 +29,6 @@ public class LoginResource {
         }
 
         response.setStatus(HttpStatus.CREATED.value());
-        response.;
 
         boolean success = identityService.checkPassword(loginRequest.getId(),loginRequest.getPassword());
 
