@@ -525,8 +525,37 @@ angular.module('starter.controllers',['ionic'])
 	}
 })
 
-.controller("LoginCtrl",function($scope,$state) {
-  
+.controller("LoginCtrl",function($scope,$state,$http) {
+   $scope.postuser = function() {
+    var user = document.getElementById("userName").value;
+    var userPass = document.getElementById("userPassword").value;
+    var userinfo = {"id":user,"password":userPass};
+    $http({
+      method:'POST',
+      url:'http://115.159.225.109/login',
+       data:{
+       'id':user,
+       'password':userPass
+      },
+      headers:{
+        'Content-Type':'application/json'
+      },
+      withCredentials:'true'    
+    })
+    .then(function(response) {
+      console.log(response);
+      if(response.data['success']) {
+        $state.go("app.viewForms");
+      }
+      else
+      {
+        alert("用户名或密码不正确！");
+      }
+    },
+    function(response) {
+      console.log(response);
+    });
+  }
 })
 .controller("passwordModifyCtrl",function($scope,$state){
   $scope.goback = function(){

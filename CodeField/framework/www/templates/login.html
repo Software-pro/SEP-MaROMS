@@ -14,17 +14,17 @@
         
         <div class="item-input">
           <span class="input-label">用户名</span>
-          <input type="text" placeholder="请输入用户名">
+          <input type="text" placeholder="请输入用户名" id = "userName">
         </div>
       
         <div class="item-input">
           <span class="input-label">密码</span>
-          <input type="password" placeholder="请输入密码">
+          <input type="password" placeholder="请输入密码" id = "userPassword">
         </div>
   
         
           <div class="button-bar padding-left padding-right">
-            <a class="button button-block button-lightblue" href="#/app/viewForms">登录</a>
+            <a class="button button-block button-lightblue" ng-click = "postuser()">登录</a>
          </div>
           <p class="text-center">
             <a  href = "#/password-forget">忘记密码？</a>
