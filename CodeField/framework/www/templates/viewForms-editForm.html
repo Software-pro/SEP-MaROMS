@@ -13,20 +13,20 @@
 
           <div class="item item-input" style="margin-top: 13px;"  href="#">
             <span class="input-label">分值</span>
-            <input type = "text" placeholder = "{{form.value}}">
+            <input id="mark" type = "text" placeholder = "{{form.value}}">
           </div>
 
           <div ng-switch = "form.status">
             <div ng-switch-when = '未接' >
 
               <div class="item item-input" style="margin-top: 13px;"  href="#">
-                <span class="input-label">客户姓名</span>
-                <input type = "text" placeholder = "{{form.clientName}}">
+                <span  class="input-label">客户姓名</span>
+                <input id="clientName" type = "text" placeholder = "{{form.clientName}}">
               </div>
       
               <div class = "item item-input item-button-right"> 
                 <span class="input-label">客户电话</span>
-                <input type = "text" placeholder = "{{form.clientphone}}">
+                <input id="clientPhone" type = "text" placeholder = "{{form.clientphone}}">
                 <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
                 <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.clientphone}}"></i>
                 </button>
@@ -34,18 +34,18 @@
 
               <div class="item item-input" href="#">
                 <span class="input-label">客户单位</span>
-                <input type = "text" placeholder = "{{form.clientunit}}">
+                <input id="clientUnit" type = "text" placeholder = "{{form.clientunit}}">
               </div>
 
               <div class="item item-input" href="#">
                 <span class="input-label">客户地址</span>
-                <input type = "text" placeholder = "{{form.clientaddr}}">
+                <input id="clientAddr" type = "text" placeholder = "{{form.clientaddr}}">
               </div>
 
               <div class="item item-input" href="#" style="margin-top: 13px;">
                 <span class="input-label">服务项目</span>
-                <select id="selectbar">
-                  <option selected>{{form.service}}</option>
+                <select id="service">
+                  <option selected>请选择服务</option>
                   <option>上门服务</option>
                   <option>送货服务</option>
                   <option>安装调试</option>
@@ -54,8 +54,8 @@
 
               <div class="item item-input item-icon-right" ng-click="">
                 <span class="input-label">工程师</span>
-                <select id="selectbar">
-                  <option selected>{{form.engineerName}}</option>
+                <select id="engineer">
+                  <option selected>请选择工程师</option>
                    <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}}</option>
                 </select>
                 <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
@@ -63,8 +63,8 @@
 
               <div class="item item-input item-icon-right" ng-click="">
                 <span class="input-label">销售人员</span>
-                <select id="selectbar">
-                  <option selected>{{form.salesName}}</option>
+                <select id="salesman">
+                  <option selected>请选择销售人员</option>
                    <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
                 </select>
                 <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
@@ -72,12 +72,12 @@
 
               <div class="item item-input item-icon-right" ng-click="">
                 <span class="input-label">派单员</span>
-                <input type = "text" placeholder = "{{form.distributerName}}">
+                <input id="distributor" type = "text" placeholder = "{{form.distributerName}}">
               </div>
 
               <div class="item item-input item-button-right" ng-click="">
                 <span class="input-label">派单员电话</span>
-                <input type = "text" placeholder = "{{form.distributerphone}}">
+                <input id="distributorPhone" type = "text" placeholder = "{{form.distributerphone}}">
                 <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
                 <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.distributerphone}}"></i>
                 </button>
@@ -240,6 +240,9 @@
 
   <div ng-switch="myinformation.position">
     <div ng-switch-when = "派单员">
+      <div class="padding">
+        <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "editComplete()">编辑完成</button>
+      </div>
       <div class="padding">
         <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "deleteForm()">删除</button>
       </div>
