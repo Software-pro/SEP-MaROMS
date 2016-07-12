@@ -406,7 +406,7 @@ angular.module('starter.controllers',['ionic'])
     Forms.currentId = $stateParams.formId;
   }
 })
-.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations) {
+.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations,$ionicHistory, $window) {
  $scope.form = Forms.get(Forms.currentId);
  $scope.myinformation = MyInformation.get();
  $scope.users = PersonalInformations.all();
@@ -421,21 +421,73 @@ angular.module('starter.controllers',['ionic'])
   for(var i=0; i<15; i++)
       $scope.hourNums.push([i+8].join(""));
     $scope.minuteNums=[0, 10, 20, 30, 40, 50];
+  $scope.editComplete = function() {
+    var success = 1;
+    var clientName = document.getElementById("clientName");
+    var clientPhone = document.getElementById("clientPhone");
+    var clientUnit = document.getElementById("clientUnit");
+    var clientAddr = document.getElementById("clientAddr"); 
+    var service = document.getElementById("service");
+    var engineer = document.getElementById("engineer");
+    var salesman = document.getElementById("salesman");
+    var distributor = document.getElementById('distributor');
+    var distributorPhone = document.getElementById("distributorPhone");
+    if(clientName.value.length == 0 && $scope.form.clientName.length == 0) {
+      alert("未填写客户姓名！");
+      return;
+    }
+    if(clientPhone.value.length == 0) {
+      alert("未填写客户电话！");
+      return;
+    }
+    if(clientUnit.value.length == 0) {
+      alert("未填写客户单位！");
+      return;
+    }
+    if(clientAddr.value.length == 0) {
+      alert("未填写客户地址！");
+      return;
+    }
+    if(service.value === "请选择服务" && $scope.form.type.length == 0) {
+      alert("未填写服务！");
+      return;
+    }
+    if(engineer.value === "请选择工程师" && $scope.form.engineerName.length == 0) {
+      alert("未填写工程师！");
+      return;
+    }
+    if(salesman.value === "请选择销售人员" && $scope.form.salesName.length == 0) {
+      alert("未填写销售人员！");
+      return;
+    }
+    if(distributor.value.length == 0) {
+      alert("未填写派单员姓名！");
+      return;
+    }
+    if(distributorPhone.value.length == 0) {
+      alert("未填写派单员电话！");
+      return;
+    }
+    if(success == 1) {
+      alert("修改完成！");
+      $ionicHistory.goBack();
+    }
+  }
   $scope.deleteForm = function(){
     alert("Delete this form!");
-    $state.go('app.viewForms');
+    $ionicHistory.goBack(-2);
   }
   $scope.submitForm = function(){
     alert("订单已完成!");
-    $state.go('app.viewForms');
+   $ionicHistory.goBack();
   }
   $scope.cancelOrderTaking = function(){
     alert("取消接单!");
-    $state.go('app.viewForms');
+    $ionicHistory.goBack();
   }
   $scope.reviewForm = function(){
     alert("订单已审核!");
-    $state.go('app.viewForms');
+    $ionicHistory.goBack();
   }
    $scope.takeForm = function(){
     var success=1;
@@ -449,7 +501,7 @@ angular.module('starter.controllers',['ionic'])
       return;
     }
     alert("已经接单");
-    $state.go('app.viewForms');
+    $ionicHistory.goBack();
   }
 })
 .controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
@@ -469,7 +521,7 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("newFormCtrl",function($scope,$state, PersonalInformations) {
+.controller("newFormCtrl",function($scope,$state, PersonalInformations,$ionicHistory) {
   $scope.users = PersonalInformations.all();
 	// $scope.engineers = PersonalInformations.all_engineer();
  //  $scope.salesmans = PersonalInformations.all_salesman();
@@ -508,10 +560,10 @@ angular.module('starter.controllers',['ionic'])
     }
     if(success == 1) {
     alert("Add a new form!");
-		$state.go('app.viewForms');
+    $ionicHistory.goBack();
   }
 }
-	$scope.cancelNewForm = function(){
+$scope.cancelNewForm = function(){
     var tmp = document.getElementsByTagName("input");
     for(var i = 0; i < tmp.length; i ++){
       tmp[i].value = "";
@@ -557,7 +609,7 @@ angular.module('starter.controllers',['ionic'])
     });
   }
 })
-.controller("passwordModifyCtrl",function($scope,$state){
+.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory){
   $scope.goback = function(){
     $state.go('app.my');
   }
@@ -586,7 +638,7 @@ angular.module('starter.controllers',['ionic'])
       alert("密码修改成功！");
       //这里需要与数据库交互，更新密码
 
-      $state.go('app.my');
+      $ionicHistory.goBack();
     }
   }
 })
