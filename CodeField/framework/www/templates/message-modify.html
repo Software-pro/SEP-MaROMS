@@ -6,12 +6,19 @@
     <ion-infinite-scroll> -->
     <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
 
-    <p style = "margin-top:20px">分值改动的保修单详情：</p>
+    <p style = "margin-top:20px">分值改动的报修单详情：</p>
 
       <div class="item" style="margin-top: 13px;">
         <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
         <p style="color: #AAAAAA;">状态： {{form.status}}</p>
-        <p style="color: #AAAAAA;">分值： {{form.value}}</p>
+         <div>
+          <div id="formValueBackground">
+            <span id="formValue">
+              {{form.value}}
+            </span>
+          </div>
+        </div><!-- 
+        <p style="color: #AAAAAA;">分值： {{form.value}}</p> -->
       </div>
 
       <div class="item" style="margin-top: 13px;" href="#">
@@ -33,7 +40,6 @@
      
       <div class="item" href="#" style="margin-top: 13px;">
         <p>出库单号： {{form.stocknumber}}</p>
-    
         <p>创建时间： {{form.time}}</p>
         <p>接单时间： {{form.accepttime}}</p>
         <p>完成时间： {{form.finishtime}}</p>
@@ -41,5 +47,6 @@
       </div>
 
     </div>
+    <div></div>
   </ion-content>
 </ion-view>

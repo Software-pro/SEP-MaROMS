@@ -118,7 +118,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
     .state('app.message-modify',{
-      url:'/message/0',
+      url:'/message/0/:contentid',
       views:{
         'menuContent':{
           templateUrl:'templates/message-modify.html',
@@ -191,6 +191,12 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
         }
       }
     })
+
+     .state('detail-feedback',{
+      url:'/detail-feedback',
+      templateUrl:'templates/detail-feedback.html',
+      controller:'feedbackCtrl'
+     })
      ;
     $urlRouterProvider.otherwise('/login');     
 

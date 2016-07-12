@@ -7,8 +7,8 @@
     <div class="list" >
       <li class="item item-divider"></li>
       <ion-item class="item item-icon-right" ng-repeat="message_info in message_infos" type="item-text-wrap" 
-       href="#/app/message/{{message_info.type}}">
-				<!-- <img ng-src="{{message_info.img}}"> -->
+         ng-click="itemClicked(message_info.type,message_info.id)">
+     
 				<h2>{{message_info.title}}</h2>
 				<p>{{message_info.full_information}}</p>
 
@@ -23,3 +23,11 @@
 </ion-view>
 
 </body>
+
+
+
+
+<!-- 
+ 
+       href="#/app/message/{{message_info.type}}"
+         img ng-src="{{message_info.img}}"  -->

@@ -478,6 +478,7 @@ angular.module('starter.service',[])
     type:0,
     title:'分值改动通知',
     full_information:'派单员小李修改了报修单的分值',
+    id:'bx131220733',
     tag:0,
     state:'未读',
     format:"badge icon-badge assertive"
@@ -486,6 +487,7 @@ angular.module('starter.service',[])
     type:1,
     title:'密码找回通知',
     full_information:'用户gc13122001申请找回登录密码',
+    id:'bx131220283',
     tag:0,
     state:'未读',
     format:"badge icon-badge assertive"
@@ -494,6 +496,7 @@ angular.module('starter.service',[])
     type:0,
     title:'分值改动通知',
     full_information:'派单员小李修改了报修单的分值',
+    id:'bx131220283',
     tag:1,
     state:'已读',
     format:"badge icon-badge"
@@ -502,6 +505,7 @@ angular.module('starter.service',[])
     type:2,
     title:'密码修改通知',
     full_information:'用户gc13122001修改了登录密码',
+    id:'bx131220733',
     tag:1,
     state:'已读',
     format:"badge icon-badge"

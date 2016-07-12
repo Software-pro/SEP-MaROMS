@@ -391,16 +391,54 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-.controller("messageCtrl",function($scope,Message_infos) {
+.controller("messageCtrl",function($scope,Message_infos,$state,$stateParams) {
   $scope.message_infos = Message_infos.all(); 
   $scope.doRefresh = function(){
     $scope.$broadcast('scroll.refreshComplete');
   }
 
+   // $scope.form = Forms.get($stateParams.id);
+  $scope.itemClicked = function(type,id){
+    $stateParams.contentid = id;
+    if(type === 0){
+      $state.go('app.message-modify',{contentid:id});
+    }
+    else if(type === 1){
+      $state.go('app.message-passwordforget');
+    }
+    else{
+      $state.go('app.message-passwordmodify');
+    }
+
+  }
+
 })
 
-.controller("formDetailCtrl",function($scope, $stateParams, Forms, $location) {
+.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location) {
+  
+
   $scope.form = Forms.get($stateParams.formId);
+  if($scope.form.status === "未接"){
+    var receivebutton = document.getElementById('receiveButton');
+    receivebutton.style.display = "inline";
+  }
+  else{
+    var receivebutton = document.getElementById('receiveButton');
+    receivebutton.style.display = "none";
+
+  }
+  if($scope.form.status === "已接单"){
+    var finishbutton = document.getElementById('finishButton');
+    finishbutton.style.display = "inline";
+  }
+  else{
+    var finishbutton = document.getElementById('finishButton');
+    finishbutton.style.display = "none";
+  }
+  $scope.finish =function(){
+    $state.go('detail-feedback');
+  }
+
   // TODO:get form by 'http'
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
@@ -891,22 +929,23 @@ $scope.cancelNewForm = function(){
 })
 
 
-.controller('markModifyCtrl', function($scope,$http){
-  $scope.click = function(){
-    alert("haha");
-    var inp = document.getElementByTag("span");
-    // if({{message_info.type}} === 1){
-    //   inp.innerHTML = "已读"
-    // }
-    alert(inp.innerHTML);
-  }
+.controller('markModifyCtrl', function($scope,$stateParams,Forms,$location){
+
+ // $scope.form = Forms.get($stateParams.formId);
+ // alert($stateParams.contentid);
+  $scope.form = Forms.get($stateParams.contentid);
+//  alert($scope.form.NO.value);
 
 })
-.controller('messagePasswordForgetCtrl',function($scope){
+.controller('messagePasswordForgetCtrl',function($scope,$state){
   
 })
-.controller('messagePasswordModifyCtrl',function($scope){
-  
+.controller('messagePasswordModifyCtrl',function($scope,$state){
+
+})
+
+.controller('feedbackCtrl',function($scope,$state){
+
 })
 
 ;
