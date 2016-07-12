@@ -41,6 +41,27 @@ angular.module('starter.service',[])
    }, {
       id: 12,
       name: 'Smith'
+      }, {
+      id: 13,
+      name: 'Wendy'
+   }, {
+      id: 14,
+      name: 'Nick'
+   }, {
+      id: 15,
+      name: 'Cindy'
+   }, {
+      id: 16,
+      name: 'Helen'
+   }, {
+      id: 17,
+      name: 'Amanda'
+   }, {
+      id: 18,
+      name: 'Lisa'
+   }, {
+      id: 19,
+      name: 'Tina'
    }];
    
    return {
