@@ -399,14 +399,56 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("formDetailCtrl",function($scope, $stateParams, Forms, $location) {
+.controller("formDetailCtrl",function($scope, $stateParams, Forms, $location,MyInformation) {
   $scope.form = Forms.get($stateParams.formId);
   // TODO:get form by 'http'
+   $scope.myinformation = MyInformation.get();
+   $scope.yearNums = [];
+ for(var i=0;i<10; i++)
+    $scope.yearNums.push([i+2016].join(""));
+  $scope.dayNums = [];
+  for(var i=0; i<31;i++)
+    $scope.dayNums.push([i+1].join(""));
+  $scope.monthNames=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  $scope.hourNums=[];
+  for(var i=0; i<15; i++)
+      $scope.hourNums.push([i+8].join(""));
+    $scope.minuteNums=[0, 10, 20, 30, 40, 50];
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
   }
+    $scope.deleteForm = function(){
+    alert("Delete this form!");
+    $ionicHistory.goBack();
+  }
+  $scope.submitForm = function(){
+    alert("订单已完成!");
+   $ionicHistory.goBack();
+  }
+  $scope.cancelOrderTaking = function(){
+    alert("取消接单!");
+    $ionicHistory.goBack();
+  }
+  $scope.reviewForm = function(){
+    alert("订单已审核!");
+    $ionicHistory.goBack();
+  }
+   $scope.takeForm = function(){
+    var success=1;
+    var year=document.getElementById("year");
+    var month=document.getElementById("month");
+    var day=document.getElementById("day");
+    var hour=document.getElementById("hour");
+    var minute=document.getElementById("minute");
+    if(year.value === "请选择年份" || month.value === "请选择月份" || day.value === "请选择日期" || hour.value === "请选择具体小时" || minute.value === "请选择具体分钟") {
+      alert("上门时间未填写完整！");
+      return;
+    }
+    alert("已经接单");
+    $ionicHistory.goBack();
+  }
 })
-.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations,$ionicHistory, $window) {
+.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations,$ionicHistory) {
  $scope.form = Forms.get(Forms.currentId);
  $scope.myinformation = MyInformation.get();
  $scope.users = PersonalInformations.all();
@@ -437,6 +479,7 @@ angular.module('starter.controllers',['ionic'])
     }
 
   $scope.editComplete = function() {
+     if($scope.form.status == "未接单") {
     var success = 1;
     var clientName = document.getElementById("clientName");
     var clientPhone = document.getElementById("clientPhone");
@@ -488,36 +531,18 @@ angular.module('starter.controllers',['ionic'])
       $ionicHistory.goBack();
     }
   }
-  $scope.deleteForm = function(){
-    alert("Delete this form!");
-    $ionicHistory.goBack(-2);
+else  {
+  var mark = document.getElementById("mark");
+  if($scope.form.value.length == 0 && mark.value.length == 0) {
+    alert("未填写分值！");
+    return;
   }
-  $scope.submitForm = function(){
-    alert("订单已完成!");
-   $ionicHistory.goBack();
-  }
-  $scope.cancelOrderTaking = function(){
-    alert("取消接单!");
+  else {
+    alert("修改完成！");
     $ionicHistory.goBack();
   }
-  $scope.reviewForm = function(){
-    alert("订单已审核!");
-    $ionicHistory.goBack();
-  }
-   $scope.takeForm = function(){
-    var success=1;
-    var year=document.getElementById("year");
-    var month=document.getElementById("month");
-    var day=document.getElementById("day");
-    var hour=document.getElementById("hour");
-    var minute=document.getElementById("minute");
-    if(year.value === "请选择年份" || month.value === "请选择月份" || day.value === "请选择日期" || hour.value === "请选择具体小时" || minute.value === "请选择具体分钟") {
-      alert("上门时间未填写完整！");
-      return;
-    }
-    alert("已经接单");
-    $ionicHistory.goBack();
-  }
+}
+}
 })
 .controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
   $scope.message_info = Message_infos.get($stateParams.message_infoId);
