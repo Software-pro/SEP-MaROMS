@@ -1,7 +1,4 @@
 <ion-view view-title="报修单详情">
-  <ion-nav-buttons side = "right">
-    <a href="#/app/viewForms/viewForms-editForm"><button class = "button button-clear " ng-click = "editClick()">编辑</button> </a>
-  </ion-nav-buttons> 
   <ion-content>
 
 <!-- <div class="item item-avatar">
@@ -42,7 +39,7 @@
       </div>
 
       <div class="item" href="#" style="margin-top: 13px;">
-        服务项目： {{form.service}}
+        服务项目： {{form.type}}
       </div>
 
       <div class = "item item-icon-right" ng-click="" style="margin-top: 13px;"> 
@@ -84,5 +81,71 @@
 
     </div>
 
+<div ng-switch="myinformation.position">
+      <div ng-switch-when = "派单员">
+      <div class="padding">
+      <a href="#/app/viewForms/viewForms-editForm"> 
+        <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF"      ng-click = "editClick()">编辑</button>
+        </a>
+      </div>
+      <div class="padding">
+        <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "editClick()">删除</button>
+      </div>
+      </div>
+    <div ng-switch-when = "管理员">
+      <div class="padding">
+        <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "deleteForm()">删除</button>
+      </div>
+    </div>
+    <div ng-switch-when = "销售员">
+      <div ng-switch = "form.status">
+        <div ng-switch-when = "已完成">
+          <div class="padding">
+            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "reviewForm()">审核</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-switch-when = "工程师">
+      <div ng-switch = "form.status">
+        <div ng-switch-when = "已接单">
+          <div class="padding">
+            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "cancelOrderTaking()">取消接单</button>
+          </div>
+          <div class="padding">
+            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "submitForm()">提交完成</button>
+          </div>
+        </div>
+        <div ng-switch-when = "未接">
+          <div class="padding item-input">
+          <div class="input-label">请选择上门时间:</div>
+            <select id="year">
+              <option selected>请选择年份</option>
+              <option ng-repeat = "yearNum in yearNums">{{yearNum}}</option>
+              </select>
+              <select id="month">
+              <option selected>请选择月份</option>
+              <option ng-repeat = "monthName in monthNames">{{monthName}}</option>
+              </select>
+              <select id="day">
+              <option selected>请选择日期</option>
+              <option ng-repeat = "dayNum in dayNums">{{dayNum}}</option>
+              </select>
+              <select id="hour">
+              <option selected>请选择具体小时</option>.
+              <option ng-repeat="hourNum in hourNums">{{hourNum}}</option>
+              </select>
+              <select id="minute">
+              <option selected>请选择具体分钟</option>
+              <option ng-repeat="minuteNum in minuteNums">{{minuteNum}}</option>
+              </select>
+            </div>
+            <div class="padding">
+            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "takeForm()">接单</button > 
+          </div>
+      </div>
+    </div>
+    </div>
+    </div>
   </ion-content>
 </ion-view>
