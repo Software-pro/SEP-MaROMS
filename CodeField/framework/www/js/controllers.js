@@ -905,5 +905,8 @@ $scope.cancelNewForm = function(){
 .controller('messagePasswordForgetCtrl',function($scope){
   
 })
+.controller('messagePasswordModifyCtrl',function($scope){
+  
+})
 
 ;

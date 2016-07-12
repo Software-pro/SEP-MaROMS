@@ -499,7 +499,7 @@ angular.module('starter.service',[])
     format:"badge icon-badge"
   },
   {
-    type:1,
+    type:2,
     title:'密码修改通知',
     full_information:'用户gc13122001修改了登录密码',
     tag:1,

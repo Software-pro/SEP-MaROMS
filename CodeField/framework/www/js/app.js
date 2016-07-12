@@ -138,6 +138,16 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
+    .state('app.message-passwordmodify',{
+      url:'/message/2',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/message-passwordmodify.html',
+          controller:'messagePasswordModifyCtrl'
+        }
+      }
+    })
+
     .state('app.message-detail', {
       url:'/message',
       views: {
