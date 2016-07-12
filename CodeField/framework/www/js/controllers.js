@@ -410,6 +410,7 @@ angular.module('starter.controllers',['ionic'])
  $scope.form = Forms.get(Forms.currentId);
  $scope.myinformation = MyInformation.get();
  $scope.users = PersonalInformations.all();
+ var users =  $scope.users;
  $scope.yearNums = [];
  for(var i=0;i<10; i++)
     $scope.yearNums.push([i+2016].join(""));
@@ -421,6 +422,20 @@ angular.module('starter.controllers',['ionic'])
   for(var i=0; i<15; i++)
       $scope.hourNums.push([i+8].join(""));
     $scope.minuteNums=[0, 10, 20, 30, 40, 50];
+
+  $scope.engineerFilter = function(user) {
+    if($scope.form.engineerName.length > 0) {
+       return user.name !== $scope.form.engineerName && user.position.indexOf("工程师")>=0;
+    }
+    else return user.position.indexOf("工程师")>=0;
+    }
+  $scope.salesmanFilter = function(user) {
+    if($scope.form.salesName.length > 0) {
+       return user.name !== $scope.form.salesName && user.position.indexOf('销售员')>=0;
+    }
+    else return user.position.indexOf('销售员')>=0;
+    }
+
   $scope.editComplete = function() {
     var success = 1;
     var clientName = document.getElementById("clientName");

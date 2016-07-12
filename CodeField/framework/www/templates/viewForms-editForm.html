@@ -42,21 +42,53 @@
                 <input id="clientAddr" type = "text" placeholder = "{{form.clientaddr}}">
               </div>
 
+              <div ng-switch = "form.type">
+              <div ng-switch-when="上门服务">
               <div class="item item-input" href="#" style="margin-top: 13px;">
                 <span class="input-label">服务项目</span>
-                <select id="service">
-                  <option selected>请选择服务</option>
-                  <option>上门服务</option>
+                <select id="service" >
+                  <option selected>上门服务</option>
                   <option>送货服务</option>
                   <option>安装调试</option>
                 </select>
+              </div>
+              </div>
+              <div ng-switch-when="送货服务">
+              <div class="item item-input" href="#" style="margin-top: 13px;">
+                <span class="input-label">服务项目</span>
+                <select id="service" >
+                  <option>上门服务</option>
+                  <option selected>送货服务</option>
+                  <option>安装调试</option>
+                </select>
+              </div>
+              </div>
+              <div ng-switch-when="安装调试">
+              <div class="item item-input" href="#" style="margin-top: 13px;">
+                <span class="input-label">服务项目</span>
+                <select id="service" >
+                  <option >上门服务</option>
+                  <option>送货服务</option>
+                  <option selected>安装调试</option>
+                </select>
+              </div>
+              </div>
+              <div ng-switch-default>
+              <div class="item item-input" href="#" style="margin-top: 13px;">
+                <span class="input-label">服务项目</span>
+                <select id="service" >
+                  <option >上门服务</option>
+                  <option>送货服务</option>
+                  <option>安装调试</option>
+                </select>
+              </div>
               </div>
 
               <div class="item item-input item-icon-right" ng-click="">
                 <span class="input-label">工程师</span>
                 <select id="engineer">
-                  <option selected>请选择工程师</option>
-                   <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}}</option>
+                <option selected> {{form.engineerName}} </option>
+                   <option class = "item" ng-repeat = "user in users | filter:engineerFilter">{{user.name}}</option>
                 </select>
                 <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
               </div>
@@ -64,8 +96,8 @@
               <div class="item item-input item-icon-right" ng-click="">
                 <span class="input-label">销售人员</span>
                 <select id="salesman">
-                  <option selected>请选择销售人员</option>
-                   <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
+                <option selected>{{form.salesName}}</option>
+                   <option ng-repeat = "user in users | filter:salesmanFilter">{{user.name}}</option>
                 </select>
                 <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
               </div>
