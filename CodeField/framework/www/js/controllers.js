@@ -568,9 +568,61 @@ else  {
 .controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
   $scope.message_info = Message_infos.get($stateParams.message_infoId);
 })
+
 .controller("markCtrl", function($scope, MarkChanges) {
   $scope.markChanges = MarkChanges.all();
+
+  $scope.markList = [];
+  $scope.markList[0] = {
+      value: $scope.markChanges[0].currentValue,
+      time: $scope.markChanges[0].time,
+      hide: 1,
+      details: []
+  };
+  $scope.markList[0].details[0] = {
+      content: $scope.markChanges[0].content,
+      change: $scope.markChanges[0].changeValue
+  };
+
+  var current = 0;
+  var currentDetail = 0;
+  for (var i = 1; i < $scope.markChanges.length; i++) {
+    if ($scope.markChanges[i].time === $scope.markList[current].time) {
+      currentDetail++;
+      $scope.markList[current].details[currentDetail] = {
+        content: $scope.markChanges[i].content,
+        change: $scope.markChanges[i].changeValue
+      };
+      $scope.markList[current].value = $scope.markChanges[i].currentValue;
+    }
+    else {
+      current++;
+      currentDetail = 0;
+      $scope.markList[current] = {
+        value: $scope.markChanges[i].currentValue,
+        time: $scope.markChanges[i].time,
+        hide: 1,
+        details: []
+      };
+      $scope.markList[current].details[currentDetail] = {
+          content: $scope.markChanges[i].content,
+          change: $scope.markChanges[i].changeValue
+      };
+    }
+  }
+
+  $scope.detailClicked = function(index) {
+    if ($scope.markList[index].hide == 0) {
+      $scope.markList[index].hide = 1;
+    }
+    else {
+      $scope.markList[index].hide = 0;
+    }
+  }
+
+
 })
+
 .controller("contactdetailCtrl",function($scope, $stateParams, Users, PersonalInformations, $location, MyInformation) {
   $scope.user = Users.get($stateParams.personId);
   $scope.personalInformation = PersonalInformations.get($stateParams.personId);

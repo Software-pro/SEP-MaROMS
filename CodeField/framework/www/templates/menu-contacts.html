@@ -11,35 +11,10 @@
       </div>
      
       <ion-content class="has-subheader" id="headerdistance">
+      
        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
        </ion-refresher>
-        <!--  <li class="item item-divider"></li>
-          <div class="list" style="border:none">
-   
-   if we have searched some thing 
-          <span ng-if="searchornot">
-                 <ion-item  id="navigator" type="item-text-wrap">
-                   <div style="line-height:6px;">{{phones.group}}</div>
-                 </ion-item>
-                 <ion-item class="item item-icon-right" ng-repeat="person in phones.persons" type="item-text-wrap" href="#/app/contacts/{{person.id}}" > 
-                   <h2> {{person.name}}</h2>
-                   <i class="icon ion-chevron-right icon-accessory"></i>
-                 </ion-item>
-          </span>
-           
-            if we don't
-          <span ng-if="!searchornot">
-           <div class="list" ng-repeat="phone in phones">
-                 <ion-item  id="navigator" type="item-text-wrap">
-                   <div style="line-height:6px;">{{phone.group}}</div>
-                 </ion-item>
-                 <ion-item class="item item-icon-right" ng-repeat="person in phone.persons" type="item-text-wrap" href="#/app/contacts/{{person.id}}" > 
-                   <h2> {{person.name}}</h2>
-                   <i class="icon ion-chevron-right icon-accessory"></i>
-                 </ion-item>
-           </div>
-          </span>
-           </div> -->
+
           <div data-ng-repeat="(letter, users) in sorted_users" class="alpha_list" ng-show="hideCancel">
             <!-- <div ng-show="{{users[0]}}" id="index_{{letter}}"> -->
             <div id="index_{{letter}}">
