@@ -10,7 +10,7 @@ angular.module('starter.controllers',['ionic'])
 //   };
 // })
 
- .controller("contactsCtrl",function($scope, Users, $location, $ionicScrollDelegate) {
+ .controller("contactsCtrl",function($scope, $state, Users, $location, $ionicScrollDelegate) {
 //  var content = document.getElementById("searchphone");
   $scope.users = Users.all();
 
@@ -96,8 +96,11 @@ angular.module('starter.controllers',['ionic'])
   $scope.searchFilter = function(user) {
         if ($scope.searchcontent === '') return false;
         else return user.name.indexOf($scope.searchcontent)>=0;
-    }
+    };
 
+  $scope.newtactsClicked = function() {
+    $state.go('app.contacts-newtacts');
+  }
 })
 
 .controller('ViewFormsCtrl', function($scope, Forms, $state, $location) {
@@ -617,7 +620,7 @@ else  {
       return;
     }
     if(success == 1) {
-    alert("Add a new form!");
+    alert("添加成功！");
     $ionicHistory.goBack();
   }
 }
@@ -635,7 +638,57 @@ $scope.cancelNewForm = function(){
 	}
 })
 
-.controller("LoginCtrl",function($scope,$state,$http, MyInformation) {
+.controller("newtactsCtrl",function($scope, $ionicHistory) {
+
+   $scope.saveNewTacts = function() {
+    var success = 1;
+    var UserId = document = document.getElementById("userId");
+    var UserPassword = document = document.getElementById("userPassword");
+    var UserName = document = document.getElementById("userName");
+    var UserPhone = document = document.getElementById("userPhone");
+    var UserType= document = document.getElementById("userType");  // int!
+    if(UserId.value.length == 0)
+    {
+      alert("用户名未填！");
+      return;
+    }
+    else if(UserPassword.value.length == 0)
+    {
+      alert("用户密码未填！");
+      return;
+    }
+    else if(UserName.value.length == 0)
+    {
+      alert("用户姓名未填！");
+      return;
+    }
+    else if(UserPhone.value.length == 0)
+    {
+      alert("用户电话未填！");
+      return;
+    }
+    else if(UserType.value == "请选择类型")
+    {
+      alert("未选择用户类型！");
+      return;
+    }
+    if(success == 1) {
+      alert("添加成功！");
+      $ionicHistory.goBack();
+    }
+   }
+
+   $scope.cancelNewTacts = function() {
+   var tmp = document.getElementsByTagName("input");
+    for(var i = 0; i < tmp.length; i ++){
+      tmp[i].value = "";
+    }
+    var usertype = document.getElementById('userType');
+    usertype.value = "请选择类型";
+  }
+})
+
+.controller("LoginCtrl",function($scope,$state,$http) {
    $scope.postuser = function() {
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;

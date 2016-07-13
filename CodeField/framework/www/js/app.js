@@ -98,6 +98,16 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
+    .state('app.contacts-newtacts',{
+      url:'/contacts/contacts-newtacts',
+      views: {
+        'menuContent' : {
+          templateUrl:'templates/contacts-newtacts.html',
+          controller:'newtactsCtrl'
+        }
+      }
+    })
+
     .state('app.viewForms-editForm',{
       url:'/viewForms/viewForms-editForm',
       views: {
