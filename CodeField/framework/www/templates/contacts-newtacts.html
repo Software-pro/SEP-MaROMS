@@ -1,0 +1,53 @@
+<ion-view view-title="新增用户" id="fontSet">
+  <ion-nav-buttons side = "right">
+    <button class = "button button-clear" ng-click = "cancelNewTacts()" >清除</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class = "list  list-inset">
+      
+        <label class = "item item-input">
+        <div class="input-label">用户名</div>
+        <input id = "userId" type = "text" placeholder = "请填写客户的姓名">
+      </label>
+
+       <label class = "item item-input">
+        <div class="input-label">用户密码</div>
+        <input id = "userPassword" type = "text" placeholder = "请填写客户的电话">
+      </label>
+
+      <label class = "item item-input">
+        <div class="input-label">用户姓名</div>
+        <input id = "userName" type = "text" placeholder = "请填写详细地址">
+      </label>
+
+      <label class = "item item-input">
+        <div class="input-label">电话号码</div>
+        <input id="userPhone" type = "text" placeholder = "请填写工作地址">
+      </label>
+
+        <label class="item item-input">
+          <div class="input-label">
+            用户类型
+          </div>
+          <select id="userType">
+            <option selected>请选择类型</option>
+            <option>派单员</option>
+            <option>销售员</option>
+            <option>管理员</option>
+            <option>工程师</option>
+          </select>
+        </label>
+
+         <div class="padding">
+              <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "saveNewTacts()">保存提交</button>
+          </div>
+
+          
+    </div>
+</div>
+
+<script>
+</script>
+
+</ion-content>
+  </ion-view>

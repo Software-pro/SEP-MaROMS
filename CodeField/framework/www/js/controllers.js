@@ -2,7 +2,6 @@ angular.module('starter.controllers',['ionic'])
 
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
 })
 
 // .controller("state3Ctrl",function($scope,$state) {
@@ -11,7 +10,7 @@ angular.module('starter.controllers',['ionic'])
 //   };
 // })
 
- .controller("contactsCtrl",function($scope, Users, $location, $ionicScrollDelegate) {
+ .controller("contactsCtrl",function($scope, $state, Users, $location, $ionicScrollDelegate) {
 //  var content = document.getElementById("searchphone");
   $scope.users = Users.all();
 
@@ -97,8 +96,11 @@ angular.module('starter.controllers',['ionic'])
   $scope.searchFilter = function(user) {
         if ($scope.searchcontent === '') return false;
         else return user.name.indexOf($scope.searchcontent)>=0;
-    }
+    };
 
+  $scope.newtactsClicked = function() {
+    $state.go('app.contacts-newtacts');
+  }
 })
 
 .controller('ViewFormsCtrl', function($scope, Forms, $state, $location) {
@@ -347,7 +349,7 @@ angular.module('starter.controllers',['ionic'])
     };
 })
 
-.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $timeout, MyInformation) {
+.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation) {
   $scope.myinformation = MyInformation.get(); 
   $scope.data={}
   $scope.editphonenum = function() {
@@ -389,6 +391,9 @@ angular.module('starter.controllers',['ionic'])
     alert("haha");
     $state.go('/');
   }
+  $scope.markClicked = function(){
+    $location.path("app/mark" + $scope.myinformation.id);
+  }
 })
 
 .controller("messageCtrl",function($scope,Message_infos,$state,$stateParams) {
@@ -414,16 +419,15 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,MyInformation) {
+.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,MyInformation,$ionicHistory) {
 
   $scope.form = Forms.get($stateParams.formId);
   
   $scope.finish =function(){
     $state.go('detail-feedback');
   }
-
+$scope.myinformation = MyInformation.get();
   // TODO:get form by 'http'
-   $scope.myinformation = MyInformation.get();
    $scope.yearNums = [];
  for(var i=0;i<10; i++)
     $scope.yearNums.push([i+2016].join(""));
@@ -470,8 +474,8 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 .controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations,$ionicHistory) {
- $scope.form = Forms.get(Forms.currentId);
  $scope.myinformation = MyInformation.get();
+ $scope.form = Forms.get(Forms.currentId);
  $scope.users = PersonalInformations.all();
  var users =  $scope.users;
  $scope.yearNums = [];
@@ -500,7 +504,7 @@ angular.module('starter.controllers',['ionic'])
     }
 
   $scope.editComplete = function() {
-     if($scope.form.status == "未接单") {
+     if($scope.form.status == "未接") {
     var success = 1;
     var clientName = document.getElementById("clientName");
     var clientPhone = document.getElementById("clientPhone");
@@ -568,25 +572,76 @@ else  {
 .controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
   $scope.message_info = Message_infos.get($stateParams.message_infoId);
 })
-.controller("markCtrl", function($scope, MarkChanges) {
+
+.controller("markCtrl", function($scope, MarkChanges, $stateParams) {
   $scope.markChanges = MarkChanges.all();
+
+  $scope.markList = [];
+  $scope.markList[0] = {
+      value: $scope.markChanges[0].currentValue,
+      time: $scope.markChanges[0].time,
+      hide: 1,
+      details: []
+  };
+  $scope.markList[0].details[0] = {
+      content: $scope.markChanges[0].content,
+      change: $scope.markChanges[0].changeValue
+  };
+
+  var current = 0;
+  var currentDetail = 0;
+  for (var i = 1; i < $scope.markChanges.length; i++) {
+    if ($scope.markChanges[i].time === $scope.markList[current].time) {
+      currentDetail++;
+      $scope.markList[current].details[currentDetail] = {
+        content: $scope.markChanges[i].content,
+        change: $scope.markChanges[i].changeValue
+      };
+      $scope.markList[current].value = $scope.markChanges[i].currentValue;
+    }
+    else {
+      current++;
+      currentDetail = 0;
+      $scope.markList[current] = {
+        value: $scope.markChanges[i].currentValue,
+        time: $scope.markChanges[i].time,
+        hide: 1,
+        details: []
+      };
+      $scope.markList[current].details[currentDetail] = {
+          content: $scope.markChanges[i].content,
+          change: $scope.markChanges[i].changeValue
+      };
+    }
+  }
+
+  $scope.detailClicked = function(index) {
+    if ($scope.markList[index].hide == 0) {
+      $scope.markList[index].hide = 1;
+    }
+    else {
+      $scope.markList[index].hide = 0;
+    }
+  }
+
+
 })
+
 .controller("contactdetailCtrl",function($scope, $stateParams, Users, PersonalInformations, $location, MyInformation) {
   $scope.user = Users.get($stateParams.personId);
   $scope.personalInformation = PersonalInformations.get($stateParams.personId);
-  $scope.myInformation = MyInformation.get();
+  $scope.myInformation = MyInformation.get();;
 
   $scope.personalFormClicked = function() {
     $location.path("app/detail-personalForms/" + $stateParams.personId);
   }
-
+  $scope.markClicked = function() {
+    $location.path("app/mark" + $stateParams.personId);
+  }
 })
 
 .controller("newFormCtrl",function($scope,$state, PersonalInformations,$ionicHistory) {
   $scope.users = PersonalInformations.all();
-	// $scope.engineers = PersonalInformations.all_engineer();
- //  $scope.salesmans = PersonalInformations.all_salesman();
- //  $scope.distributers = PersonalInformations.all_distributer();
   $scope.saveNewForm = function(){
     var success = 1;//success=1说明报修单新建成功。
     var clientname = document.getElementById("clientName");
@@ -620,7 +675,7 @@ else  {
       return;
     }
     if(success == 1) {
-    alert("Add a new form!");
+    alert("添加成功！");
     $ionicHistory.goBack();
   }
 }
@@ -638,7 +693,57 @@ $scope.cancelNewForm = function(){
 	}
 })
 
-.controller("LoginCtrl",function($scope,$state,$http) {
+.controller("newtactsCtrl",function($scope, $ionicHistory) {
+
+   $scope.saveNewTacts = function() {
+    var success = 1;
+    var UserId = document = document.getElementById("userId");
+    var UserPassword = document = document.getElementById("userPassword");
+    var UserName = document = document.getElementById("userName");
+    var UserPhone = document = document.getElementById("userPhone");
+    var UserType= document = document.getElementById("userType");  // int!
+    if(UserId.value.length == 0)
+    {
+      alert("用户名未填！");
+      return;
+    }
+    else if(UserPassword.value.length == 0)
+    {
+      alert("用户密码未填！");
+      return;
+    }
+    else if(UserName.value.length == 0)
+    {
+      alert("用户姓名未填！");
+      return;
+    }
+    else if(UserPhone.value.length == 0)
+    {
+      alert("用户电话未填！");
+      return;
+    }
+    else if(UserType.value == "请选择类型")
+    {
+      alert("未选择用户类型！");
+      return;
+    }
+    if(success == 1) {
+      alert("添加成功！");
+      $ionicHistory.goBack();
+    }
+   }
+
+   $scope.cancelNewTacts = function() {
+   var tmp = document.getElementsByTagName("input");
+    for(var i = 0; i < tmp.length; i ++){
+      tmp[i].value = "";
+    }
+    var usertype = document.getElementById('userType');
+    usertype.value = "请选择类型";
+  }
+})
+
+.controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
    $scope.postuser = function() {
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
@@ -658,6 +763,7 @@ $scope.cancelNewForm = function(){
     .then(function(response) {
       console.log(response);
       if(response.data['success']) {
+        $myinformation =  MyInformation.setPosition("派单员");
         $state.go("app.viewForms");
       }
       else
@@ -669,6 +775,7 @@ $scope.cancelNewForm = function(){
       console.log(response);
     });
   }
+  
 })
 .controller("passwordModifyCtrl",function($scope,$state, $ionicHistory){
   $scope.goback = function(){
