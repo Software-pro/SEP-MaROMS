@@ -740,7 +740,7 @@ $scope.cancelNewForm = function(){
   }
 })
 
-.controller("LoginCtrl",function($scope,$state,$http) {
+.controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
    $scope.postuser = function() {
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
@@ -760,6 +760,7 @@ $scope.cancelNewForm = function(){
     .then(function(response) {
       console.log(response);
       if(response.data['success']) {
+        $myinformation =  MyInformation.setPosition("工程师");
         $state.go("app.viewForms");
       }
       else
@@ -771,7 +772,7 @@ $scope.cancelNewForm = function(){
       console.log(response);
     });
   }
-  $myinformation =  MyInformation.setPosition("工程师");
+  
 })
 .controller("passwordModifyCtrl",function($scope,$state, $ionicHistory){
   $scope.goback = function(){
