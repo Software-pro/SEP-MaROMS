@@ -349,7 +349,7 @@ angular.module('starter.controllers',['ionic'])
     };
 })
 
-.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $timeout, MyInformation) {
+.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation) {
   $scope.myinformation = MyInformation.get(); 
   $scope.data={}
   $scope.editphonenum = function() {
@@ -390,6 +390,9 @@ angular.module('starter.controllers',['ionic'])
   $scope.exit = function(){
     alert("haha");
     $state.go('/');
+  }
+  $scope.markClicked = function(){
+    $location.path("app/mark" + $scope.myinformation.id);
   }
 })
 
@@ -570,7 +573,7 @@ else  {
   $scope.message_info = Message_infos.get($stateParams.message_infoId);
 })
 
-.controller("markCtrl", function($scope, MarkChanges) {
+.controller("markCtrl", function($scope, MarkChanges, $stateParams) {
   $scope.markChanges = MarkChanges.all();
 
   $scope.markList = [];
@@ -633,7 +636,7 @@ else  {
     $location.path("app/detail-personalForms/" + $stateParams.personId);
   }
   $scope.markClicked = function() {
-    $location.path("app/mark");
+    $location.path("app/mark" + $stateParams.personId);
   }
 })
 
@@ -760,7 +763,7 @@ $scope.cancelNewForm = function(){
     .then(function(response) {
       console.log(response);
       if(response.data['success']) {
-        $myinformation =  MyInformation.setPosition("工程师");
+        $myinformation =  MyInformation.setPosition("派单员");
         $state.go("app.viewForms");
       }
       else

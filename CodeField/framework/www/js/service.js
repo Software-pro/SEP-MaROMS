@@ -556,37 +556,37 @@ angular.module('starter.service',[])
     id:0,
     currentValue: 50,
     changeValue: +10,
-    time: "2016-7",
+    time: "2016-11",
     content:"完成修理工作"
   },{
     id:1,
     currentValue: 650,
     changeValue: +10,
-    time: "2016-7",
+    time: "2016-11",
     content:"遭到顾客投诉"
   },{
     id:2,
     currentValue: 75,
     changeValue: +15,
-    time: "2016-7",
+    time: "2016-11",
     content:"顾客给出五星好评"
   },{
     id:3,
     currentValue: 80,
     changeValue: +5,
-    time: "2016-8",
+    time: "2016-10",
     content:"遭到顾客投诉"
   },{
     id:4,
     currentValue: 70,
     changeValue: -10,
-    time: "2016-8",
+    time: "2016-10",
     content:"顾客给出五星好评"
   },{
     id:5,
     currentValue: 65,
     changeValue: -5,
-    time: "2016-8",
+    time: "2016-10",
     content:"遭到顾客投诉"
   },{
     id:6,
@@ -598,25 +598,25 @@ angular.module('starter.service',[])
     id:7,
     currentValue: 85,
     changeValue: +10,
-    time: "2016-10",
+    time: "2016-8",
     content:"遭到顾客投诉"
   },{
     id:8,
     currentValue: 80,
     changeValue: -5,
-    time: "2016-10",
+    time: "2016-8",
     content:"顾客给出五星好评"
   },{
     id:9,
     currentValue: 90,
     changeValue: +10,
-    time: "2016-11",
+    time: "2016-7",
     content:"遭到顾客投诉"
   },{
     id:10,
     currentValue: 70,
     changeValue: -20,
-    time: "2016-11",
+    time: "2016-7",
     content:"顾客给出五星好评"
   }];
 
