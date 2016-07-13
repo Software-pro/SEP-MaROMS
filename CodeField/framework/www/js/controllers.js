@@ -744,36 +744,43 @@ $scope.cancelNewForm = function(){
 })
 
 .controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
+  $scope.errorBorder = '0px';
    $scope.postuser = function() {
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
-    var userinfo = {"id":user,"password":userPass};
-    $http({
-      method:'POST',
-      url:'http://115.159.225.109/login',
-       data:{
-       'id':user,
-       'password':userPass
+   // alert(user + " " + userPass + " " + errorBorder);
+    if (user == "" || userPass == "") {
+      $scope.errorBorder = '1px';
+    }
+    else {
+      var userinfo = {"id":user,"password":userPass};
+      $http({
+        method:'POST',
+        url:'http://115.159.225.109/login',
+         data:{
+         'id':user,
+         'password':userPass
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'    
+      })
+      .then(function(response) {
+        console.log(response);
+        if(response.data['success']) {
+          $myinformation =  MyInformation.setPosition("派单员");
+          $state.go("app.viewForms");
+        }
+        else
+        {
+          alert("用户名或密码不正确！");
+        }
       },
-      headers:{
-        'Content-Type':'application/json'
-      },
-      withCredentials:'true'    
-    })
-    .then(function(response) {
-      console.log(response);
-      if(response.data['success']) {
-        $myinformation =  MyInformation.setPosition("派单员");
-        $state.go("app.viewForms");
-      }
-      else
-      {
-        alert("用户名或密码不正确！");
-      }
-    },
-    function(response) {
-      console.log(response);
-    });
+      function(response) {
+        console.log(response);
+      });
+    }
   }
   
 })
