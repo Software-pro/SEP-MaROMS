@@ -818,8 +818,24 @@ $scope.cancelNewForm = function(){
   }
 })
 .controller("passwordForgetCtrl",function($scope,$state){
+  var phone = document.getElementById("phonenumber");
+  var button = document.getElementById("submitbutton");
+  // if(phone.value.length === 0){
+  //   button.disabled = true;
+  // }
   $scope.goback = function(){
     $state.go('login');
+  }
+  $scope.yz = function(){
+    alert("aaa");
+    var phone = document.getElementById("phonenumber");
+    var button = document.getElementById("submitbutton");
+    if(phone.value.length === 0){
+      button.disabled = true;
+    }
+    else{
+      button.disabled = false;
+    }
   }
   $scope.ensure = function(){
     var tmp = document.getElementById("phonenumber");
@@ -1075,14 +1091,87 @@ $scope.cancelNewForm = function(){
 
 })
 .controller('messagePasswordForgetCtrl',function($scope,$state){
+
   
 })
 .controller('messagePasswordModifyCtrl',function($scope,$state){
 
 })
 
-.controller('feedbackCtrl',function($scope,$state){
+.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state){
+  $scope.choosephoto = function(){
+     var hideSheet = $ionicActionSheet.show({
+        buttons:[
+          { text: '<b>拍照</b>'},
+          { text: '从<b>相册</b>中选择'}],
+        cancelText: '取消',
+        cancel: function () {
+          
+        },
+        buttonClicked: function (index) {
+          if (index == 0){
+            $scope.takePicture();
+          }
+          if (index == 1){
+            $scope.readAlbum();
+          }
+        }
+      })
 
+      $timeout(function() {
+        hideSheet();
+      }, 3000);
+  }
+
+
+    $scope.readAlbum = function () {
+
+      if (!window.imagePicker) {
+        alert('您的环境不支持相册上传');
+        return;
+      }
+
+      var options = {
+        maximumImagesCount: 2,
+        width: 800,
+        height: 800,
+        quality: 80
+      };
+
+      imagePicker.getPictures(function (result) {
+        for (var i in result){
+          $scope.images.push(result[i]);
+        }
+      }, function (error) {
+        alert(error);
+      }, options);
+    }
+
+    $scope.takePicture = function() {
+      if (!navigator.camera) {
+        alert('请在真机环境中使用拍照上传。')
+        return;
+      }
+
+      var options = {
+        quality: 75,
+        targetWidth: 800,
+        targetHeight: 800,
+        saveToPhotoAlbum: false
+      };
+
+      Camera.getPicture(options).then(function(picUrl) {
+        alert(picUrl);
+        $scope.images.push(picUrl);
+      }, function(err) {
+        //alert("拍照错误：" + err);
+      });
+
+    }
+
+  $scope.finish = function(){
+    alert("提交完成");
+  }
 })
 
 ;
