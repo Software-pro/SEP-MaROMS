@@ -159,7 +159,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
      .state('app.mark', {
-      url:'/my/mark',
+      url:'/mark',
       views: {
         'menuContent': {
           templateUrl:'templates/mark.html',

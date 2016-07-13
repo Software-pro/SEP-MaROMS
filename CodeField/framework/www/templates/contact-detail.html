@@ -11,20 +11,20 @@
           <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{user.phoneNum}}"></i>
         </button>
        </div>
-       <div ng-switch="myInformation.position">
+       <div ng-switch="myinformation.position">
        <div ng-switch-when="派单员">
        <div class="item" style="margin-top: 13px;" ng-click = "personalFormClicked()">
         报修单查看
       </div>
-       <div class="item" style="margin-top: 13px;" href="#">
+       <div class="item" style="margin-top: 13px;"  ng-click = "markClicked()">
         分值统计查看
       </div>
       </div>
         <div ng-switch-when="管理员">
-       <div class="item" style="margin-top: 13px;" href="#">
+       <div class="item" style="margin-top: 13px;" ng-click = "personalFormClicked()">
         报修单查看
       </div>
-       <div class="item" style="margin-top: 13px;" href="#">
+       <div class="item" style="margin-top: 13px;"  ng-click = "markClicked()">
         分值统计查看
       </div>
       </div>
