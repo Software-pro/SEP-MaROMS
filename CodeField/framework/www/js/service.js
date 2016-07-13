@@ -491,6 +491,10 @@ angular.module('starter.service',[])
     get: function() {
       return myInformation;
     },
+    setPosition: function(newPostiton) {
+      myInformation. position = newPostiton;
+      return myInformation;
+    }
   };
 })
 
