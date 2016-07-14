@@ -159,15 +159,6 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
-    .state('app.message-detail', {
-      url:'/message',
-      views: {
-        'menuContent': {
-          templateUrl:'templates/message-detail.html',
-          controller:'messageDetailCtrl'
-        }
-      }
-    })
 
      .state('app.mark', {
       url:'/mark:personId',

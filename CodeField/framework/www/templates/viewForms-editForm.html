@@ -11,41 +11,38 @@
       <div ng-switch = "myinformation.position">
       	<div ng-switch-when = '派单员'>
 
-          <div class="item item-input" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder}};"  href="#">
-            <span class="input-label">分值</span>
+          <div class="item item-input" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder1}};"  href="#">
+            <span class="input-label">分值<span style="color: red;">  *</span></span>
             <input id="mark" type = "text" value = "{{form.value}}">
           </div>
 
           <div ng-switch = "form.status">
             <div ng-switch-when = '未接' >
 
-              <div class="item item-input" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder}};"  href="#">
-                <span  class="input-label">客户姓名</span>
+              <div class="item item-input" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder2}};"  href="#">
+                <span  class="input-label">客户姓名<span style="color: red;">  *</span></span>
                 <input id="clientName" type = "text" value = "{{form.clientName}}">
               </div>
       
-              <div class = "item item-input item-button-right" style="border-style: solid; border-color: {{errorBorder}};"> 
-                <span class="input-label">客户电话</span>
+              <div class = "item item-input " style="border-style: solid; border-color: {{errorBorder3}};"> 
+                <span class="input-label">客户电话<span style="color: red;">  *</span></span>
                 <input id="clientPhone" type = "text" value = "{{form.clientphone}}">
-                <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
-                <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.clientphone}}"></i>
-                </button>
               </div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder}};" href="#">
-                <span class="input-label">客户单位</span>
+              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder4}};" href="#">
+                <span class="input-label">客户单位<span style="color: red;">  *</span></span>
                 <input id="clientUnit" type = "text" value = "{{form.clientunit}}">
               </div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder}};" href="#">
-                <span class="input-label">客户地址</span>
+              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder5}};" href="#">
+                <span class="input-label">客户地址<span style="color: red;">  *</span></span>
                 <input id="clientAddr" type = "text" value = "{{form.clientaddr}}">
               </div>
 
               <div ng-switch = "form.type">
               <div ng-switch-when="上门服务">
-              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder}}">
-                <span class="input-label">服务项目</span>
+              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder6}}">
+                <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option selected>上门服务</option>
                   <option>送货服务</option>
@@ -54,8 +51,8 @@
               </div>
               </div>
               <div ng-switch-when="送货服务">
-              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color:  {{errorBorder}}">
-                <span class="input-label">服务项目</span>
+              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color:  {{errorBorder6}}">
+                <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option>上门服务</option>
                   <option selected>送货服务</option>
@@ -64,8 +61,8 @@
               </div>
               </div>
               <div ng-switch-when="安装调试">
-              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder}}">
-                <span class="input-label">服务项目</span>
+              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder6}}">
+                <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
                   <option>送货服务</option>
@@ -74,8 +71,8 @@
               </div>
               </div>
               <div ng-switch-default>
-              <div class="item item-input" href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder}};">
-                <span class="input-label">服务项目</span>
+              <div class="item item-input" href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder6}};">
+                <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
                   <option>送货服务</option>
@@ -84,35 +81,30 @@
               </div>
               </div>
 
-              <div class="item item-input item-icon-right"  style="border-style: solid; border-color:  {{errorBorder}};"  ng-click="">
-                <span class="input-label">工程师</span>
+              <div class="item item-input"  style=" border-style: solid; border-color:  {{errorBorder7}};"  >
+                <span class="input-label">工程师<span style="color: red;">  *</span></span>
                 <select id="engineer">
                 <option selected> {{form.engineerName}} </option>
                    <option class = "item" ng-repeat = "user in users | filter:engineerFilter">{{user.name}}</option>
                 </select>
-                <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
               </div>
 
-              <div class="item item-input item-icon-right"  style="border-style: solid; border-color: {{errorBorder}};"  ng-click="">
-                <span class="input-label">销售人员</span>
+              <div class="item item-input "  style="border-style: solid; border-color: {{errorBorder8}};"  >
+                <span class="input-label">销售人员<span style="color: red;">  *</span></span>
                 <select id="salesman">
                 <option selected>{{form.salesName}}</option>
                    <option ng-repeat = "user in users | filter:salesmanFilter">{{user.name}}</option>
                 </select>
-                <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
               </div>
 
-              <div class="item item-input item-icon-right"  style="border-style: solid; border-color:  {{errorBorder}};"  ng-click="">
-                <span class="input-label">派单员</span>
+              <div class="item item-input "  style="border-style: solid; border-color:  {{errorBorder9}};"  >
+                <span class="input-label">派单员<span style="color: red;">  *</span></span>
                 <input id="distributor" type = "text" value = "{{form.distributerName}}">
               </div>
 
-              <div class="item item-input item-button-right"  style="border-style: solid; border-color: {{errorBorder}};"  ng-click="">
-                <span class="input-label">派单员电话</span>
+              <div class="item item-input "  style="border-style: solid; border-color: {{errorBorder10}};" >
+                <span class="input-label">派单员电话<span style="color: red;">  *</span></span>
                 <input id="distributorPhone" type = "text" value = "{{form.distributerphone}}">
-                <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
-                <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.distributerphone}}"></i>
-                </button>
               </div>
 
               <div class="item item-input" href="#" style="margin-top: 13px;">

@@ -394,13 +394,62 @@ angular.module('starter.controllers',['ionic'])
           {text: "从相册中选择"}
         ],
         buttonClicked: function(index) {
-          return true;
+          if(index == 0) {
+            $scope. takePicture();
+          }
+          else if(index == 1) {
+            $scope.readAlbum();
+          }
         },
         cancelText: "取消",
         cancel: function() {         
         }
     })
   }
+      $scope.readAlbum = function () {
+
+      if (!window.imagePicker) {
+        alert('您的环境不支持相册上传');
+        return;
+      }
+
+      var options = {
+        maximumImagesCount: 2,
+        width: 800,
+        height: 800,
+        quality: 80
+      };
+
+      imagePicker.getPictures(function (result) {
+        for (var i in result){
+          $scope.images.push(result[i]);
+        }
+      }, function (error) {
+        alert(error);
+      }, options);
+    }
+
+    $scope.takePicture = function() {
+      if (!navigator.camera) {
+        alert('请在真机环境中使用拍照上传。')
+        return;
+      }
+
+      var options = {
+        quality: 75,
+        targetWidth: 800,
+        targetHeight: 800,
+        saveToPhotoAlbum: false
+      };
+
+      Camera.getPicture(options).then(function(picUrl) {
+        alert(picUrl);
+        $scope.images.push(picUrl);
+      }, function(err) {
+        //alert("拍照错误：" + err);
+      });
+
+    }
   $scope.exit = function(){
     alert("haha");
     $state.go('/');
@@ -460,10 +509,7 @@ $scope.myinformation = MyInformation.get();
     alert("Delete this form!");
     $ionicHistory.goBack();
   }
-  $scope.submitForm = function(){
-    alert("订单已完成!");
-   $ionicHistory.goBack();
-  }
+
   $scope.cancelOrderTaking = function(){
     alert("取消接单!");
     $ionicHistory.goBack();
@@ -471,6 +517,10 @@ $scope.myinformation = MyInformation.get();
   $scope.reviewForm = function(){
     alert("订单已审核!");
     $ionicHistory.goBack();
+  }
+  $scope.submitComplete = function() {
+    alert("订单已完成！");
+    $state.go('detail-feedback');
   }
    $scope.takeForm = function(){
     var success=1;
@@ -530,8 +580,48 @@ $scope.myinformation = MyInformation.get();
     var salesman = document.getElementById("salesman");
     var distributor = document.getElementById('distributor');
     var distributorPhone = document.getElementById("distributorPhone");
-    if(clientName.value.length == 0|| clientPhone.value.length == 0 || clientUnit.value.length == 0 || clientAddr.value.length == 0 || service.value.length == 0|| engineer.value.length == 0 || salesman.value.length == 0 || distributor.value.length == 0 || distributorPhone.value.length == 0 || mark.value.length == 0) {
-      $scope.errorBorder = ' red';
+    if(mark.value.length == 0) {
+      $scope.errorBorder1 = "red";
+      success = 0;
+    }
+    if(clientName.value.length == 0) {
+      $scope.errorBorder2 = "red";
+      success = 0;
+    }
+     if(clientPhone.value.length == 0) {
+      $scope.errorBorder3 = "red";
+      success = 0;
+    }
+     if(clientUnit.value.length == 0) {
+      $scope.errorBorder4 = "red";
+      success = 0;
+    }
+     if(clientAddr.value.length == 0) {
+      $scope.errorBorder5 = "red";
+      success = 0;
+    }
+     if(service.value.length == 0) {
+      $scope.errorBorder6= "red";
+      success = 0;
+    }
+     if(engineer.value.length == 0) {
+      $scope.errorBorder7 = "red";
+      success = 0;
+    }
+     if(salesman.value.length == 0) {
+      $scope.errorBorder8 = "red";
+      success = 0;
+    }
+     if(distributor.value.length == 0) {
+      $scope.errorBorder9 = "red";
+      success = 0;
+    }
+     if(distributorPhone.value.length == 0) {
+      $scope.errorBorder10 = "red";
+      success = 0;
+    }
+    if(success == 0) {
+      alert("有必填信息未填！");
       return;
     }
     if(success == 1) {
@@ -541,7 +631,8 @@ $scope.myinformation = MyInformation.get();
   }
 else  {
   var mark = document.getElementById("mark");
-  if($scope.form.value.length == 0 && mark.value.length == 0) {
+  if(mark.value.length == 0) {
+    $scope.errorBorder1 = "red";
     alert("未填写分值！");
     return;
   }
@@ -552,9 +643,7 @@ else  {
 }
 }
 })
-.controller("messageDetailCtrl", function($scope, $stateParams, Message_infos) {
-  $scope.message_info = Message_infos.get($stateParams.message_infoId);
-})
+
 
 .controller("markCtrl", function($scope, MarkChanges, $stateParams) {
   $scope.markChanges = MarkChanges.all();
@@ -633,9 +722,37 @@ else  {
     var clientaddr = document.getElementById("clientAddr");
     var salesname = document.getElementById("salesName");
     var engineername = document.getElementById("engineerName");
-    if(clientname.value.length == 0 || clientphone.value.length == 0 || clientunit.value.length == 0 || clientaddr.value.length == 0 || salesname.value === "请选择销售人员" || engineername.value === "请选择工程师")   {
-       $scope.errorBorder = 'red';
-        return;
+    var service = document.getElementById("serviceName");
+    if(clientname.value.length == 0) {
+      $scope.errorBorder1 = 'red';
+      success = 0;
+    }
+     if(clientphone.value.length == 0) {
+      $scope.errorBorder2 = 'red';
+      success = 0;
+    }
+     if(clientaddr.value.length == 0) {
+      $scope.errorBorder3 = 'red';
+     success = 0;
+    }
+     if(clientunit.value.length == 0) {
+      $scope.errorBorder4 = 'red';
+      success = 0;
+    }
+     if(salesname.value === "请选择销售人员") {
+      $scope.errorBorder5 = 'red';
+      success = 0;
+    }
+    if( engineername.value === "请选择工程师") {
+      $scope.errorBorder6 = 'red';
+      success = 0;
+    }
+     if( service.value === "请选择服务") {
+      $scope.errorBorder7 = 'red';
+      success = 0;
+    }
+    if(success == 0 ) {
+      return;
     }
     if(success == 1) {
       alert("添加成功！");
@@ -732,7 +849,7 @@ else  {
       .then(function(response) {
         console.log(response);
         if(response.data['success']) {
-          $myinformation =  MyInformation.setPosition("派单员");
+          $myinformation =  MyInformation.setPosition("工程师");
           $state.go("app.viewForms");
         }
         else
