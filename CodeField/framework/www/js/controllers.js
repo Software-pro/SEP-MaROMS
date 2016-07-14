@@ -101,6 +101,11 @@ angular.module('starter.controllers',['ionic'])
   $scope.newtactsClicked = function() {
     $state.go('app.contacts-newtacts');
   }
+
+  $scope.searchContentChange = function() {
+    $location.hash("contactsHeader");
+    $ionicScrollDelegate.anchorScroll();
+  }
 })
 
 .controller('ViewFormsCtrl', function($scope, Forms, $state, $location) {

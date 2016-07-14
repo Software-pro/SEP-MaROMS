@@ -8,7 +8,7 @@
       <div class="bar bar-subheader bar-stable item-input-inset search-bar">
         <label class="item-input-wrapper" style="border:none">
           <i class="ion-search dark"></i>
-          <input type="text" placeholder="搜索" ng-model="searchcontent" ng-click="searchClick()">
+          <input type="text" placeholder="搜索" ng-model="searchcontent" ng-click="searchClick()" ng-change="searchContentChange()">
         </label>
         <button class="button-clear search-cancel" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
       </div>
@@ -17,7 +17,7 @@
       
        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
        </ion-refresher>
-
+          <div id="contactsHeader"></div>
           <div data-ng-repeat="(letter, users) in sorted_users" class="alpha_list" ng-show="hideCancel">
             <!-- <div ng-show="{{users[0]}}" id="index_{{letter}}"> -->
             <div id="index_{{letter}}">
