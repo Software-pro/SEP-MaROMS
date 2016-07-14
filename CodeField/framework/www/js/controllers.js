@@ -10,9 +10,9 @@ angular.module('starter.controllers',['ionic'])
 //   };
 // })
 
- .controller("contactsCtrl",function($scope, $state, Users, $location, $ionicScrollDelegate) {
+ .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate) {
 //  var content = document.getElementById("searchphone");
-  $scope.users = Users.all();
+  $scope.users = PersonalInformations.all();
 
   var users = $scope.users;
 
@@ -601,8 +601,8 @@ else  {
 
 })
 
-.controller("contactdetailCtrl",function($scope, $stateParams, Users, PersonalInformations, $location, MyInformation) {
-  $scope.user = Users.get($stateParams.personId);
+.controller("contactdetailCtrl",function($scope, $stateParams, PersonalInformations, PersonalInformations, $location, MyInformation) {
+  $scope.user = PersonalInformations.get($stateParams.personId);
   $scope.personalInformation = PersonalInformations.get($stateParams.personId);
   $scope.myInformation = MyInformation.get();;
 
