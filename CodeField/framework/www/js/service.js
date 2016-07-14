@@ -451,6 +451,11 @@ angular.module('starter.service',[])
 })
 
 .factory('Message_infos',function() {
+  //type = 0 分值改动的消息通知
+  //type = 1 用户申请找回密码的消息通知
+  //type = 2 用户修改密码的消息通知
+  //tag = 0  消息未读
+  //tag = 1  消息已读
   var message_infos = [{
     type:0,
     id:'bx131220733',
@@ -475,6 +480,8 @@ angular.module('starter.service',[])
   return {
     all:function() {
       for(var i = 0; i < message_infos.length; i ++){
+
+        //根据type类型确定消息标题、消息完整内容
         if(message_infos[i].type === 0){
           message_infos[i].title = "分值改动通知";
           message_infos[i].full_information = "报修单"+ message_infos[i].id + "的分值被修改了";
@@ -487,6 +494,8 @@ angular.module('starter.service',[])
           message_infos[i].title = "密码修改通知";
           message_infos[i].full_information = "用户" + message_infos[i].id + "修改了登录密码";
         }
+
+        //根据tag类型确定文字和文字格式
         if(message_infos[i].tag === 0){
           message_infos[i].statename = "未读";
           message_infos[i].format = "badge icon-badge assertive";
@@ -505,6 +514,15 @@ angular.module('starter.service',[])
         }
       }
       return null;
+    },
+    getUnreadCount:function(){
+      var count = 0;
+      for(var i = 0; i < message_infos.length; i ++){
+        if(message_infos[i].tag === 0){
+           count ++;
+        }
+      }
+      return count;
     }
   };
 }) 

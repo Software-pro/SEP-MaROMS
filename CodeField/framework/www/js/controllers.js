@@ -1,7 +1,8 @@
 angular.module('starter.controllers',['ionic'])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos) {
+  $scope.count = Message_infos.getUnreadCount();
 })
 
  .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate) {
