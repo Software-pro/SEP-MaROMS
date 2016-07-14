@@ -5,42 +5,42 @@
   <ion-content>
     <div class = "list  list-inset">
       
-        <label class = "item item-input">
-        <div class="input-label">用户名</div>
-        <input id = "userId" type = "text" placeholder = "请填写客户的姓名">
-      </label>
-
-       <label class = "item item-input">
-        <div class="input-label">用户密码</div>
-        <input id = "userPassword" type = "text" placeholder = "请填写客户的电话">
+      <label class = "item item-input">
+        <div class="input-label">用户ID<span style="color: red;">  *</span></div>
+        <input id = "userId" type = "text" placeholder = "请为用户分配ID">
       </label>
 
       <label class = "item item-input">
-        <div class="input-label">用户姓名</div>
-        <input id = "userName" type = "text" placeholder = "请填写详细地址">
+        <div class="input-label">用户姓名<span style="color: red;">  *</span></div>
+        <input id = "userName" type = "text" placeholder = "请填写用户姓名">
       </label>
 
       <label class = "item item-input">
-        <div class="input-label">电话号码</div>
-        <input id="userPhone" type = "text" placeholder = "请填写工作地址">
+        <div class="input-label">用户密码<span style="color: red;">  *</span></div>
+        <input id = "userPassword" type = "text" placeholder = "请填写用户的初始密码">
       </label>
 
-        <label class="item item-input">
-          <div class="input-label">
-            用户类型
-          </div>
-          <select id="userType">
-            <option selected>请选择类型</option>
-            <option>派单员</option>
-            <option>销售员</option>
-            <option>管理员</option>
-            <option>工程师</option>
-          </select>
-        </label>
+      <label class = "item item-input">
+        <div class="input-label">电话号码<span style="color: red;">  *</span></div>
+        <input id="userPhone" type = "text" placeholder = "请填写用户的电话号码">
+      </label>
 
-         <div class="padding">
-              <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "saveNewTacts()">保存提交</button>
-          </div>
+      <label class="item item-input">
+        <div class="input-label">
+          用户类型<span style="color: red;">  *</span>
+        </div>
+        <select id="userType">
+          <option selected>请选择类型</option>
+          <option>派单员</option>
+          <option>销售员</option>
+          <option>管理员</option>
+          <option>工程师</option>
+        </select>
+      </label>
+
+      <div class="padding">
+        <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "saveNewTacts()">保存提交</button>
+      </div>
 
           
     </div>

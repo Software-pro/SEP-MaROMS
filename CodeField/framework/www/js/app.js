@@ -48,6 +48,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })   
 
     .state('app.contacts',{
+      cache:false,//该页面无缓冲
        url:'/contacts',
        views: {
          'menuContent': {
@@ -64,7 +65,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
           templateUrl:'templates/contact-detail.html',
           controller: 'contactdetailCtrl'
         }
-      }
+      } 
     })
 
     .state('app.my',{

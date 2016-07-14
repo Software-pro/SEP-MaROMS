@@ -1,176 +1,120 @@
 angular.module('starter.service',[])
 
-.factory('Users',function() {
-   
-   var users = [{
-      id: 0,
-      name: 'Steven'
-   }, {
-      id: 1,
-      name: 'Emma'
-   }, {
-      id: 2,
-      name: 'Sara'
-   }, {
-      id: 3,
-      name: 'David'
-   }, {
-      id: 4,
-      name: 'Paul'
-   }, {
-      id: 5,
-      name: 'Lucy'
-   }, {
-      id: 6,
-      name: 'Mary'
-   }, {
-      id: 7,
-      name: 'Martin'
-   }, {
-      id: 8,
-      name: 'Mack jack'
-   }, {
-      id: 9,
-      name: 'Amy'
-   }, {
-      id: 10,
-      name: 'Sam'
-   }, {
-      id: 11,
-      name: 'Lucis'
-   }, {
-      id: 12,
-      name: 'Smith'
-      }, {
-      id: 13,
-      name: 'Wendy'
-   }, {
-      id: 14,
-      name: 'Nick'
-   }, {
-      id: 15,
-      name: 'Cindy'
-   }, {
-      id: 16,
-      name: 'Helen'
-   }, {
-      id: 17,
-      name: 'Amanda'
-   }, {
-      id: 18,
-      name: 'Lisa'
-   }, {
-      id: 19,
-      name: 'Tina'
-   }];
-   
-   return {
-   	all: function() {
-   		return users;
-   	},
-   remove: function(user) {
-      users.splice(users.indexOf(user), 1);
-    },
-    // getFromGroup:function(userId) {
-    //   for(var i=0;i<users.length;i++) {
-    //     if(i === parseInt(userId))
-    //   }
-    // },
-    // searchuser:function(username) {
-    //   for (var i = 0; i < phones.length; i++) {
-    //       if(users[i].group === phonename[0])
-    //         return users[i];
-    //     // for(var j=0; j < phones[i].persons.length; j++) {
-    //     //    if (users[i].persons[j].name === phonename) {
-    //     //      return phones[i].persons[j];
-    //     //   }
-    //     // }
-    //   }
-    //   return null;
-    // },
-    get: function(id) {
-      for (var i = 0; i < users.length; i++) {
-           if (users[i].id === parseInt(id)) {
-             return users[i];
-        }
-      }
-      return null;
-    }
-   /* getfromname: function(name) {
-      for(var i=0; i<phones.length; i++) {
-        if(phones[i].name === name)
-          return phones[i];
-      }
-    }*/
-  };
-})
-
 .factory('PersonalInformations', function() {
   var users = [{
     id: 0,
-    NO: 'gc00001',
+    NO: 'pd00001',
     position:'派单员',
+    phoneNum: '15812345678',
     name:'Steven'
   }, {
     id: 1,
-    NO: 'gc00002',
+    NO: 'gl00002',
     position:'管理员',
+    phoneNum: '15812345678',
     name:'Emma'
   }, {
     id: 2,
-    NO: 'gc00003',
+    NO: 'pd00003',
     position:'派单员',
+    phoneNum: '15812345678',
     name:'Sara'
   },{
     id: 3,
-    NO: 'xs00001',
+    NO: 'gc00001',
     position:'工程师',
+    phoneNum: '15812345678',
     name:'David'
   }, {
     id: 4,
     NO: 'xs00002',
     position:'销售员',
+    phoneNum: '15812345678',
     name:'Paul'
   }, {
     id: 5,
-    NO: 'xs00003',
+    NO: 'pd00003',
     position:'派单员',
+    phoneNum: '15812345678',
     name:'Lucy'
   },{
     id: 6,
-    NO: 'pd00001',
+    NO: 'xs00001',
     position:'销售员',
+    phoneNum: '15812345678',
     name:'Mary'
   }, {
     id: 7,
-    NO: 'pd00002',
+    NO: 'gl00002',
     position:'管理员',
+    phoneNum: '15812345678',
     name:'Martin'
   }, {
     id: 8,
     NO: 'xs00002',
     position:'销售员',
+    phoneNum: '15812345678',
     name:'Mack jack'
   }, {
     id: 9,
-    NO: 'xs00003',
+    NO: 'gc00003',
     position:'工程师',
+    phoneNum: '15812345678',
     name:'Amy'
   },{
     id: 10,
     NO: 'pd00001',
     position:'派单员',
+    phoneNum: '15812345678',
     name:'Sam'
   }, {
     id: 11,
-    NO: 'pd00002',
+    NO: 'gc00002',
     position:'工程师',
+    phoneNum: '15812345678',
     name:'Lucis'
   }, {
     id: 12,
-    NO: 'pd00003',
+    NO: 'gc00003',
     position:'工程师',
+    phoneNum: '15812345678',
     name:'Smith'
+  },{
+    id: 13,
+    NO: 'xs00101',
+    position:'销售员',
+    phoneNum: '15812345678',
+    name:'Casy'
+  }, {
+    id: 14,
+    NO: 'gl00102',
+    position:'管理员',
+    phoneNum: '15812345678',
+    name:'Ella'
+  }, {
+    id: 15,
+    NO: 'xs00102',
+    position:'销售员',
+    phoneNum: '15812345678',
+    name:'Edsheen'
+  }, {
+    id: 16,
+    NO: 'gc00103',
+    position:'工程师',
+    phoneNum: '15812345678',
+    name:'Taylor'
+  },{
+    id: 17,
+    NO: 'pd00101',
+    position:'派单员',
+    phoneNum: '15812345678',
+    name:'Hadson'
+  }, {
+    id: 18,
+    NO: 'gc00102',
+    position:'工程师',
+    phoneNum: '15812345678',
+    name:'James'
   }];
 
   return {

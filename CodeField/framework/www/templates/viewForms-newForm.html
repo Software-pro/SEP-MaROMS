@@ -5,36 +5,37 @@
   <ion-content>
     <div class = "list  list-inset">
       
-        <label class = "item item-input">
-        <div class="input-label">客户姓名</div>
+        <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder}};">
+        <div class="input-label">客户姓名<span style="color: red;">  *</span></div>
         <input id = "clientName" type = "text" placeholder = "请填写客户的姓名">
       </label>
 
-       <label class = "item item-input">
-        <div class="input-label">客户电话</div>
+       <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder}};">
+        <div class="input-label">客户电话<span style="color: red;">  *</span></div>
         <input id = "clientPhone" type = "text" placeholder = "请填写客户的电话">
       </label>
 
-      <label class = "item item-input">
-        <div class="input-label">客户地址</div>
+      <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder}};">
+        <div class="input-label">客户地址<span style="color: red;">  *</span></div>
         <input id = "clientAddr" type = "text" placeholder = "请填写详细地址">
       </label>
 
-      <label class = "item item-input">
-        <div class="input-label">客户单位</div>
+      <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder}};">
+        <div class="input-label">客户单位<span style="color: red;">  *</span></div>
         <input id="clientUnit" type = "text" placeholder = "请填写工作地址">
       </label>
       
-      <label class = "item item-input" >
-        <div class="input-label">销售人员</div>
+      <label class = "item item-input" style="border-style: solid; border-color:  {{errorBorder}};">
+        <div class="input-label">销售人员<span style="color: red;">  *</span></div>
         <select id="salesName">
             <option selected>请选择销售人员</option>
             <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
           </select>
       </label>
       
-      <label class = "item item-input" >
-        <div class="input-label">工程师</div>
+
+      <label class = "item item-input" style="border-style: solid; border-color:{{errorBorder}};">
+        <div class="input-label">工程师<span style="color: red;">  *</span></div>
         <select id="engineerName" >
             <option selected>请选择工程师</option>
             <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}}</option>
@@ -42,9 +43,9 @@
       </label>
       
 
-        <label class="item item-input">
+        <label class="item item-input" style="border-style: solid; border-color: {{errorBorder}};">
           <div class="input-label">
-            服务项目
+            服务项目<span style="color: red;">  *</span>
           </div>
           <select id="serviceName">
             <option selected>请选择服务</option>
