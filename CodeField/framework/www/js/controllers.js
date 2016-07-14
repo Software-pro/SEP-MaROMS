@@ -468,15 +468,18 @@ angular.module('starter.controllers',['ionic'])
   
    // $scope.form = Forms.get($stateParams.id);
   $scope.itemClicked = function(type,id){
-    $stateParams.contentid = id;
+   // alert(id);
     if(type === 0){
+    $stateParams.contentid = id;
       $state.go('app.message-modify',{contentid:id});
     }
     else if(type === 1){
-      $state.go('app.message-passwordforget');
+    $stateParams.contentid = id;
+      $state.go('app.message-passwordforget',{contentid:id});
     }
     else{
-      $state.go('app.message-passwordmodify');
+    $stateParams.contentid = id;
+      $state.go('app.message-passwordmodify',{contentid:id});
     }
 
   }
@@ -828,7 +831,7 @@ else  {
 .controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
    $scope.postuser = function() {
     
-          $state.go("app.viewForms");
+     //     $state.go("app.viewForms");
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
    // alert(user + " " + userPass + " " + errorBorder);
@@ -1180,21 +1183,24 @@ else  {
 .controller('markModifyCtrl', function($scope,$stateParams,Forms,$location){
 
  // $scope.form = Forms.get($stateParams.formId);
-  alert($stateParams.contentid);
-
+ // alert($stateParams.contentid);
   $scope.form = Forms.getByNo($stateParams.contentid);
-  //alert($scope.form.NO.value);
 
 })
-.controller('messagePasswordForgetCtrl',function($scope,$state){
+.controller('messagePasswordForgetCtrl',function($scope,$stateParams,PersonalInformations,$location){
+  alert($stateParams.contentid);
+  $scope.user = PersonalInformations.getByNo($stateParams.contentid);
 
   
 })
-.controller('messagePasswordModifyCtrl',function($scope,$state){
+.controller('messagePasswordModifyCtrl',function($scope,$stateParams,PersonalInformations,$location){
+  alert($stateParams.contentid);
+   $scope.user = PersonalInformations.getByNo($stateParams.contentid);
 
 })
 
 .controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout){
+  $scope.images = [];
   $scope.choosephoto = function(){
      var hideSheet = $ionicActionSheet.show({
         buttons:[
@@ -1228,7 +1234,7 @@ else  {
       }
 
       var options = {
-        maximumImagesCount: 2,
+        maximumImagesCount: 3,
         width: 800,
         height: 800,
         quality: 80

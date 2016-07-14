@@ -139,7 +139,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
     .state('app.message-passwordforget',{
-      url:'/message/1',
+      url:'/message/1/:contentid',
       views:{
         'menuContent':{
           templateUrl:'templates/message-passwordforget.html',
@@ -149,7 +149,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
     .state('app.message-passwordmodify',{
-      url:'/message/2',
+      url:'/message/2/:contentid',
       views:{
         'menuContent':{
           templateUrl:'templates/message-passwordmodify.html',
@@ -195,6 +195,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
      .state('detail-feedback',{
       url:'/detail-feedback',
+      cache:false,
       templateUrl:'templates/detail-feedback.html',
       controller:'feedbackCtrl'
      })

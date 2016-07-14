@@ -128,6 +128,19 @@ angular.module('starter.service',[])
         }
       }
       return null;
+    },
+    getByNo:function(no){
+      for(var i = 0; i < 3; i ++){  
+        alert(no + " vs " + users[i].NO);
+        if(no == users[i].No){
+          alert("same");
+          return users[i];
+        }
+        else{
+          alert("not equal");
+        }
+      }
+      return null;
     }
   };
 })
@@ -463,7 +476,7 @@ angular.module('starter.service',[])
   },
   {
     type:1,
-    id:'gc131220283',
+    id:'pd00001',
     tag:0
   },
   {
@@ -473,7 +486,7 @@ angular.module('starter.service',[])
   },
   {
     type:2,
-    id:'gc131220733',
+    id:'pd00003',
     tag:1
   }];
 
