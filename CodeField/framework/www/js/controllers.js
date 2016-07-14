@@ -732,7 +732,7 @@ else  {
       .then(function(response) {
         console.log(response);
         if(response.data['success']) {
-          $myinformation =  MyInformation.setPosition("派单员");
+          $myinformation =  MyInformation.setPosition("销售员");
           $state.go("app.viewForms");
         }
         else
