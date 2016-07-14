@@ -81,6 +81,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     
     .state('app.message',{
        url:'/message',
+       cache:false,
        views: {
          'menuContent': {
            templateUrl:'templates/menu-message.html',
