@@ -5,7 +5,7 @@
   <div class="bar bar-subheader bar-stable item-input-inset search-bar">
     <label class="item-input-wrapper" style="border:none">
       <i class="ion-search dark"></i>
-      <input type="text" placeholder="搜索" ng-model="searchcontent" ng-click="searchClick()">
+      <input type="text" placeholder="搜索" ng-model="searchcontent" ng-click="searchClick()" ng-change="searchContentChange()">
     </label>
     <button class="button-clear search-cancel" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
   </div>
@@ -82,6 +82,8 @@
     </ion-refresher>
     <ion-list>
 
+    <div id="formsHeader"></div>
+    
       <ion-item class="item" ng-repeat="form in forms | orderBy:order | filter: searchFilter" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
         <p id="formTitle" >
           报修单号：{{form.NO}}

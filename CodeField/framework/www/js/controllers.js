@@ -4,12 +4,6 @@ angular.module('starter.controllers',['ionic'])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
 
-// .controller("state3Ctrl",function($scope,$state) {
-//   $scope.go= function(state) {
-//    $state.go(state);
-//   };
-// })
-
  .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate) {
 //  var content = document.getElementById("searchphone");
   $scope.users = PersonalInformations.all();
@@ -108,7 +102,7 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-.controller('ViewFormsCtrl', function($scope, Forms, $state, $location) {
+.controller('ViewFormsCtrl', function($scope, Forms, $state, $location, $ionicScrollDelegate) {
     $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
 
@@ -118,15 +112,6 @@ angular.module('starter.controllers',['ionic'])
       $scope.$broadcast("scroll.refreshComplete");     
     };
 
-
-    // $scope.clickmenu = function() {
-    //   alert("oooo");
-    // }
-     // $ionicPopover.fromTemplateUrl('menu1.html', {
-     //        scope: $scope
-     //      }).then(function(popover) {
-     //        $scope.popover = popover;
-     //      });
     $scope.order = 'creatTime';
     $scope.timeLabel = '创建时间：';
 
@@ -234,6 +219,8 @@ angular.module('starter.controllers',['ionic'])
         $scope.menu3Content = '降序 ';
         $scope.menu3Icon = 'ion-ios-arrow-thin-down';
       }
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
 
     $scope.chooseAll = function() {
@@ -249,7 +236,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = false;
       /**TODO: 后台排序，更新forms**/
-
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.chooseUnordered = function() {
       $scope.menu1Var = true;
@@ -264,6 +252,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.menu2Disabled3 = true;
       $scope.menu2Disabled4 = true;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.chooseOrdered = function() {
       $scope.menu1Var = true;
@@ -278,6 +268,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.menu2Disabled3 = true;
       $scope.menu2Disabled4 = true;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.chooseAccomplished = function() {
       $scope.menu1Var = true;
@@ -292,6 +284,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = true;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.chooseChecked = function() {
       $scope.menu1Var = true;
@@ -306,6 +300,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = false;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
 
     $scope.sortByCreateTime = function() {
@@ -318,6 +314,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.forms = Forms.setTime("creatTime");
       $scope.timeLabel = '创建时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.sortByOrderTime = function() {
       $scope.menu2Var = true;
@@ -329,6 +327,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.forms = Forms.setTime("orderTakeTime");
       $scope.timeLabel = '接单时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.sortByAccomplishTime = function() {
       $scope.menu2Var = true;
@@ -340,6 +340,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.forms = Forms.setTime("finishTime");
       $scope.timeLabel = '完成时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
     $scope.sortByCheckTime = function() {
       $scope.menu2Var = true;
@@ -351,7 +353,14 @@ angular.module('starter.controllers',['ionic'])
       $scope.forms = Forms.setTime("auditTime");
       $scope.timeLabel = '审核时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
     };
+
+    $scope.searchContentChange = function() {
+      $location.hash("formsHeader");
+      $ionicScrollDelegate.anchorScroll();
+    }
 })
 
 .controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation) {
@@ -656,41 +665,38 @@ else  {
     var salesname = document.getElementById("salesName");
     var engineername = document.getElementById("engineerName");
     if(clientname.value.length == 0) {
-        alert("客户姓名未填！");
-        return;
+      success = 0;
     }
     if(clientphone.value.length == 0) {
-      alert("客户电话未填！");
-      return;
+      success = 0;
     }
     if(clientunit.value.length == 0) {
-      alert("客户单位未填！");
-      return;
+      success = 0;
     }
     if(clientaddr.value.length == 0) {
-      alert("客户地址未填！");
-      return;
+      success = 0;
     }
     if(salesname.value === "请选择销售人员") {
-      alert("未选择销售员！");
-      return;
+      success = 0;
     }
-      if(engineername.value === "请选择工程师") {
-      alert("未选择工程师！");
-      return;
+    if(engineername.value === "请选择工程师") {
+      success = 0;
     }
     if(success == 1) {
-    alert("添加成功！");
-    $ionicHistory.goBack();
+      alert("添加成功！");
+      $ionicHistory.goBack();
+    }
+    else {
+      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
+    }
   }
-}
-$scope.cancelNewForm = function(){
+  $scope.cancelNewForm = function(){
     var tmp = document.getElementsByTagName("input");
     for(var i = 0; i < tmp.length; i ++){
       tmp[i].value = "";
     }
-   var salesname = document.getElementById("salesName");
-   salesname.value = "请选择销售人员";
+    var salesname = document.getElementById("salesName");
+    salesname.value = "请选择销售人员";
     var engineername = document.getElementById("engineerName");
     engineername.value = "请选择工程师";
     var servicename = document.getElementById('serviceName');
@@ -700,7 +706,7 @@ $scope.cancelNewForm = function(){
 
 .controller("newtactsCtrl",function($scope, $ionicHistory) {
 
-   $scope.saveNewTacts = function() {
+  $scope.saveNewTacts = function() {
     var success = 1;
     var UserId = document = document.getElementById("userId");
     var UserPassword = document = document.getElementById("userPassword");
@@ -709,34 +715,32 @@ $scope.cancelNewForm = function(){
     var UserType= document = document.getElementById("userType");  // int!
     if(UserId.value.length == 0)
     {
-      alert("用户名未填！");
-      return;
+      success = 0;
     }
     else if(UserPassword.value.length == 0)
     {
-      alert("用户密码未填！");
-      return;
+      success = 0;
     }
     else if(UserName.value.length == 0)
     {
-      alert("用户姓名未填！");
-      return;
+      success = 0;
     }
     else if(UserPhone.value.length == 0)
     {
-      alert("用户电话未填！");
-      return;
+      success = 0;
     }
     else if(UserType.value == "请选择类型")
     {
-      alert("未选择用户类型！");
-      return;
+      success = 0;
     }
     if(success == 1) {
       alert("添加成功！");
       $ionicHistory.goBack();
     }
-   }
+    else {
+      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
+    }
+  }
 
    $scope.cancelNewTacts = function() {
    var tmp = document.getElementsByTagName("input");
@@ -749,13 +753,12 @@ $scope.cancelNewForm = function(){
 })
 
 .controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
-  $scope.errorBorder = '0px';
    $scope.postuser = function() {
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
    // alert(user + " " + userPass + " " + errorBorder);
     if (user == "" || userPass == "") {
-      $scope.errorBorder = '1px';
+      alert("请输入用户名和密码");
     }
     else {
       var userinfo = {"id":user,"password":userPass};
@@ -853,7 +856,7 @@ $scope.cancelNewForm = function(){
   }
 })
 
-.controller('PersonalFormsCtrl', function($scope, $stateParams, PersonalForms, $state, $location) {
+.controller('PersonalFormsCtrl', function($scope, $stateParams, PersonalForms, $state, $location, $ionicScrollDelegate) {
     $scope.forms = PersonalForms.setTime("creatTime");
    // 后台搭建完成后通过 'http + $stateParams.personId' 获取数据
 
@@ -863,15 +866,6 @@ $scope.cancelNewForm = function(){
       $scope.$broadcast("scroll.refreshComplete");     
     };
 
-
-    // $scope.clickmenu = function() {
-    //   alert("oooo");
-    // }
-     // $ionicPopover.fromTemplateUrl('menu1.html', {
-     //        scope: $scope
-     //      }).then(function(popover) {
-     //        $scope.popover = popover;
-     //      });
     $scope.order = 'creatTime';
     $scope.timeLabel = '创建时间：';
 
@@ -966,6 +960,8 @@ $scope.cancelNewForm = function(){
         $scope.menu3Content = '降序 ';
         $scope.menu3Icon = 'ion-ios-arrow-thin-down';
       }
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
 
     $scope.chooseAll = function() {
@@ -981,6 +977,8 @@ $scope.cancelNewForm = function(){
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = false;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
       
     }
     $scope.chooseUnordered = function() {
@@ -996,6 +994,8 @@ $scope.cancelNewForm = function(){
       $scope.menu2Disabled3 = true;
       $scope.menu2Disabled4 = true;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
     $scope.chooseOrdered = function() {
       $scope.menu1Var = true;
@@ -1010,6 +1010,8 @@ $scope.cancelNewForm = function(){
       $scope.menu2Disabled3 = true;
       $scope.menu2Disabled4 = true;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
     $scope.chooseAccomplished = function() {
       $scope.menu1Var = true;
@@ -1024,6 +1026,8 @@ $scope.cancelNewForm = function(){
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = true;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
     $scope.chooseChecked = function() {
       $scope.menu1Var = true;
@@ -1038,6 +1042,8 @@ $scope.cancelNewForm = function(){
       $scope.menu2Disabled3 = false;
       $scope.menu2Disabled4 = false;
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
 
     $scope.sortByCreateTime = function() {
@@ -1050,6 +1056,8 @@ $scope.cancelNewForm = function(){
       $scope.forms = PersonalForms.setTime("creatTime");
       $scope.timeLabel = '创建时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
     $scope.sortByOrderTime = function() {
       $scope.menu2Var = true;
@@ -1061,6 +1069,8 @@ $scope.cancelNewForm = function(){
       $scope.forms = PersonalForms.setTime("orderTakeTime");
       $scope.timeLabel = '接单时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
     $scope.sortByAccomplishTime = function() {
       $scope.menu2Var = true;
@@ -1071,6 +1081,8 @@ $scope.cancelNewForm = function(){
       $scope.menu2Content = '按完成时间 ';
       $scope.forms = PersonalForms.setTime("finishTime");
       $scope.timeLabel = '完成时间：';
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
       /**TODO: 后台排序，更新forms**/
     }
     $scope.sortByCheckTime = function() {
@@ -1083,6 +1095,8 @@ $scope.cancelNewForm = function(){
       $scope.forms = PersonalForms.setTime("auditTime");
       $scope.timeLabel = '审核时间：';
       /**TODO: 后台排序，更新forms**/
+      $location.hash("personalFormsHeader");
+      $ionicScrollDelegate.anchorScroll();
     }
 })
 
