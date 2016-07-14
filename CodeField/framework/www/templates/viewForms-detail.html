@@ -44,12 +44,26 @@
 
       <div class = "item item-icon-right" ng-click="" style="margin-top: 13px;"> 
         工程师： {{form.engineerName}}
-        <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
+        <div ng-switch="myinformation.position">
+          <div ng-switch-when = "派单员">
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i>
+          </div>
+          <div ng-switch-when = "管理员">
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i>
+          </div>
+        </div>
       </div>
 
       <div class="item item-icon-right" ng-click="">
         销售人员： {{form.salesName}}
-        <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
+        <div ng-switch="myinformation.position">
+          <div ng-switch-when = "派单员">
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesDetail()"></i>
+          </div>
+          <div ng-switch-when = "管理员">
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesDetail()"></i>
+          </div>
+        </div>
       </div>
       <div class="item item-icon-right" ng-click="">
         派单员： {{form.distributerName}}
