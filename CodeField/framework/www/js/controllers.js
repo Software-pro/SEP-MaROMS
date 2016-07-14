@@ -511,6 +511,7 @@ $scope.myinformation = MyInformation.get();
   $scope.editComplete = function() {
      if($scope.form.status == "未接") {
     var success = 1;
+    var  mark = document.getElementById('mark');
     var clientName = document.getElementById("clientName");
     var clientPhone = document.getElementById("clientPhone");
     var clientUnit = document.getElementById("clientUnit");
@@ -520,45 +521,13 @@ $scope.myinformation = MyInformation.get();
     var salesman = document.getElementById("salesman");
     var distributor = document.getElementById('distributor');
     var distributorPhone = document.getElementById("distributorPhone");
-    if(clientName.value.length == 0 && $scope.form.clientName.length == 0) {
-      alert("未填写客户姓名！");
-      return;
-    }
-    if(clientPhone.value.length == 0) {
-      alert("未填写客户电话！");
-      return;
-    }
-    if(clientUnit.value.length == 0) {
-      alert("未填写客户单位！");
-      return;
-    }
-    if(clientAddr.value.length == 0) {
-      alert("未填写客户地址！");
-      return;
-    }
-    if(service.value === "请选择服务" && $scope.form.type.length == 0) {
-      alert("未填写服务！");
-      return;
-    }
-    if(engineer.value === "请选择工程师" && $scope.form.engineerName.length == 0) {
-      alert("未填写工程师！");
-      return;
-    }
-    if(salesman.value === "请选择销售人员" && $scope.form.salesName.length == 0) {
-      alert("未填写销售人员！");
-      return;
-    }
-    if(distributor.value.length == 0) {
-      alert("未填写派单员姓名！");
-      return;
-    }
-    if(distributorPhone.value.length == 0) {
-      alert("未填写派单员电话！");
+    if(clientName.value.length == 0|| clientPhone.value.length == 0 || clientUnit.value.length == 0 || clientAddr.value.length == 0 || service.value.length == 0|| engineer.value.length == 0 || salesman.value.length == 0 || distributor.value.length == 0 || distributorPhone.value.length == 0 || mark.value.length == 0) {
+      $scope.errorBorder = ' red';
       return;
     }
     if(success == 1) {
       alert("修改完成！");
-      $ionicHistory.goBack();
+      $ionicHistory.goBack(-1);
     }
   }
 else  {
@@ -655,29 +624,9 @@ else  {
     var clientaddr = document.getElementById("clientAddr");
     var salesname = document.getElementById("salesName");
     var engineername = document.getElementById("engineerName");
-    if(clientname.value.length == 0) {
-        alert("客户姓名未填！");
+    if(clientname.value.length == 0 || clientphone.value.length == 0 || clientunit.value.length == 0 || clientaddr.value.length == 0 || salesname.value === "请选择销售人员" || engineername.value === "请选择工程师")   {
+       $scope.errorBorder = 'red';
         return;
-    }
-    if(clientphone.value.length == 0) {
-      alert("客户电话未填！");
-      return;
-    }
-    if(clientunit.value.length == 0) {
-      alert("客户单位未填！");
-      return;
-    }
-    if(clientaddr.value.length == 0) {
-      alert("客户地址未填！");
-      return;
-    }
-    if(salesname.value === "请选择销售人员") {
-      alert("未选择销售员！");
-      return;
-    }
-      if(engineername.value === "请选择工程师") {
-      alert("未选择工程师！");
-      return;
     }
     if(success == 1) {
     alert("添加成功！");
@@ -749,13 +698,12 @@ $scope.cancelNewForm = function(){
 })
 
 .controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
-  $scope.errorBorder = '0px';
    $scope.postuser = function() {
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
    // alert(user + " " + userPass + " " + errorBorder);
     if (user == "" || userPass == "") {
-      $scope.errorBorder = '1px';
+      $scope.errorBorder = 'red';
     }
     else {
       var userinfo = {"id":user,"password":userPass};
