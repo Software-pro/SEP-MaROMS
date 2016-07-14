@@ -64,7 +64,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
           templateUrl:'templates/contact-detail.html',
           controller: 'contactdetailCtrl'
         }
-      }
+      } 
     })
 
     .state('app.my',{
