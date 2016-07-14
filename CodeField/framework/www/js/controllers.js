@@ -401,7 +401,7 @@ angular.module('starter.controllers',['ionic'])
   $scope.doRefresh = function(){
     $scope.$broadcast('scroll.refreshComplete');
   }
-
+  
    // $scope.form = Forms.get($stateParams.id);
   $scope.itemClicked = function(type,id){
     $stateParams.contentid = id;
@@ -746,6 +746,8 @@ $scope.cancelNewForm = function(){
 .controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
   $scope.errorBorder = '0px';
    $scope.postuser = function() {
+    
+          $state.go("app.viewForms");
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
    // alert(user + " " + userPass + " " + errorBorder);
@@ -774,6 +776,7 @@ $scope.cancelNewForm = function(){
         }
         else
         {
+
           alert("用户名或密码不正确！");
         }
       },
@@ -1085,9 +1088,10 @@ $scope.cancelNewForm = function(){
 .controller('markModifyCtrl', function($scope,$stateParams,Forms,$location){
 
  // $scope.form = Forms.get($stateParams.formId);
- // alert($stateParams.contentid);
-  $scope.form = Forms.get($stateParams.contentid);
-//  alert($scope.form.NO.value);
+  alert($stateParams.contentid);
+
+  $scope.form = Forms.getByNo($stateParams.contentid);
+  //alert($scope.form.NO.value);
 
 })
 .controller('messagePasswordForgetCtrl',function($scope,$state){
@@ -1098,7 +1102,7 @@ $scope.cancelNewForm = function(){
 
 })
 
-.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state){
+.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout){
   $scope.choosephoto = function(){
      var hideSheet = $ionicActionSheet.show({
         buttons:[

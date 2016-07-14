@@ -338,6 +338,14 @@ angular.module('starter.service',[])
       }
       return null;
     },
+    getByNo:function(formNo){
+      for(var i = 0; i < forms.length; i ++){
+        if(formNo === forms[i].NO){
+          return forms[i];
+        }
+      }
+      return null;
+    },
     setTime: function(timeKind) {
       for (var i = 0; i < forms.length; i++) {
         if (timeKind === "creatTime") {
@@ -501,43 +509,49 @@ angular.module('starter.service',[])
 .factory('Message_infos',function() {
   var message_infos = [{
     type:0,
-    title:'分值改动通知',
-    full_information:'派单员小李修改了报修单的分值',
     id:'bx131220733',
-    tag:0,
-    state:'未读',
-    format:"badge icon-badge assertive"
+    tag:0
   },
   {
     type:1,
-    title:'密码找回通知',
-    full_information:'用户gc13122001申请找回登录密码',
-    id:'bx131220283',
-    tag:0,
-    state:'未读',
-    format:"badge icon-badge assertive"
+    id:'gc131220283',
+    tag:0
   },
   {
     type:0,
-    title:'分值改动通知',
-    full_information:'派单员小李修改了报修单的分值',
     id:'bx131220283',
-    tag:1,
-    state:'已读',
-    format:"badge icon-badge"
+    tag:1
   },
   {
     type:2,
-    title:'密码修改通知',
-    full_information:'用户gc13122001修改了登录密码',
-    id:'bx131220733',
-    tag:1,
-    state:'已读',
-    format:"badge icon-badge"
+    id:'gc131220733',
+    tag:1
   }];
 
   return {
     all:function() {
+      for(var i = 0; i < message_infos.length; i ++){
+        if(message_infos[i].type === 0){
+          message_infos[i].title = "分值改动通知";
+          message_infos[i].full_information = "报修单"+ message_infos[i].id + "的分值被修改了";
+        }
+        else if(message_infos[i].type === 1){
+          message_infos[i].title = "密码找回通知";
+          message_infos[i].full_information = "用户"+ message_infos[i].id + "申请找回登录密码";  
+        }
+        else if(message_infos[i].type === 2){
+          message_infos[i].title = "密码修改通知";
+          message_infos[i].full_information = "用户" + message_infos[i].id + "修改了登录密码";
+        }
+        if(message_infos[i].tag === 0){
+          message_infos[i].statename = "未读";
+          message_infos[i].format = "badge icon-badge assertive";
+        }
+        else{
+          message_infos[i].statename = "已读";
+          message_infos[i].format = "badge icon-badge";
+        }
+      }
       return message_infos;
     },
     get: function(message_infoId) {
