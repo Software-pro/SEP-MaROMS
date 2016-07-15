@@ -103,10 +103,14 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-.controller('ViewFormsCtrl', function($scope, Forms, $state, $location, $ionicScrollDelegate) {
+.controller('ViewFormsCtrl', function($scope, Forms, $state, $location, $ionicScrollDelegate, MyInformation) {
     $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
-
+    $scope.isShow = false;
+   $scope.myinformation = MyInformation.get();
+      if($scope.myinformation.position === "派单员")  {
+        $scope.isShow = true;
+      }
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
       $scope.forms = Forms.all();
@@ -491,6 +495,11 @@ angular.module('starter.controllers',['ionic'])
  $scope.form = Forms.get($stateParams.formId);
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
+ $scope.doRefresh = function() {
+      //刷新--重新从后台载入数据
+      $scope.form = Forms.get($stateParams.formId);
+      $scope.$broadcast("scroll.refreshComplete");     
+    };
 $scope.myinformation = MyInformation.get();
   // TODO:get form by 'http'
    $scope.yearNums = [];
@@ -733,6 +742,7 @@ else  {
     var salesname = document.getElementById("salesName");
     var engineername = document.getElementById("engineerName");
     var service = document.getElementById("serviceName");
+    var mark = document.getElementById("mark");
     if(clientname.value.length == 0) {
       $scope.errorBorder1 = 'red';
       success = 0;
@@ -761,13 +771,52 @@ else  {
       $scope.errorBorder7 = 'red';
       success = 0;
     }
+    if(mark.value.length == 0 && mark.value.length >= 4) {
+      $scope.errorBorder8 = 'red';
+      success = 0;
+    }
+    for(var i = 0; i<3; i++) {
+      if(mark.value[i]<'0' || mark.value[i]>'9') {
+        $scope.errorBorder8 = 'red';
+        success = 0;
+        break;
+      }
+    }
+    if(mark.value.length == 3 && parseInt(mark.value)>100) {
+      $scope.errorBorder8 = 'red';
+      success = 0;
+      return;
+    }
     if(success == 0 ) {
       alert("请将内容填写完整后再提交！‘*'表示必填内容.");
       return;
     }
     if(success == 1) {
-      alert("添加成功！");
-      $ionicHistory.goBack();
+     var serviceId;
+     if(service.value === "上门服务") {
+        serviceId = 0;
+     }
+     else if (service.value === "送货服务") {
+        serviceId = 1;
+     }
+     else if(service.value === "安装调试") {
+        serviceId = 2;
+     }
+   /* $http({
+        method:'POST',
+        url:'http://115.159.225.109/repairforms/create',
+         data:{
+         'clientName': clientname.value,
+         'clientPhone': clientphone.value,
+         ''
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'    
+      }) */
+     alert("New Form created!");
+     $ionicHistory.goBack(-1);
     }
   }
   $scope.cancelNewForm = function(){
@@ -910,7 +959,7 @@ else  {
       .then(function(response) {
         console.log(response);
         if(response.data['success']) {
-          $myinformation =  MyInformation.setPosition("管理员");
+          $myinformation =  MyInformation.setPosition("派单员");
           $state.go("app.viewForms");
         }
         else
