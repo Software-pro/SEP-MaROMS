@@ -86,17 +86,11 @@
 
 
 /****************   css in menu   ********************/
-#menuHeader
+/*#menuHeader
 {
 	background-color:#00BFFF;
 	height: 50px;
-}
-
-/*********/
-#headerdistance
-{
-	margin-top: 16px;
-}
+}*/
 
 /******** for contacts-detail *******/
 #heaherdistancecontactdetail
@@ -155,15 +149,12 @@
 	border-color: #DDDDDD;*/
 }
 /*用于模拟菜单栏的list*/
-#subHeaderMenuList
+.subHeaderMenuList
 {
-/*	height: 20px;
-*/	top: 79px;
-
-	
+	top: 78px;
 }
 /*用于模拟菜单栏的list的item*/
-#subHeaderMenuOption
+.subHeaderMenuOption
 {
 	height: 37px;
 	padding-left: 10%;
@@ -173,9 +164,9 @@
 	border-color: #DDDDDD;
 }
 /*用于模拟菜单栏的list的item中的文字css*/
-#subHeaderMenuContent
+.subHeaderMenuContent
 {
-	font-size: 14px;
+	/*font-size: 14px;*/
 	color: #444444;
 	font-weight: lighter;
 	/*margin-top: auto;
@@ -227,6 +218,11 @@
 	margin: 0;
 }
 
+/***********************form-list****************************/
+.form-list
+{
+	background-color: #EEEEEE; 
+}
 /*******************filter-subHeader*************************/
 .filter-subHeader
 {
@@ -241,7 +237,7 @@
 /********************search-bar**********************/
 .search-bar
 {
-	margin-top: 16px;
+	/*margin-top: 16px;*/
 	/*height:20px;*/
 	border:none;
 }
@@ -256,19 +252,27 @@
 /*********************contacts***************************/
 .alpha_sidebar{
 	position: absolute;
-	margin-top: 70px;
+	width: 10px;
+	right: 0px;
+	margin: 5px;
 	/*margin: 0 auto;*/
 	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	/*margin-bottom: 10%;*/
 	/*top: 15%;*/
-	right: 	10px;
+	/*right: 	10px;*/
 	z-index: 100000
 }
 .alpha_sidebar li{
 	color: #49afcd;/*
 	margin-bottom: 6px;*/
 	cursor: pointer;
+	/*font-size: 12px;*/
+	height: 15px;
 }
+
+
 .alpha_list{
 	padding-right: 22px;
 }

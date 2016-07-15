@@ -14,9 +14,13 @@
 
           <i class="icon ion-ios7-telephone-outline"><span class={{message_info.format}}> {{message_info.statename}}</span>
           </i>
-  
+    <script>
+      if(message_info.type === 5){
+        
+      }
+  </script>
 
-		    <i class="icon ion-chevron-right icon-accessory"></i>
+		    <i id = "arrow{{message_info.type}}" class="icon ion-chevron-right icon-accessory"></i>
 		</ion-item>
 	</div>
 

@@ -466,11 +466,13 @@ angular.module('starter.controllers',['ionic'])
 })
 
 .controller("messageCtrl",function($scope,Message_infos,$state,$stateParams) {
+  var arrow = document.getElementById('arrow5');
+ // alert("haha");
+ // arrow.style.display = 'none';
   $scope.message_infos = Message_infos.all(); 
   $scope.doRefresh = function(){
     $scope.$broadcast('scroll.refreshComplete');
   }
-  
    // $scope.form = Forms.get($stateParams.id);
   $scope.itemClicked = function(type,id){
    // alert(id);
@@ -482,9 +484,21 @@ angular.module('starter.controllers',['ionic'])
     $stateParams.contentid = id;
       $state.go('app.message-passwordforget',{contentid:id});
     }
-    else{
+    else if(type === 2){
     $stateParams.contentid = id;
       $state.go('app.message-passwordmodify',{contentid:id});
+    }
+    else if(type === 3){
+      $state.go('app.viewForms-detail',{contentid:id});
+
+    }
+    else if(type === 4){
+      $state.go('app.viewForms-detail',{contentid:id});
+    }
+    else if(type === 5){
+  var arrow = document.getElementById('arrow5');
+       arrow.style.display = 'none';
+   // $scope.form = Forms.get($stateParams.id);
     }
 
   }
