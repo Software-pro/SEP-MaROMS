@@ -1188,13 +1188,13 @@ else  {
 
 })
 .controller('messagePasswordForgetCtrl',function($scope,$stateParams,PersonalInformations,$location){
-  alert($stateParams.contentid);
+ // alert($stateParams.contentid);
   $scope.user = PersonalInformations.getByNo($stateParams.contentid);
 
   
 })
 .controller('messagePasswordModifyCtrl',function($scope,$stateParams,PersonalInformations,$location){
-  alert($stateParams.contentid);
+ // alert($stateParams.contentid);
    $scope.user = PersonalInformations.getByNo($stateParams.contentid);
 
 })
