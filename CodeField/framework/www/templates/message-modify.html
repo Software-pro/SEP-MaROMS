@@ -4,11 +4,11 @@
   <!--   <ion-infinite-scroll on-infinite = "loadMore()" distance = "1%">
 
     <ion-infinite-scroll> -->
-    <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
+    <div class="list" style="background-color: #EEEEEE;">
 
-    <p style = "margin-top:20px">分值改动的报修单详情：</p>
+    <p style = "padding: 16px; margin: 0;">分值改动的报修单详情：</p>
 
-      <div class="item" style="margin-top: 13px;">
+      <div class="item">
         <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
         <p style="color: #AAAAAA;">状态： {{form.status}}</p>
          <div>
@@ -21,24 +21,32 @@
         <p style="color: #AAAAAA;">分值： {{form.value}}</p> -->
       </div>
 
-      <div class="item" style="margin-top: 13px;" href="#">
+      <div class="itemDivider"></div>
+
+      <div class="item" href="#">
         <p>客户姓名： <span id="blackFont">{{form.clientName}}</span></p>
         <p>客户电话： <span id="blackFont">{{form.clientphone}}</span></p>
         <p>客户单位： <span id="blackFont">{{form.clientunit}}</span></p>
         <p>客户地址： <span id="blackFont">{{form.clientaddr}}</span></p>
       </div>
 
-      <div class="item" href="#" style="margin-top: 13px;">
+      <div class="itemDivider"></div>
+
+      <div class="item" href="#" >
        <p> 服务项目： <span id="blackFont">{{form.service}}</span></p>
       </div>
 
-      <div class = "item item-icon-right" style="margin-top: 13px;"> 
+      <div class="itemDivider"></div>
+      
+      <div class = "item item-icon-right" > 
       <p>  工程师： <span id="blackFont">{{form.engineerName}}</span></p>
       <p> 销售人员：<span id="blackFont"> {{form.salesName}}</span></p>
       <p>派单员： <span id="blackFont">{{form.distributerName}}</span></p>
       </div>
      
-      <div class="item" href="#" style="margin-top: 13px;">
+     <div class="itemDivider"></div>
+
+      <div class="item" href="#" >
         <p>出库单号：<span id="blackFont"> {{form.stocknumber}}</span></p>
         <p>创建时间： <span id="blackFont">{{form.time}}</span></p>
         <p>接单时间： <span id="blackFont">{{form.accepttime}}</span></p>

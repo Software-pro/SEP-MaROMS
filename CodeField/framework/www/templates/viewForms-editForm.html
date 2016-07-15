@@ -1,9 +1,11 @@
 <ion-view view-title="编辑报修单">
   <ion-content>
 
-   <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
+   <div class="list" style="background-color: #EEEEEE;">
 
-      <div class="item" style="margin-top: 13px;">
+      <div class="itemDivider"></div>
+
+      <div class="item">
         <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
         <p style="color: #AAAAAA;">状态： {{form.status}}</p>       
       </div>
@@ -11,7 +13,9 @@
       <div ng-switch = "myinformation.position">
       	<div ng-switch-when = '派单员'>
 
-          <div class="item item-input" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder1}};"  href="#">
+          <div class="itemDivider"></div>
+
+          <div class="item item-input" style="border-style: solid; border-color: {{errorBorder1}};"  href="#">
             <span class="input-label">分值<span style="color: red;">  *</span></span>
             <input id="mark" type = "text" value = "{{form.value}}">
           </div>
@@ -19,7 +23,9 @@
           <div ng-switch = "form.status">
             <div ng-switch-when = '未接' >
 
-              <div class="item item-input" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder2}};"  href="#">
+              <div class="itemDivider"></div>
+
+              <div class="item item-input" style="border-style: solid; border-color: {{errorBorder2}};"  href="#">
                 <span  class="input-label">客户姓名<span style="color: red;">  *</span></span>
                 <input id="clientName" type = "text" value = "{{form.clientName}}">
               </div>
@@ -41,7 +47,9 @@
 
               <div ng-switch = "form.type">
               <div ng-switch-when="上门服务">
-              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder6}}">
+              <div class="itemDivider"></div>
+
+              <div class="item item-input"  href="#" style="border-style: solid; border-color: {{errorBorder6}}">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option selected>上门服务</option>
@@ -51,7 +59,9 @@
               </div>
               </div>
               <div ng-switch-when="送货服务">
-              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color:  {{errorBorder6}}">
+              <div class="itemDivider"></div>
+
+              <div class="item item-input"  href="#" style="border-style: solid; border-color:  {{errorBorder6}}">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option>上门服务</option>
@@ -61,7 +71,9 @@
               </div>
               </div>
               <div ng-switch-when="安装调试">
-              <div class="item item-input"  href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder6}}">
+              <div class="itemDivider"></div>
+
+              <div class="item item-input"  href="#" style="border-style: solid; border-color: {{errorBorder6}}">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
@@ -71,7 +83,9 @@
               </div>
               </div>
               <div ng-switch-default>
-              <div class="item item-input" href="#" style="margin-top: 13px; border-style: solid; border-color: {{errorBorder6}};">
+              <div class="itemDivider"></div>
+
+              <div class="item item-input" href="#" style="border-style: solid; border-color: {{errorBorder6}};">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
@@ -107,7 +121,9 @@
                 <input id="distributorPhone" type = "text" value = "{{form.distributerphone}}">
               </div>
 
-              <div class="item item-input" href="#" style="margin-top: 13px;">
+              <div class="itemDivider"></div>
+
+              <div class="item item-input" href="#">
                 <span class="input-label">出库单号</span>
                 <input type = "text" value="{{form.stockName}}">
               </div>
@@ -131,7 +147,9 @@
 
           <div ng-switch-default>
 
-            <div class="item" style="margin-top: 13px;" href="#">
+            <div class="itemDivider"></div>
+
+            <div class="item" href="#">
               客户姓名： {{form.clientName}}
             </div>
       
@@ -150,11 +168,15 @@
               客户地址： {{form.clientaddr}}
             </div>
 
-            <div class="item" href="#" style="margin-top: 13px;">
+            <div class="itemDivider"></div>
+
+            <div class="item" href="#">
               服务项目： {{form.service}}
             </div>
 
-            <div class = "item item-icon-right" ng-click="" style="margin-top: 13px;"> 
+            <div class="itemDivider"></div>
+
+            <div class = "item item-icon-right" ng-click=""> 
               工程师： {{form.engineerName}}
               <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
             </div>
@@ -175,7 +197,9 @@
               </button>
             </div>
 
-            <div class="item" href="#" style="margin-top: 13px;">
+            <div class="itemDivider"></div>
+
+            <div class="item" href="#">
               出库单号： {{form.stocknumber}}
             </div>
 
