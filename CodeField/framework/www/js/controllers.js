@@ -1199,7 +1199,10 @@ else  {
 
 })
 
-.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout){
+.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout,$ionicHistory){
+  $scope.goback = function(){
+     $state.go("app.viewForms");
+  }
   $scope.images = [];
   $scope.choosephoto = function(){
      var hideSheet = $ionicActionSheet.show({
