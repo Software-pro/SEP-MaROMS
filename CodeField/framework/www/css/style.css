@@ -19,13 +19,14 @@
 }
 
 /*对原来的蓝色的bar进行修改（重写）*/
+/*menu bar*/
 .bar.bar-positive
 {
     background-color: #00BFFF; 
-    border-top-width: 10px;
-    border-bottom-width: 10px;
+    /*border-top-width: 10px;
+    border-bottom-width: 10px;*/
     border-color: #00BFFF;
-    height: 60px;
+    /*height: 60px;*/
     line-height: 0px;
     /*padding-bottom: 10px;
     margin-bottom: 10px;*/
@@ -40,7 +41,7 @@
       box-shadow: none;
       color: #00BFFF; 
 
-      font-size: 15px;
+      /*font-size: 15px;*/
       font-family: 'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;
 }
 
@@ -68,7 +69,8 @@
 .bar.bar-positive .title
 {
 	color: #fff;
-	font-size: 25px;
+	/*font-size: 10px;*/
+
 }
 
 #blackFont
@@ -142,7 +144,7 @@
 /*.button-bar .button 点击之后展开对应的菜单栏（list）*/
 #subHeaderMenu
 {
-	font-size: 14px;
+/*	font-size: 14px;
 	border-width: 0px;
 	border-bottom-width: 1px;
 	padding: 0;
@@ -150,7 +152,7 @@
 	padding-bottom: 2px;
 	width: 32%;
 	height: 100%;
-	border-color: #DDDDDD;
+	border-color: #DDDDDD;*/
 }
 /*用于模拟菜单栏的list*/
 #subHeaderMenuList

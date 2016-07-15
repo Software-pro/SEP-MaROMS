@@ -1,7 +1,11 @@
 <ion-view view-title="报修单" id="fontSet">
+
+  <!-- icon of newForm  (jump to viewForms-newForm.html) -->
   <ion-nav-buttons side = "right">
-    <button class = "button button-clear icon ion-plus" ng-click = "newFormClicked()"></button>
-  </ion-nav-buttons> 
+    <button class = "button button-clear icon ion-plus-round" ng-click = "newFormClicked()"></button>
+  </ion-nav-buttons>
+
+  <!-- search bar -->
   <div class="bar bar-subheader bar-stable item-input-inset search-bar">
     <label class="item-input-wrapper" style="border:none">
       <i class="ion-search dark"></i>
@@ -9,8 +13,10 @@
     </label>
     <button class="button-clear search-cancel" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
   </div>
+
+  <!-- filter bar -->
   <div class="bar bar-subheader bar-light filter-subHeader" style="margin-top: 60px;">
-    <div class="button-bar" id="subHeaderBar">
+    <div class="button-bar">
       <!-- TODO：
             需要后台协助对选择框的内容进行整改。。
             如：未接单的报修单不允许按照审核时间排序 
