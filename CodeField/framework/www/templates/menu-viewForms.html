@@ -1,7 +1,11 @@
 <ion-view view-title="报修单" id="fontSet">
+
+  <!-- icon of newForm  (jump to viewForms-newForm.html) -->
   <ion-nav-buttons side = "right">
-    <button class = "button button-clear icon ion-plus" ng-click = "newFormClicked()"></button>
-  </ion-nav-buttons> 
+    <button class = "button button-clear icon ion-plus-round" ng-click = "newFormClicked()"></button>
+  </ion-nav-buttons>
+
+  <!-- search bar -->
   <div class="bar bar-subheader bar-stable item-input-inset search-bar">
     <label class="item-input-wrapper" style="border:none">
       <i class="ion-search dark"></i>
@@ -9,8 +13,10 @@
     </label>
     <button class="button-clear search-cancel" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
   </div>
-  <div class="bar bar-subheader bar-light filter-subHeader" style="margin-top: 60px;">
-    <div class="button-bar" id="subHeaderBar">
+
+  <!-- filter bar -->
+  <div class="bar bar-subheader bar-light filter-subHeader" style="margin-top: 43px;">
+    <div class="button-bar">
       <!-- TODO：
             需要后台协助对选择框的内容进行整改。。
             如：未接单的报修单不允许按照审核时间排序 
@@ -32,39 +38,39 @@
  <!--  <ion-pane class="has-subheader"  ng-hide="menu1Var" ng-click="clickmenu()"> -->
   <!-- <script id="menu1.html" type="text/ng-template">
   <ion-popover-view> -->
-    <ul class="list has-subheader" id="subHeaderMenuList" ng-hide="menu1Var">
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseAll()">
-        <span id="subHeaderMenuContent">全部</span>
+    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu1Var">
+      <li class="item subHeaderMenuOption" ng-click="chooseAll()">
+        <span class="subHeaderMenuContent">全部</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseUnordered()">
-        <span id="subHeaderMenuContent">未接单</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseUnordered()">
+        <span class="subHeaderMenuContent">未接单</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseOrdered()">
-        <span id="subHeaderMenuContent">已接单</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseOrdered()">
+        <span class="subHeaderMenuContent">已接单</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseAccomplished()">
-        <span id="subHeaderMenuContent">已完成</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseAccomplished()">
+        <span class="subHeaderMenuContent">已完成</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseChecked()">
-        <span id="subHeaderMenuContent">已审核</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseChecked()">
+        <span class="subHeaderMenuContent">已审核</span>
       </li>
     </ul>
     <!-- </ion-popover-view>
   </script> -->
 <!--   </ion-pane> -->
 
-    <ul class="list has-subheader" id="subHeaderMenuList" ng-hide="menu2Var">
-      <li class="item" id="subHeaderMenuOption" ng-click="sortByCreateTime()">
-        <span id="subHeaderMenuContent">按创建时间</span>
+    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu2Var">
+      <li class="item subHeaderMenuOption" ng-click="sortByCreateTime()">
+        <span class="subHeaderMenuContent">按创建时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled2" ng-click="sortByOrderTime()">
-        <span id="subHeaderMenuContent">按接单时间</span>
+      <li class="item subHeaderMenuOption" ng-hide="menu2Disabled2" ng-click="sortByOrderTime()">
+        <span class="subHeaderMenuContent">按接单时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled3" ng-click="sortByAccomplishTime()">
-        <span id="subHeaderMenuContent">按完成时间</span>
+      <li class="item subHeaderMenuOption" ng-hide="menu2Disabled3" ng-click="sortByAccomplishTime()">
+        <span class="subHeaderMenuContent">按完成时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled4" ng-click="sortByCheckTime()">
-        <span id="subHeaderMenuContent">按审核时间</span>
+      <li class="item subHeaderMenuOption" ng-hide="menu2Disabled4" ng-click="sortByCheckTime()">
+        <span class="subHeaderMenuContent">按审核时间</span>
       </li>
     </ul>
 
@@ -76,7 +82,7 @@
 
 
 
-  <ion-content class="content has-subheader" style="margin-top: 40px; background-color: #EEEEEE; ">
+  <ion-content class="content has-subheader form-list" style="margin-top: 33px; ">
   <!-- <ion-content class="content has-subheader" overflow-scroll="true"> -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>
