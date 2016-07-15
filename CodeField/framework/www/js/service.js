@@ -474,6 +474,7 @@ angular.module('starter.service',[])
   //type = 2 用户修改密码的消息通知
   //tag = 0  消息未读
   //tag = 1  消息已读
+
   var message_infos = [{
     type:0,
     id:'bx131220733',
@@ -493,7 +494,24 @@ angular.module('starter.service',[])
     type:2,
     id:'pd00003',
     tag:1
-  }];
+  },
+  {
+    type:3,
+    id:'bx131220283',
+    tag:0,
+  },
+  {
+    type:4,
+    id:'bx131220233',
+    tag:0,
+  },
+  {
+    type:5,
+    id:'bx131220233',
+    tag:0,
+  }
+
+  ];
 
   return {
     all:function() {
@@ -511,6 +529,18 @@ angular.module('starter.service',[])
         else if(message_infos[i].type === 2){
           message_infos[i].title = "密码修改通知";
           message_infos[i].full_information = "用户" + message_infos[i].id + "修改了登录密码";
+        }
+        else if(message_infos[i].type === 3){
+          message_infos[i].title = "新的报修单任务通知";
+          message_infos[i].full_information = "你被分配了"+ message_infos[i].id + "相关任务";
+        }
+        else if(message_infos[i].type === 4){
+          message_infos[i].title = "报修单状态更新通知";
+          message_infos[i].full_information = "你的报修单" + message_infos[i].id + "有新动态";
+        }
+        else if(message_infos[i].type === 5){
+          message_infos[i].title = "报修单删除通知";
+          message_infos[i].full_information = "你的报修单" + message_infos[i].id + "被删除";
         }
 
         //根据tag类型确定文字和文字格式

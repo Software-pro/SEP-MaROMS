@@ -1,11 +1,8 @@
 <ion-view view-title="报修单" id="fontSet">
 
-  <!-- icon of newForm  (jump to viewForms-newForm.html) -->
-  <ion-nav-buttons side = "right">
-    <button class = "button button-clear icon ion-plus-round" ng-click = "newFormClicked()"></button>
-  </ion-nav-buttons>
-
-  <!-- search bar -->
+    <ion-nav-buttons  side = "right"  >
+        <button  ng-show = " isShow" class = "button button-clear icon ion-plus-round" ng-click = "newFormClicked()"></button>
+    </ion-nav-buttons> 
   <div class="bar bar-subheader bar-stable item-input-inset search-bar">
     <label class="item-input-wrapper" style="border:none">
       <i class="ion-search dark"></i>
