@@ -1,25 +1,21 @@
 <ion-view view-title="报修单详情">
   <ion-content>
 
-<!-- <div class="item item-avatar">
-            <img src="http://ionicframework.com/img/docs/mcfly.jpg">
-            <h2>Marty McFly</h2>
-            <p>November 05, 1955</p>
-          </div>
- -->
-    <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
+    <div class="list" style="background-color: #EEEEEE;">
 
-      <div class="item" style="margin-top: 13px;">
+      <div class="itemDivider"></div>
+      <div class="item">
         <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
-        <p style="color: #AAAAAA;">状态： {{form.status}}</p>
-        <p style="color: #AAAAAA;">分值： {{form.value}}</p>
+        <p style="color: #999999;">状态： {{form.status}}</p>
+        <p style="color: #999999;">分值： {{form.value}}</p>
 <!-- 
           <span class="item-note">
             {{state}}
           </span> -->
       </div>
 
-      <div class="item" style="margin-top: 13px;" href="#">
+      <div class="itemDivider"></div>
+      <div class="item">
         客户姓名： {{form.clientName}}
       </div>
       
@@ -38,33 +34,35 @@
         客户地址： {{form.clientaddr}}
       </div>
 
-      <div class="item" href="#" style="margin-top: 13px;">
+      <div class="itemDivider"></div>
+      <div class="item" href="#">
         服务项目： {{form.type}}
       </div>
 
-      <div class = "item item-icon-right"  style="margin-top: 13px;"> 
+      <div class="itemDivider"></div>
+      <div class = "item item-icon-right" ng-click="engineerDetail()"> 
         工程师： {{form.engineerName}}
         <div ng-switch="myinformation.position">
           <div ng-switch-when = "派单员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i> 
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
             <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{engineer.id}}"></i> -->
           </div>
           <div ng-switch-when = "管理员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i> 
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
             <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{engineer.id}}"></i> -->
           </div>
         </div>
       </div>
 
-      <div class="item item-icon-right" >
+      <div class="item item-icon-right" ng-click="salesmanDetail()">
         销售人员： {{form.salesName}}
         <div ng-switch="myinformation.position">
           <div ng-switch-when = "派单员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesmanDetail()"></i> 
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
             <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{salesman.id}}"></i> -->
           </div>
           <div ng-switch-when = "管理员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesmanDetail()"></i> 
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
             <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{salesman.id}}"></i> -->
           </div>
         </div>
@@ -78,7 +76,10 @@
           <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.distributerphone}}"></i>
         </button>
       </div>
-      <div class="item" href="#" style="margin-top: 13px;">
+
+      <div class="itemDivider"></div>
+      
+      <div class="item" href="#">
         出库单号： {{form.stocknumber}}
       </div>
 

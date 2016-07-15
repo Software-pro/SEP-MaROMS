@@ -1,13 +1,13 @@
 <!-- 
     针对派单员和管理员，可以查看到这个人（工程师or销售人员）的所有报修单
  -->
-<ion-view view-title="查看个人报修单" id="fontSet" style="background-color: #EEEEEE;">
-  <div class="bar bar-subheader bar-light filter-subHeader"  style="margin-top: 30px;">
-    <div class="button-bar" id="subHeaderBar">
+<ion-view view-title="查看个人报修单" id="fontSet" style="background-color: #EEEEEE; margin-top: 15px;">
+  <div class="bar bar-subheader bar-light filter-subHeader">
+    <div class="button-bar subHeaderBar">
       <!-- 副菜单栏： -->
-      <a class="button button-clear" id="subHeaderMenu" ng-click="menu1()" style="background-color: {{menu1Color}}">{{menu1Content}}<i class="ion-ios-arrow-down"></i></a>
-      <a class="button button-clear" id="subHeaderMenu" ng-click="menu2()" style="background-color: {{menu2Color}}">{{menu2Content}}<i class="ion-ios-arrow-down"></i></a>
-      <a class="button button-clear" id="subHeaderMenu" ng-click="menu3()">{{menu3Content}}<i class="{{menu3Icon}}"></i></a>
+      <a class="button button-clear subHeaderMenu" ng-click="menu1()" style="background-color: {{menu1Color}}">{{menu1Content}}<i class="ion-ios-arrow-down"></i></a>
+      <a class="button button-clear subHeaderMenu" ng-click="menu2()" style="background-color: {{menu2Color}}">{{menu2Content}}<i class="ion-ios-arrow-down"></i></a>
+      <a class="button button-clear subHeaderMenu" ng-click="menu3()">{{menu3Content}}<i class="{{menu3Icon}}"></i></a>
     </div>
   </div> 
   
@@ -17,44 +17,44 @@
  <!--  <ion-pane class="has-subheader"  ng-hide="menu1Var" ng-click="clickmenu()"> -->
   <!-- <script id="menu1.html" type="text/ng-template">
   <ion-popover-view> -->
-    <ul class="list has-subheader" id="subHeaderMenuList" ng-hide="menu1Var" style="margin-top: 30px;">
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseAll()">
-        <span id="subHeaderMenuContent">全部</span>
+    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu1Var" style="margin-top: 30px;">
+      <li class="item subHeaderMenuOption" ng-click="chooseAll()">
+        <span class="subHeaderMenuContent">全部</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseUnordered()">
-        <span id="subHeaderMenuContent">未接单</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseUnordered()">
+        <span class="subHeaderMenuContent">未接单</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseOrdered()">
-        <span id="subHeaderMenuContent">已接单</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseOrdered()">
+        <span class="subHeaderMenuContent">已接单</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseAccomplished()">
-        <span id="subHeaderMenuContent">已完成</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseAccomplished()">
+        <span class="subHeaderMenuContent">已完成</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-click="chooseChecked()">
-        <span id="subHeaderMenuContent">已审核</span>
+      <li class="item subHeaderMenuOption" ng-click="chooseChecked()">
+        <span class="subHeaderMenuContent">已审核</span>
       </li>
     </ul>
     <!-- </ion-popover-view>
   </script> -->
 <!--   </ion-pane> -->
 
-    <ul class="list has-subheader" id="subHeaderMenuList" ng-hide="menu2Var" style="margin-top: 30px;">
-      <li class="item" id="subHeaderMenuOption" ng-click="sortByCreateTime()">
-        <span id="subHeaderMenuContent">按创建时间</span>
+    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu2Var" style="margin-top: 30px;">
+      <li class="item subHeaderMenuOption" ng-click="sortByCreateTime()">
+        <span class="subHeaderMenuContent">按创建时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled2" ng-click="sortByOrderTime()">
-        <span id="subHeaderMenuContent">按接单时间</span>
+      <li class="item subHeaderMenuOption" ng-hide="menu2Disabled2" ng-click="sortByOrderTime()">
+        <span class="subHeaderMenuContent">按接单时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled3" ng-click="sortByAccomplishTime()">
-        <span id="subHeaderMenuContent">按完成时间</span>
+      <li class="item subHeaderMenuOption" ng-hide="menu2Disabled3" ng-click="sortByAccomplishTime()">
+        <span class="subHeaderMenuContent">按完成时间</span>
       </li>
-      <li class="item" id="subHeaderMenuOption" ng-hide="menu2Disabled4" ng-click="sortByCheckTime()">
-        <span id="subHeaderMenuContent">按审核时间</span>
+      <li class="item subHeaderMenuOption" ng-hide="menu2Disabled4" ng-click="sortByCheckTime()">
+        <span class="subHeaderMenuContent">按审核时间</span>
       </li>
     </ul>
 
 
-  <ion-content class="content has-subheader" style="margin-top: 20px; background-color: #EEEEEE">
+  <ion-content class="content has-subheader" style="background-color: #EEEEEE">
   <!-- <ion-content class="content has-subheader" overflow-scroll="true"> -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>

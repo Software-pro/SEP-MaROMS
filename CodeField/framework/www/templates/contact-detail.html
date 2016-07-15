@@ -1,17 +1,18 @@
 <ion-view view-title="{{user.name}}">
   <ion-content class="has-header">
-    <div class="list" style="margin-top: 16px; background-color: #EEEEEE;">
-
-      <div class="item" style="margin-top: 13px;">
-        <p style="font-size: 130%;">
+    <div class="list" style="background-color: #EEEEEE;">
+    
+      <div class="itemDivider"></div>
+      <div class="item">
+        <p style="height: 30px; font-size: 30px; margin-bottom: 5px;">
           {{user.name}}
         </p>
-        <p> {{user.position}} </p>
+        <p style="color: #AAAAAA;"> {{user.position}} </p>
       </div>
       
       <div class = "item item-button-right"> 
 
-        <p style="font-size: 130%; margin-bottom: 12px;">
+        <p style="font-size: 130%;">
         {{user.phoneNum}}
         </p>
 
@@ -20,15 +21,15 @@
         </button>
 
       </div>
-
+      <div class="itemDivider"></div>
       <div ng-switch="myInformation.position">
 
         <div ng-switch-when="派单员">
-          <div class="item" style="margin-top: 13px;" ng-click = "personalFormClicked()">
+          <div class="item" ng-click = "personalFormClicked()">
             报修单查看
           </div>
-
-          <div class="item" style="margin-top: 13px;" ng-click="markClicked()">
+          <div class="itemDivider"></div>
+          <div class="item" ng-click="markClicked()">
             分值统计查看
           </div>
 
@@ -37,11 +38,11 @@
         <div ng-switch-when="管理员">
 
 
-          <div class="item" style="margin-top: 13px;" ng-click = "personalFormClicked()">
+          <div class="item" ng-click = "personalFormClicked()">
             报修单查看
           </div>
-
-          <div class="item" style="margin-top: 13px;" ng-click="markClicked()">
+          <div class="itemDivider"></div>
+          <div class="item" ng-click="markClicked()">
             分值统计查看
           </div>
 
