@@ -42,26 +42,30 @@
         服务项目： {{form.type}}
       </div>
 
-      <div class = "item item-icon-right" ng-click="" style="margin-top: 13px;"> 
+      <div class = "item item-icon-right"  style="margin-top: 13px;"> 
         工程师： {{form.engineerName}}
         <div ng-switch="myinformation.position">
           <div ng-switch-when = "派单员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i>
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i> 
+            <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{engineer.id}}"></i> -->
           </div>
           <div ng-switch-when = "管理员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i>
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="engineerDetail()"></i> 
+            <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{engineer.id}}"></i> -->
           </div>
         </div>
       </div>
 
-      <div class="item item-icon-right" ng-click="">
+      <div class="item item-icon-right" >
         销售人员： {{form.salesName}}
         <div ng-switch="myinformation.position">
           <div ng-switch-when = "派单员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesDetail()"></i>
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesmanDetail()"></i> 
+            <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{salesman.id}}"></i> -->
           </div>
           <div ng-switch-when = "管理员">
-            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesDetail()"></i>
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" ng-click="salesmanDetail()"></i> 
+            <!--<i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD" href = "#/app/contacts/{{salesman.id}}"></i> -->
           </div>
         </div>
       </div>
