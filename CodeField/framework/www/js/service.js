@@ -130,14 +130,10 @@ angular.module('starter.service',[])
       return null;
     },
     getByNo:function(no){
-      for(var i = 0; i < 3; i ++){  
-        alert(no + " vs " + users[i].NO);
-        if(no == users[i].NO){
-          alert("same");
+      for(var i = 0; i < users.length; i ++){  
+     //   alert(no + " vs " + users[i].NO);
+        if(no === users[i].NO){
           return users[i];
-        }
-        else{
-          alert("not equal");
         }
       }
       return null;
