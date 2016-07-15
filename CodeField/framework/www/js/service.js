@@ -137,6 +137,15 @@ angular.module('starter.service',[])
         }
       }
       return null;
+    },
+    getByName:function(name, position) {
+      for(var i = 0; i<users.length; i++){
+        if(name == users[i].name && position == users[i].position) {
+          return users[i];
+        }
+      }
+      alert("未找到对应信息！");
+      return;
     }
   };
 })

@@ -366,7 +366,8 @@ angular.module('starter.controllers',['ionic'])
 
 .controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation) {
   $scope.myinformation = MyInformation.get(); 
-  $scope.data={}
+  $scope.data={};
+  $scope.images = [];
   $scope.editphonenum = function() {
     $ionicPopup.show({
       template: "<input type = 'phonenum' ng-model='data.phonenum'>",
@@ -486,13 +487,10 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,MyInformation,$ionicHistory) {
-
-  $scope.form = Forms.get($stateParams.formId);
-  
-  $scope.finish =function(){
-    $state.go('detail-feedback');
-  }
+.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,MyInformation,$ionicHistory, PersonalInformations) {
+ $scope.form = Forms.get($stateParams.formId);
+//  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
+//  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
 $scope.myinformation = MyInformation.get();
   // TODO:get form by 'http'
    $scope.yearNums = [];
@@ -506,6 +504,14 @@ $scope.myinformation = MyInformation.get();
   for(var i=0; i<15; i++)
       $scope.hourNums.push([i+8].join(""));
     $scope.minuteNums=[0, 10, 20, 30, 40, 50];
+    $scope.engineerDetail = function() {
+      $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
+      $location.path("app/contacts/" + $scope.engineer.id);
+    }
+    $scope.salesmanDetail = function() {
+      $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
+      $location.path("app/contacts/" + $scope.salesman.id);
+    } 
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
   }
@@ -625,7 +631,7 @@ $scope.myinformation = MyInformation.get();
       success = 0;
     }
     if(success == 0) {
-      alert("有必填信息未填！");
+      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
       return;
     }
     if(success == 1) {
@@ -756,14 +762,12 @@ else  {
       success = 0;
     }
     if(success == 0 ) {
+      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
       return;
     }
     if(success == 1) {
       alert("添加成功！");
       $ionicHistory.goBack();
-    }
-    else {
-      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
     }
   }
   $scope.cancelNewForm = function(){
@@ -780,7 +784,7 @@ else  {
 	}
 })
 
-.controller("newtactsCtrl",function($scope, $ionicHistory) {
+.controller("newtactsCtrl",function($scope, $ionicHistory, $http) {
 
   $scope.saveNewTacts = function() {
     var success = 1;
@@ -789,6 +793,7 @@ else  {
     var UserName = document = document.getElementById("userName");
     var UserPhone = document = document.getElementById("userPhone");
     var UserType= document = document.getElementById("userType");  // int!
+    var UserTypeInt = 0
     if(UserId.value.length == 0)
     {
       success = 0;
@@ -809,14 +814,64 @@ else  {
     {
       success = 0;
     }
-    if(success == 1) {
-      alert("添加成功！");
-      $ionicHistory.goBack();
-    }
-    else {
-      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
+    else
+    {
+       if(success == 0)
+       {
+          alert("请将内容填写完整后再提交！‘*'表示必填内容.");
+       }
+       else
+       {
+           //translatetype();
+           if(UserType.value == "管理员")
+           {
+              UserTypeInt = 0;
+           }
+           else if(UserType.value == "工程师")
+           {
+               UserTypeInt = 1;
+           }
+           else if(UserType.value == "销售员")
+           {
+               UserTypeInt = 2;
+           }
+           else
+           {
+               UserTypeInt = 3;
+           }
+          $http({
+            method:'POST',
+            url:'http://115.159.225.109/users/create',
+            data:{
+              'id':UserId.value,
+              'name':UserName.value,
+              'password':UserPassword.value,
+              'phone':UserPhone.value,
+              'type':UserTypeInt
+            },
+            headers:{
+              'Content-Type':'application/json'
+            },
+            withCredentials:'true'    
+          })
+        .then(function(response) {
+          console.log(response);
+          if(response.data['success']) {
+            alert("添加成功！");
+            $ionicHistory.goBack();
+          }
+          else
+          {
+            alert("添加失败！");
+          }
+      },
+      function(response) {
+        console.log(response);
+        alert("发送失败！请检查联接!")
+      });
     }
   }
+}
 
    $scope.cancelNewTacts = function() {
    var tmp = document.getElementsByTagName("input");
@@ -855,7 +910,7 @@ else  {
       .then(function(response) {
         console.log(response);
         if(response.data['success']) {
-          $myinformation =  MyInformation.setPosition("工程师");
+          $myinformation =  MyInformation.setPosition("管理员");
           $state.go("app.viewForms");
         }
         else
