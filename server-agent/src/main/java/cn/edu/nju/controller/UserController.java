@@ -83,4 +83,21 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/users/delete/{id}",method = RequestMethod.GET,produces = "application/json")
+    public SuccessResponse deleteUser(@PathVariable("id") long id){
+
+        SuccessResponse successResponse = new SuccessResponse(true);
+
+        if(!(userRespository.exists(id))){
+            successResponse=new SuccessResponse(false);
+            successResponse.setInfo("The user do not exists.");
+            return successResponse;
+        }
+
+        userRespository.delete(id);
+
+        return successResponse;
+    }
+
+
 }
