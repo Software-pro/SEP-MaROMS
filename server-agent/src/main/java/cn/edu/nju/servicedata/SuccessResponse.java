@@ -5,6 +5,7 @@ package cn.edu.nju.servicedata;
  */
 public class SuccessResponse {
     private boolean success;
+    private String info;
 
     public boolean isSuccess() {
         return success;
@@ -12,6 +13,14 @@ public class SuccessResponse {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     public SuccessResponse(boolean success){

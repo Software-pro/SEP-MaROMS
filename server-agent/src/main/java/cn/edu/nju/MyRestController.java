@@ -40,7 +40,6 @@ public class MyRestController {
         BufferedReader reader=request.getReader();
         while ((line=reader.readLine())!=null){
             line=line.replace("name","id");
-            System.out.println(line);
             buff.append(line);
         }
 

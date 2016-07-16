@@ -8,6 +8,10 @@ import cn.edu.nju.servicedata.UserInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Created by Wei Zhai on 2016/7/14.
  */
@@ -18,6 +22,31 @@ public class UserController {
 
     @Autowired
     UserRespository userRespository;
+
+    @RequestMapping(value = "/users",method = RequestMethod.GET,produces = "application/json")
+    public List<UserInfoResponse> findUsers(){
+
+        Iterable<User> all = userRespository.findAll();
+
+        List<UserInfoResponse> users=new ArrayList<UserInfoResponse>();
+
+        for (Iterator<User> user=all.iterator();user.hasNext();){
+            UserInfoResponse userInfo=new UserInfoResponse();
+
+            User user_t=user.next();
+            userInfo.setPhone(user_t.getPhone());
+            userInfo.setName(user_t.getName());
+            userInfo.setId(user_t.getId());
+            userInfo.setType(user_t.getType());
+
+            users.add(userInfo);
+        }
+
+        System.out.println();
+
+        return users;
+
+    }
 
     @RequestMapping(value = "/users/create",method = RequestMethod.POST,produces = "application/json")
     public SuccessResponse createUser(@RequestBody UserCreateRequest userCreateRequest){
@@ -38,10 +67,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/users/{userName}",method = RequestMethod.GET,produces = "application/json")
-    public UserInfoResponse findUserInfo(@PathVariable("userName") String userName){
+    @RequestMapping(value = "/users/{id}",method = RequestMethod.GET,produces = "application/json")
+    public UserInfoResponse findUserInfo(@PathVariable("id") long id){
 
-        User result = userRespository.findByName(userName);
+        User result = userRespository.findById(id);
 
         UserInfoResponse userInfoResponse=new UserInfoResponse();
 
