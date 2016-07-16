@@ -9,18 +9,47 @@
       <ion-item class="item item-icon-right" ng-repeat="message_info in message_infos" type="item-text-wrap" 
          ng-click="itemClicked(message_info.type,message_info.id)">
      
-				<h2>{{message_info.title}}</h2>
-				<p>{{message_info.full_information}}</p>
 
-          <i class="icon ion-ios7-telephone-outline"><span class={{message_info.format}}> {{message_info.statename}}</span>
-          </i>
-    <script>
-      if(message_info.type === 5){
-        
-      }
-  </script>
+      <div ng-switch = "{{message_info.type}}">
+           <div ng-switch-when = "0">
+            <h2> 分值改动通知</h2>
+            <p> 报修单{{message_info.id}}的分值被修改了</p>
+          </div>
+          <div ng-switch-when = "1">
+            <h2>密码找回通知</h2>
+            <p>用户{{message_info.id}}申请找回登录密码</p>
+          </div>
+          <div ng-switch-when = "2">
+            <h2>密码修改通知</h2>
+            <p>用户{{message_info.id}}修改了登录密码</p>
+          </div>
+          <div ng-switch-when = "3">
+            <h2>新任务通知</h2>
+            <p>你被分配了{{message_info.id}}相关任务</p>
+            </div>
+            <div ng-switch-when = "4">
+            <h2>状态更新通知</h2>
+            <p>你的报修单{{message_info.id}}相关任务</p>
+            </div>
+            <div ng-switch-when = "5">
+            <h2>删除通知</h2>
+            <p>你的报修单{{message_info.id}}被删除</p>
+            </div>
 
-		    <i id = "arrow{{message_info.type}}" class="icon ion-chevron-right icon-accessory"></i>
+        <div ng-switch = "{{message_info.tag}}">
+        <div ng-switch-when = 0>
+           <i class = "icon ion-ios7-telephone-outline"><span class = "badge  icon-badge assertive">未读</span></i>
+           </div>
+        <div ng-switch-when = 1>
+           <i class = "icon ion-ios7-telephone-outline"><span class = "badge icon-badge" >已读</span></i>
+           </div>
+   
+     <div ng-switch = "{{message_info.type}}">
+      <div ng-switch-when = 5><!-- 报修单删除的通知没有详情页面 -->
+      </div>
+      <div ng-switch-default>
+		    <i id = "arrow" class="icon ion-chevron-right icon-accessory"></i>
+        </div>
 		</ion-item>
 	</div>
 

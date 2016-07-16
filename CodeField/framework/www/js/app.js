@@ -157,7 +157,27 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
         }
       }
     })
+    
+    .state('app.message-newtask',{
+      url:'/message/3/:formId',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/viewForms-detail.html',
+          controller:'formDetailCtrl'
+        }
+      }
+    })
 
+    
+    .state('app.message-statechange',{
+      url:'/message/4/:formId',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/viewForms-detail.html',
+          controller:'formDetailCtrl'
+        }
+      }
+    })
 
      .state('app.mark', {
       url:'/mark:personId',

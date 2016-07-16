@@ -461,12 +461,10 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-.controller("messageCtrl",function($scope,Message_infos,$state,$stateParams) {
-  var arrow = document.getElementById('arrow5');
- // alert("haha");
- // arrow.style.display = 'none';
+.controller("messageCtrl",function($scope,Message_infos,Forms,$state,$stateParams) {
   $scope.message_infos = Message_infos.all(); 
   $scope.doRefresh = function(){
+    $scope.message_infos = Message_infos.all(); 
     $scope.$broadcast('scroll.refreshComplete');
   }
    // $scope.form = Forms.get($stateParams.id);
@@ -485,16 +483,15 @@ angular.module('starter.controllers',['ionic'])
       $state.go('app.message-passwordmodify',{contentid:id});
     }
     else if(type === 3){
-      $state.go('app.viewForms-detail',{contentid:id});
+      var form = Forms.getByNo(id);
+     $state.go('app.message-newtask',{formId:form.id});
 
     }
     else if(type === 4){
-      $state.go('app.viewForms-detail',{contentid:id});
+      var form = Forms.getByNo(id);
+     $state.go('app.message-statechange',{formId:form.id});
     }
     else if(type === 5){
-  var arrow = document.getElementById('arrow5');
-       arrow.style.display = 'none';
-   // $scope.form = Forms.get($stateParams.id);
     }
 
   }
