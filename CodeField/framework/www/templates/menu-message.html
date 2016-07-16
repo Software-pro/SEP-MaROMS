@@ -13,27 +13,33 @@
       <div ng-switch = "{{message_info.type}}">
            <div ng-switch-when = "0">
             <h2> 分值改动通知</h2>
-            <p> 报修单{{message_info.id}}的分值被修改了</p>
+            <p> {{message_info.time}} </p>
+            <p>报修单{{message_info.id}}的分值被修改了</p>
           </div>
           <div ng-switch-when = "1">
             <h2>密码找回通知</h2>
+            <p>{{message_info.time}} </p>
             <p>用户{{message_info.id}}申请找回登录密码</p>
           </div>
           <div ng-switch-when = "2">
             <h2>密码修改通知</h2>
-            <p>用户{{message_info.id}}修改了登录密码</p>
+            <p>{{message_info.time}}</p>
+            <p> 用户{{message_info.id}}修改了登录密码</p>
           </div>
           <div ng-switch-when = "3">
             <h2>新任务通知</h2>
-            <p>你被分配了{{message_info.id}}相关任务</p>
+            <p>{{message_info.time}}</p>
+            <p> 你被分配了{{message_info.id}}相关任务</p>
             </div>
             <div ng-switch-when = "4">
             <h2>状态更新通知</h2>
-            <p>你的报修单{{message_info.id}}相关任务</p>
+            <p>{{message_info.time}}</p>
+            <p> 你的报修单{{message_info.id}}有新动态</p>
             </div>
             <div ng-switch-when = "5">
             <h2>删除通知</h2>
-            <p>你的报修单{{message_info.id}}被删除</p>
+            <p>{{message_info.time}}</p>
+            <p> 你的报修单{{message_info.id}}被删除</p>
             </div>
 
         <div ng-switch = "{{message_info.tag}}">
