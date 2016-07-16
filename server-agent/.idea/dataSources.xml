@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3095687779">
+    <data-source source="LOCAL" name="H2 - database" uuid="b7830370-1af3-4f1e-a96c-9b0aaae3c32d">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:E:\zavier\database</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -31,5 +31,7 @@ public class Message {
     @NotNull
     private long receiverId;
 
+    private String time;
+
     private String content;
 }

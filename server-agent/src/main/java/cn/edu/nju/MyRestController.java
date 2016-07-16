@@ -32,20 +32,4 @@ public class MyRestController {
         return return_str;
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST,produces = "application/json")
-    public String login(HttpServletRequest request) throws Exception{
-
-        StringBuffer buff=new StringBuffer();
-        String line = null;
-        BufferedReader reader=request.getReader();
-        while ((line=reader.readLine())!=null){
-            line=line.replace("name","id");
-            buff.append(line);
-        }
-
-        return_str= HttpRequest.sendPost("http://"+host+":8080/login",buff.toString());
-
-        return return_str;
-    }
-
 }
