@@ -130,15 +130,15 @@
 /*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
 
 /*button-bar形式呈现，**“|  全部  | 按创建时间 |  降序  |”**/
-#subHeaderBar
+.subHeaderBar
 {
 	height: 35px;
 	border-width: 0;
 }
 /*.button-bar .button 点击之后展开对应的菜单栏（list）*/
-#subHeaderMenu
+.subHeaderMenu
 {
-/*	font-size: 14px;
+	font-size: 14px;
 	border-width: 0px;
 	border-bottom-width: 1px;
 	padding: 0;
@@ -146,12 +146,12 @@
 	padding-bottom: 2px;
 	width: 32%;
 	height: 100%;
-	border-color: #DDDDDD;*/
+	border-color: #DDDDDD;
 }
 /*用于模拟菜单栏的list*/
 .subHeaderMenuList
 {
-	top: 78px;
+	top: 50px;
 }
 /*用于模拟菜单栏的list的item*/
 .subHeaderMenuOption
@@ -292,8 +292,23 @@
 
 
 .rectangle {
-width: 100px;
-height: 20px;
-background: #00BFFF;
-float: left;
-} 
+	width: 100px;
+	height: 20px;
+	background: #00BFFF;
+	float: left;
+}
+.itemDivider {
+	height: 13px;
+	padding: 0px;
+	margin: 0px;
+	border-width: 0px;
+}
+
+.mark-detail
+{
+	padding-top: 0; 
+	padding-bottom: 0; 
+	padding-left: 30px; 
+	color: #AAAAAA; 
+	border-width: 0; 
+}
