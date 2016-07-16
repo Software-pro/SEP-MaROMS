@@ -1,3 +1,7 @@
+var userId = "";
+var userPwd = "";
+var userPosition = "";
+
 angular.module('starter.service',[])
 
 .factory('PersonalInformations', function() {
@@ -148,6 +152,37 @@ angular.module('starter.service',[])
       return;
     }
   };
+})
+
+.factory('UserService',function(){
+  var set = function(id,pwd){
+    userId = id;
+    userPwd = pwd;
+    if(userId === "admin"){
+        userPosition = "管理员";
+      }
+      else if(userId[0] === 'p' && userId[1] === 'd'){
+        userPosition = "派单员";
+      }
+      else if(userId[0] === 'g' && userId[1] === 'c'){
+        userPosition = "工程师";
+      }
+      else if(userId[0] === 'x' && userId[1] === 's'){
+        userPosition = "销售员";
+      }
+    }
+    return{
+    setUser:function(id,pwd){
+      set(id,pwd);
+    },
+    getUserId:function(){
+      return userId;
+    },
+    getUserPosition:function(){
+      return userPosition;
+    }
+
+  }
 })
 
 .factory('Forms', function() {

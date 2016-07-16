@@ -943,13 +943,13 @@ else  {
   }
 })
 
-.controller("LoginCtrl",function($scope,$state,$http,MyInformation) {
+.controller("LoginCtrl",function($scope,$state,$http,MyInformation,UserService) {
    $scope.postuser = function() {
-    
      //     $state.go("app.viewForms");
     var user = document.getElementById("userName").value;
     var userPass = document.getElementById("userPassword").value;
    // alert(user + " " + userPass + " " + errorBorder);
+
     if (user == "" || userPass == "") {
       alert("请输入用户名和密码");
     }
@@ -970,6 +970,7 @@ else  {
       .then(function(response) {
         console.log(response);
         if(response.data['success']) {
+          UserService.setUser(user,userPass);
           $myinformation =  MyInformation.setPosition("派单员");
           $state.go("app.viewForms");
         }
@@ -1295,8 +1296,9 @@ else  {
 })
 
 
-.controller('markModifyCtrl', function($scope,$stateParams,Forms,$location){
-
+.controller('markModifyCtrl', function($scope,$stateParams,Forms,$location,UserService){
+  //alert(UserService.getUserPosition());
+  //alert(UserService.getUserId());
  // $scope.form = Forms.get($stateParams.formId);
  // alert($stateParams.contentid);
   $scope.form = Forms.getByNo($stateParams.contentid);
