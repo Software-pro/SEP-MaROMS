@@ -24,6 +24,11 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
+    .state('login',{
+      url:'/login',
+      templateUrl:'templates/login.html',
+      controller:'LoginCtrl'
+    })
 
    .state('app', {
     url: '/app',
@@ -72,6 +77,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
        }
     })
 
+    
     .state('app.message',{
        url:'/message',
        views: {
@@ -92,6 +98,25 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
+    .state('app.contacts-newtacts',{
+      url:'/contacts/contacts-newtacts',
+      views: {
+        'menuContent' : {
+          templateUrl:'templates/contacts-newtacts.html',
+          controller:'newtactsCtrl'
+        }
+      }
+    })
+
+    .state('app.viewForms-editForm',{
+      url:'/viewForms/viewForms-editForm',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/viewForms-editForm.html',
+          controller: 'editFormCtrl'
+        }
+      }
+    })
     .state('app.viewForms-detail',{
       url:'/viewForms/:formId',
       views: {
@@ -100,9 +125,81 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
           controller: 'formDetailCtrl'
         }
       }
-    });
+    })
+
+    .state('app.message-modify',{
+      url:'/message/0/:contentid',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/message-modify.html',
+          controller:'markModifyCtrl'
+        }
+      }
+
+    })
+
+    .state('app.message-passwordforget',{
+      url:'/message/1/:contentid',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/message-passwordforget.html',
+          controller:'messagePasswordForgetCtrl'
+        }
+      }
+    })
+
+    .state('app.message-passwordmodify',{
+      url:'/message/2/:contentid',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/message-passwordmodify.html',
+          controller:'messagePasswordModifyCtrl'
+        }
+      }
+    })
 
 
-    //$urlRouterProvider.otherwise('/app/viewForms');     
+     .state('app.mark', {
+      url:'/mark:personId',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/mark.html',
+          controller:'markCtrl'
+        }
+      }
+    })
+
+     .state('password-modify',{
+      url:'/password-modify',
+        cache:false,//该页面无缓冲
+        templateUrl:'templates/password-modify.html',
+        controller:'passwordModifyCtrl'
+     }) 
+
+     .state('password-forget',{
+      url:'/password-forget',
+        cache:false,//该页面无缓冲
+        templateUrl:'templates/password-forget.html',
+        controller:'passwordForgetCtrl'
+     })
+
+     .state('app.detail-personalForms',{
+      url:'/detail-personalForms/:personId',
+      views: {
+        'menuContent': {
+          templateUrl:'templates/detail-personalForms.html',
+          controller: 'PersonalFormsCtrl'
+        }
+      }
+    })
+
+     .state('detail-feedback',{
+      url:'/detail-feedback',
+      cache:false,
+      templateUrl:'templates/detail-feedback.html',
+      controller:'feedbackCtrl'
+     })
+     ;
+    $urlRouterProvider.otherwise('/login');     
 
 })

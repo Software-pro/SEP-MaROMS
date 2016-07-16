@@ -1,0 +1,32 @@
+<ion-view view-title="分值统计">
+  <ion-content class="has-header">
+    <div class="list" style="margin-top: 10px; border-width: 0;">
+<!-- 
+    前后端数据传输内容： （每条）（按时间顺序排列）
+    1. 当前分值；
+    2. 改动分值；
+    3. 日期;
+    4. ju ti nei rong
+    -->
+
+    <div style="border: solid; border-width: 2px; border-color: #DDDDDD; margin: 10px;">
+    	<div ng-repeat="markChange in markList" ng-click="detailClicked($index)">
+            <ion-item class="item" type="item-text-wrap" style="border-width: 0;">
+                <div style="float: left;">
+                    <div class="rectangle" style="width: {{markChange.value}}px;"></div>
+                    <span style="margin-left:5px; color: #00BFFF; font-size: 13px;font-weight:bold;">{{markChange.value}}</span>
+                </div>
+                <div class="item-note" style="float: right;">{{markChange.time}}</div>
+            </ion-item>
+            <div ng-hide="markChange.hide">
+                <ion-item ng-repeat="detail in markList[$index].details"  type="item-text-wrap" class="mark-detail">
+                    - {{detail.content}}  <span style="font-weight:bold;" >{{detail.change}}</span>
+                </ion-item>
+            </div>
+        </div>
+        </div>
+
+	</div>
+	<div style="text-align:center; color:#AAAAAA;">没有更多啦 >_< </div>
+  </ion-content>
+</ion-view>

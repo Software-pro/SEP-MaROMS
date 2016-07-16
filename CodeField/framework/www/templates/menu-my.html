@@ -1,27 +1,35 @@
 <ion-view view-title="我" id="fontSet">
   <ion-content class="scroll-content has-header stable-bg light" >
    <div class="list">
-   <li class="item item-divider"></li>
-      <ion-item class="item-avatar" type="item-text-wrap" href="#/informations/{{information.id}}">
-			<img ng-src="{{information.img}}">
-			<h2>{{information.name}}</h2>
-			<p>{{information.position}}</p>
+   <div class="itemDivider"></div>
+      <ion-item class="item-avatar" type="item-text-wrap" >
+			<img ng-src="{{myinformation.img}}" on-hold="editphoto()">
+			<h2>{{myinformation.name}}</h2>
+			<p>{{myinformation.position}}</p>
 		</ion-item>
-   	<!--<li class="item-avatar">
-   		<img src="img/photo.jpg">
-   		<p>翟微</p>
-   		<p>工程师</p>
-   	</li> -->
-   	<li class="item item-divider"></li>
-   	<li class="item item-button-right">
-   		<h2>个人信息</h2>
-   		<a class="button button-clear icon ion-ios-arrow-right"></a>
-   	</li>
-   	<li class="item item-divider"></li>
-   	<li class="item item-button-right">
-   		<h2>分值统计</h2>
-   		<a class="button button-clear icon ion-ios-arrow-right"></a>
-   	</li>
+   	<div class="itemDivider"></div>
+   	 <ion-item class="item"  type="item-text-wrap" on-hold="editphonenum()"> 
+   		<h2>{{myinformation.phonenum}}</h2>
+   	</ion-item>
+   	<div class="itemDivider"></div>
+   	<ion-item class="item item-icon-right"  type="item-text-wrap" ng-click="markClicked()"> 
+      <h2>分值统计</h2>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+   	
+
+    <div class="itemDivider"></div>
+    <ion-item class = "item item-icon-right" type = "item-text-wrap" href ="#/password-modify">
+      <h2>修改密码</h2>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+
+    <div class="itemDivider"></div>
+    <ion-item class = "item item-icon-right" type = "item-text-wrap" href ="#/login">
+      <h2>退出登录</h2>
+  <!--     <i class="icon ion-chevron-right icon-accessory"></i> -->
+    </ion-item>
+
   </div>
  </ion-content>
 </ion-view>

@@ -1,66 +1,65 @@
 <ion-view view-title="新建表单" id="fontSet">
   <ion-nav-buttons side = "right">
-    <button class = "button button-clear" ng-click = "cancelNewForm()" >清除</button>
+    <button class = "button button-clear" ng-click = "cancelNewForm()">清除</button>
   </ion-nav-buttons>
+ 
   <ion-content>
-    <div class = "list  list-inset">
+    <div class = "list list-inset">
       
-        <label class = "item item-input">
-        <div class="input-label">客户姓名</div>
-        <input type = "text" placeholder = "请填写客户的姓名">
+        <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder1}};">
+        <div class="input-label">客户姓名<span style="color: red;">  *</span></div>
+        <input id = "clientName" type = "text" placeholder = "请填写客户的姓名">
       </label>
 
-       <label class = "item item-input">
-        <div class="input-label">客户电话</div>
-        <input type = "text" placeholder = "请填写客户的电话">
+       <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder2}};">
+        <div class="input-label">客户电话<span style="color: red;">  *</span></div>
+        <input id = "clientPhone" type = "text" placeholder = "请填写客户的电话">
       </label>
 
-      <label class = "item item-input">
-        <div class="input-label">客户地址</div>
-
-        <input type = "text" placeholder = "请填写详细地址">
+      <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder3}};">
+        <div class="input-label">客户地址<span style="color: red;">  *</span></div>
+        <input id = "clientAddr" type = "text" placeholder = "请填写详细地址">
       </label>
 
-      <label class = "item item-input">
-        <div class="input-label">客户单位</div>
-        <input type = "text" placeholder = "请填写工作地址">
-      </label>
-      
-      <label class = "item item-input">
-        <div class="input-label">销售人员</div>
-        <input type = "text" placeholder = "请填写销售员的姓名">
+      <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder4}};">
+        <div class="input-label">客户单位<span style="color: red;">  *</span></div>
+        <input id="clientUnit" type = "text" placeholder = "请填写工作地址">
       </label>
       
-      <label class = "item item-input">
-        <div class="input-label">工程师</div>
-        <input type = "text" placeholder = "请填写工程师的姓名">
+      <label class = "item item-input" style="border-style: solid; border-color:  {{errorBorder5}};">
+        <div class="input-label">销售人员<span style="color: red;">  *</span></div>
+        <select id="salesName">
+            <option selected>请选择销售人员</option>
+            <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
+          </select>
       </label>
       
 
-    <!--   <div class="list">
- -->
-        <label class="item item-input">
+      <label class = "item item-input" style="border-style: solid; border-color:{{errorBorder6}};">
+        <div class="input-label">工程师<span style="color: red;">  *</span></div>
+        <select id="engineerName" >
+            <option selected>请选择工程师</option>
+            <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}}</option>
+        </select>
+      </label>
+      
+
+        <label class="item item-input" style="border-style: solid; border-color: {{errorBorder7}};">
           <div class="input-label">
-            服务项目
+            服务项目<span style="color: red;">  *</span>
           </div>
-          <select id="selectbar">
-            <option>
-            <option selected>服务一</option>
-            <option>服务二</option>
-            <option>服务三</option>
+          <select id="serviceName">
+            <option selected>请选择服务</option>
+            <option>上门服务</option>
+            <option>送货服务</option>
+            <option>安装调试</option>
           </select>
         </label>
 
-<!--  <div class="padding">
-            <button class="button button-block button-positive" ng-click="signIn(user)">
-              Sign-In
-            </button>
-            <p class="text-center">
-              <a href="#/forgot-password">Forgot password</a>
-            </p>
-          </div>
-    <div> -->
-       
+         <label class = "item item-input" style="border-style: solid; border-color: {{errorBorder8}};">
+            <div class="input-label">分值<span style="color: red;">  *</span></div>
+            <input id="mark" type = "text" placeholder = "请填写分值(只能取0-100)">
+        </label>
          <div class="padding">
               <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "saveNewForm()">保存提交</button>
           </div>

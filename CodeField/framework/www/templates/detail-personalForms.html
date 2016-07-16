@@ -1,31 +1,13 @@
-<ion-view view-title="报修单" id="fontSet">
-
-    <ion-nav-buttons  side = "right"  >
-        <button  ng-show = " isShow" class = "button button-clear icon ion-plus-round" ng-click = "newFormClicked()"></button>
-    </ion-nav-buttons> 
-  <div class="bar bar-subheader bar-stable item-input-inset search-bar">
-    <label class="item-input-wrapper" style="border:none">
-      <i class="ion-search dark"></i>
-      <input type="text" placeholder="搜索" ng-model="searchcontent" ng-click="searchClick()" ng-change="searchContentChange()">
-    </label>
-    <button class="button-clear search-cancel" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
-  </div>
-
-  <!-- filter bar -->
-  <div class="bar bar-subheader bar-light filter-subHeader" style="margin-top: 43px;">
-    <div class="button-bar">
-      <!-- TODO：
-            需要后台协助对选择框的内容进行整改。。
-            如：未接单的报修单不允许按照审核时间排序 
-      -->
-
-      <a class="button button-clear" id="subHeaderMenu" ng-click="menu1()" style="background-color: {{menu1Color}}">{{menu1Content}}<i class="ion-ios-arrow-down"></i></a>
-      <a class="button button-clear" id="subHeaderMenu" ng-click="menu2()" style="background-color: {{menu2Color}}">{{menu2Content}}<i class="ion-ios-arrow-down"></i></a>
-
-      <!-- TODO:　
-        需要js协助对下面button进行点击之后的改变动作：
-        降序 <-> 升序 -->
-      <a class="button button-clear" id="subHeaderMenu" ng-click="menu3()">{{menu3Content}}<i class="{{menu3Icon}}"></i></a>
+<!-- 
+    针对派单员和管理员，可以查看到这个人（工程师or销售人员）的所有报修单
+ -->
+<ion-view view-title="查看个人报修单" id="fontSet" style="background-color: #EEEEEE; margin-top: 15px;">
+  <div class="bar bar-subheader bar-light filter-subHeader">
+    <div class="button-bar subHeaderBar">
+      <!-- 副菜单栏： -->
+      <a class="button button-clear subHeaderMenu" ng-click="menu1()" style="background-color: {{menu1Color}}">{{menu1Content}}<i class="ion-ios-arrow-down"></i></a>
+      <a class="button button-clear subHeaderMenu" ng-click="menu2()" style="background-color: {{menu2Color}}">{{menu2Content}}<i class="ion-ios-arrow-down"></i></a>
+      <a class="button button-clear subHeaderMenu" ng-click="menu3()">{{menu3Content}}<i class="{{menu3Icon}}"></i></a>
     </div>
   </div> 
   
@@ -35,7 +17,7 @@
  <!--  <ion-pane class="has-subheader"  ng-hide="menu1Var" ng-click="clickmenu()"> -->
   <!-- <script id="menu1.html" type="text/ng-template">
   <ion-popover-view> -->
-    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu1Var" style="margin-top: 27px;">
+    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu1Var" style="margin-top: 30px;">
       <li class="item subHeaderMenuOption" ng-click="chooseAll()">
         <span class="subHeaderMenuContent">全部</span>
       </li>
@@ -56,7 +38,7 @@
   </script> -->
 <!--   </ion-pane> -->
 
-    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu2Var" style="margin-top: 27px;">
+    <ul class="list has-subheader subHeaderMenuList" ng-hide="menu2Var" style="margin-top: 30px;">
       <li class="item subHeaderMenuOption" ng-click="sortByCreateTime()">
         <span class="subHeaderMenuContent">按创建时间</span>
       </li>
@@ -71,22 +53,13 @@
       </li>
     </ul>
 
-<!-- <ion-pane>
-      <ion-content ng-click="action()">
-          <h2 ng-click="action()">$ionicBackdrop</h2>
-      </ion-content>
-  </ion-pane> -->
 
-
-
-  <ion-content class="content has-subheader form-list" style="margin-top: 33px; ">
+  <ion-content class="content has-subheader" style="background-color: #EEEEEE">
   <!-- <ion-content class="content has-subheader" overflow-scroll="true"> -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>
     <ion-list>
-
-    <div id="formsHeader"></div>
-    
+    <div id="personalFormsHeader"></div>
       <ion-item class="item" ng-repeat="form in forms | orderBy:order | filter: searchFilter" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
         <p id="formTitle" >
           报修单号：{{form.NO}}

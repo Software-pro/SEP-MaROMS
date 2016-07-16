@@ -6,25 +6,43 @@
  *（我隐约记得看到了lib中的字体设置？？或许兼容ios or Android自带的字体）
  * 目前（因为浏览器自带的字体太丑了）使用微软雅黑or华文细黑
  */
+ .item .icon .icon-badge{
+ 	position:absolute;
+ 	top:12px;
+ 	right:160px;
+ 	font-size:10px;
+ }
+
 #fontSet
 {
 	font-family: 'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;
 }
 
 /*对原来的蓝色的bar进行修改（重写）*/
+/*menu bar*/
 .bar.bar-positive
 {
     background-color: #00BFFF; 
-    border-top-width: 10px;
-    border-bottom-width: 10px;
+    /*border-top-width: 10px;
+    border-bottom-width: 10px;*/
     border-color: #00BFFF;
-    height: 60px;
+    /*height: 60px;*/
     line-height: 0px;
     /*padding-bottom: 10px;
     margin-bottom: 10px;*/
 
     background-image: linear-gradient(0deg, #0c60ee, #0c60ee 50%, transparent 50%);
     color: #fff;
+}
+
+.button.button-positive.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #00BFFF; 
+
+      /*font-size: 15px;*/
+      font-family: 'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',华文细黑,STHeiti,MingLiu;
 }
 
 /*checkbox背景颜色*/
@@ -51,7 +69,8 @@
 .bar.bar-positive .title
 {
 	color: #fff;
-	font-size: 25px;
+	/*font-size: 10px;*/
+
 }
 
 #blackFont
@@ -67,25 +86,11 @@
 
 
 /****************   css in menu   ********************/
-#menuHeader
+/*#menuHeader
 {
 	background-color:#00BFFF;
 	height: 50px;
-}
-
-/***********/
-#searchBar
-{
-	margin-top: 16px;
-	/*height:20px;*/
-	border:none;
-}
-
-/*********/
-#headerdistance
-{
-	margin-top: 16px;
-}
+}*/
 
 /******** for contacts-detail *******/
 #heaherdistancecontactdetail
@@ -123,41 +128,33 @@
 
 /****************   css in viewForms.html   ********************/
 /*副标题--固定在nav-bar下方、用来对报修单进行筛选排序*/
-#subHeader
-{
-	height: 46px;
-	margin-top: 16px;
-	border-top-width: 10px;
-	border-bottom-width: 1px;
-	border-color: #EEEEEE;
-	padding: 0; 
-/*	padding-left: 25px;
-	padding-right: 25px;*/
-}
+
 /*button-bar形式呈现，**“|  全部  | 按创建时间 |  降序  |”**/
-#subHeaderBar
+.subHeaderBar
 {
 	height: 35px;
 	border-width: 0;
 }
 /*.button-bar .button 点击之后展开对应的菜单栏（list）*/
-#subHeaderMenu
+.subHeaderMenu
 {
 	font-size: 14px;
-	border-width: 0;
+	border-width: 0px;
+	border-bottom-width: 1px;
 	padding: 0;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	width: 32%;
 	height: 100%;
+	border-color: #DDDDDD;
 }
 /*用于模拟菜单栏的list*/
-#subHeaderMenuList
+.subHeaderMenuList
 {
-	margin-top: 17px
+	top: 50px;
 }
 /*用于模拟菜单栏的list的item*/
-#subHeaderMenuOption
+.subHeaderMenuOption
 {
 	height: 37px;
 	padding-left: 10%;
@@ -167,9 +164,9 @@
 	border-color: #DDDDDD;
 }
 /*用于模拟菜单栏的list的item中的文字css*/
-#subHeaderMenuContent
+.subHeaderMenuContent
 {
-	font-size: 14px;
+	/*font-size: 14px;*/
 	color: #444444;
 	font-weight: lighter;
 	/*margin-top: auto;
@@ -219,4 +216,99 @@
 	background-color: #AAAAAA;
 	padding: 0;
 	margin: 0;
+}
+
+/***********************form-list****************************/
+.form-list
+{
+	background-color: #EEEEEE; 
+}
+/*******************filter-subHeader*************************/
+.filter-subHeader
+{
+	height: 36px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-color: #EEEEEE;
+	padding: 0; 
+}
+
+
+/********************search-bar**********************/
+.search-bar
+{
+	/*margin-top: 16px;*/
+	/*height:20px;*/
+	border:none;
+}
+
+.search-cancel
+{
+	padding-left: 10.667px;
+	color: #00BFFF;
+}
+
+
+/*********************contacts***************************/
+.alpha_sidebar{
+	position: absolute;
+	width: 10px;
+	right: 0px;
+	margin: 5px;
+	/*margin: 0 auto;*/
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	/*margin-bottom: 10%;*/
+	/*top: 15%;*/
+	/*right: 	10px;*/
+	z-index: 100000
+}
+.alpha_sidebar li{
+	color: #49afcd;/*
+	margin-bottom: 6px;*/
+	cursor: pointer;
+	/*font-size: 12px;*/
+	height: 15px;
+}
+
+
+.alpha_list{
+	padding-right: 22px;
+}
+
+#unreadCountBackground
+{
+	width: 20px;
+	height: 20px;
+	background-color:#00BFFF;
+	border-radius:25px;
+	position:absolute;
+	right: 25px;
+	top: 20px;
+}
+
+
+
+
+.rectangle {
+	width: 100px;
+	height: 20px;
+	background: #00BFFF;
+	float: left;
+}
+.itemDivider {
+	height: 13px;
+	padding: 0px;
+	margin: 0px;
+	border-width: 0px;
+}
+
+.mark-detail
+{
+	padding-top: 0; 
+	padding-bottom: 0; 
+	padding-left: 30px; 
+	color: #AAAAAA; 
+	border-width: 0; 
 }
