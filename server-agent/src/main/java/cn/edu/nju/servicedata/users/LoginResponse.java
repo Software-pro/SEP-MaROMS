@@ -1,4 +1,6 @@
-package cn.edu.nju.servicedata;
+package cn.edu.nju.servicedata.users;
+
+import cn.edu.nju.servicedata.SuccessResponse;
 
 /**
  * Created by dell on 2016/7/16.

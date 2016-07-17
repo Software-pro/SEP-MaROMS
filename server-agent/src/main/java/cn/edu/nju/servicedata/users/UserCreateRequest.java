@@ -1,11 +1,12 @@
-package cn.edu.nju.servicedata;
+package cn.edu.nju.servicedata.users;
 
 /**
- * Created by Wei Zhai on 2016/7/14.
+ * Created by dell on 2016/7/14.
  */
-public class UserInfoResponse {
+public class UserCreateRequest {
     protected long id;
     protected String name;
+    protected String password;
     protected String phone;
     protected int type;
 
@@ -23,6 +24,14 @@ public class UserInfoResponse {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {

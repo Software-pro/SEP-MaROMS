@@ -10,5 +10,4 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface UserRespository extends CrudRepository<User, Long>{
-    User findById(long id);
 }

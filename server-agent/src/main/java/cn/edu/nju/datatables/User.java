@@ -1,6 +1,8 @@
 package cn.edu.nju.datatables;
 
 
+import cn.edu.nju.servicedata.users.UserCreateRequest;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -88,6 +90,15 @@ public class User {
         this.password=password;
         this.phone=phone;
         this.type=type;
+    }
+
+    public User(UserCreateRequest userCreateRequest){
+        this.id=userCreateRequest.getId();
+        this.name=userCreateRequest.getName();
+        this.password=userCreateRequest.getPassword();
+        this.phone=userCreateRequest.getPhone();
+        this.type=userCreateRequest.getType();
+
     }
 
 }

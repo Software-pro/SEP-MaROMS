@@ -1,16 +1,11 @@
-package cn.edu.nju.servicedata;
-
-import cn.edu.nju.datatables.RepairForm;
-
-import java.util.Date;
+package cn.edu.nju.servicedata.repairforms;
 
 /**
- * Created by dell on 2016/7/16.
+ * Created by dell on 2016/7/17.
  */
-public class RepairFormInfoResponse {
+public class RepairFormEditRequest {
 
     private long id;
-    private int status;
     private int grade;
     private int service;
 
@@ -24,49 +19,12 @@ public class RepairFormInfoResponse {
     private long distributorId;
     private String distributorPhone;
 
-    private Date creationTime;
-    private Date receivedTime;
-    private Date completedTime;
-    private Date checkedTime;
-
-    public RepairFormInfoResponse(RepairForm repairForm){
-
-        this.id = repairForm.getId();
-        this.status = repairForm.getStatus();
-        this.grade = repairForm.getGrade();
-        this.service = repairForm.getService();
-
-        this.clientName = repairForm.getClientName();
-        this.clientPhone = repairForm.getClientPhone();
-        this.clientWorkplace = repairForm.getClientWorkplace();
-        this.clientAddress = repairForm.getClientAddress();
-
-        this.engineerId = repairForm.getEngineerId();
-        this.salerId = repairForm.getSalerId();
-        this.distributorId = repairForm.getDistributorId();
-        this.distributorPhone = repairForm.getDistributorPhone();
-
-        this.creationTime = repairForm.getCreationTime();
-        this.receivedTime = repairForm.getReceivedTime();
-        this.completedTime = repairForm.getCompletedTime();
-        this.checkedTime = repairForm.getCheckedTime();
-
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public int getGrade() {
@@ -147,38 +105,5 @@ public class RepairFormInfoResponse {
 
     public void setDistributorPhone(String distributorPhone) {
         this.distributorPhone = distributorPhone;
-    }
-
-
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
-    }
-
-    public Date getReceivedTime() {
-        return receivedTime;
-    }
-
-    public void setReceivedTime(Date receivedTime) {
-        this.receivedTime = receivedTime;
-    }
-
-    public Date getCompletedTime() {
-        return completedTime;
-    }
-
-    public void setCompletedTime(Date completedTime) {
-        this.completedTime = completedTime;
-    }
-
-    public Date getCheckedTime() {
-        return checkedTime;
-    }
-
-    public void setCheckedTime(Date checkedTime) {
-        this.checkedTime = checkedTime;
     }
 }

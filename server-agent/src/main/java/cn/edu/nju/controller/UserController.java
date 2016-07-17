@@ -3,6 +3,10 @@ package cn.edu.nju.controller;
 import cn.edu.nju.datatables.User;
 import cn.edu.nju.respository.UserRespository;
 import cn.edu.nju.servicedata.*;
+import cn.edu.nju.servicedata.users.PasswordChangeRequest;
+import cn.edu.nju.servicedata.users.PasswordResponse;
+import cn.edu.nju.servicedata.users.UserCreateRequest;
+import cn.edu.nju.servicedata.users.UserInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,18 +33,9 @@ public class UserController {
         List<UserInfoResponse> users = new ArrayList<UserInfoResponse>();
 
         for (Iterator<User> user = all.iterator(); user.hasNext(); ) {
-            UserInfoResponse userInfo = new UserInfoResponse();
-
             User user_t = user.next();
-            userInfo.setPhone(user_t.getPhone());
-            userInfo.setName(user_t.getName());
-            userInfo.setId(user_t.getId());
-            userInfo.setType(user_t.getType());
-
-            users.add(userInfo);
+            users.add(new UserInfoResponse(user_t));
         }
-
-        System.out.println();
 
         return users;
 
@@ -51,24 +46,18 @@ public class UserController {
 
         SuccessResponse successResponse;
 
-        if (userRespository.exists(new Long(userCreateRequest.getId()))){
-            successResponse=new SuccessResponse(false);
+        if (userRespository.exists(userCreateRequest.getId())) {
+            successResponse = new SuccessResponse(false);
             successResponse.setInfo("The userId exists.");
 
             return successResponse;
         }
 
-        long id = userCreateRequest.getId();
-        String name = userCreateRequest.getName();
-        String password = userCreateRequest.getPassword();
-        String phone = userCreateRequest.getPhone();
-        int type = userCreateRequest.getType();
-
-        User user = new User(id, name, password, phone, type);
+        User user = new User(userCreateRequest);
 
         User check = userRespository.save(user);
 
-        return new SuccessResponse(check.getId() == id);
+        return new SuccessResponse(check.getId() == user.getId());
 
     }
 
@@ -76,16 +65,9 @@ public class UserController {
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json")
     public UserInfoResponse findUserInfo(@PathVariable("id") long id) {
 
-        User result = userRespository.findById(id);
+        User user = userRespository.findOne(id);
 
-        UserInfoResponse userInfoResponse = new UserInfoResponse();
-
-        userInfoResponse.setId(result.getId());
-        userInfoResponse.setName(result.getName());
-        userInfoResponse.setPhone(result.getPhone());
-        userInfoResponse.setType(result.getType());
-
-        return userInfoResponse;
+        return new UserInfoResponse(user);
 
     }
 
@@ -109,9 +91,9 @@ public class UserController {
     @RequestMapping(value = "/users/password/{id}", method = RequestMethod.GET, produces = "application/json")
     public PasswordResponse findPassword(@PathVariable("id") long id) {
 
-        PasswordResponse passwordResponse=new PasswordResponse();
+        PasswordResponse passwordResponse = new PasswordResponse();
 
-        if (!(userRespository.exists(new Long(id)))) {
+        if (!(userRespository.exists(id))) {
             passwordResponse.setSuccess(false);
             passwordResponse.setInfo("The user do not exist.");
 
@@ -119,7 +101,7 @@ public class UserController {
         }
 
         passwordResponse.setSuccess(true);
-        passwordResponse.setPassword(userRespository.findById(id).getPassword());
+        passwordResponse.setPassword(userRespository.findOne(id).getPassword());
 
         return passwordResponse;
     }
@@ -127,18 +109,18 @@ public class UserController {
     @RequestMapping(value = "/users/password/change", method = RequestMethod.POST, produces = "application/json")
     public SuccessResponse changePassword(@RequestBody PasswordChangeRequest passwordChangeRequest) {
 
-        SuccessResponse successResponse=new SuccessResponse();
+        SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(userRespository.exists(new Long(passwordChangeRequest.getId())))) {
+        if (!(userRespository.exists(passwordChangeRequest.getId()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The user do not exist.");
 
             return successResponse;
         }
 
-        User user = userRespository.findById(passwordChangeRequest.getId());
+        User user = userRespository.findOne(passwordChangeRequest.getId());
 
-        if (!(user.getPassword().equals(passwordChangeRequest.getOldPassword()))){
+        if (!(user.getPassword().equals(passwordChangeRequest.getOldPassword()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The old password is wrong.");
 

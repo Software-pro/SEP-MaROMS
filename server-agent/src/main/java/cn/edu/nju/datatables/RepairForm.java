@@ -1,5 +1,8 @@
 package cn.edu.nju.datatables;
 
+import cn.edu.nju.servicedata.repairforms.RepairFormCreateRequest;
+import cn.edu.nju.servicedata.repairforms.RepairFormEditRequest;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -24,6 +27,9 @@ public class RepairForm {
     private int grade;
 
     @NotNull
+    private int service;
+
+    @NotNull
     private String clientName;
 
     @NotNull
@@ -34,9 +40,6 @@ public class RepairForm {
 
     @NotNull
     private String clientAddress;
-
-    @NotNull
-    private int service;
 
     @NotNull
     private long engineerId;
@@ -74,6 +77,44 @@ public class RepairForm {
         this.distributorPhone = distributorPhone;
 
         this.creationTime = creationTime;
+        this.receivedTime=receivedTime;
+        this.completedTime=completedTime;
+        this.checkedTime=checkedTime;
+    }
+
+    public RepairForm(RepairFormCreateRequest repairFormCreateRequest) {
+        this.grade = repairFormCreateRequest.getGrade();
+        this.service = repairFormCreateRequest.getService();
+
+        this.clientName = repairFormCreateRequest.getClientName();
+        this.clientPhone = repairFormCreateRequest.getClientPhone();
+        this.clientWorkplace = repairFormCreateRequest.getClientWorkplace();
+        this.clientAddress = repairFormCreateRequest.getClientAddress();
+
+        this.engineerId = repairFormCreateRequest.getEngineerId();
+        this.salerId = repairFormCreateRequest.getSalerId();
+        this.distributorId = repairFormCreateRequest.getDistributorId();
+        this.distributorPhone = repairFormCreateRequest.getDistributorPhone();
+
+        this.creationTime = repairFormCreateRequest.getCreationTime();
+    }
+
+    public RepairForm(RepairFormEditRequest repairFormEditRequest) {
+
+        this.id=repairFormEditRequest.getId();
+        this.grade = repairFormEditRequest.getGrade();
+        this.service = repairFormEditRequest.getService();
+
+        this.clientName = repairFormEditRequest.getClientName();
+        this.clientPhone = repairFormEditRequest.getClientPhone();
+        this.clientWorkplace = repairFormEditRequest.getClientWorkplace();
+        this.clientAddress = repairFormEditRequest.getClientAddress();
+
+        this.engineerId = repairFormEditRequest.getEngineerId();
+        this.salerId = repairFormEditRequest.getSalerId();
+        this.distributorId = repairFormEditRequest.getDistributorId();
+        this.distributorPhone = repairFormEditRequest.getDistributorPhone();
+
     }
 
     public long getId() {
