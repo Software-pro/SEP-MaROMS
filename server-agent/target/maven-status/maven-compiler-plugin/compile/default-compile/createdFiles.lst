@@ -1,1 +1,4 @@
+cn\edu\nju\servicedata\RepairFormInfoResponse.class
+cn\edu\nju\respository\RepairFormRespository.class
+cn\edu\nju\controller\RepairFormController.class
 cn\edu\nju\servicedata\LoginRequest.class

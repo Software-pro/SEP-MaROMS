@@ -1,9 +1,7 @@
 package cn.edu.nju;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import cn.edu.nju.servicedata.TestRequest;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +28,12 @@ public class MyRestController {
     public String hello(){
         return_str= HttpRequest.sendGet("http://"+host+":8080/","");
         return return_str;
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.POST,produces = "application/json")
+    public String test(@RequestBody TestRequest testRequest){
+        System.out.println(testRequest.getDate());
+        return "hehe";
     }
 
 }

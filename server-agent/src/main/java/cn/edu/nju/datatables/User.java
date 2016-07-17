@@ -82,10 +82,11 @@ public class User {
 
     public User(){}
 
-    public User(long id, String name, String password, int type){
+    public User(long id, String name, String password, String phone,int type){
         this.id=id;
         this.name=name;
         this.password=password;
+        this.phone=phone;
         this.type=type;
     }
 
