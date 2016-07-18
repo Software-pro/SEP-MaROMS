@@ -3,6 +3,9 @@
   <head>
     <title>RepairOnline</title>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Progma" content="Progma">
+    <meta http-equiv="cache-control" content="public">
+    <meta http-equiv="expries" content="1">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
 
@@ -21,20 +24,21 @@
    <div class="container">
    <form class="form-signin" role="form">
       
+        <h1 class="page-header" style="text-align:center;">新建报修单</h1>
         <h3>客户姓名<span style="color: red;">  *</span></h3>
-        <input id = "clientName" type = "text" class="form-control" placeholder = "请填写客户的姓名">
+        <input id = "clientName" type = "text" class="form-control" placeholder = "请填写客户的姓名" required="required" data-cache="true">
 
         <h3>客户电话<span style="color: red;">  *</span></h3>
-        <input id = "clientPhone" type = "text" class="form-control" placeholder = "请填写客户的电话">
+        <input id = "clientPhone" type = "text" class="form-control" placeholder = "请填写客户的电话" required="required">
 
         <h3>客户地址<span style="color: red;">  *</span></h3>
-        <input id = "clientAddr" type = "text" class="form-control" placeholder = "请填写详细地址">
+        <input id = "clientAddr" type = "text" class="form-control" placeholder = "请填写详细地址" required="required">
 
         <h3>客户单位<span style="color: red;">  *</span></h3>
-        <input id="clientUnit" type = "text" class="form-control" placeholder = "请填写工作地址">
+        <input id="clientUnit" type = "text" class="form-control" placeholder = "请填写工作地址" required="required">
       
         <h3>销售人员<span style="color: red;">  *</span></h3>
-        <select id="salesName" class="form-control">
+        <select id="salesName" class="form-control" required="required">
             <option selected>请选择销售人员</option>
             <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
           </select>
@@ -56,23 +60,110 @@
             <option>安装调试</option>
           </select>
 
+         <h3>分值<span style="color: red;">  *</span></h3>
+        <input id="mark" type = "text" class="form-control" placeholder = "请填写分值（只能取0-100）">
+       
         <br></br>
-         <div class="padding">
-              <button type="submit" class="btn btn-lg btn-primary btn-block"  style = "background-color:#00BFFF;border-color:#00BFFF">保存提交</button>
+         <div style="margin:0 auto;width:200px;">
+              <button type="button" class="btn btn-lg btn-primary"  style = "background-color:#00BFFF;border-color:#00BFFF">保存提交</button>
           </div>
         
           
     </form>
 
-      <!-- <form class="form-signin" role="form">
-        <h3>用户名:</h3>
-        <input id="UserId" type="text" class="form-control" placeholder="输入用户名" >
-        <h3>密码:</h3>
-        <input id="password" type="password" class="form-control" placeholder="输入密码" >
-        <br></br>
-        <a class="btn btn-lg btn-primary btn-block" style="background-color:#00bfff" type="submit">登录</a>
-      </form> -->
-
     </div>
+    <script>
+     $(document).ready(function(){
+      
+       
+        $(".btn").click(function(){
+         var clientname = $(".form-control")[0];
+         var clientphone = $(".form-control")[1];
+         var clientaddr = $(".form-control")[2];
+         var clientunit = $(".form-control")[3];
+         var salesid = $(".form-control")[4];
+         var engineerid = $(".form-control")[5];
+         var service = $(".form-control")[6];
+         var mark = $(".form-control")[7];
+         var success = 1;
+         if(clientname.value.length == 0)
+         {
+            success = 0;
+         }
+         if(clientphone.value.length == 0)
+         {
+            success = 0;
+         }
+         if(clientaddr.value.length == 0)
+         {
+            success = 0;
+         }
+         if(clientunit.value.length == 0)
+         {
+            success = 0;
+         }
+         if(salesid.value == "请选择销售人员")
+         {
+            success = 0;
+         }
+         if( engineerid.value === "请选择工程师")
+         {
+            success = 0;
+         }
+         if(service.value === "请选择服务")
+         {
+            success = 0;
+         }
+         if(mark.value.length == 0 && mark.value.length >= 4)
+         {
+            success = 0;
+         }
+         if(success == 0)
+         {
+            alert("请将内容填写完整后再提交！‘*'表示必填内容.");
+            //return;
+            window.location.reload();
+         }
+         else
+         {
+            alert("hehe!");
+            window.location.reload();
+           /* $.ajax({
+               type:"POST",
+               url:"http://115.159.225.109/login",
+               dataType:"json",
+               contentType:"application/json",               
+               data:JSON.stringify({
+                "id":id.value,
+                "password":password.value
+               }),
+
+               success:function(data){
+                if(data['type'] != 3)
+                {
+                  console.log(data);
+                  alert("没有权限！");
+                }
+                else
+                {
+                  if(data['success'] == true)
+                  {
+                   window.location="./templates/index.html";
+                  }
+                  else
+                  {
+                   alert("用户名或密码错误！");
+                  }
+                }
+               },
+               error:function(data){
+                  alert("网络连接失败！");
+               },
+            });
+*/
+          }             
+        });
+  });
+ </script>
   </body>
   </html>
