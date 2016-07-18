@@ -39,6 +39,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.viewForms', {
       url: '/viewForms',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl: 'templates/menu-viewForms.html',
