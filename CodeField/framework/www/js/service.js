@@ -547,21 +547,49 @@ angular.module('starter.service',[])
   };
 })
 
-.factory('MyInformation',function() {
-  var myInformation = {
+.factory('MyInformation',function($http,UserService) {
+  /*var myInformation = {
     id:01,
     name:'翟微',
     position:'派单员',
     img:'img/photo1.jpg',
     phonenum: '12312341234',
     mark: 100
-  };
-  return {
-    get: function() {
-      return myInformation;
+  }; */
+  var myInformation;
+   return {
+    all: function(callback) {
+     //alert("userId: " + UserService.getUserId());
+      //alert("userId:  "+ userId);
+      $http.get(ipAddress + "/users/" + userId)
+      .success(function (response) {
+
+
+        var information = response;
+          var position;
+          if(information.type === 0)position = "管理员";
+          else if(information.type === 1)position = "工程师";
+          else if(information.type === 2)position = "销售员";
+          else if(information.type === 3)position = "派单员";
+          myInformation= {
+            "id":information.id,
+            "name":information.name,
+            "phoneNum":information.phone,
+            "position":position
+          };
+           console.log("get user " + myInformation.id);
+
+        //   alert("time1");
+        //    alert("in service.js "+users.length);
+            callback(myInformation);
+      })
+      .error(function (response) {
+        console.log("app getUsers Fail to get---error message : ", response.error);
+        alert("获取我的个人信息失败");
+      })
+      //alert("time2");
     },
-    setPosition: function(newPostiton) {
-      myInformation. position = newPostiton;
+    get: function() {
       return myInformation;
     }
   };

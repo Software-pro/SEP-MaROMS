@@ -70,6 +70,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.my',{
        url:'/my',
+       cache:false,
        views: {
          'menuContent': {
            templateUrl:'templates/menu-my.html',

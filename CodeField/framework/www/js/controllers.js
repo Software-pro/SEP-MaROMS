@@ -111,11 +111,11 @@ angular.module('starter.controllers',['ionic'])
 .controller('ViewFormsCtrl', function($scope, Forms, $state, $location, $ionicScrollDelegate, MyInformation) {
     $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
-    $scope.isShow = false;
+    /*$scope.isShow = false;
    $scope.myinformation = MyInformation.get();
       if($scope.myinformation.position === "派单员")  {
         $scope.isShow = true;
-      }
+      } */
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
       $scope.forms = Forms.all();
@@ -373,10 +373,15 @@ angular.module('starter.controllers',['ionic'])
     }
 })
 
-.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation) {
-  $scope.myinformation = MyInformation.get(); 
+.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation,UserService,$http) {
+  $scope.myinformation;
+   MyInformation.all(function(response) {
+    $scope.myinformation = response; 
+  
+
+});
+
   $scope.data={};
-  $scope.images = [];
   $scope.editphonenum = function() {
     $ionicPopup.show({
       template: "<input type = 'phonenum' ng-model='data.phonenum'>",
@@ -397,7 +402,10 @@ angular.module('starter.controllers',['ionic'])
       ]
     })
   }
-  $scope.editphoto = function() {
+  $scope.markClicked = function(){
+    $location.path("app/mark" + $scope.myinformation.id);
+  }
+  /*$scope.editphoto = function() {
     var hideSheet = $ionicActionSheet.show({
         titleText: "上传新头像",
         buttons: [
@@ -460,14 +468,12 @@ angular.module('starter.controllers',['ionic'])
         //alert("拍照错误：" + err);
       });
 
-    }
+    } */
   $scope.exit = function(){
     alert("haha");
     $state.go('/');
   }
-  $scope.markClicked = function(){
-    $location.path("app/mark" + $scope.myinformation.id);
-  }
+  
 })
 
 .controller("messageCtrl",function($scope,Message_infos,Forms,$state,$stateParams) {
@@ -1084,7 +1090,6 @@ Date.prototype.pattern=function(fmt) {
         console.log(response);
         if(response.data['success']) {
           UserService.setUser(user,userPass);
-          $myinformation =  MyInformation.setPosition("派单员");
           $state.go("app.viewForms");
         }
         else
