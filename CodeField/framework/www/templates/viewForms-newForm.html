@@ -30,7 +30,7 @@
         <div class="input-label">销售人员<span style="color: red;">  *</span></div>
         <select id="salesName">
             <option selected>请选择销售人员</option>
-            <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
+            <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}} (ID:{{user.id}})</option>
           </select>
       </label>
       
@@ -39,7 +39,7 @@
         <div class="input-label">工程师<span style="color: red;">  *</span></div>
         <select id="engineerName" >
             <option selected>请选择工程师</option>
-            <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}}</option>
+            <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}} (ID:{{user.id}})</option>
         </select>
       </label>
       

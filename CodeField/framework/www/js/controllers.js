@@ -747,9 +747,74 @@ else  {
   }
 })
 
-.controller("newFormCtrl",function($scope,$state, PersonalInformations,$ionicHistory) {
-  $scope.users = PersonalInformations.all();
+.controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,$ionicHistory,$http) {
+
+//date类型转成string
+<!--      
+/**      
+* 对Date的扩展，将 Date 转化为指定格式的String      
+* 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符      
+* 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)      
+* eg:      
+* (new Date()).pattern("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423      
+* (new Date()).pattern("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04      
+* (new Date()).pattern("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04      
+* (new Date()).pattern("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04      
+* (new Date()).pattern("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18      
+*/        
+//var date = new Date();      
+//window.alert(date.pattern("yyyy-MM-dd hh:mm:ss"));   
+// -->   
+
+Date.prototype.pattern=function(fmt) {         
+    var o = {         
+    "M+" : this.getMonth()+1, //月份         
+    "d+" : this.getDate(), //日         
+    "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时         
+    "H+" : this.getHours(), //小时         
+    "m+" : this.getMinutes(), //分         
+    "s+" : this.getSeconds(), //秒         
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
+    "S" : this.getMilliseconds() //毫秒         
+    };         
+    var week = {         
+    "0" : "\u65e5",         
+    "1" : "\u4e00",         
+    "2" : "\u4e8c",         
+    "3" : "\u4e09",         
+    "4" : "\u56db",         
+    "5" : "\u4e94",         
+    "6" : "\u516d"        
+    };         
+    if(/(y+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
+    }         
+    if(/(E+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);         
+    }         
+    for(var k in o){         
+        if(new RegExp("("+ k +")").test(fmt)){         
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
+        }         
+    }         
+    return fmt;         
+}    
+
+  //   alert(new Date());
+
+// var time = new Date();
+// var time2 = time;
+// alert(time2.pattern("yyyy-MM-dd EEE hh:mm:ss"));
+
+
+  $scope.users = [];
+  PersonalInformations.all(function(response){
+    $scope.users = response;
+  });
   $scope.saveNewForm = function(){
+     var distributorId = UserService.getUserId();
+   //  alert(distributorId);
+    alert(distributorId);
     var success = 1;//success=1说明报修单新建成功。
     var clientname = document.getElementById("clientName");
     var clientphone = document.getElementById("clientPhone");
@@ -759,6 +824,7 @@ else  {
     var engineername = document.getElementById("engineerName");
     var service = document.getElementById("serviceName");
     var mark = document.getElementById("mark");
+     var serviceId;
     if(clientname.value.length == 0) {
       $scope.errorBorder1 = 'red';
       success = 0;
@@ -808,7 +874,6 @@ else  {
       return;
     }
     if(success == 1) {
-     var serviceId;
      if(service.value === "上门服务") {
         serviceId = 0;
      }
@@ -818,29 +883,63 @@ else  {
      else if(service.value === "安装调试") {
         serviceId = 2;
      }
-   /* $http({
+    // var time = new Date().format("yyyy-MM-dd HH:mm:ss");
+
+     var engineerId = new Array();
+     var salerId = [];
+     var tag = 0;
+     for(var i = 0, j = 0; i < engineername.value.length - 1; i ++){
+         if(tag === 1){
+
+          engineerId.push(engineername.value[i]);
+   //       alert(engineerId.value[j]);
+          j ++;
+         }
+   //      alert(engineername.value[i]);
+         if(engineername.value[i] === ':'){
+         // alert(engineername.value[i]);
+          tag = 1;
+         }
+     }
+     //alert(engineerId.length);
+     //alert(engineerId.join(""));
+     tag = 0;
+     for(var i = 0, j = 0; i < salesname.value.length - 1; i ++){
+      if(tag === 1){
+        salerId.push(salesname.value[i]);
+        j ++;
+      }
+      if(salesname.value[i] === ':'){
+        tag = 1;
+      }
+
+     }
+     alert(salerId.join(""));
+
+    $http({
         method:'POST',
         url:'http://115.159.225.109/repairforms/create',
          data:{
-         'clientName': clientname.value,
-         'clientPhone': clientphone.value,
-         ''
+          'grade': mark.value,
+          'service':serviceId,
+          'clientName': clientname.value,
+          'clientPhone': clientphone.value,
+          'clientWorkplace':clientunit.value,
+          'clientAddress':clientAddr.value,
+          'engineerId':parseInt(engineerId.join("")),
+          'salerId':parseInt(salerId.join("")),
+          'distributorId':(distributorId),
+          'creationTime':new Date()
         },
         headers:{
           'Content-Type':'application/json'
         },
         withCredentials:'true'    
-      }) */
-    // var clientname = document.getElementById("clientName");
-    // var clientphone = document.getElementById("clientPhone");
-    // var clientunit= document.getElementById("clientUnit");
-    // var clientaddr = document.getElementById("clientAddr");
-    // var salesname = document.getElementById("salesName");
-    // var engineername = document.getElementById("engineerName");
-    // var service = document.getElementById("serviceName");
-    // var mark = document.getElementById("mark");
- 
-     alert("New Form created!");
+      }) 
+      .then(function(response){
+        console.log(response);
+      })
+
      $ionicHistory.goBack(-1);
     }
   }
