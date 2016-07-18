@@ -5,28 +5,33 @@ angular.module('starter.controllers',['ionic'])
   $scope.count = Message_infos.getUnreadCount();
 })
 
- .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate) {
+ .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate,$http) {
 //  var content = document.getElementById("searchphone");
-  $scope.users = PersonalInformations.all();
+  $scope.users=[];
+  var users;
+  PersonalInformations.all(function(response){
+    $scope.users=response;
 
-  var users = $scope.users;
+     users = $scope.users;
+    var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $scope.alphabet = iterateAlphabet();
+    var tmp = {};
+    for(var i = 0; i < str.length; i++)
+    {
+      var nextChar = str.charAt(i);
+      tmp[nextChar] = [];
+    }
 
-  var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  $scope.alphabet = iterateAlphabet();
-  var tmp = {};
-  for(var i = 0; i < str.length; i++)
-  {
-    var nextChar = str.charAt(i);
-    tmp[nextChar] = [];
-  }
+    //Sort user list by first letter of name
+    for(i = 0; i < users.length; i++){
+      var letter=users[i].name.toUpperCase().charAt(0);
+      tmp[letter].push( users[i] );
+    }
+    $scope.sorted_users = tmp;
 
-
-  //Sort user list by first letter of name
-  for(i = 0; i < users.length; i++){
-    var letter=users[i].name.toUpperCase().charAt(0);
-    tmp[letter].push( users[i] );
-  }
-  $scope.sorted_users = tmp;
+  }); 
+  //$scope.users = PersonalInformations.all();
+   
 
   //Click letter event
   $scope.gotoList = function(id){
@@ -826,6 +831,15 @@ else  {
         },
         withCredentials:'true'    
       }) */
+    // var clientname = document.getElementById("clientName");
+    // var clientphone = document.getElementById("clientPhone");
+    // var clientunit= document.getElementById("clientUnit");
+    // var clientaddr = document.getElementById("clientAddr");
+    // var salesname = document.getElementById("salesName");
+    // var engineername = document.getElementById("engineerName");
+    // var service = document.getElementById("serviceName");
+    // var mark = document.getElementById("mark");
+ 
      alert("New Form created!");
      $ionicHistory.goBack(-1);
     }
@@ -853,7 +867,7 @@ else  {
     var UserName = document = document.getElementById("userName");
     var UserPhone = document = document.getElementById("userPhone");
     var UserType= document = document.getElementById("userType");  // int!
-    var UserTypeInt = 0
+    var UserTypeInt = 0;
     if(UserId.value.length == 0)
     {
       success = 0;
@@ -987,9 +1001,20 @@ else  {
   }
   
 })
-.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory){
+.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory, $ionicPopup,UserService){
   $scope.goback = function(){
     $state.go('app.my');
+  }
+  $scope.clearone = function(){
+    document.getElementById("old-password").value = "";
+
+  }
+  $scope.cleartwo = function(){
+    document.getElementById("new-password1").value = "";
+  }
+  $scope.clearthree = function(){
+    document.getElementById("new-password2").value = "";
+
   }
   $scope.ensure = function(){
   //    $state.go('app.my');
@@ -1003,21 +1028,47 @@ else  {
       alert("密码不能为空！");
       return;
     }
-    // if(prev.value != "123456"){
-    //   alert("原密码不正确！");
-    //   return;
-    // }
     if(after1.value != after2.value){
       alert("两次新密码不一致！");
       return;
     }
 
-    if(success == 1){
-      alert("密码修改成功！");
+    if(UserService.getUserPwd() != prev.value){
+      alert("原密码不正确！ 原密码：" + UserService.getUserPwd());
+      return;
+    }
+
+    UserService.changePassword(UserService.getUserId(), UserService.getUserPwd(),after1.value,
+            function () {
+              $ionicPopup.show({
+                title: "修改密码成功",
+                template: "请您重新登陆！",
+                scope: $scope,
+                buttons:[{
+                  text : "确定",
+                  type : "button-positive"
+                }]
+              }).then(function (res) {
+                $state.go('login');
+              });
+            },
+            function () {
+              $ionicPopup.show({
+                title: "修改密码失败",
+                template: "请您稍候重试！",
+                scope: $scope,
+                buttons:[{
+                  text : "确定",
+                  type : "button-positive"
+                }]
+              }).then(function (res) {
+                //$state.go('login');
+              });
+            })
       //这里需要与数据库交互，更新密码
 
       $ionicHistory.goBack();
-    }
+    
   }
 })
 .controller("passwordForgetCtrl",function($scope,$state){

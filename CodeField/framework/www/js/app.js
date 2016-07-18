@@ -49,6 +49,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.contacts',{
        url:'/contacts',
+       cache:false,
        views: {
          'menuContent': {
            templateUrl:'templates/menu-contacts.html',

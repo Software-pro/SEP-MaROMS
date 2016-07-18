@@ -1,131 +1,163 @@
 var userId = "";
 var userPwd = "";
 var userPosition = "";
+var ipAddress = "http://115.159.225.109";
 
 angular.module('starter.service',[])
 
-.factory('PersonalInformations', function() {
-  var users = [{
-    id: 0,
-    NO: 'pd00001',
-    position:'派单员',
-    phoneNum: '15812345678',
-    name:'Steven'
-  }, {
-    id: 1,
-    NO: 'gl00002',
-    position:'管理员',
-    phoneNum: '15812345678',
-    name:'Emma'
-  }, {
-    id: 2,
-    NO: 'pd00003',
-    position:'派单员',
-    phoneNum: '15812345678',
-    name:'Sara'
-  },{
-    id: 3,
-    NO: 'gc00001',
-    position:'工程师',
-    phoneNum: '15812345678',
-    name:'David'
-  }, {
-    id: 4,
-    NO: 'xs00002',
-    position:'销售员',
-    phoneNum: '15812345678',
-    name:'Paul'
-  }, {
-    id: 5,
-    NO: 'pd00003',
-    position:'派单员',
-    phoneNum: '15812345678',
-    name:'Lucy'
-  },{
-    id: 6,
-    NO: 'xs00001',
-    position:'销售员',
-    phoneNum: '15812345678',
-    name:'Mary'
-  }, {
-    id: 7,
-    NO: 'gl00002',
-    position:'管理员',
-    phoneNum: '15812345678',
-    name:'Martin'
-  }, {
-    id: 8,
-    NO: 'xs00002',
-    position:'销售员',
-    phoneNum: '15812345678',
-    name:'Mack jack'
-  }, {
-    id: 9,
-    NO: 'gc00003',
-    position:'工程师',
-    phoneNum: '15812345678',
-    name:'Amy'
-  },{
-    id: 10,
-    NO: 'pd00001',
-    position:'派单员',
-    phoneNum: '15812345678',
-    name:'Sam'
-  }, {
-    id: 11,
-    NO: 'gc00002',
-    position:'工程师',
-    phoneNum: '15812345678',
-    name:'Lucis'
-  }, {
-    id: 12,
-    NO: 'gc00003',
-    position:'工程师',
-    phoneNum: '15812345678',
-    name:'Smith'
-  },{
-    id: 13,
-    NO: 'xs00101',
-    position:'销售员',
-    phoneNum: '15812345678',
-    name:'Casy'
-  }, {
-    id: 14,
-    NO: 'gl00102',
-    position:'管理员',
-    phoneNum: '15812345678',
-    name:'Ella'
-  }, {
-    id: 15,
-    NO: 'xs00102',
-    position:'销售员',
-    phoneNum: '15812345678',
-    name:'Edsheen'
-  }, {
-    id: 16,
-    NO: 'gc00103',
-    position:'工程师',
-    phoneNum: '15812345678',
-    name:'Taylor'
-  },{
-    id: 17,
-    NO: 'pd00101',
-    position:'派单员',
-    phoneNum: '15812345678',
-    name:'Hadson'
-  }, {
-    id: 18,
-    NO: 'gc00102',
-    position:'工程师',
-    phoneNum: '15812345678',
-    name:'James'
-  }];
+.factory('PersonalInformations', function($http) {
+  var users = [];
+  // var users = [{
+  //   id: 0,
+  //   NO: 'pd00001',
+  //   position:'派单员',
+  //   phoneNum: '15812345678',
+  //   name:'Steven'
+  // }, {
+  //   id: 1,
+  //   NO: 'gl00002',
+  //   position:'管理员',
+  //   phoneNum: '15812345678',
+  //   name:'Emma'
+  // }, {
+  //   id: 2,
+  //   NO: 'pd00003',
+  //   position:'派单员',
+  //   phoneNum: '15812345678',
+  //   name:'Sara'
+  // },{
+  //   id: 3,
+  //   NO: 'gc00001',
+  //   position:'工程师',
+  //   phoneNum: '15812345678',
+  //   name:'David'
+  // }, {
+  //   id: 4,
+  //   NO: 'xs00002',
+  //   position:'销售员',
+  //   phoneNum: '15812345678',
+  //   name:'Paul'
+  // }, {
+  //   id: 5,
+  //   NO: 'pd00003',
+  //   position:'派单员',
+  //   phoneNum: '15812345678',
+  //   name:'Lucy'
+  // },{
+  //   id: 6,
+  //   NO: 'xs00001',
+  //   position:'销售员',
+  //   phoneNum: '15812345678',
+  //   name:'Mary'
+  // }, {
+  //   id: 7,
+  //   NO: 'gl00002',
+  //   position:'管理员',
+  //   phoneNum: '15812345678',
+  //   name:'Martin'
+  // }, {
+  //   id: 8,
+  //   NO: 'xs00002',
+  //   position:'销售员',
+  //   phoneNum: '15812345678',
+  //   name:'Mack jack'
+  // }, {
+  //   id: 9,
+  //   NO: 'gc00003',
+  //   position:'工程师',
+  //   phoneNum: '15812345678',
+  //   name:'Amy'
+  // },{
+  //   id: 10,
+  //   NO: 'pd00001',
+  //   position:'派单员',
+  //   phoneNum: '15812345678',
+  //   name:'Sam'
+  // }, {
+  //   id: 11,
+  //   NO: 'gc00002',
+  //   position:'工程师',
+  //   phoneNum: '15812345678',
+  //   name:'Lucis'
+  // }, {
+  //   id: 12,
+  //   NO: 'gc00003',
+  //   position:'工程师',
+  //   phoneNum: '15812345678',
+  //   name:'Smith'
+  // },{
+  //   id: 13,
+  //   NO: 'xs00101',
+  //   position:'销售员',
+  //   phoneNum: '15812345678',
+  //   name:'Casy'
+  // }, {
+  //   id: 14,
+  //   NO: 'gl00102',
+  //   position:'管理员',
+  //   phoneNum: '15812345678',
+  //   name:'Ella'
+  // }, {
+  //   id: 15,
+  //   NO: 'xs00102',
+  //   position:'销售员',
+  //   phoneNum: '15812345678',
+  //   name:'Edsheen'
+  // }, {
+  //   id: 16,
+  //   NO: 'gc00103',
+  //   position:'工程师',
+  //   phoneNum: '15812345678',
+  //   name:'Taylor'
+  // },{
+  //   id: 17,
+  //   NO: 'pd00101',
+  //   position:'派单员',
+  //   phoneNum: '15812345678',
+  //   name:'Hadson'
+  // }, {
+  //   id: 18,
+  //   NO: 'gc00102',
+  //   position:'工程师',
+  //   phoneNum: '15812345678',
+  //   name:'James'
+  // }];
 
   return {
-    all: function() {
+    all: function(callback) {
+      $http.get(ipAddress + "/users")
+      .success(function (response) {
+        var userlist = response;
+        for(var i = 0; i < userlist.length; i ++){
+          var position;
+          if(userlist[i].type === 0)position = "管理员";
+          else if(userlist[i].type === 1)position = "工程师";
+          else if(userlist[i].type === 2)position = "销售员";
+          else if(userlist[i].type === 3)position = "派单员";
+          users[i] = {
+            "id":userlist[i].id,
+            "name":userlist[i].name,
+            "phoneNum":userlist[i].phone,
+            "position":position
+          };
+           console.log("get user " + users[i].id);
+
+        }
+        //   alert("time1");
+        //    alert("in service.js "+users.length);
+            callback(users);
+      })
+      .error(function (response) {
+        console.log("app getUsers Fail to get---error message : ", response.error);
+        alert("获取用户信息失败");
+      })
+      //alert("time2");
+    },
+    getall:function(){
       return users;
     },
     get: function(id) {
+     // alert(users.length);
       for (var i = 0; i < users.length; i++) {
            if (users[i].id === parseInt(id)) {
              return users[i];
@@ -154,7 +186,7 @@ angular.module('starter.service',[])
   };
 })
 
-.factory('UserService',function(){
+.factory('UserService',function($http){
   var set = function(id,pwd){
     userId = id;
     userPwd = pwd;
@@ -178,9 +210,41 @@ angular.module('starter.service',[])
     getUserId:function(){
       return userId;
     },
+    getUserPwd:function(){
+      return userPwd;
+    },
     getUserPosition:function(){
       return userPosition;
+    },
+
+    changePassword:function(username, oldPassword, newPassword, callbackSuccess, callbackError){
+   //   alert(username + " " + oldPassword + " " + newPassword);
+    var authentication = {
+      "id" : username,
+      "oldPassword" : oldPassword,
+      "newPassword": newPassword
     }
+    $http({
+      method : "POST",
+      url : ipAddress + "/users/password/change",
+      data : authentication,
+      headers:{
+        'Content-Type':"application/json"
+
+      }
+    }).success(function (data, status, config) {
+      console.log("修改密码成功")
+      callbackSuccess();
+    }).error(function (data, status,config) {
+      if (status == 401 || status == 422 || status == 403){
+        console.log("修改密码失败-客户端有误");
+      }
+      else{
+        console.log("修改密码失败-错误不明");
+      }
+      callbackError();
+    })
+  }
 
   }
 })
