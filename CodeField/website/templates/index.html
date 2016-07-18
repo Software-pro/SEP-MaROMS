@@ -40,13 +40,14 @@
         <h3>销售人员<span style="color: red;">  *</span></h3>
         <select id="salesName" class="form-control" required="required">
             <option selected>请选择销售人员</option>
-            <option ng-repeat = "user in users | filter:{position:'销售员'}">{{user.name}}</option>
+            <option ng-repeat = "user in users | filter:{position:'销售员'}">$user.name</option>
           </select>
       
+       <!-- ng-repeat = "user in users | filter:{position:'工程师'}" -->
         <h3>工程师<span style="color: red;">  *</span></h3>
         <select id="engineerName" class="form-control">
             <option selected>请选择工程师</option>
-            <option ng-repeat = "user in users | filter:{position:'工程师'}">{{user.name}}</option>
+            <option>{{users.name}}</option>
         </select>
       
 
@@ -73,9 +74,28 @@
 
     </div>
     <script>
+     var users=[];
      $(document).ready(function(){
-      
-       
+        
+        $.ajax({
+          type:"GET",
+          url:"http://115.159.225.109/users",
+          dataType:"json",
+          contentType:"application/json", 
+          success:function(data)
+          {
+            for(var i = 0; i < data.length; i++) {
+              var position;
+              if(data[i].type === 0)position = "管理员";
+              else if(data[i].type === 1)position = "工程师";
+              else if(data[i].type === 2)position = "销售员";
+              else if(data[i].type === 3)position = "派单员";
+          users[i] = {"id":data[i].id, "name":data[i].name, "phoneNum":data[i].phone, "position":position};
+        }
+        console.log(users[2]);
+      },
+    });
+          
         $(".btn").click(function(){
          var clientname = $(".form-control")[0];
          var clientphone = $(".form-control")[1];
