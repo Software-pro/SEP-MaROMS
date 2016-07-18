@@ -43,84 +43,6 @@ angular.module('starter.service',[])
   //   position:'派单员',
   //   phoneNum: '15812345678',
   //   name:'Lucy'
-  // },{
-  //   id: 6,
-  //   NO: 'xs00001',
-  //   position:'销售员',
-  //   phoneNum: '15812345678',
-  //   name:'Mary'
-  // }, {
-  //   id: 7,
-  //   NO: 'gl00002',
-  //   position:'管理员',
-  //   phoneNum: '15812345678',
-  //   name:'Martin'
-  // }, {
-  //   id: 8,
-  //   NO: 'xs00002',
-  //   position:'销售员',
-  //   phoneNum: '15812345678',
-  //   name:'Mack jack'
-  // }, {
-  //   id: 9,
-  //   NO: 'gc00003',
-  //   position:'工程师',
-  //   phoneNum: '15812345678',
-  //   name:'Amy'
-  // },{
-  //   id: 10,
-  //   NO: 'pd00001',
-  //   position:'派单员',
-  //   phoneNum: '15812345678',
-  //   name:'Sam'
-  // }, {
-  //   id: 11,
-  //   NO: 'gc00002',
-  //   position:'工程师',
-  //   phoneNum: '15812345678',
-  //   name:'Lucis'
-  // }, {
-  //   id: 12,
-  //   NO: 'gc00003',
-  //   position:'工程师',
-  //   phoneNum: '15812345678',
-  //   name:'Smith'
-  // },{
-  //   id: 13,
-  //   NO: 'xs00101',
-  //   position:'销售员',
-  //   phoneNum: '15812345678',
-  //   name:'Casy'
-  // }, {
-  //   id: 14,
-  //   NO: 'gl00102',
-  //   position:'管理员',
-  //   phoneNum: '15812345678',
-  //   name:'Ella'
-  // }, {
-  //   id: 15,
-  //   NO: 'xs00102',
-  //   position:'销售员',
-  //   phoneNum: '15812345678',
-  //   name:'Edsheen'
-  // }, {
-  //   id: 16,
-  //   NO: 'gc00103',
-  //   position:'工程师',
-  //   phoneNum: '15812345678',
-  //   name:'Taylor'
-  // },{
-  //   id: 17,
-  //   NO: 'pd00101',
-  //   position:'派单员',
-  //   phoneNum: '15812345678',
-  //   name:'Hadson'
-  // }, {
-  //   id: 18,
-  //   NO: 'gc00102',
-  //   position:'工程师',
-  //   phoneNum: '15812345678',
-  //   name:'James'
   // }];
 
   return {
@@ -157,10 +79,14 @@ angular.module('starter.service',[])
       return users;
     },
     get: function(id) {
-     // alert(users.length);
       for (var i = 0; i < users.length; i++) {
-           if (users[i].id === parseInt(id)) {
+      //  alert(id + " vs " + users[i].id);
+        if (users[i].id === parseInt(id)) {
+        //   alert("in PersonalInfomations equal " + users[i].name);
+
              return users[i];
+        }
+        else{
         }
       }
       return null;
@@ -168,7 +94,7 @@ angular.module('starter.service',[])
     getByNo:function(no){
       for(var i = 0; i < users.length; i ++){  
      //   alert(no + " vs " + users[i].NO);
-        if(no === users[i].NO){
+        if(no === users[i].id){
           return users[i];
         }
       }
@@ -249,7 +175,7 @@ angular.module('starter.service',[])
   }
 })
 
-.factory('Forms', function() {
+.factory('Forms', function($http,PersonalInformations) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -260,132 +186,127 @@ angular.module('starter.service',[])
   // 1. 传入id（记录顺序。。或许不太重要，以后可删掉）
   // 2. 传入报修单状态展示的颜色（前端比较笨QwQ，没做出来根据文字改变颜色的。。）
   ///////////////////////////////////////////////////////////
- 
- var forms = [{
-    id: 0,
-    NO: 'bx131220237',
-    status: '未接',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: 'Cindy',
-    type: '安装调试',
-    engineerName: 'David',
-    salesName: 'Mack jack',
-    time: '',
-    creatTime: '2016-01-03 12:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 15:00'
-  }, {
-    id: 1,
-    NO: 'bx131220233',
-    status: '已审核',
-    statusColor: '#444444',
-    value: 12,
-    clientName: 'Frank',
-    type: '安装调试',
-    engineerName: '王小利',
-    salesName: 'Paul',
-    time: '',
-    creatTime: '2016-01-01 15:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }, {
-    id:2,
-    NO: 'bx131220733',
-    status: '已接单',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: 'Cindy',
-    type: '安装调试',
-    engineerName: '刘达',
-    salesName: '王岩',
-    time: '',
-    creatTime: '2016-07-01 12:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }, {
-    id: 3,
-    NO: 'bx131220283',
-    status: '未接',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: 'Wendy',
-    type: '安装调试',
-    engineerName: 'Amy',
-    salesName: 'Mary',
-    time: '',
-    creatTime: '2016-01-01 12:20',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }, {
-    id: 4,
-    NO: 'bx131220333',
-    status: '已完成',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: 'Linda',
-    type: '安装调试',
-    engineerName: '李想',
-    salesName: '张鑫',
-    time: '',
-    creatTime: '2016-04-01 12:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-22 17:00'
-  }, {
-    id: 5,
-    NO: 'bx131220233',
-    status: '已审核',
-    statusColor: '#444444',
-    value: 12,
-    clientName: 'Frank',
-    type: '安装调试',
-    engineerName: '王小利',
-    salesName: 'Mack jack',
-    time: '',
-    creatTime: '2016-01-01 15:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }, {
-    id: 6,
-    NO: 'bx131220733',
-    status: '已接单',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: 'Cindy',
-    type: '安装调试',
-    engineerName: '刘达',
-    salesName: '王岩',
-    time: '',
-    creatTime: '2016-07-01 12:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }, {
-    id: 7,
-    NO: 'bx131220283',
-    status: '未接',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: 'Wendy',
-    type: '安装调试',
-    engineerName: 'Smith',
-    salesName: '刘琴',
-    time: '',
-    creatTime: '2016-01-01 12:20',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }];
+  var forms = [];
+ // var forms = [{
+ //    id: 0,
+ //    NO: 'bx131220237',
+ //    status: '未接',
+ //    statusColor: '#FF0000',
+ //    value: 12,
+ //    clientName: 'Cindy',
+ //    type: '安装调试',
+ //    engineerName: 'David',
+ //    salesName: 'Mack jack',
+ //    time: '',
+ //    creatTime: '2016-01-03 12:00',
+ //    orderTakeTime: '2016-02-01 12:00',
+ //    finishTime: '2016-03-01 12:00',
+ //    auditTime: '2016-04-01 15:00'
+ //  }];
 
   return {
     currentId: 0,
-    all: function() {
+    all: function(callback) {
+
+       $http.get(ipAddress + "/repairforms")
+      .success(function (response) {
+        var formlist = response;
+        var statusname;
+        var engineerName;
+        var salesName;
+        var distributerName;
+
+
+         PersonalInformations.all(function(response){
+        for(var i = 0; i < formlist.length; i ++){
+          if(formlist[i].status === 0){
+            statusname = "未接";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 1){
+            statusname = "已接单";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 2){
+            statusname = "已完成";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 3){
+            statusname = "已审核";
+            statusColor = "#444444";
+          }
+          var servicename;
+          if(formlist[i].service === 0){
+             servicename = "上门服务";
+          }
+          else if(formlist[i].service === 1){
+            servicename = "安装调试";
+          }
+          else if(formlist[i].service === 2){
+            servicetype = "送货服务";
+          }
+
+     //     alert(PersonalInformations.get(formlist[i].engineerId).length);
+          var user = PersonalInformations.get(formlist[i].engineerId);
+          if(user === null){
+            engineerName = "null";
+          }
+          else{
+           engineerName = user.name;
+
+         }
+         var user2 = PersonalInformations.get(formlist[i].salerId);
+          if(user2 === null){
+            salesName = "null";
+          }
+          else{
+           salesName = user2.name;
+
+         }
+         var user3 = PersonalInformations.get(formlist[i].distributorId);
+          if(user3 === null){
+            distributerName = "null";
+          }
+          else{
+            salesName = user3.name;
+          }
+
+
+     //   alert(formlist[i].creationTime);
+          forms[i] = {
+            "id":formlist[i].id,
+            "status":statusname,
+            "statusColor":statusColor,
+            "value":formlist[i].grade,
+            "type":servicename,
+            "clientName":formlist[i].clientName,
+            "clientphone":formlist[i].clientPhone,
+            "clientunit":formlist[i].clientWorkplace,
+            "clientaddr":formlist[i].clientAddress,
+            "engineerId":formlist[i].engineerId,
+            "engineerName":engineerName,
+            "salerId":formlist[i].salerId,
+            "salesName":salesName,
+            "distributerId":formlist.distributorId,
+            "distributerName":distributerName,
+            "creatTime":(new Date(formlist[i].creationTime)),
+            "orderTakeTime":formlist[i].receiveTime,
+            "finishTime":formlist[i].completedTime,
+            "auditTime":formlist[i].checkedTime,
+          };
+        //  console.log("get form creationTime" + formlist[i].creationTime);
+           alert("forms[i].distributerName  " + forms[i].distributerName);
+          console.log("get form engineername " + forms[i].engineerName);
+
+        }
+      });
+            callback(forms);
+      })
+      .error(function (response) {
+        console.log("app getUsers Fail to get---error message : ", response.error);
+        alert("获取用户信息失败");
+      })
+
       return forms;
     },
     remove: function(form) {
@@ -393,7 +314,7 @@ angular.module('starter.service',[])
     },
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
-        if (i === parseInt(formId)) {
+        if (forms[i].id === parseInt(formId)) {
           return forms[i];
         }
       }
