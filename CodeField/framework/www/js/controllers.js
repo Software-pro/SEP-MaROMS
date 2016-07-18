@@ -391,8 +391,6 @@ angular.module('starter.controllers',['ionic'])
   $scope.myinformation;
    MyInformation.all(function(response) {
     $scope.myinformation = response; 
-  
-
 });
 
   $scope.data={};
@@ -539,6 +537,7 @@ angular.module('starter.controllers',['ionic'])
 
 .controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,UserService,$ionicHistory, PersonalInformations) {
  $scope.form = Forms.get($stateParams.formId);
+ $scope.userPosition = UserService.getUserPosition();
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
  $scope.doRefresh = function() {
@@ -546,7 +545,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.form = Forms.get($stateParams.formId);
       $scope.$broadcast("scroll.refreshComplete");     
     };
- var userPosition = UserService.getUserPosition();
+ 
+ //alert(userPosition);
   // TODO:get form by 'http'
    $scope.yearNums = [];
  for(var i=0;i<10; i++)
@@ -560,13 +560,14 @@ angular.module('starter.controllers',['ionic'])
       $scope.hourNums.push([i+8].join(""));
     $scope.minuteNums=[0, 10, 20, 30, 40, 50];
     $scope.engineerDetail = function() {
-      $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
-      $location.path("app/contacts/" + $scope.engineer.id);
+      //$scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
+      $location.path("app/contacts/" + $scope.form.engineerId);
     }
     $scope.salesmanDetail = function() {
-      $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
-      $location.path("app/contacts/" + $scope.salesman.id);
+      //$scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
+      $location.path("app/contacts/" + $scope.form.salerId);
     } 
+  //alert(userPosition);   
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
   }
@@ -602,11 +603,12 @@ angular.module('starter.controllers',['ionic'])
     $ionicHistory.goBack();
   }
 })
-.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations,$ionicHistory) {
- $scope.myinformation = MyInformation.get();
+.controller("editFormCtrl",function($scope,$state,Forms,UserService,PersonalInformations,$ionicHistory,$http) {
+ $scope.userPosition = UserService.getUserPosition();
  $scope.form = Forms.get(Forms.currentId);
  $scope.users = PersonalInformations.all();
  var users =  $scope.users;
+
  $scope.yearNums = [];
  for(var i=0;i<10; i++)
     $scope.yearNums.push([i+2016].join(""));
@@ -632,6 +634,40 @@ angular.module('starter.controllers',['ionic'])
     else return user.position.indexOf('销售员')>=0;
     }
 
+Date.prototype.pattern=function(fmt) {         
+    var o = {         
+    "M+" : this.getMonth()+1, //月份         
+    "d+" : this.getDate(), //日         
+    "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时         
+    "H+" : this.getHours(), //小时         
+    "m+" : this.getMinutes(), //分         
+    "s+" : this.getSeconds(), //秒         
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
+    "S" : this.getMilliseconds() //毫秒         
+    };         
+    var week = {         
+    "0" : "\u65e5",         
+    "1" : "\u4e00",         
+    "2" : "\u4e8c",         
+    "3" : "\u4e09",         
+    "4" : "\u56db",         
+    "5" : "\u4e94",         
+    "6" : "\u516d"        
+    };         
+    if(/(y+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
+    }         
+    if(/(E+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);         
+    }         
+    for(var k in o){         
+        if(new RegExp("("+ k +")").test(fmt)){         
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
+        }         
+    }         
+    return fmt;         
+}    
+
   $scope.editComplete = function() {
      if($scope.form.status == "未接") {
     var success = 1;
@@ -643,8 +679,7 @@ angular.module('starter.controllers',['ionic'])
     var service = document.getElementById("service");
     var engineer = document.getElementById("engineer");
     var salesman = document.getElementById("salesman");
-    var distributor = document.getElementById('distributor');
-    var distributorPhone = document.getElementById("distributorPhone");
+    var distributor = UserService.getUserId();
     if(mark.value.length == 0) {
       $scope.errorBorder1 = "red";
       success = 0;
@@ -677,20 +712,81 @@ angular.module('starter.controllers',['ionic'])
       $scope.errorBorder8 = "red";
       success = 0;
     }
-     if(distributor.value.length == 0) {
+     /*if(distributor.value.length == 0) {
       $scope.errorBorder9 = "red";
       success = 0;
     }
      if(distributorPhone.value.length == 0) {
       $scope.errorBorder10 = "red";
       success = 0;
-    }
+    } */
     if(success == 0) {
       alert("请将内容填写完整后再提交！‘*'表示必填内容.");
       return;
     }
     if(success == 1) {
-      alert("修改完成！");
+       if(service.value === "上门服务") {
+        serviceId = 0;
+     }
+     else if (service.value === "送货服务") {
+        serviceId = 1;
+     }
+     else if(service.value === "安装调试") {
+        serviceId = 2;
+     }
+     var engineerId = new Array();
+     var salerId = [];
+     var tag = 0;
+     for(var i = 0, j = 0; i < engineer.value.length - 1; i ++){
+         if(tag === 1){
+
+          engineerId.push(engineer.value[i]);
+   //       alert(engineerId.value[j]);
+          j ++;
+         }
+   //      alert(engineername.value[i]);
+         if(engineer.value[i] === ':'){
+         // alert(engineername.value[i]);
+          tag = 1;
+         }
+     }
+     //alert(engineerId.length);
+     //alert(engineerId.join(""));
+     tag = 0;
+     for(var i = 0, j = 0; i < salesman.value.length - 1; i ++){
+      if(tag === 1){
+        salerId.push(salesman.value[i]);
+        j ++;
+      }
+      if(salesman.value[i] === ':'){
+        tag = 1;
+      }
+    }
+
+      $http({
+        method:'POST',
+        url:'http://115.159.225.109/repairforms/edit',
+        data:{
+          'id':$scope.form.id,
+          'grade':mark.value,
+          'service':serviceId,
+          'clientName':clientName.value,
+          'clientPhone':clientPhone.value,
+          'clientWorkplace':clientUnit.value,
+          'clientAddress':clientAddr.value,
+          'engineerId':parseInt(engineerId.join("")),
+          'salerId':parseInt(salerId.join("")),
+          'distributorId':distributor
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      alert("修改完成");
       $ionicHistory.goBack(-1);
     }
   }
@@ -862,7 +958,7 @@ Date.prototype.pattern=function(fmt) {
      var serviceId;
     if(clientname.value.length == 0) {
       $scope.errorBorder1 = 'red';
-      success = 0;
+      su辨析ccess = 0;
     }
      if(clientphone.value.length == 0) {
       $scope.errorBorder2 = 'red';
