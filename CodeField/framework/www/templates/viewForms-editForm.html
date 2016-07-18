@@ -6,16 +6,16 @@
       <div class="itemDivider"></div>
 
       <div class="item">
-        <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
+        <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.id}}</p>
         <p style="color: #AAAAAA;">状态： {{form.status}}</p>       
       </div>
 
-      <div ng-switch = "myinformation.position">
+      <div ng-switch = "userPosition">
       	<div ng-switch-when = '派单员'>
 
           <div class="itemDivider"></div>
 
-          <div class="item item-input" style="border-style: solid; border-color: {{errorBorder1}};"  href="#">
+          <div class="item item-input" style="border-style: solid; border-color: {{errorBorder1}};"  >
             <span class="input-label">分值<span style="color: red;">  *</span></span>
             <input id="mark" type = "text" value = "{{form.value}}">
           </div>
@@ -25,7 +25,7 @@
 
               <div class="itemDivider"></div>
 
-              <div class="item item-input" style="border-style: solid; border-color: {{errorBorder2}};"  href="#">
+              <div class="item item-input" style="border-style: solid; border-color: {{errorBorder2}};"  >
                 <span  class="input-label">客户姓名<span style="color: red;">  *</span></span>
                 <input id="clientName" type = "text" value = "{{form.clientName}}">
               </div>
@@ -35,12 +35,12 @@
                 <input id="clientPhone" type = "text" value = "{{form.clientphone}}">
               </div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder4}};" href="#">
+              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder4}};" >
                 <span class="input-label">客户单位<span style="color: red;">  *</span></span>
                 <input id="clientUnit" type = "text" value = "{{form.clientunit}}">
               </div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder5}};" href="#">
+              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder5}};" >
                 <span class="input-label">客户地址<span style="color: red;">  *</span></span>
                 <input id="clientAddr" type = "text" value = "{{form.clientaddr}}">
               </div>
@@ -49,7 +49,7 @@
               <div ng-switch-when="上门服务">
               <div class="itemDivider"></div>
 
-              <div class="item item-input"  href="#" style="border-style: solid; border-color: {{errorBorder6}}">
+              <div class="item item-input"   style="border-style: solid; border-color: {{errorBorder6}}">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option selected>上门服务</option>
@@ -61,7 +61,7 @@
               <div ng-switch-when="送货服务">
               <div class="itemDivider"></div>
 
-              <div class="item item-input"  href="#" style="border-style: solid; border-color:  {{errorBorder6}}">
+              <div class="item item-input"  style="border-style: solid; border-color:  {{errorBorder6}}">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option>上门服务</option>
@@ -73,7 +73,7 @@
               <div ng-switch-when="安装调试">
               <div class="itemDivider"></div>
 
-              <div class="item item-input"  href="#" style="border-style: solid; border-color: {{errorBorder6}}">
+              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder6}}">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
@@ -85,7 +85,7 @@
               <div ng-switch-default>
               <div class="itemDivider"></div>
 
-              <div class="item item-input" href="#" style="border-style: solid; border-color: {{errorBorder6}};">
+              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder6}};">
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
@@ -98,50 +98,50 @@
               <div class="item item-input"  style=" border-style: solid; border-color:  {{errorBorder7}};"  >
                 <span class="input-label">工程师<span style="color: red;">  *</span></span>
                 <select id="engineer">
-                <option selected> {{form.engineerName}} </option>
-                   <option class = "item" ng-repeat = "user in users | filter:engineerFilter">{{user.name}}</option>
+                <option selected> {{form.engineerName}}(ID: {{form.engineerId}}) </option>
+                   <option class = "item" ng-repeat = "user in users | filter:engineerFilter">{{user.name}}(ID: {{user.id}}</option>
                 </select>
               </div>
 
               <div class="item item-input "  style="border-style: solid; border-color: {{errorBorder8}};"  >
                 <span class="input-label">销售人员<span style="color: red;">  *</span></span>
                 <select id="salesman">
-                <option selected>{{form.salesName}}</option>
-                   <option ng-repeat = "user in users | filter:salesmanFilter">{{user.name}}</option>
+                <option selected>{{form.salesName}}(ID: {{form.salerId}})</option>
+                   <option ng-repeat = "user in users | filter:salesmanFilter">{{user.name}}(ID: {{user.id}})</option>
                 </select>
               </div>
 
-              <div class="item item-input "  style="border-style: solid; border-color:  {{errorBorder9}};"  >
+              <!--<div class="item item-input "  style="border-style: solid; border-color:  {{errorBorder9}};"  >
                 <span class="input-label">派单员<span style="color: red;">  *</span></span>
                 <input id="distributor" type = "text" value = "{{form.distributerName}}">
-              </div>
+              </div> -->
+              <div class="item item-icon-right" >
+              派单员： {{form.distributerName}}
+            </div>
 
-              <div class="item item-input "  style="border-style: solid; border-color: {{errorBorder10}};" >
+             <!-- <div class="item item-input "  style="border-style: solid; border-color: {{errorBorder10}};" >
                 <span class="input-label">派单员电话<span style="color: red;">  *</span></span>
                 <input id="distributorPhone" type = "text" value = "{{form.distributerphone}}">
-              </div>
+              </div> -->
 
               <div class="itemDivider"></div>
 
-              <div class="item item-input" href="#">
-                <span class="input-label">出库单号</span>
-                <input type = "text" value="{{form.stockName}}">
-              </div>
+
             </div>
-          <div class="item" href="#">
-            创建时间： {{form.time}}
+          <div class="item" >
+            创建时间： {{form.creatTime}}
           </div>
 
-          <div class="item" href="#">
-            接单时间： {{form.accepttime}}
+          <div class="item" >
+            接单时间： {{form.ordertakeTime}}
           </div>
 
-          <div class="item" href="#">
-            完成时间： {{form.finishtime}}
+          <div class="item" >
+            完成时间： {{form.finishTime}}
           </div>
 
-          <div class="item" href="#">
-          审核时间： {{form.checktime}}
+          <div class="item" >
+          审核时间： {{form.auditTime}}
             </div>
           </div>
 
@@ -149,7 +149,7 @@
 
             <div class="itemDivider"></div>
 
-            <div class="item" href="#">
+            <div class="item" >
               客户姓名： {{form.clientName}}
             </div>
       
@@ -160,76 +160,71 @@
               </button>
             </div>
 
-            <div class="item" href="#">
+            <div class="item">
               客户单位： {{form.clientunit}}
             </div>
 
-            <div class="item" href="#">
+            <div class="item" >
               客户地址： {{form.clientaddr}}
             </div>
 
             <div class="itemDivider"></div>
 
-            <div class="item" href="#">
+            <div class="item" >
               服务项目： {{form.service}}
             </div>
 
             <div class="itemDivider"></div>
 
-            <div class = "item item-icon-right" ng-click=""> 
+            <div class = "item item-icon-right" > 
               工程师： {{form.engineerName}}
               <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
             </div>
 
-            <div class="item item-icon-right" ng-click="">
+            <div class="item item-icon-right" >
               销售人员： {{form.salesName}}
             <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i>
             </div>
 
-            <div class="item item-icon-right" ng-click="">
+            <div class="item item-icon-right" >
               派单员： {{form.distributerName}}
             </div>
 
-            <div class="item item-button-right" ng-click="">
+            <!--<div class="item item-button-right">
               派单员电话： {{form.distributerphone}}
               <button class = "button button-clear" style="padding: 3px; padding-left: 10px;">
                 <i class = "icon ion-ios-telephone-outline" style="color: #00BFFF" href="tel:{{form.distributerphone}}"></i>
               </button>
-            </div>
+            </div> -->
 
             <div class="itemDivider"></div>
 
-            <div class="item" href="#">
-              出库单号： {{form.stocknumber}}
-            </div>
 
-          <div class="item" href="#">
-            创建时间： {{form.time}}
+          <div class="item">
+            创建时间： {{form.creatTime}}
           </div>
 
-          <div class="item" href="#">
-            接单时间： {{form.accepttime}}
+          <div class="item" >
+            接单时间： {{form.orderTakeTime}}
           </div>
 
-          <div class="item" href="#">
-            完成时间： {{form.finishtime}}
+          <div class="item" >
+            完成时间： {{form.finishTime}}
           </div>
 
-          <div class="item" href="#">
-          审核时间： {{form.checktime}}
+          <div class="item" >
+          审核时间： {{form.auditTime}}
           </div>
         </div>
       </div>
     </div>
 </div>
 
-  <div ng-switch="myinformation.position">
-    <div ng-switch-when = "派单员">
+
       <div class="padding">
         <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "editComplete()">编辑完成</button>
       </div>
-    </div>
-  </div>
+
 
 
 

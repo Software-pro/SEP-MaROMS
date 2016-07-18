@@ -1,7 +1,7 @@
 <ion-view view-title="报修单详情">
   <ion-content>
 
-    <div class="list" style="background-color: #EEEEEE;">
+<div class="list" style="background-color: #EEEEEE;">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>
 <!-- <div class="item item-avatar">
@@ -84,12 +84,9 @@
 
       <div class="itemDivider"></div>
       
-      <div class="item" >
-        出库单号： {{form.stocknumber}}
-      </div>
 
       <div class="item" >
-        创建时间： {{form.time}}
+        创建时间： {{form.creatTime}}
       </div>
 
       <div class="item" >
@@ -97,13 +94,13 @@
       </div>
 
       <div class="item">
-        完成时间： {{form.finishtime}}
+        完成时间： {{form.completedTime}}
       </div>
       <div class="item" >
-        审核时间： {{form.checktime}}
+        审核时间： {{form.checkedTime}}
       </div>
 
-    </div>
+ </div>
 
 
 <div ng-switch="userPosition">
@@ -171,7 +168,7 @@
       </div>
     </div>
     </div>
-    </div>
+</div>
 
   </ion-content>
 </ion-view>

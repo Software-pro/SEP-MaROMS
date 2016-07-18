@@ -312,6 +312,7 @@ angular.module('starter.service',[])
 
       return forms;
     },
+   
     remove: function(form) {
       forms.splice(forms.indexOf(form), 1);
     },
