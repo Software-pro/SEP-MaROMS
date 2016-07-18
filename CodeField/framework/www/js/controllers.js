@@ -108,22 +108,20 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-.controller('ViewFormsCtrl', function($scope, Forms, PersonalInformations,$state, $location, $ionicScrollDelegate, MyInformation) {
+.controller('ViewFormsCtrl', function($scope, Forms, PersonalInformations,$state, $location, $ionicScrollDelegate, UserService) {
    // $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
-    /*$scope.isShow = false;
-   $scope.myinformation = MyInformation.get();
-
-   
    Forms.all(function(response){
     $scope.forms = response;
+   var userPosition = UserService.getUserPosition();
+    $scope.isShow = false;
+      if(userPosition === "派单员")  {
+        //alert("feipaidan");
+        $scope.isShow = true;
+      } 
+
    });
 
-    $scope.isShow = false;
-    $scope.myinformation = MyInformation.get();
-      if($scope.myinformation.position === "派单员")  {
-        $scope.isShow = true;
-      } */
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
       $scope.forms = Forms.all();
@@ -392,7 +390,7 @@ angular.module('starter.controllers',['ionic'])
   $scope.data={};
   $scope.editphonenum = function() {
     $ionicPopup.show({
-      template: "<input type = 'phonenum' ng-model='data.phonenum'>",
+      template: "<input type = 'phoneNum' ng-model='data.phoneNum'>",
       title:"请输入新的电话号码",
       scope: $scope,
       buttons: [
@@ -403,8 +401,8 @@ angular.module('starter.controllers',['ionic'])
             text: "<b>保存</b>",
             type: "button-positive",
             onTap: function(e) {
-              $scope.myinformation.phonenum = $scope.data.phonenum;
-              return $scope.myinformation.phonenum;
+              $scope.myinformation.phoneNum = $scope.data.phoneNum;
+              return $scope.myinformation.phoneNum;
             }
         }
       ]
@@ -521,7 +519,7 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,MyInformation,$ionicHistory, PersonalInformations) {
+.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,UserService,$ionicHistory, PersonalInformations) {
  $scope.form = Forms.get($stateParams.formId);
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
@@ -530,7 +528,7 @@ angular.module('starter.controllers',['ionic'])
       $scope.form = Forms.get($stateParams.formId);
       $scope.$broadcast("scroll.refreshComplete");     
     };
-$scope.myinformation = MyInformation.get();
+ var userPosition = UserService.getUserPosition();
   // TODO:get form by 'http'
    $scope.yearNums = [];
  for(var i=0;i<10; i++)
@@ -833,7 +831,7 @@ Date.prototype.pattern=function(fmt) {
   $scope.saveNewForm = function(){
      var distributorId = UserService.getUserId();
    //  alert(distributorId);
-    alert(distributorId);
+    //alert(distributorId);
     var success = 1;//success=1说明报修单新建成功。
     var clientname = document.getElementById("clientName");
     var clientphone = document.getElementById("clientPhone");
@@ -933,7 +931,7 @@ Date.prototype.pattern=function(fmt) {
       }
 
      }
-     alert(salerId.join(""));
+     //alert(salerId.join(""));
 
     $http({
         method:'POST',
@@ -1103,6 +1101,20 @@ Date.prototype.pattern=function(fmt) {
         console.log(response);
         if(response.data['success']) {
           UserService.setUser(user,userPass);
+         
+         if(response.data['type'] === 0){
+          UserService.setUserPosition("管理员");
+         }
+         else if(response.data['type'] === 1){
+          UserService.setUserPosition("工程师");
+         }
+         else if(response.data['type'] === 2){
+          UserService.setUserPosition("销售员");
+         }
+         else{
+          UserService.setUserPosition("派单员");
+         }
+
           $state.go("app.viewForms");
         }
         else
