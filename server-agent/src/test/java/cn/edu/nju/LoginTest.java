@@ -47,7 +47,7 @@ public class LoginTest {
 
         //！！！！！！！！！！！！！！！！！！调换默认构造顺序
         /**预计结果*/
-        LoginResponse response = new LoginResponse(true,null,0);
+        LoginResponse response = new LoginResponse(true,0,null);
         JSONObject expactedInformation = JSONObject.fromObject(response);
 
         /**发送请求*/
@@ -73,7 +73,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "The user do not exists.";
-        LoginResponse response = new LoginResponse(false, info, -1);
+        LoginResponse response = new LoginResponse(false, -1, info);
         JSONObject expactedInformation = JSONObject.fromObject(response);
 
         /**发送请求*/
@@ -99,7 +99,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "Wrong password.";
-        LoginResponse response = new LoginResponse(false,info,-1);
+        LoginResponse response = new LoginResponse(false,-1,info);
         JSONObject expactedInformation = JSONObject.fromObject(response);
 
         /**发送请求*/
@@ -124,7 +124,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "The user do not exists.";
-        LoginResponse response = new LoginResponse(false,info,-1);
+        LoginResponse response = new LoginResponse(false,-1,info);
         JSONObject expactedInformation = JSONObject.fromObject(response);
 
         /**发送请求*/
@@ -149,7 +149,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "Wrong password.";
-        LoginResponse response = new LoginResponse(false,info,-1);
+        LoginResponse response = new LoginResponse(false,-1,info);
         JSONObject expactedInformation = JSONObject.fromObject(response);
 
         /**发送请求*/
