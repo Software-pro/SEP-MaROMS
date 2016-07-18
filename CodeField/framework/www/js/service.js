@@ -268,7 +268,7 @@ angular.module('starter.service',[])
             distributerName = "null";
           }
           else{
-            salesName = user3.name;
+            distributerName = user3.name;
           }
 
 
@@ -295,7 +295,7 @@ angular.module('starter.service',[])
             "auditTime":formlist[i].checkedTime,
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
-           alert("forms[i].distributerName  " + forms[i].distributerName);
+      //     alert("forms[i].distributerName  " + forms[i].distributerName);
           console.log("get form engineername " + forms[i].engineerName);
 
         }

@@ -109,21 +109,25 @@ angular.module('starter.controllers',['ionic'])
 })
 
 .controller('ViewFormsCtrl', function($scope, Forms, PersonalInformations,$state, $location, $ionicScrollDelegate, MyInformation) {
-   // $scope.forms = Forms.setTime("creatTime");
+ Forms.all(function(response){
+    $scope.forms = response;
+   });
+
+
    // $scope.forms = Forms.all();
     /*$scope.isShow = false;
    $scope.myinformation = MyInformation.get();
 
    
-   Forms.all(function(response){
-    $scope.forms = response;
-   });
+   
 
     $scope.isShow = false;
     $scope.myinformation = MyInformation.get();
       if($scope.myinformation.position === "派单员")  {
         $scope.isShow = true;
       } */
+
+
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
       $scope.forms = Forms.all();
@@ -958,6 +962,26 @@ Date.prototype.pattern=function(fmt) {
       .then(function(response){
         console.log(response);
       })
+
+
+    $http({
+        method:'POST',
+        url:'http://115.159.225.109/messages/create',
+         data:{
+          'type':3,
+          'senderId':UserService.getUserId(),
+          'receiverId':engineerId,
+          'time':new Date()
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'    
+      }) 
+      .then(function(response){
+        console.log(response);
+      })
+
 
      $ionicHistory.goBack(-1);
     }
