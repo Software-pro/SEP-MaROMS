@@ -18,7 +18,7 @@ public class LoginResponse extends SuccessResponse {
 
     public LoginResponse(boolean success, int type, String info){
         this.success = success;
-        this.type = type;
         this.info = info;
+        this.type = type;
     }
 }

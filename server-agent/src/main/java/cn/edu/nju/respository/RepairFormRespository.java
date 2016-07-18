@@ -10,5 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface RepairFormRespository extends CrudRepository<RepairForm, Long>{
-
+    public RepairForm findByEngineerId(long engineerId);
+    public RepairForm findBySalerId(long salerId);
 }

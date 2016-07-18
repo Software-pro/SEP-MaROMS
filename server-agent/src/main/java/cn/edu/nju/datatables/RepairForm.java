@@ -60,7 +60,7 @@ public class RepairForm {
     public RepairForm(
             int status, int grade, int service,
             String clientName, String clientPhone, String clientWorkplace, String clientAddress,
-            long engineerId, long salerId, long distributorId, String distributorPhone,
+            long engineerId, long salerId, long distributorId,
             Date creationTime, Date receivedTime, Date completedTime, Date checkedTime) {
         this.status = status;
         this.grade = grade;
@@ -74,7 +74,6 @@ public class RepairForm {
         this.engineerId = engineerId;
         this.salerId = salerId;
         this.distributorId = distributorId;
-        this.distributorPhone = distributorPhone;
 
         this.creationTime = creationTime;
         this.receivedTime=receivedTime;
@@ -94,7 +93,6 @@ public class RepairForm {
         this.engineerId = repairFormCreateRequest.getEngineerId();
         this.salerId = repairFormCreateRequest.getSalerId();
         this.distributorId = repairFormCreateRequest.getDistributorId();
-        this.distributorPhone = repairFormCreateRequest.getDistributorPhone();
 
         this.creationTime = repairFormCreateRequest.getCreationTime();
     }
@@ -113,7 +111,6 @@ public class RepairForm {
         this.engineerId = repairFormEditRequest.getEngineerId();
         this.salerId = repairFormEditRequest.getSalerId();
         this.distributorId = repairFormEditRequest.getDistributorId();
-        this.distributorPhone = repairFormEditRequest.getDistributorPhone();
 
     }
 

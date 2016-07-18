@@ -1,7 +1,9 @@
 package cn.edu.nju;
 
+import cn.edu.nju.datatables.Message;
 import cn.edu.nju.datatables.RepairForm;
 import cn.edu.nju.datatables.User;
+import cn.edu.nju.respository.MessageRespository;
 import cn.edu.nju.respository.RepairFormRespository;
 import cn.edu.nju.respository.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ServerAgentApplication {
     @Autowired
     RepairFormRespository repairFormRespository;
 
+    @Autowired
+    MessageRespository messageRespository;
+
     @Bean
     public CommandLineRunner databaseInitializer() {
         return (args) -> {
@@ -38,8 +43,11 @@ public class ServerAgentApplication {
             repairFormRespository.save(new RepairForm(
                     0,20,0,
                     "zavier","15850538991","Nanjing university","Mars",
-                    101,201,301,"301",new Date(),new Date(),new Date(),new Date()
+                    101,201,301,new Date(),new Date(),new Date(),new Date()
             ));
+
+            messageRespository.save(new Message(0,1,101,new Date(),null));
+
         };
     }
 

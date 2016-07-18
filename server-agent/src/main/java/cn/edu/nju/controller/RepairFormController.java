@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -28,18 +27,35 @@ public class RepairFormController {
     @RequestMapping(value = "/repairforms", method = RequestMethod.GET, produces = "application/json")
     public List<RepairFormInfoResponse> repairforms() {
 
-        Iterable all = repairFormRespository.findAll();
+        List<RepairFormInfoResponse> repairForms = new ArrayList<>();
 
-        List<RepairFormInfoResponse> repairForms = new ArrayList<RepairFormInfoResponse>();
+        for (RepairForm repairForm:repairFormRespository.findAll()){
 
-        for (Iterator<RepairForm> repairForm=all.iterator();repairForm.hasNext();){
-
-            RepairFormInfoResponse repairFormInfoResponse = new RepairFormInfoResponse(repairForm.next());
-
-            repairForms.add(repairFormInfoResponse);
+            repairForms.add(new RepairFormInfoResponse(repairForm));
         }
 
         return repairForms;
+    }
+
+    @RequestMapping(value = "/repairforms/{id}", method = RequestMethod.GET, produces = "application/json")
+    public RepairFormInfoResponse findRepairformsById(@PathVariable long id) {
+        RepairForm repairForm=repairFormRespository.findOne(id);
+
+        return new RepairFormInfoResponse(repairForm);
+    }
+
+    @RequestMapping(value = "/repairforms/byEngineerId/{id}", method = RequestMethod.GET, produces = "application/json")
+    public RepairFormInfoResponse findRepairformsByEngineerId(@PathVariable long id) {
+        RepairForm repairForm=repairFormRespository.findByEngineerId(id);
+
+        return new RepairFormInfoResponse(repairForm);
+    }
+
+    @RequestMapping(value = "/repairforms/bySalerId/{id}", method = RequestMethod.GET, produces = "application/json")
+    public RepairFormInfoResponse findRepairformsBySalerId(@PathVariable long id) {
+        RepairForm repairForm=repairFormRespository.findBySalerId(id);
+
+        return new RepairFormInfoResponse(repairForm);
     }
 
     @RequestMapping(value = "/repairforms/create", method = RequestMethod.POST, produces = "application/json")
@@ -55,7 +71,7 @@ public class RepairFormController {
     public SuccessResponse editRepairform(@RequestBody RepairFormEditRequest repairFormEditRequest){
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(repairFormRespository.exists(new Long(repairFormEditRequest.getId())))) {
+        if (!(repairFormRespository.exists(repairFormEditRequest.getId()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The repairform do not exist.");
 
@@ -82,14 +98,14 @@ public class RepairFormController {
     public SuccessResponse changeGrade(@RequestBody ChangeGradeRequest changeGradeRequest){
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(repairFormRespository.exists(new Long(changeGradeRequest.getId())))) {
+        if (!(repairFormRespository.exists(changeGradeRequest.getId()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The repairform do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRespository.findOne(new Long(changeGradeRequest.getId()));
+        RepairForm repairForm = repairFormRespository.findOne(changeGradeRequest.getId());
 
         repairForm.setGrade(changeGradeRequest.getGrade());
 
@@ -105,14 +121,14 @@ public class RepairFormController {
     public SuccessResponse deleteRepairform(@PathVariable long id) {
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(repairFormRespository.exists(new Long(id)))) {
+        if (!(repairFormRespository.exists(id))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The repairform do not exist.");
 
             return successResponse;
         }
 
-        repairFormRespository.delete(new Long(id));
+        repairFormRespository.delete(id);
 
         successResponse.setSuccess(true);
         return successResponse;
