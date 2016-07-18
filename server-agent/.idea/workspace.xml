@@ -30,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GetUserListTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserListTest.java">
+      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+            <state relative-caret-position="4902">
+              <caret line="258" column="57" selection-start-line="258" selection-start-column="57" selection-end-line="258" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,10 +100,11 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UsersTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserListTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserInformationTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java" />
       </list>
     </option>
   </component>
@@ -177,8 +178,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -453,6 +452,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -470,59 +471,7 @@
       <recent name="cn.edu.nju" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GetUserListTest.test01">
-    <configuration default="false" name="LoginTest.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.edu.nju.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="server-agent" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cn.edu.nju" />
-      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
-      <option name="METHOD_NAME" value="test03" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="LoginTest.test04" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.edu.nju.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="server-agent" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cn.edu.nju" />
-      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
-      <option name="METHOD_NAME" value="test04" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.LoginTest">
     <configuration default="false" name="LoginTest.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -549,7 +498,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="LoginTest.test06" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="LoginTest.test07" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="cn.edu.nju.*" />
@@ -561,7 +510,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="cn.edu.nju" />
       <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
-      <option name="METHOD_NAME" value="test06" />
+      <option name="METHOD_NAME" value="test07" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -575,7 +524,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="GetUserListTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="LoginTest.test08" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="cn.edu.nju.*" />
@@ -586,9 +535,61 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="cn.edu.nju" />
-      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.GetUserListTest" />
-      <option name="METHOD_NAME" value="test01" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
+      <option name="METHOD_NAME" value="test08" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="LoginTest.test09" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.edu.nju.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="server-agent" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.edu.nju" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
+      <option name="METHOD_NAME" value="test09" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="LoginTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.edu.nju.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="server-agent" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.edu.nju" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1087,26 +1088,26 @@
     </configuration>
     <configuration default="false" name="ServerAgentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.ServerAgentApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.nju.ServerAgentApplication" />
       <module name="server-agent" />
       <envs />
       <method />
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.ServerAgentApplication" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.LoginTest.test03" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.LoginTest.test04" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.test05" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.LoginTest.test06" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.GetUserListTest.test01" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.LoginTest.test05" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.LoginTest.test07" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.test08" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.LoginTest.test09" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.LoginTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.GetUserListTest.test01" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.LoginTest.test06" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.LoginTest.test05" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.test04" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.LoginTest.test03" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.LoginTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.LoginTest.test09" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.LoginTest.test08" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.test07" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.LoginTest.test05" />
       </list>
     </recent_temporary>
   </component>
@@ -1139,43 +1140,45 @@
       <workItem from="1468719906718" duration="20408000" />
       <workItem from="1468808157918" duration="985000" />
       <workItem from="1468829613739" duration="2045000" />
+      <workItem from="1468841573565" duration="123000" />
+      <workItem from="1468841716064" duration="2465000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GetUserListTest_test01 - 2016.07.18 at 16h 41m 55s.xml">
-      <configuration name="GetUserListTest.test01" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2016.07.18 at 20h 16m 15s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GetUserListTest_test01 - 2016.07.18 at 16h 43m 24s.xml">
-      <configuration name="GetUserListTest.test01" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetUserListTest_test01 - 2016.07.18 at 16h 44m 43s.xml">
-      <configuration name="GetUserListTest.test01" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GetUserListTest_test01 - 2016.07.18 at 16h 45m 50s.xml">
-      <configuration name="GetUserListTest.test01" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LoginTest_test01 - 2016.07.18 at 16h 39m 45s.xml">
-      <configuration name="LoginTest.test01" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LoginTest_test02 - 2016.07.18 at 16h 39m 52s.xml">
-      <configuration name="LoginTest.test02" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LoginTest_test03 - 2016.07.18 at 16h 40m 04s.xml">
-      <configuration name="LoginTest.test03" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LoginTest_test04 - 2016.07.18 at 16h 40m 16s.xml">
-      <configuration name="LoginTest.test04" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="LoginTest_test05 - 2016.07.18 at 16h 40m 25s.xml">
+    <history-entry file="LoginTest_test05 - 2016.07.18 at 20h 01m 25s.xml">
       <configuration name="LoginTest.test05" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="LoginTest_test06 - 2016.07.18 at 16h 40m 37s.xml">
+    <history-entry file="LoginTest_test05 - 2016.07.18 at 20h 10m 46s.xml">
+      <configuration name="LoginTest.test05" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test05 - 2016.07.18 at 20h 14m 11s.xml">
+      <configuration name="LoginTest.test05" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test06 - 2016.07.18 at 20h 12m 23s.xml">
       <configuration name="LoginTest.test06" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test06 - 2016.07.18 at 20h 12m 41s.xml">
+      <configuration name="LoginTest.test06" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test06 - 2016.07.18 at 20h 13m 37s.xml">
+      <configuration name="LoginTest.test06" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test07 - 2016.07.18 at 20h 15m 17s.xml">
+      <configuration name="LoginTest.test07" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test08 - 2016.07.18 at 20h 15m 40s.xml">
+      <configuration name="LoginTest.test08" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test09 - 2016.07.18 at 20h 16m 05s.xml">
+      <configuration name="LoginTest.test09" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105004000" />
+    <option name="totallyTimeSpent" value="107592000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1187,7 +1190,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1198,7 +1201,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25053534" sideWeight="0.5042644" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2015625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19640972" sideWeight="0.49573562" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23864837" sideWeight="0.49573562" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5235546" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1206,6 +1209,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19635417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16908993" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19640972" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1217,7 +1221,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.4978678" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1247,21 +1250,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1560">
-          <caret line="85" column="64" selection-start-line="85" selection-start-column="64" selection-end-line="85" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1425,13 +1413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/LoginRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormCreateRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1526,14 +1507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
@@ -1550,14 +1523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="151" column="66" selection-start-line="151" selection-start-column="66" selection-end-line="151" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -1568,8 +1533,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserListTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        <state relative-caret-position="95">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserInformationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/LoginRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.7/gson-2.7.jar!/com/google/gson/JsonObject.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4902">
+          <caret line="258" column="57" selection-start-line="258" selection-start-column="57" selection-end-line="258" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
