@@ -1,8 +1,12 @@
 angular.module('starter.controllers',['ionic'])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos) {
-  $scope.count = Message_infos.getUnreadCount();
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos,UserService) {
+  Message_infos.all(function(){
+   // alert("haha");
+      $scope.count = Message_infos.getUnreadCount();
+    }
+  );
 })
 
  .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate,$http) {
@@ -486,11 +490,21 @@ angular.module('starter.controllers',['ionic'])
   
 })
 
-.controller("messageCtrl",function($scope,Message_infos,Forms,$state,$stateParams) {
-  $scope.message_infos = Message_infos.all(); 
+.controller("messageCtrl",function($scope,Message_infos,Forms,UserService,$state,$stateParams) {
+
+  $scope.message_infos = [];
+  Message_infos.all(
+    function(response){
+     $scope.message_infos = response;
+    }
+  ); 
   $scope.doRefresh = function(){
-    $scope.message_infos = Message_infos.all(); 
+     Message_infos.all(
+      function(response){
+       $scope.message_infos = response; 
     $scope.$broadcast('scroll.refreshComplete');
+    //     alert($scope.message_infos.length);
+      }); 
   }
    // $scope.form = Forms.get($stateParams.id);
   $scope.itemClicked = function(type,id){
@@ -763,7 +777,7 @@ else  {
   }
 })
 
-.controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,$ionicHistory,$http) {
+.controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,Message_infos,$ionicHistory,$http) {
 
 //date类型转成string
 <!--      
@@ -936,7 +950,7 @@ Date.prototype.pattern=function(fmt) {
 
      }
      //alert(salerId.join(""));
-
+     
     $http({
         method:'POST',
         url:'http://115.159.225.109/repairforms/create',
@@ -960,26 +974,6 @@ Date.prototype.pattern=function(fmt) {
       .then(function(response){
         console.log(response);
       })
-
-
-    $http({
-        method:'POST',
-        url:'http://115.159.225.109/messages/create',
-         data:{
-          'type':3,
-          'senderId':UserService.getUserId(),
-          'receiverId':engineerId,
-          'time':new Date()
-        },
-        headers:{
-          'Content-Type':'application/json'
-        },
-        withCredentials:'true'    
-      }) 
-      .then(function(response){
-        console.log(response);
-      })
-
 
      $ionicHistory.goBack(-1);
     }
@@ -1154,7 +1148,7 @@ Date.prototype.pattern=function(fmt) {
   }
   
 })
-.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory, $ionicPopup,UserService){
+.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory, $ionicPopup,UserService, Message_infos){
   $scope.goback = function(){
     $state.go('app.my');
   }
@@ -1202,6 +1196,7 @@ Date.prototype.pattern=function(fmt) {
                   type : "button-positive"
                 }]
               }).then(function (res) {
+                Message_infos.create(2,UserService.getUserId(),1);
                 $state.go('login');
               });
             },
@@ -1224,7 +1219,7 @@ Date.prototype.pattern=function(fmt) {
     
   }
 })
-.controller("passwordForgetCtrl",function($scope,$state){
+.controller("passwordForgetCtrl",function($scope,$state,Message_infos){
   var phone = document.getElementById("phonenumber");
   var button = document.getElementById("submitbutton");
   // if(phone.value.length === 0){
@@ -1245,12 +1240,17 @@ Date.prototype.pattern=function(fmt) {
     }
   }
   $scope.ensure = function(){
+    var myid = document.getElementById("myid");
     var tmp = document.getElementById("phonenumber");
     if(tmp.value.length === 0){
       alert("输入为空！");
       return;
     }
+    alert(myid.value);
+    Message_infos.create(1,myid.value,1);
+
     alert("申请提交成功，请等待管理员联系");
+
     $state.go('login');
   }
 })
@@ -1510,13 +1510,13 @@ Date.prototype.pattern=function(fmt) {
 })
 .controller('messagePasswordForgetCtrl',function($scope,$stateParams,PersonalInformations,$location){
  // alert($stateParams.contentid);
-  $scope.user = PersonalInformations.getByNo($stateParams.contentid);
+  $scope.user = PersonalInformations.get($stateParams.contentid);
 
   
 })
 .controller('messagePasswordModifyCtrl',function($scope,$stateParams,PersonalInformations,$location){
- // alert($stateParams.contentid);
-   $scope.user = PersonalInformations.getByNo($stateParams.contentid);
+ // alert("in messagePasswordModifyCtrl " + $stateParams.contentid);
+   $scope.user = PersonalInformations.get($stateParams.contentid);
 
 })
 
