@@ -116,22 +116,25 @@ angular.module('starter.service',[])
   var set = function(id,pwd){
     userId = id;
     userPwd = pwd;
-    if(userId === "admin"){
+    if(userId[0] === "0"){
         userPosition = "管理员";
       }
-      else if(userId[0] === 'p' && userId[1] === 'd'){
+      else if(userId[0] === '3'){
         userPosition = "派单员";
       }
-      else if(userId[0] === 'g' && userId[1] === 'c'){
+      else if(userId[0] === '1' ){
         userPosition = "工程师";
       }
-      else if(userId[0] === 'x' && userId[1] === 's'){
+      else if(userId[0] === '2' ){
         userPosition = "销售员";
       }
     }
     return{
     setUser:function(id,pwd){
       set(id,pwd);
+    },
+    setUserPosition:function(position){
+      userPosition = position;
     },
     getUserId:function(){
       return userId;
