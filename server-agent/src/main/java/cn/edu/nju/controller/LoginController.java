@@ -35,7 +35,7 @@ public class LoginController {
             return loginResponse;
         }
 
-        loginResponse = new LoginResponse(true,0,null);
+        loginResponse = new LoginResponse(true,user.getType(),null);
 
         return loginResponse;
     }
