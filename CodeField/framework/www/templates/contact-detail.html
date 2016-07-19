@@ -23,26 +23,50 @@
       <div ng-switch="myInformation.position">
 
         <div ng-switch-when="派单员">
+        <div ng-switch = "user.position">
+          <div ng-switch-when = "工程师">
           <div class="item" ng-click = "personalFormClicked()">
             报修单查看
           </div>
           <div class="itemDivider"></div>
           <div class="item" ng-click="markClicked()">
             分值统计查看
+          </div>
+          </div>
+          <div ng-switch-when = "销售员">
+           <div class="item" ng-click = "personalFormClicked()">
+            报修单查看
+          </div>
+          <div class="itemDivider"></div>
+          <div class="item" ng-click="markClicked()">
+            分值统计查看
+          </div>
+          </div>
           </div>
 
         </div>
 
 
         <div ng-switch-when="管理员">
-
-
+          <div ng-switch = "user.position">
+          <div ng-switch-when = "工程师">
           <div class="item" ng-click = "personalFormClicked()">
             报修单查看
           </div>
           <div class="itemDivider"></div>
           <div class="item" ng-click="markClicked()">
             分值统计查看
+          </div>
+          </div>
+          <div ng-switch-when = "销售员">
+           <div class="item" ng-click = "personalFormClicked()">
+            报修单查看
+          </div>
+          <div class="itemDivider"></div>
+          <div class="item" ng-click="markClicked()">
+            分值统计查看
+          </div>
+          </div>
           </div>
           
           <div class="itemDivider"></div>

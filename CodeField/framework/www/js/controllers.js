@@ -219,6 +219,7 @@ angular.module('starter.controllers',['ionic'])
     $scope.itemClicked = function(formId) {
       if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
         $location.path("app/viewForms/" + formId);
+        alert(formId);
       }
       else {
         $scope.menu1Var = true;
@@ -581,7 +582,16 @@ angular.module('starter.controllers',['ionic'])
 })
 
 .controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,UserService,$ionicHistory, PersonalInformations) {
+ /*alert($stateParams.formId);
+ Forms.getByServer($stateParams.formId, function(response) {
+  alert($stateParams.formId);
+  $scope.form = response;
+  alert($scope.form.id);
+  $scope.userPosition = UserService.getUserPosition();
+ });  */
+
  $scope.form = Forms.get($stateParams.formId);
+
  $scope.userPosition = UserService.getUserPosition();
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
@@ -590,7 +600,7 @@ angular.module('starter.controllers',['ionic'])
       $scope.form = Forms.get($stateParams.formId);
       $scope.$broadcast("scroll.refreshComplete");     
     };
- 
+  
  //alert(userPosition);
   // TODO:get form by 'http'
    $scope.yearNums = [];
@@ -617,6 +627,7 @@ angular.module('starter.controllers',['ionic'])
     Forms.currentId = $stateParams.formId;
   }
     $scope.deleteForm = function(){
+    Forms.delete($stateParams.formId);
     alert("Delete this form!");
     $ionicHistory.goBack();
   }
@@ -832,14 +843,17 @@ Date.prototype.pattern=function(fmt) {
       })
       .then(function(response) {
         console.log(response);
+
+        alert("修改完成");
+     $ionicHistory.goBack();
       })
 
       if(mark.value != previousMark){
         alert(previousMark + " " + mark.value);
         alert("send message");
       }
-      alert("修改完成");
-      $ionicHistory.goBack(-1);
+     /* alert("修改完成");
+     $ionicHistory.goBack(); */
     }
   }
 else  {
@@ -850,8 +864,24 @@ else  {
     return;
   }
   else {
+    $http({
+        method:'POST',
+        url:'http://115.159.225.109/repairforms/changeGrade',
+        data:{
+          'id':$scope.form.id,
+          'grade':mark.value,
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+      })
+      .then(function(response) {
+        console.log(response);
+
     alert("修改完成！");
     $ionicHistory.goBack();
+      })
   }
 }
 }
@@ -921,6 +951,7 @@ else  {
   });
 
   $scope.personalFormClicked = function() {
+    //alert($stateParams.personId);
     $location.path("app/detail-personalForms/" + $stateParams.personId);
   }
   $scope.markClicked = function() {
@@ -1402,8 +1433,23 @@ Date.prototype.pattern=function(fmt) {
   }
 })
 
-.controller('PersonalFormsCtrl', function($scope, $stateParams, PersonalForms, $state, $location, $ionicScrollDelegate) {
-    $scope.forms = PersonalForms.setTime("creatTime");
+.controller('PersonalFormsCtrl', function($scope, $stateParams, Forms,  PersonalInformations, $state, $location, $ionicScrollDelegate) {
+  //PersonalInformations.all(function(response) {
+  //  users = response;
+    $scope.position = PersonalInformations.get($stateParams.personId).position;
+    alert($scope.position);
+    if($scope.position === "销售员") { 
+      Forms.getBySalerId($stateParams.personId, function(response){
+        $scope.forms = response;
+      });
+    }
+    else if($scope.position === "工程师") {
+      alert($stateParams.personId);
+      Forms.getByEngineerId($stateParams.personId, function(response) {
+        $scope.forms = response;
+      });
+    } 
+// });
    // 后台搭建完成后通过 'http + $stateParams.personId' 获取数据
 
     $scope.doRefresh = function() {
