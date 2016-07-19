@@ -20,6 +20,7 @@ angular.module('starter.service',[])
       $http.get(ipAddress + "/users")
       .success(function (response) {
         var userlist = response;
+        users = [];
         for(var i = 0; i < userlist.length; i ++){
           var position;
           if(userlist[i].type === 0)position = "管理员";
@@ -37,6 +38,7 @@ angular.module('starter.service',[])
         }
         //   alert("time1");
         //    alert("in service.js "+users.length);
+        console.log("response count " + response.length);
         console.log("user count " + users.length);
             callback(users);
       })
@@ -70,6 +72,40 @@ angular.module('starter.service',[])
       }
       alert("未找到对应信息！");
       return;
+    },
+    create:function(UserId,UserName,UserPassword,UserPhone,UserTypeInt,callback){
+       $http({
+            method:'POST',
+            url:'http://115.159.225.109/users/create',
+            data:{
+              'id':UserId,
+              'name':UserName,
+              'password':UserPassword,
+              'phone':UserPhone,
+              'type':UserTypeInt
+            },
+            headers:{
+              'Content-Type':'application/json'
+            },
+            withCredentials:'true'    
+          })
+        .then(function(response) {
+          console.log(UserName.value + " " + response.name);
+          if(response.data['success']) {
+            alert(UserName);
+            users = [];
+            callback();
+            alert("添加成功！");
+          }
+          else
+          {
+            alert("添加失败！");
+          }
+      },
+      function(response) {
+        console.log(response);
+        alert("发送失败！请检查联接!")
+      });
     },
     delete:function(id,callback){
 
@@ -289,7 +325,7 @@ angular.module('starter.service',[])
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
-          console.log("get form engineername " + forms[i].engineerName);
+       //   console.log("get form engineername " + forms[i].engineerName);
 
         }
       });
@@ -314,9 +350,15 @@ angular.module('starter.service',[])
       return null;
     },
     getByNo:function(formNo){
+  
       for(var i = 0; i < forms.length; i ++){
-        if(formNo === forms[i].NO){
+    //    alert(parseInt(formNo) + " vs " + parseInt(forms[i].id));
+        if(parseInt(formNo) === parseInt(forms[i].id)){
+    //      alert("equal");
           return forms[i];
+        }
+        else{
+      //    alert("not equal");
         }
       }
       return null;

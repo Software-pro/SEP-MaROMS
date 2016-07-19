@@ -9,8 +9,9 @@ angular.module('starter.controllers',['ionic'])
   );
 })
 
- .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate,$http) {
+ .controller("contactsCtrl",function($scope, $state, PersonalInformations,UserService, $location, $ionicScrollDelegate,$http) {
 //  var content = document.getElementById("searchphone");
+  $scope.position = UserService.getUserPosition();
   $scope.users=[];
   var users = [];
   var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -40,8 +41,9 @@ angular.module('starter.controllers',['ionic'])
   //$scope.users = PersonalInformations.all();
    
   $scope.doRefresh = function(){
+
     PersonalInformations.all(function(response){
-    //  alert(response.length);
+      alert(response.length);
       $scope.users = response;
       users = $scope.users;
      $scope.sorted_users = {};
@@ -55,6 +57,7 @@ angular.module('starter.controllers',['ionic'])
     //Sort user list by first letter of name
     for(i = 0; i < users.length; i++){
       var letter=users[i].name.toUpperCase().charAt(0);
+      alert(letter + " " + users[i].name);
       tmp[letter].push( users[i] );
     }
     $scope.sorted_users = tmp;
@@ -550,6 +553,7 @@ angular.module('starter.controllers',['ionic'])
    // alert(id);
     if(type === 0){
     $stateParams.contentid = id;
+  //  alert("in messageCtrl id = " + id );
       $state.go('app.message-modify',{contentid:id});
     }
     else if(type === 1){
@@ -1158,16 +1162,18 @@ Date.prototype.pattern=function(fmt) {
 	}
 })
 
-.controller("newtactsCtrl",function($scope, $ionicHistory, $http) {
+.controller("newtactsCtrl",function($scope, $state, $ionicHistory, $http,PersonalInformations) {
 
   $scope.saveNewTacts = function() {
     var success = 1;
     var UserId = document.getElementById("userId");
     var UserPassword = document.getElementById("userPassword");
     var UserName = document.getElementById("userName");
+    alert("in newtactsCtrl " + UserName.value);
     var UserPhone = document.getElementById("userPhone");
     var UserType= document.getElementById("userType");  // int!
     var UserTypeInt = 0;
+    alert(UserName.value);
     if(UserId.value.length == 0)
     {
       success = 0;
@@ -1213,36 +1219,11 @@ Date.prototype.pattern=function(fmt) {
            {
                UserTypeInt = 3;
            }
-          $http({
-            method:'POST',
-            url:'http://115.159.225.109/users/create',
-            data:{
-              'id':UserId.value,
-              'name':UserName.value,
-              'password':UserPassword.value,
-              'phone':UserPhone.value,
-              'type':UserTypeInt
-            },
-            headers:{
-              'Content-Type':'application/json'
-            },
-            withCredentials:'true'    
-          })
-        .then(function(response) {
-          console.log(response);
-          if(response.data['success']) {
-            alert("添加成功！");
-            $ionicHistory.goBack();
-          }
-          else
-          {
-            alert("添加失败！");
-          }
-      },
-      function(response) {
-        console.log(response);
-        alert("发送失败！请检查联接!")
-      });
+ //   alert(UserName.value);
+           alert("in newtactsCtrl end UserName = " + UserName.value);
+         PersonalInformations.create(UserId.value,UserName.value,UserPassword.value,UserPhone.value,UserTypeInt,function(){ $state.go("app.contacts");});
+       
+           
     }
   }
 }
