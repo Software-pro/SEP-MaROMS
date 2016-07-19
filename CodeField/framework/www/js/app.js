@@ -125,6 +125,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
     .state('app.viewForms-detail',{
       url:'/viewForms/:formId',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl:'templates/viewForms-detail.html',
