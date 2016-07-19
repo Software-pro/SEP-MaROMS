@@ -37,6 +37,7 @@ angular.module('starter.service',[])
         }
         //   alert("time1");
         //    alert("in service.js "+users.length);
+        console.log("user count " + users.length);
             callback(users);
       })
       .error(function (response) {
@@ -69,8 +70,36 @@ angular.module('starter.service',[])
       }
       alert("未找到对应信息！");
       return;
+    },
+    delete:function(id,callback){
+
+      $http.get(ipAddress + "/users/delete/" + id)
+      .success(function(response){
+
+        console.log("删除用户detail " + response);
+        users = [];
+        callback();
+      })
+      .error(function(response){
+        console.log("删除用户失败" + response);
+
+      })
+        // $http({
+        //   method:"POST",
+        //   url:"http://115.159.225.109/users/",
+        //   data:id,
+        //   headers:{
+
+        //   }
+
+        // }).success(function(response){
+
+        // }).error(function(response){
+
+        // });
+
     }
-  };
+  }
 })
 
 .factory('UserService',function($http){
@@ -273,7 +302,6 @@ angular.module('starter.service',[])
 
       return forms;
     },
-   
     remove: function(form) {
       forms.splice(forms.indexOf(form), 1);
     },
@@ -526,7 +554,7 @@ angular.module('starter.service',[])
    var messages=[];
     messages = response;
  //   console.log(messages[0]);
-//            alert("response length = " + messages.length);
+ //           alert("response length = " + messages.length);
 
         for(var i = 0; i < messages.length; i ++){
           message_infos[i] = {

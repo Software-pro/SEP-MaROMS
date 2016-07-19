@@ -12,13 +12,16 @@ angular.module('starter.controllers',['ionic'])
  .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate,$http) {
 //  var content = document.getElementById("searchphone");
   $scope.users=[];
-  var users;
+  var users = [];
+  var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  $scope.alphabet = iterateAlphabet();
+  $scope.sorted_users;
+
   PersonalInformations.all(function(response){
     $scope.users=response;
+    users = $scope.users;
 
-     users = $scope.users;
-    var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $scope.alphabet = iterateAlphabet();
+    $scope.sorted_users = {};
     var tmp = {};
     for(var i = 0; i < str.length; i++)
     {
@@ -36,7 +39,30 @@ angular.module('starter.controllers',['ionic'])
   }); 
   //$scope.users = PersonalInformations.all();
    
+  $scope.doRefresh = function(){
+    PersonalInformations.all(function(response){
+    //  alert(response.length);
+      $scope.users = response;
+      users = $scope.users;
+     $scope.sorted_users = {};
+      var tmp = {};
+      for(var i = 0; i < str.length; i++)
+      {
+        var nextChar = str.charAt(i);
+        tmp[nextChar] = [];
+      }
 
+    //Sort user list by first letter of name
+    for(i = 0; i < users.length; i++){
+      var letter=users[i].name.toUpperCase().charAt(0);
+      tmp[letter].push( users[i] );
+    }
+    $scope.sorted_users = tmp;
+      $scope.$broadcast("scroll.refreshComplete");  
+
+
+    });
+  }
   //Click letter event
   $scope.gotoList = function(id){
     $location.hash(id);
@@ -482,8 +508,23 @@ angular.module('starter.controllers',['ionic'])
 
     } */
   $scope.exit = function(){
-    alert("haha");
-    $state.go('/');
+     $ionicPopup.show({
+        title: "您确定要登出吗",
+        scope: $scope,
+        buttons:[
+          {
+            text : "确定",
+            type : "button-positive",
+            onTap: function(e) {
+              $state.go('login');
+            }
+          },
+          {
+            text : "取消",
+            type : "button-positive"
+          }]
+      }).then(function(res) {
+      });
   }
   
 })
@@ -603,11 +644,13 @@ angular.module('starter.controllers',['ionic'])
     $ionicHistory.goBack();
   }
 })
-.controller("editFormCtrl",function($scope,$state,Forms,UserService,PersonalInformations,$ionicHistory,$http) {
+.controller("editFormCtrl",function($scope,$state,Forms,UserService,PersonalInformations,Message_infos,$ionicHistory,$http) {
  $scope.userPosition = UserService.getUserPosition();
  $scope.form = Forms.get(Forms.currentId);
  $scope.users = PersonalInformations.all();
  var users =  $scope.users;
+ 
+ var previousMark = $scope.form.mark;
 
  $scope.yearNums = [];
  for(var i=0;i<10; i++)
@@ -786,6 +829,11 @@ Date.prototype.pattern=function(fmt) {
       .then(function(response) {
         console.log(response);
       })
+
+      if(mark.value != previousMark){
+        alert(previousMark + " " + mark.value);
+        alert("send message");
+      }
       alert("修改完成");
       $ionicHistory.goBack(-1);
     }
@@ -860,16 +908,38 @@ else  {
 
 })
 
-.controller("contactdetailCtrl",function($scope, $stateParams, PersonalInformations, PersonalInformations, $location, MyInformation) {
+.controller("contactdetailCtrl",function($scope,$state, $stateParams, PersonalInformations, $location, $ionicPopup,MyInformation) {
   $scope.user = PersonalInformations.get($stateParams.personId);
   $scope.personalInformation = PersonalInformations.get($stateParams.personId);
-  $scope.myInformation = MyInformation.get();;
+  MyInformation.all(function(response){
+      
+     $scope.myInformation = response;
+  });
 
   $scope.personalFormClicked = function() {
     $location.path("app/detail-personalForms/" + $stateParams.personId);
   }
   $scope.markClicked = function() {
     $location.path("app/mark" + $stateParams.personId);
+  }
+  $scope.delete = function(){
+
+     var confirmPopup = $ionicPopup.confirm({
+       title: '删除',
+       template: '确定删除此用户?'
+     });
+     confirmPopup.then(function(res) {
+       if(res) {
+         PersonalInformations.delete($stateParams.personId,function(){
+
+         console.log('删除了用户' + $stateParams.personId);
+         $state.go('app.contacts');
+         });
+       } else {
+         console.log('未删除用户' + $stateParams.personId);
+       }
+     });
+   
   }
 })
 
@@ -1092,11 +1162,11 @@ Date.prototype.pattern=function(fmt) {
 
   $scope.saveNewTacts = function() {
     var success = 1;
-    var UserId = document = document.getElementById("userId");
-    var UserPassword = document = document.getElementById("userPassword");
-    var UserName = document = document.getElementById("userName");
-    var UserPhone = document = document.getElementById("userPhone");
-    var UserType= document = document.getElementById("userType");  // int!
+    var UserId = document.getElementById("userId");
+    var UserPassword = document.getElementById("userPassword");
+    var UserName = document.getElementById("userName");
+    var UserPhone = document.getElementById("userPhone");
+    var UserType= document.getElementById("userType");  // int!
     var UserTypeInt = 0;
     if(UserId.value.length == 0)
     {
