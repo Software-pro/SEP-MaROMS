@@ -1,20 +1,27 @@
 angular.module('starter.controllers',['ionic'])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos) {
-  $scope.count = Message_infos.getUnreadCount();
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos,UserService) {
+  Message_infos.all(function(){
+   // alert("haha");
+      $scope.count = Message_infos.getUnreadCount();
+    }
+  );
 })
 
  .controller("contactsCtrl",function($scope, $state, PersonalInformations, $location, $ionicScrollDelegate,$http) {
 //  var content = document.getElementById("searchphone");
   $scope.users=[];
-  var users;
+  var users = [];
+  var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  $scope.alphabet = iterateAlphabet();
+  $scope.sorted_users;
+
   PersonalInformations.all(function(response){
     $scope.users=response;
+    users = $scope.users;
 
-     users = $scope.users;
-    var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $scope.alphabet = iterateAlphabet();
+    $scope.sorted_users = {};
     var tmp = {};
     for(var i = 0; i < str.length; i++)
     {
@@ -32,7 +39,30 @@ angular.module('starter.controllers',['ionic'])
   }); 
   //$scope.users = PersonalInformations.all();
    
+  $scope.doRefresh = function(){
+    PersonalInformations.all(function(response){
+    //  alert(response.length);
+      $scope.users = response;
+      users = $scope.users;
+     $scope.sorted_users = {};
+      var tmp = {};
+      for(var i = 0; i < str.length; i++)
+      {
+        var nextChar = str.charAt(i);
+        tmp[nextChar] = [];
+      }
 
+    //Sort user list by first letter of name
+    for(i = 0; i < users.length; i++){
+      var letter=users[i].name.toUpperCase().charAt(0);
+      tmp[letter].push( users[i] );
+    }
+    $scope.sorted_users = tmp;
+      $scope.$broadcast("scroll.refreshComplete");  
+
+
+    });
+  }
   //Click letter event
   $scope.gotoList = function(id){
     $location.hash(id);
@@ -108,14 +138,24 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-.controller('ViewFormsCtrl', function($scope, Forms, $state, $location, $ionicScrollDelegate, MyInformation) {
-    $scope.forms = Forms.setTime("creatTime");
+
+   
+
+.controller('ViewFormsCtrl', function($scope, Forms, PersonalInformations,$state, $location, $ionicScrollDelegate, UserService) {
+   // $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
+   Forms.all(function(response){
+    $scope.forms = response;
+   var userPosition = UserService.getUserPosition();
     $scope.isShow = false;
-   $scope.myinformation = MyInformation.get();
-      if($scope.myinformation.position === "派单员")  {
+      if(userPosition === "派单员")  {
+        //alert("feipaidan");
         $scope.isShow = true;
-      }
+
+      } 
+
+   });
+
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
       $scope.forms = Forms.all();
@@ -373,13 +413,16 @@ angular.module('starter.controllers',['ionic'])
     }
 })
 
-.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation) {
-  $scope.myinformation = MyInformation.get(); 
+.controller("myCtrl",function($scope,$state,$ionicPopup, $ionicActionSheet, $location, $timeout, MyInformation,UserService,$http) {
+  $scope.myinformation;
+   MyInformation.all(function(response) {
+    $scope.myinformation = response; 
+});
+
   $scope.data={};
-  $scope.images = [];
   $scope.editphonenum = function() {
     $ionicPopup.show({
-      template: "<input type = 'phonenum' ng-model='data.phonenum'>",
+      template: "<input type = 'phoneNum' ng-model='data.phoneNum'>",
       title:"请输入新的电话号码",
       scope: $scope,
       buttons: [
@@ -390,14 +433,17 @@ angular.module('starter.controllers',['ionic'])
             text: "<b>保存</b>",
             type: "button-positive",
             onTap: function(e) {
-              $scope.myinformation.phonenum = $scope.data.phonenum;
-              return $scope.myinformation.phonenum;
+              $scope.myinformation.phoneNum = $scope.data.phoneNum;
+              return $scope.myinformation.phoneNum;
             }
         }
       ]
     })
   }
-  $scope.editphoto = function() {
+  $scope.markClicked = function(){
+    $location.path("app/mark" + $scope.myinformation.id);
+  }
+  /*$scope.editphoto = function() {
     var hideSheet = $ionicActionSheet.show({
         titleText: "上传新头像",
         buttons: [
@@ -460,21 +506,44 @@ angular.module('starter.controllers',['ionic'])
         //alert("拍照错误：" + err);
       });
 
-    }
+    } */
   $scope.exit = function(){
-    alert("haha");
-    $state.go('/');
+     $ionicPopup.show({
+        title: "您确定要登出吗",
+        scope: $scope,
+        buttons:[
+          {
+            text : "确定",
+            type : "button-positive",
+            onTap: function(e) {
+              $state.go('login');
+            }
+          },
+          {
+            text : "取消",
+            type : "button-positive"
+          }]
+      }).then(function(res) {
+      });
   }
-  $scope.markClicked = function(){
-    $location.path("app/mark" + $scope.myinformation.id);
-  }
+  
 })
 
-.controller("messageCtrl",function($scope,Message_infos,Forms,$state,$stateParams) {
-  $scope.message_infos = Message_infos.all(); 
+.controller("messageCtrl",function($scope,Message_infos,Forms,UserService,$state,$stateParams) {
+
+  $scope.message_infos = [];
+  Message_infos.all(
+    function(response){
+     $scope.message_infos = response;
+    }
+  ); 
   $scope.doRefresh = function(){
-    $scope.message_infos = Message_infos.all(); 
+     Message_infos.all(
+      function(response){
+       $scope.message_infos = response; 
     $scope.$broadcast('scroll.refreshComplete');
+    //     alert($scope.message_infos.length);
+      }); 
   }
    // $scope.form = Forms.get($stateParams.id);
   $scope.itemClicked = function(type,id){
@@ -507,8 +576,9 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,MyInformation,$ionicHistory, PersonalInformations) {
+.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,UserService,$ionicHistory, PersonalInformations) {
  $scope.form = Forms.get($stateParams.formId);
+ $scope.userPosition = UserService.getUserPosition();
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
  $scope.doRefresh = function() {
@@ -516,7 +586,8 @@ angular.module('starter.controllers',['ionic'])
       $scope.form = Forms.get($stateParams.formId);
       $scope.$broadcast("scroll.refreshComplete");     
     };
-$scope.myinformation = MyInformation.get();
+ 
+ //alert(userPosition);
   // TODO:get form by 'http'
    $scope.yearNums = [];
  for(var i=0;i<10; i++)
@@ -530,13 +601,14 @@ $scope.myinformation = MyInformation.get();
       $scope.hourNums.push([i+8].join(""));
     $scope.minuteNums=[0, 10, 20, 30, 40, 50];
     $scope.engineerDetail = function() {
-      $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
-      $location.path("app/contacts/" + $scope.engineer.id);
+      //$scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
+      $location.path("app/contacts/" + $scope.form.engineerId);
     }
     $scope.salesmanDetail = function() {
-      $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
-      $location.path("app/contacts/" + $scope.salesman.id);
+      //$scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
+      $location.path("app/contacts/" + $scope.form.salerId);
     } 
+  //alert(userPosition);   
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
   }
@@ -572,11 +644,14 @@ $scope.myinformation = MyInformation.get();
     $ionicHistory.goBack();
   }
 })
-.controller("editFormCtrl",function($scope,$state,Forms,MyInformation,PersonalInformations,$ionicHistory) {
- $scope.myinformation = MyInformation.get();
+.controller("editFormCtrl",function($scope,$state,Forms,UserService,PersonalInformations,Message_infos,$ionicHistory,$http) {
+ $scope.userPosition = UserService.getUserPosition();
  $scope.form = Forms.get(Forms.currentId);
  $scope.users = PersonalInformations.all();
  var users =  $scope.users;
+ 
+ var previousMark = $scope.form.mark;
+
  $scope.yearNums = [];
  for(var i=0;i<10; i++)
     $scope.yearNums.push([i+2016].join(""));
@@ -602,6 +677,40 @@ $scope.myinformation = MyInformation.get();
     else return user.position.indexOf('销售员')>=0;
     }
 
+Date.prototype.pattern=function(fmt) {         
+    var o = {         
+    "M+" : this.getMonth()+1, //月份         
+    "d+" : this.getDate(), //日         
+    "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时         
+    "H+" : this.getHours(), //小时         
+    "m+" : this.getMinutes(), //分         
+    "s+" : this.getSeconds(), //秒         
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
+    "S" : this.getMilliseconds() //毫秒         
+    };         
+    var week = {         
+    "0" : "\u65e5",         
+    "1" : "\u4e00",         
+    "2" : "\u4e8c",         
+    "3" : "\u4e09",         
+    "4" : "\u56db",         
+    "5" : "\u4e94",         
+    "6" : "\u516d"        
+    };         
+    if(/(y+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
+    }         
+    if(/(E+)/.test(fmt)){         
+        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);         
+    }         
+    for(var k in o){         
+        if(new RegExp("("+ k +")").test(fmt)){         
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
+        }         
+    }         
+    return fmt;         
+}    
+
   $scope.editComplete = function() {
      if($scope.form.status == "未接") {
     var success = 1;
@@ -613,8 +722,7 @@ $scope.myinformation = MyInformation.get();
     var service = document.getElementById("service");
     var engineer = document.getElementById("engineer");
     var salesman = document.getElementById("salesman");
-    var distributor = document.getElementById('distributor');
-    var distributorPhone = document.getElementById("distributorPhone");
+    var distributor = UserService.getUserId();
     if(mark.value.length == 0) {
       $scope.errorBorder1 = "red";
       success = 0;
@@ -647,20 +755,86 @@ $scope.myinformation = MyInformation.get();
       $scope.errorBorder8 = "red";
       success = 0;
     }
-     if(distributor.value.length == 0) {
+     /*if(distributor.value.length == 0) {
       $scope.errorBorder9 = "red";
       success = 0;
     }
      if(distributorPhone.value.length == 0) {
       $scope.errorBorder10 = "red";
       success = 0;
-    }
+    } */
     if(success == 0) {
       alert("请将内容填写完整后再提交！‘*'表示必填内容.");
       return;
     }
     if(success == 1) {
-      alert("修改完成！");
+       if(service.value === "上门服务") {
+        serviceId = 0;
+     }
+     else if (service.value === "送货服务") {
+        serviceId = 1;
+     }
+     else if(service.value === "安装调试") {
+        serviceId = 2;
+     }
+     var engineerId = new Array();
+     var salerId = [];
+     var tag = 0;
+     for(var i = 0, j = 0; i < engineer.value.length - 1; i ++){
+         if(tag === 1){
+
+          engineerId.push(engineer.value[i]);
+   //       alert(engineerId.value[j]);
+          j ++;
+         }
+   //      alert(engineername.value[i]);
+         if(engineer.value[i] === ':'){
+         // alert(engineername.value[i]);
+          tag = 1;
+         }
+     }
+     //alert(engineerId.length);
+     //alert(engineerId.join(""));
+     tag = 0;
+     for(var i = 0, j = 0; i < salesman.value.length - 1; i ++){
+      if(tag === 1){
+        salerId.push(salesman.value[i]);
+        j ++;
+      }
+      if(salesman.value[i] === ':'){
+        tag = 1;
+      }
+    }
+
+      $http({
+        method:'POST',
+        url:'http://115.159.225.109/repairforms/edit',
+        data:{
+          'id':$scope.form.id,
+          'grade':mark.value,
+          'service':serviceId,
+          'clientName':clientName.value,
+          'clientPhone':clientPhone.value,
+          'clientWorkplace':clientUnit.value,
+          'clientAddress':clientAddr.value,
+          'engineerId':parseInt(engineerId.join("")),
+          'salerId':parseInt(salerId.join("")),
+          'distributorId':distributor
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+
+      if(mark.value != previousMark){
+        alert(previousMark + " " + mark.value);
+        alert("send message");
+      }
+      alert("修改完成");
       $ionicHistory.goBack(-1);
     }
   }
@@ -734,10 +908,13 @@ else  {
 
 })
 
-.controller("contactdetailCtrl",function($scope, $stateParams, PersonalInformations, PersonalInformations, $location, MyInformation) {
+.controller("contactdetailCtrl",function($scope,$state, $stateParams, PersonalInformations, $location, $ionicPopup,MyInformation) {
   $scope.user = PersonalInformations.get($stateParams.personId);
   $scope.personalInformation = PersonalInformations.get($stateParams.personId);
-  $scope.myInformation = MyInformation.get();;
+  MyInformation.all(function(response){
+      
+     $scope.myInformation = response;
+  });
 
   $scope.personalFormClicked = function() {
     $location.path("app/detail-personalForms/" + $stateParams.personId);
@@ -745,9 +922,28 @@ else  {
   $scope.markClicked = function() {
     $location.path("app/mark" + $stateParams.personId);
   }
+  $scope.delete = function(){
+
+     var confirmPopup = $ionicPopup.confirm({
+       title: '删除',
+       template: '确定删除此用户?'
+     });
+     confirmPopup.then(function(res) {
+       if(res) {
+         PersonalInformations.delete($stateParams.personId,function(){
+
+         console.log('删除了用户' + $stateParams.personId);
+         $state.go('app.contacts');
+         });
+       } else {
+         console.log('未删除用户' + $stateParams.personId);
+       }
+     });
+   
+  }
 })
 
-.controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,$ionicHistory,$http) {
+.controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,Message_infos,$ionicHistory,$http) {
 
 //date类型转成string
 <!--      
@@ -806,6 +1002,11 @@ Date.prototype.pattern=function(fmt) {
 // var time2 = time;
 // alert(time2.pattern("yyyy-MM-dd EEE hh:mm:ss"));
 
+// alert(time);
+// var time2 = new Date(time.toString());
+// alert(time2);
+// alert((new Date(time.toString())).pattern("yyyy-MM-dd EEE hh:mm:ss"));
+
 
   $scope.users = [];
   PersonalInformations.all(function(response){
@@ -814,7 +1015,7 @@ Date.prototype.pattern=function(fmt) {
   $scope.saveNewForm = function(){
      var distributorId = UserService.getUserId();
    //  alert(distributorId);
-    alert(distributorId);
+    //alert(distributorId);
     var success = 1;//success=1说明报修单新建成功。
     var clientname = document.getElementById("clientName");
     var clientphone = document.getElementById("clientPhone");
@@ -827,7 +1028,7 @@ Date.prototype.pattern=function(fmt) {
      var serviceId;
     if(clientname.value.length == 0) {
       $scope.errorBorder1 = 'red';
-      success = 0;
+      su辨析ccess = 0;
     }
      if(clientphone.value.length == 0) {
       $scope.errorBorder2 = 'red';
@@ -914,8 +1115,8 @@ Date.prototype.pattern=function(fmt) {
       }
 
      }
-     alert(salerId.join(""));
-
+     //alert(salerId.join(""));
+     
     $http({
         method:'POST',
         url:'http://115.159.225.109/repairforms/create',
@@ -961,11 +1162,11 @@ Date.prototype.pattern=function(fmt) {
 
   $scope.saveNewTacts = function() {
     var success = 1;
-    var UserId = document = document.getElementById("userId");
-    var UserPassword = document = document.getElementById("userPassword");
-    var UserName = document = document.getElementById("userName");
-    var UserPhone = document = document.getElementById("userPhone");
-    var UserType= document = document.getElementById("userType");  // int!
+    var UserId = document.getElementById("userId");
+    var UserPassword = document.getElementById("userPassword");
+    var UserName = document.getElementById("userName");
+    var UserPhone = document.getElementById("userPhone");
+    var UserType= document.getElementById("userType");  // int!
     var UserTypeInt = 0;
     if(UserId.value.length == 0)
     {
@@ -1084,7 +1285,20 @@ Date.prototype.pattern=function(fmt) {
         console.log(response);
         if(response.data['success']) {
           UserService.setUser(user,userPass);
-          $myinformation =  MyInformation.setPosition("派单员");
+         
+         if(response.data['type'] === 0){
+          UserService.setUserPosition("管理员");
+         }
+         else if(response.data['type'] === 1){
+          UserService.setUserPosition("工程师");
+         }
+         else if(response.data['type'] === 2){
+          UserService.setUserPosition("销售员");
+         }
+         else{
+          UserService.setUserPosition("派单员");
+         }
+
           $state.go("app.viewForms");
         }
         else
@@ -1100,7 +1314,7 @@ Date.prototype.pattern=function(fmt) {
   }
   
 })
-.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory, $ionicPopup,UserService){
+.controller("passwordModifyCtrl",function($scope,$state, $ionicHistory, $ionicPopup,UserService, Message_infos){
   $scope.goback = function(){
     $state.go('app.my');
   }
@@ -1148,6 +1362,7 @@ Date.prototype.pattern=function(fmt) {
                   type : "button-positive"
                 }]
               }).then(function (res) {
+                Message_infos.create(2,UserService.getUserId(),1);
                 $state.go('login');
               });
             },
@@ -1170,7 +1385,7 @@ Date.prototype.pattern=function(fmt) {
     
   }
 })
-.controller("passwordForgetCtrl",function($scope,$state){
+.controller("passwordForgetCtrl",function($scope,$state,Message_infos){
   var phone = document.getElementById("phonenumber");
   var button = document.getElementById("submitbutton");
   // if(phone.value.length === 0){
@@ -1191,12 +1406,17 @@ Date.prototype.pattern=function(fmt) {
     }
   }
   $scope.ensure = function(){
+    var myid = document.getElementById("myid");
     var tmp = document.getElementById("phonenumber");
     if(tmp.value.length === 0){
       alert("输入为空！");
       return;
     }
+    alert(myid.value);
+    Message_infos.create(1,myid.value,1);
+
     alert("申请提交成功，请等待管理员联系");
+
     $state.go('login');
   }
 })
@@ -1456,13 +1676,13 @@ Date.prototype.pattern=function(fmt) {
 })
 .controller('messagePasswordForgetCtrl',function($scope,$stateParams,PersonalInformations,$location){
  // alert($stateParams.contentid);
-  $scope.user = PersonalInformations.getByNo($stateParams.contentid);
+  $scope.user = PersonalInformations.get($stateParams.contentid);
 
   
 })
 .controller('messagePasswordModifyCtrl',function($scope,$stateParams,PersonalInformations,$location){
- // alert($stateParams.contentid);
-   $scope.user = PersonalInformations.getByNo($stateParams.contentid);
+ // alert("in messagePasswordModifyCtrl " + $stateParams.contentid);
+   $scope.user = PersonalInformations.get($stateParams.contentid);
 
 })
 

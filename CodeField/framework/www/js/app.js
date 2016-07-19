@@ -33,12 +33,14 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
    .state('app', {
     url: '/app',
     abstract: true,
+    cache:false,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
     })
 
     .state('app.viewForms', {
       url: '/viewForms',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl: 'templates/menu-viewForms.html',
@@ -70,6 +72,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.my',{
        url:'/my',
+       cache:false,
        views: {
          'menuContent': {
            templateUrl:'templates/menu-my.html',

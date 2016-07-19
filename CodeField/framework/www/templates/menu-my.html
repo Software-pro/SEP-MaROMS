@@ -2,14 +2,13 @@
   <ion-content class="scroll-content has-header stable-bg light" >
    <div class="list">
    <div class="itemDivider"></div>
-      <ion-item class="item-avatar" type="item-text-wrap" >
-			<img ng-src="{{myinformation.img}}" on-hold="editphoto()">
+      <ion-item class="item" type="item-text-wrap" >
 			<h2>{{myinformation.name}}</h2>
 			<p>{{myinformation.position}}</p>
 		</ion-item>
    	<div class="itemDivider"></div>
    	 <ion-item class="item"  type="item-text-wrap" on-hold="editphonenum()"> 
-   		<h2>{{myinformation.phonenum}}</h2>
+   		<h2>{{myinformation.phoneNum}}</h2>
    	</ion-item>
    	<div class="itemDivider"></div>
    	<ion-item class="item item-icon-right"  type="item-text-wrap" ng-click="markClicked()"> 
@@ -25,7 +24,7 @@
     </ion-item>
 
     <div class="itemDivider"></div>
-    <ion-item class = "item item-icon-right" type = "item-text-wrap" href ="#/login">
+    <ion-item class = "item item-icon-right" type = "item-text-wrap" ng-click ="exit()">
       <h2>退出登录</h2>
   <!--     <i class="icon ion-chevron-right icon-accessory"></i> -->
     </ion-item>

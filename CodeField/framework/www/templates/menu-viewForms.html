@@ -89,7 +89,7 @@
     
       <ion-item class="item" ng-repeat="form in forms | orderBy:order | filter: searchFilter" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
         <p id="formTitle" >
-          报修单号：{{form.NO}}
+          报修单号：{{form.id}}
         </p>
         <p style="margin-top: 10px;">
           状态：
@@ -132,7 +132,7 @@
         <p>
           {{timeLabel}}
           <span id="blackFont">
-            {{form.time}}
+            {{form.creatTime}}
           </span>
         </p>
 
