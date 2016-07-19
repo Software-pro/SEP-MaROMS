@@ -161,8 +161,10 @@ angular.module('starter.controllers',['ionic'])
 
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
-      $scope.forms = Forms.all();
+      Forms.all(function(forms){
+           $scope.forms = forms;
       $scope.$broadcast("scroll.refreshComplete");     
+      });
     };
 
     $scope.order = 'creatTime';
@@ -581,26 +583,32 @@ angular.module('starter.controllers',['ionic'])
 
 })
 
-.controller("formDetailCtrl",function($scope, $state, $stateParams, Forms, $location,UserService,$ionicHistory, PersonalInformations) {
- /*alert($stateParams.formId);
- Forms.getByServer($stateParams.formId, function(response) {
-  alert($stateParams.formId);
-  $scope.form = response;
-  alert($scope.form.id);
-  $scope.userPosition = UserService.getUserPosition();
- });  */
+
+.controller("formDetailCtrl",function($scope, $state, $window, $stateParams, Forms, $location,UserService,$ionicHistory, PersonalInformations) {
 
  $scope.form = Forms.get($stateParams.formId);
 
  $scope.userPosition = UserService.getUserPosition();
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
-//  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
+//  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员')
+
+
  $scope.doRefresh = function() {
+    Forms.all(function(response){
+      $scope.forms = response;
+      var userPosition = UserService.getUserPosition();
+      $scope.isShow = false;
+      if(userPosition === "派单员")  {
+        //alert("feipaidan");
+        $scope.isShow = true;
+      } 
       //刷新--重新从后台载入数据
       $scope.form = Forms.get($stateParams.formId);
-      $scope.$broadcast("scroll.refreshComplete");     
-    };
-  
+
+      $scope.$broadcast("scroll.refreshComplete");
+    });
+}
+ 
  //alert(userPosition);
   // TODO:get form by 'http'
    $scope.yearNums = [];
@@ -662,10 +670,15 @@ angular.module('starter.controllers',['ionic'])
 .controller("editFormCtrl",function($scope,$state,Forms,UserService,PersonalInformations,Message_infos,$ionicHistory,$http) {
  $scope.userPosition = UserService.getUserPosition();
  $scope.form = Forms.get(Forms.currentId);
- $scope.users = PersonalInformations.all();
- var users =  $scope.users;
+$scope.users = [];
+var users ;
+var previousMark;
+ PersonalInformations.all(function(users){
+    $scope.users = users;
+    users =  $scope.users;
  
- var previousMark = $scope.form.mark;
+    previousMark = $scope.form.value;
+ });
 
  $scope.yearNums = [];
  for(var i=0;i<10; i++)
@@ -852,8 +865,20 @@ Date.prototype.pattern=function(fmt) {
         alert(previousMark + " " + mark.value);
         alert("send message");
       }
+<<<<<<< HEAD
      /* alert("修改完成");
      $ionicHistory.goBack(); */
+=======
+      alert("修改完成");
+
+
+       // $ionicHistory.goBack();              //返回上一页
+        // $scope.$emit('editComplete','123');
+        // $ionicHistory.clearCache();
+       $ionicHistory.goBack(-1);
+      // alert("");
+
+>>>>>>> 14b0b56cf37df1f89f1dfcc9a44a22ae4ef30c42
     }
   }
 else  {
