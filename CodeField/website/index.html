@@ -1,0 +1,377 @@
+<!-- DOCTYPE html -->
+<html>
+  <head>
+        <title>RepairOnline</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <style>
+      body {
+        padding-top: 70px;
+      }
+    </style>
+
+    <script src="js/bootstrap-select.js"></script>
+
+</head>
+<body>
+   <div class="container">
+   <form class="form-signin" role="form">
+      
+        <h1 class="page-header" style="text-align:center;">新建报修单</h1>
+        <h3>客户姓名<span style="color: red;">  *</span></h3>
+        <input id = "clientName" type = "text" class="form-control" placeholder = "请填写客户的姓名" required="required">
+        <ul class="list-group" id = "clientName-prompt">
+        </ul>
+
+        <h3>客户电话<span style="color: red;">  *</span></h3>
+        <input id = "clientPhone" type = "text" class="form-control" placeholder = "请填写客户的电话" required="required">
+        <ul class="list-group" id = "clientPhone-prompt">
+        </ul>
+
+        <h3>客户地址<span style="color: red;">  *</span></h3>
+        <input id = "clientAddr" type = "text" class="form-control" placeholder = "请填写详细地址" required="required">
+        <ul class="list-group" id = "clientAddr-prompt">
+        </ul>
+
+        <h3>客户单位<span style="color: red;">  *</span></h3>
+        <input id="clientUnit" type = "text" class="form-control" placeholder = "请填写工作地址" required="required">
+        <ul class="list-group" id = "clientUnit-prompt">
+        </ul>
+      
+        
+        <h3>销售员<span style="color: red;">  *</span></h3>
+        <select id="salesName" class="form-control">
+          <option selected>请选择销售员</option>
+        </select>
+
+        <h3>工程师<span style="color: red;">  *</span></h3>
+        <select id="engineerName" class="form-control">
+            <option selected>请选择工程师</option>
+        </select>
+      
+
+        <h3>
+          服务项目<span style="color: red;">  *</span>
+        </h3>
+        <select id="serviceName" class="form-control">
+          <option selected>请选择服务</option>
+          <option>上门服务</option>
+          <option>送货服务</option>
+          <option>安装调试</option>
+        </select>
+
+        <h3>分值<span style="color: red;">  *</span></h3>
+        <input id="mark" type = "text" class="form-control" placeholder = "请填写分值（只能取0-100）">
+       
+        <br></br>
+        <div style="margin:0 auto;width:200px;">
+          <button type="button" class="btn btn-lg btn-primary"  style = "background-color:#00BFFF;border-color:#00BFFF">保存提交</button>
+        </div>
+        
+          
+    </form>
+
+</div>
+<script>
+      var users=[];
+
+      $(document).ready(function(){
+        $("#clientName-prompt").hide();
+        $("#clientPhone-prompt").hide();
+        $("#clientAddr-prompt").hide();
+        $("#clientUnit-prompt").hide();
+
+        $.ajax({
+          type:"GET",
+          url:"http://115.159.225.109/users",
+          dataType:"json",
+          contentType:"application/json", 
+          success:function(data)
+          {
+            for(var i = 0; i < data.length; i++) {
+              // var position;
+              // if(data[i].type === 0) position = "管理员";
+              // else if(data[i].type === 1) position = "工程师";
+              // else if(data[i].type === 2) position = "销售员";
+              // else if(data[i].type === 3) position = "派单员";
+              if(data[i].type === 1) {
+                $("#engineerName").append("<option value ='" + i + "'>" + data[i].name + "(" + data[i].id + ")" + "</option>");
+              }
+              else if (data[i].type === 2) {
+                $("#salesName").append("<option value ='" + i + "'>" + data[i].name + "(" + data[i].id + ")" + "</option>");
+              }
+            }
+          }
+        });
+
+        // add all client informations to list
+        for(var i = 0; i < 10; i++) {
+          $("#clientName-prompt").append("<li class=\"list-group-item clientName-item\">" + "client" + i + "</li>");
+          $("#clientPhone-prompt").append("<li class=\"list-group-item clientPhone-item\">" + "client" + i + "</li>");
+          $("#clientAddr-prompt").append("<li class=\"list-group-item clientAddr-item\">" + "client" + i + "</li>");
+          $("#clientUnit-prompt").append("<li class=\"list-group-item clientUnit-item\">" + "client" + i + "</li>");
+
+          // BUG WARNING!!!
+          // 相同的信息可能会出现多次（因为属于不同client）
+
+        }
+
+
+        /***********************************clientName***********************************/
+        // informations filter
+        $("#clientName").keyup(function(){
+          // alert($(".clientName-item")[3].text());
+          // for (var i = 0; i < 10; i++) {
+          //   if ($(".clientName-item")[i].text().indexOf($("#clientName").text()) < 0) {
+          //     $(".clientName-item")[i].hide();
+          //   }
+          //   else {
+          //     $(".clientName-item")[i].show();
+          //   }
+          // }
+          $("#clientName-prompt").show();
+          $(".clientName-item").filter(function(index) {
+           // alert($(this).text() + "-" + $("#clientName").val());
+            return ($(this).text()).indexOf($("#clientName").val()) >= 0;
+          }).show();
+
+          $(".clientName-item").filter(function(index) {
+            //alert("");
+            return ($(this).text()).indexOf($("#clientName").val()) < 0;
+          }).hide();
+        });
+
+        $(".clientName-item").click(function() {
+          // alert("$(this).text()");
+          $("#clientName").val($(this).text());
+          $("#clientName-prompt").hide();
+          return false;
+        });
+
+        $("#clientName").blur(function(){
+          setTimeout(function () {
+             $("#clientName-prompt").hide();
+          }, 300);
+        });
+
+
+        /***********************************clientPhone***********************************/
+        // informations filter
+        $("#clientPhone").keyup(function(){
+          // alert($(".clientPhone-item")[3].text());
+          // for (var i = 0; i < 10; i++) {
+          //   if ($(".clientPhone-item")[i].text().indexOf($("#clientPhone").text()) < 0) {
+          //     $(".clientPhone-item")[i].hide();
+          //   }
+          //   else {
+          //     $(".clientPhone-item")[i].show();
+          //   }
+          // }
+          $("#clientPhone-prompt").show();
+          $(".clientPhone-item").filter(function(index) {
+           // alert($(this).text() + "-" + $("#clientPhone").val());
+            return ($(this).text()).indexOf($("#clientPhone").val()) >= 0;
+          }).show();
+
+          $(".clientPhone-item").filter(function(index) {
+            //alert("");
+            return ($(this).text()).indexOf($("#clientPhone").val()) < 0;
+          }).hide();
+        });
+
+        $(".clientPhone-item").click(function() {
+          // alert($(this).text());
+          $("#clientPhone").val($(this).text());
+          $("#clientPhone-prompt").hide();
+        });
+
+        $("#clientPhone").blur(function(){
+          setTimeout(function () {
+            $("#clientPhone-prompt").hide();
+          }, 300);
+        });
+
+
+        /***********************************clientAddr***********************************/
+        // informations filter
+        $("#clientAddr").keyup(function(){
+          // alert($(".clientAddr-item")[3].text());
+          // for (var i = 0; i < 10; i++) {
+          //   if ($(".clientAddr-item")[i].text().indexOf($("#clientAddr").text()) < 0) {
+          //     $(".clientAddr-item")[i].hide();
+          //   }
+          //   else {
+          //     $(".clientAddr-item")[i].show();
+          //   }
+          // }
+          $("#clientAddr-prompt").show();
+          $(".clientAddr-item").filter(function(index) {
+           // alert($(this).text() + "-" + $("#clientAddr").val());
+            return ($(this).text()).indexOf($("#clientAddr").val()) >= 0;
+          }).show();
+
+          $(".clientAddr-item").filter(function(index) {
+            //alert("");
+            return ($(this).text()).indexOf($("#clientAddr").val()) < 0;
+          }).hide();
+        });
+
+        $(".clientAddr-item").click(function() {
+          // alert($(this).text());
+          $("#clientAddr").val($(this).text());
+          $("#clientAddr-prompt").hide();
+        });
+
+        $("#clientAddr").blur(function(){
+          setTimeout(function () {
+            $("#clientAddr-prompt").hide();
+          }, 300);
+        });
+
+
+        /***********************************clientUnit***********************************/
+        // informations filter
+        $("#clientUnit").keyup(function(){
+          // alert($("clientUnit-item")[3].text());
+          // for (var i = 0; i < 10; i++) {
+          //   if ($("clientUnit-item")[i].text().indexOf($("clientUnit").text()) < 0) {
+          //     $("clientUnit-item")[i].hide();
+          //   }
+          //   else {
+          //     $("clientUnit-item")[i].show();
+          //   }
+          // }
+          $("#clientUnit-prompt").show();
+          $(".clientUnit-item").filter(function(index) {
+           // alert($(this).text() + "-" + $("clientUnit").val());
+            return ($(this).text()).indexOf($("#clientUnit").val()) >= 0;
+          }).show();
+
+          $(".clientUnit-item").filter(function(index) {
+            //alert("");
+            return ($(this).text()).indexOf($("#clientUnit").val()) < 0;
+          }).hide();
+        });
+
+        $(".clientUnit-item").click(function() {
+           //alert($(this).text());
+          $("#clientUnit").val($(this).text());
+          $("#clientUnit-prompt").hide();
+        });
+
+        $("#clientUnit").blur(function(){
+          setTimeout(function () {
+            $("#clientUnit-prompt").hide();
+          }, 300);
+        });
+
+
+
+          
+        $(".btn").click(function(){
+         var clientname = $("#clientName").val();
+         var clientphone = $(".form-control")[1];
+         var clientaddr = $(".form-control")[2];
+         var clientunit = $(".form-control")[3];
+         var salesid = $(".form-control")[4];
+         var engineerid = $(".form-control")[5];
+         var service = $(".form-control")[6];
+         var mark = $(".form-control")[7];
+         var success = 1;
+         if(clientname.value.length == 0)
+         {
+            success = 0;
+         }
+         if(clientphone.value.length == 0)
+         {
+            success = 0;
+         }
+         if(clientaddr.value.length == 0)
+         {
+            success = 0;
+         }
+         if(clientunit.value.length == 0)
+         {
+            success = 0;
+         }
+         if(salesid.value == "请选择销售人员")
+         {
+            success = 0;
+         }
+         if( engineerid.value === "请选择工程师")
+         {
+            success = 0;
+         }
+         if(service.value === "请选择服务")
+         {
+            success = 0;
+         }
+         if(mark.value.length == 0 && mark.value.length >= 4)
+         {
+            success = 0;
+         }
+         if(success == 0)
+         {
+            alert("请将内容填写完整后再提交！ ‘*' 表示必填内容.");
+            //return;
+            window.location.reload();
+         }
+         else
+         {
+            window.location.reload();
+           /* $.ajax({
+               type:"POST",
+               url:"http://115.159.225.109/login",
+               dataType:"json",
+               contentType:"application/json",               
+               data:JSON.stringify({
+                "id":id.value,
+                "password":password.value
+               }),
+
+               success:function(data){
+                if(data['type'] != 3)
+                {
+                  console.log(data);
+                  alert("没有权限！");
+                }
+                else
+                {
+                  if(data['success'] == true)
+                  {
+                   window.location="./templates/index.html";
+                  }
+                  else
+                  {
+                   alert("用户名或密码错误！");
+                  }
+                }
+               },
+               error:function(data){
+                  alert("网络连接失败！");
+               },
+            });
+*/
+          } 
+        });
+
+
+
+  });
+ </script>
+  </body>
+  </html>
