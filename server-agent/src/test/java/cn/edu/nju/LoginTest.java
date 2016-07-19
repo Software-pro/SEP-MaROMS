@@ -4,11 +4,15 @@ import cn.edu.nju.servicedata.users.LoginRequest;
 
 import cn.edu.nju.servicedata.users.LoginResponse;
 import com.google.gson.Gson;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 import static cn.edu.nju.GlobalVar.host;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by chezeyu on 2016/7/18.
@@ -21,22 +25,37 @@ public class LoginTest {
      */
     private static String url = "http://"+host;
 
+    @BeforeClass
+    public static void initial(){
+        /**初始化测试用户*/
+        assertTrue(InitialUser.createUser(99999,"chezeyu","chezeyu19951010","18651615329",0));
+        assertTrue(InitialUser.createUser(99998,"test1","test119951010","18651615328",1));
+        assertTrue(InitialUser.createUser(99997,"test2","test219951010","18651615327",2));
+        assertTrue(InitialUser.createUser(99996,"test3","test319951010","18651615326",3));
+    }
+    @AfterClass
+    public static void delete(){
+        /**删除测试用户*/
+        assertTrue(InitialUser.deleteUser(99999));
+        assertTrue(InitialUser.deleteUser(99998));
+        assertTrue(InitialUser.deleteUser(99997));
+        assertTrue(InitialUser.deleteUser(99996));
+    }
+
     @Test
     public void test01(){
         /**
          * test01:测试访问url
          */
-        String json = "";
-
-        String ret = HttpRequest.sendGet(url+"/",json);
-        assertEquals(ret,"Hello guys! We made it!");
+        String ret = HttpRequest.sendGet(url+"/","");
+        assertEquals("Test success!",ret);
     }
 
     @Test
     public void test02(){
         /**
          * test02(验证存在用户登录正常，管理员账号)
-         * 输入：id = 1，password = admin
+         * 输入：id = 99999，password = chezeyu19951010
          * 预计输出：success = true，info = null，type = 0
          */
 
@@ -44,8 +63,8 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(1);
-        request.setPassword("admin");
+        request.setId(99999);
+        request.setPassword("chezeyu19951010");
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
@@ -65,7 +84,7 @@ public class LoginTest {
     public void test03() {
         /**
          * test03(验证不存在用户登录)
-         * 输入：id = 99999，password = admin
+         * 输入：id = 100000，password = admin
          * 预计输出：success = false，info = "The user do not exists."，type = -1
          */
 
@@ -73,7 +92,7 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(99999);
+        request.setId(100000);
         request.setPassword("admin");
         String postInformation = gson.toJson(request);
 
@@ -95,7 +114,7 @@ public class LoginTest {
     public void test04(){
         /**
          * test04(验证存在用户登录，但密码错误)
-         * 输入：id = 1，password = add
+         * 输入：id = 99999，password = add
          * 预计输出：success = false，info = "Wrong password."，type = -1
          */
 
@@ -103,7 +122,7 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(1);
+        request.setId(99999);
         request.setPassword("add");
         String postInformation = gson.toJson(request);
 
@@ -154,7 +173,7 @@ public class LoginTest {
     public void test06(){
         /**
          * test06(验证密码为空时登录情况)
-         * 输入：id = 1，password = ""
+         * 输入：id = 99999，password = ""
          * 预计输出：success = false，info = "Wrong password."，type = -1
          */
 
@@ -162,7 +181,7 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(1);
+        request.setId(99999);
         request.setPassword("");
         String postInformation = gson.toJson(request);
 
@@ -184,7 +203,7 @@ public class LoginTest {
     public void test07(){
         /**
          * test07(验证存在用户登录正常，工程师账号)
-         * 输入：id = 101，password = engineer
+         * 输入：id = 99998，password = test119951010
          * 预计输出：success = true，info = null，type = 1
          */
 
@@ -192,8 +211,8 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(101);
-        request.setPassword("engineer");
+        request.setId(99998);
+        request.setPassword("test119951010");
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
@@ -213,7 +232,7 @@ public class LoginTest {
     public void test08(){
         /**
          * test08(验证存在用户登录正常，销售员账号)
-         * 输入：id = 201，password = saler
+         * 输入：id = 99997，password = test219951010
          * 预计输出：success = true，info = null，type = 2
          */
 
@@ -221,8 +240,8 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(201);
-        request.setPassword("saler");
+        request.setId(99997);
+        request.setPassword("test219951010");
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
@@ -242,7 +261,7 @@ public class LoginTest {
     public void test09(){
         /**
          * test09(验证存在用户登录正常，派单员账号)
-         * 输入：id = 301，password = distributor
+         * 输入：id = 99996，password = test319951010
          * 预计输出：success = true，info = null，type = 3
          */
 
@@ -251,8 +270,8 @@ public class LoginTest {
 
         /**待发送信息*/
         LoginRequest request = new LoginRequest();
-        request.setId(301);
-        request.setPassword("distributor");
+        request.setId(99996);
+        request.setPassword("test319951010");
         String postInformation = gson.toJson(request);
 
         /**预计结果*/

@@ -5,7 +5,7 @@ package cn.edu.nju;
  */
 public class GlobalVar {
 
-    //static String host = "115.159.225.109";
-    static String host = "localhost";
+    static String host = "115.159.225.109";
+    //static String host = "localhost";
 
 }

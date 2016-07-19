@@ -2,6 +2,8 @@ package cn.edu.nju;
 
 import cn.edu.nju.datatables.User;
 import com.google.gson.Gson;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -43,20 +45,38 @@ public class GetUserInformationTest {
         assertEquals(expectedInformation,returnInformation);
     }
 
+
+    @BeforeClass
+    public static void initial(){
+        /**初始化测试用户*/
+        assertTrue(InitialUser.createUser(99999,"chezeyu","chezeyu19951010","18651615329",0));
+        assertTrue(InitialUser.createUser(99998,"test1","test119951010","18651615328",1));
+        assertTrue(InitialUser.createUser(99997,"test2","test219951010","18651615327",2));
+        assertTrue(InitialUser.createUser(99996,"test3","test319951010","18651615326",3));
+    }
+    @AfterClass
+    public static void delete(){
+        /**删除测试用户*/
+        assertTrue(InitialUser.deleteUser(99999));
+        assertTrue(InitialUser.deleteUser(99998));
+        assertTrue(InitialUser.deleteUser(99997));
+        assertTrue(InitialUser.deleteUser(99996));
+    }
+
     @Test
     public void test01(){
         /**
          * test01(验证通过id查询单个人信息，id存在)
          * 输入：id = {1,101,201,301}
-         * 预计输出：id = 1，  name = admin，      phone = 001，type = 0；
-         *           id = 101，name = engineer，   phone = 101，type = 1；
-         *           id = 201，name = saler，      phone = 201，type = 2；
-         *           id = 301，name = distributor，phone = 301，type = 3；
+         * 预计输出：id = 99999, name = chezeyu，phone = 18651615329，type = 0；
+         *           id = 99998，name = test1，  phone = 18651615328，  type = 1；
+         *           id = 99997，name = test2，  phone = 18651615327，  type = 2；
+         *           id = 99996，name = test3，  phone = 18651615326，  type = 3；
          */
-        testModel(1,"admin","001",0);
-        testModel(101,"engineer","101",1);
-        testModel(201,"saler","201",2);
-        testModel(301,"distributor","301",3);
+        testModel(99999,"chezeyu","18651615329",0);
+        testModel(99998,"test1","18651615328",1);
+        testModel(99997,"test2","18651615327",2);
+        testModel(99996,"test3","18651615326",3);
     }
 
     @Test
