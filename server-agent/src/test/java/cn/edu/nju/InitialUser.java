@@ -1,6 +1,7 @@
 package cn.edu.nju;
 
 import cn.edu.nju.servicedata.SuccessResponse;
+import cn.edu.nju.servicedata.users.PasswordResponse;
 import cn.edu.nju.servicedata.users.UserCreateRequest;
 import cn.edu.nju.servicedata.users.UserInfoResponse;
 import com.google.gson.Gson;
@@ -77,10 +78,26 @@ public class InitialUser {
 
         return returnInformation;
     }
+
+    public static String getPassword(long id){
+        /**
+         * 获取用户密码
+         */
+        String url = "http://"+host+"/users/password/"+id;
+
+        String returnInformation = HttpRequest.sendGet(url,"");
+        Gson gson = new Gson();
+        PasswordResponse response = gson.fromJson(returnInformation,PasswordResponse.class);
+
+        if(response.isSuccess() == false)
+            return null;
+        else
+            return response.getPassword();
+    }
     @Test
     public void test(){
         assertTrue(createUser(99999,"chezeyu","chezeyu19951010","18651615328",0));
-        System.out.println(findUser(99999));
+        System.out.println(getPassword(99999));
         assertTrue(deleteUser(99999));
     }
 }
