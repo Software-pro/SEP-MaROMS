@@ -9,7 +9,7 @@
     <p style = "padding: 16px; margin: 0;">分值改动的报修单详情：</p>
 
       <div class="item">
-        <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.NO}}</p>
+        <p style="font-size: 130%; margin-bottom: 12px;">报修单号：{{form.id}}</p>
         <p style="color: #AAAAAA;">状态： {{form.status}}</p>
          <div>
           <div id="formValueBackground">
@@ -48,7 +48,7 @@
 
       <div class="item" href="#" >
         <p>出库单号：<span id="blackFont"> {{form.stocknumber}}</span></p>
-        <p>创建时间： <span id="blackFont">{{form.time}}</span></p>
+        <p>创建时间： <span id="blackFont">{{form.creatTime}}</span></p>
         <p>接单时间： <span id="blackFont">{{form.accepttime}}</span></p>
         <p>完成时间： <span id="blackFont">{{form.finishtime}}</span></p>
         <p>审核时间： <span id="blackFont">{{form.checktime}}<span></p>

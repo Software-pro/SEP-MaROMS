@@ -26,6 +26,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
   $stateProvider
     .state('login',{
       url:'/login',
+      cache:false,
       templateUrl:'templates/login.html',
       controller:'LoginCtrl'
     })
@@ -104,6 +105,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.contacts-newtacts',{
       url:'/contacts/contacts-newtacts',
+      cache:false,
       views: {
         'menuContent' : {
           templateUrl:'templates/contacts-newtacts.html',
@@ -133,6 +135,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.message-modify',{
       url:'/message/0/:contentid',
+      cache:false,
       views:{
         'menuContent':{
           templateUrl:'templates/message-modify.html',
