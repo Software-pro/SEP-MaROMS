@@ -47,8 +47,11 @@ public class HttpRequest {
                 result += line;
             }
         } catch (Exception e) {
+            return "发送GET请求出现异常！" + e;
+            /**
             System.out.println("发送GET请求出现异常！" + e);
             e.printStackTrace();
+             */
         }
         // 使用finally块来关闭输入流
         finally {

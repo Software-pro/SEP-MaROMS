@@ -2,11 +2,16 @@ package cn.edu.nju;
 
 import cn.edu.nju.datatables.User;
 import com.google.gson.Gson;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
 import static cn.edu.nju.GlobalVar.host;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by chezeyu on 2016/7/18.
@@ -55,17 +60,24 @@ public class GetUserInformationTest {
     }
 
     @Test
-    public void test02(){
+    public void test02() throws IOException {
         /**
          * test02(验证通过id查询单个人信息，id不存在))
          * 输入：id = 0
-         * 预计输出：
+         * 预计输出：get请求发送失败
          */
 
+        /**
+         * 测试说明：对于不存在的id，服务器应返回相关错误信息。
+         */
+
+        /**预计结果*/
+        String expectedInformation = "发送GET请求出现异常！";
+
         /**发送请求*/
-        String returnInformation = HttpRequest.sendGet(url+0,"");
+        String returnInformation = HttpRequest.sendGet(url + 0, "");
 
         /**检查返回值跟预期值是否一致*/
-
+        assertTrue(returnInformation.contains(expectedInformation));
     }
 }
