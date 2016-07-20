@@ -234,6 +234,7 @@ angular.module('starter.service',[])
   // 2. 传入报修单状态展示的颜色（前端比较笨QwQ，没做出来根据文字改变颜色的。。）
   ///////////////////////////////////////////////////////////
   var forms = [];
+  var form;
  // var forms = [{
  //    id: 0,
  //    NO: 'bx131220237',
@@ -350,14 +351,317 @@ angular.module('starter.service',[])
             callback(forms);
       })
       .error(function (response) {
-        console.log("app getUsers Fail to get---error message : ", response.error);
-        alert("获取用户信息失败");
+        console.log("app getForms Fail to get---error message : ", response.error);
+        alert("获取报修单信息失败");
       })
 
       return forms;
     },
-    remove: function(form) {
-      forms.splice(forms.indexOf(form), 1);
+    getByEngineerId: function(engineerId, callback) {
+
+       $http.get(ipAddress + "/repairforms/byEngineerId/" + engineerId)
+      .success(function (response) {
+        var formlist = response;
+        var statusname;
+        var engineerName;
+        var salesName;
+        var distributerName;
+
+
+         PersonalInformations.all(function(response){
+        for(var i = 0; i < formlist.length; i ++){
+          if(formlist[i].status === 0){
+            statusname = "未接";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 1){
+            statusname = "已接单";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 2){
+            statusname = "已完成";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 3){
+            statusname = "已审核";
+            statusColor = "#444444";
+          }
+          var servicename;
+          if(formlist[i].service === 0){
+             servicename = "上门服务";
+          }
+          else if(formlist[i].service === 1){
+            servicename = "安装调试";
+          }
+          else if(formlist[i].service === 2){
+            servicetype = "送货服务";
+          }
+
+     //     alert(PersonalInformations.get(formlist[i].engineerId).length);
+          var user = PersonalInformations.get(formlist[i].engineerId);
+          if(user === null){
+            engineerName = "null";
+          }
+          else{
+           engineerName = user.name;
+
+         }
+         var user2 = PersonalInformations.get(formlist[i].salerId);
+          if(user2 === null){
+            salesName = "null";
+          }
+          else{
+           salesName = user2.name;
+
+         }
+         var user3 = PersonalInformations.get(formlist[i].distributorId);
+          if(user3 === null){
+            distributerName = "null";
+          }
+          else{
+            distributerName = user3.name;
+          }
+
+
+     //   alert(formlist[i].creationTime);
+          forms[i] = {
+            "id":formlist[i].id,
+            "status":statusname,
+            "statusColor":statusColor,
+            "value":formlist[i].grade,
+            "type":servicename,
+            "clientName":formlist[i].clientName,
+            "clientphone":formlist[i].clientPhone,
+            "clientunit":formlist[i].clientWorkplace,
+            "clientaddr":formlist[i].clientAddress,
+            "engineerId":formlist[i].engineerId,
+            "engineerName":engineerName,
+            "salerId":formlist[i].salerId,
+            "salesName":salesName,
+            "distributerId":formlist.distributorId,
+            "distributerName":distributerName,
+            "creatTime":(new Date(formlist[i].creationTime)),
+            "orderTakeTime":formlist[i].receiveTime,
+            "finishTime":formlist[i].completedTime,
+            "auditTime":formlist[i].checkedTime,
+          };
+        //  console.log("get form creationTime" + formlist[i].creationTime);
+      //     alert("forms[i].distributerName  " + forms[i].distributerName);
+       //   console.log("get form engineername " + forms[i].engineerName);
+
+        }
+      });
+            callback(forms);
+      })
+      .error(function (response) {
+        console.log("app getForms Fail to get---error message : ", response.error);
+        alert("获取报修单信息失败");
+      })
+
+      return forms;
+    },
+    getBySalerId: function(salerId, callback) {
+
+       $http.get(ipAddress + "/repairforms/bySalerId/" + salerId)
+      .success(function (response) {
+        var formlist = response;
+        var statusname;
+        var engineerName;
+        var salesName;
+        var distributerName;
+
+
+         PersonalInformations.all(function(response){
+        for(var i = 0; i < formlist.length; i ++){
+          if(formlist[i].status === 0){
+            statusname = "未接";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 1){
+            statusname = "已接单";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 2){
+            statusname = "已完成";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 3){
+            statusname = "已审核";
+            statusColor = "#444444";
+          }
+          var servicename;
+          if(formlist[i].service === 0){
+             servicename = "上门服务";
+          }
+          else if(formlist[i].service === 1){
+            servicename = "安装调试";
+          }
+          else if(formlist[i].service === 2){
+            servicetype = "送货服务";
+          }
+
+     //     alert(PersonalInformations.get(formlist[i].engineerId).length);
+          var user = PersonalInformations.get(formlist[i].engineerId);
+          if(user === null){
+            engineerName = "null";
+          }
+          else{
+           engineerName = user.name;
+
+         }
+         var user2 = PersonalInformations.get(formlist[i].salerId);
+          if(user2 === null){
+            salesName = "null";
+          }
+          else{
+           salesName = user2.name;
+
+         }
+         var user3 = PersonalInformations.get(formlist[i].distributorId);
+          if(user3 === null){
+            distributerName = "null";
+          }
+          else{
+            distributerName = user3.name;
+          }
+
+
+     //   alert(formlist[i].creationTime);
+          forms[i] = {
+            "id":formlist[i].id,
+            "status":statusname,
+            "statusColor":statusColor,
+            "value":formlist[i].grade,
+            "type":servicename,
+            "clientName":formlist[i].clientName,
+            "clientphone":formlist[i].clientPhone,
+            "clientunit":formlist[i].clientWorkplace,
+            "clientaddr":formlist[i].clientAddress,
+            "engineerId":formlist[i].engineerId,
+            "engineerName":engineerName,
+            "salerId":formlist[i].salerId,
+            "salesName":salesName,
+            "distributerId":formlist.distributorId,
+            "distributerName":distributerName,
+            "creatTime":(new Date(formlist[i].creationTime)),
+            "orderTakeTime":formlist[i].receiveTime,
+            "finishTime":formlist[i].completedTime,
+            "auditTime":formlist[i].checkedTime,
+          };
+        //  console.log("get form creationTime" + formlist[i].creationTime);
+      //     alert("forms[i].distributerName  " + forms[i].distributerName);
+       //   console.log("get form engineername " + forms[i].engineerName);
+
+        }
+      });
+            callback(forms);
+      })
+      .error(function (response) {
+        console.log("app getForms Fail to get---error message : ", response.error);
+        alert("获取报修单信息失败");
+      })
+
+      return forms;
+    },
+    getByServer: function(formId, callback) {
+       $http.get(ipAddress + "/repairforms/" + formId)
+      .success(function (response) {
+        var formlist = response;
+        var statusname;
+        var engineerName;
+        var salesName;
+        var distributerName;
+
+
+         PersonalInformations.all(function(response){
+          if(formlist.status === 0){
+            statusname = "未接";
+            statusColor = "#FF0000";
+          }
+          else if(formlist.status === 1){
+            statusname = "已接单";
+            statusColor = "#FF0000";
+          }
+          else if(formlist.status === 2){
+            statusname = "已完成";
+            statusColor = "#FF0000";
+          }
+          else if(formlist.status === 3){
+            statusname = "已审核";
+            statusColor = "#444444";
+          }
+          var servicename;
+          if(formlist.service === 0){
+             servicename = "上门服务";
+          }
+          else if(formlist.service === 1){
+            servicename = "安装调试";
+          }
+          else if(formlist.service === 2){
+            servicetype = "送货服务";
+          }
+
+     //     alert(PersonalInformations.get(formlist[i].engineerId).length);
+          var user = PersonalInformations.get(formlist.engineerId);
+          if(user === null){
+            engineerName = "null";
+          }
+          else{
+           engineerName = user.name;
+
+         }
+         var user2 = PersonalInformations.get(formlist.salerId);
+          if(user2 === null){
+            salesName = "null";
+          }
+          else{
+           salesName = user2.name;
+
+         }
+         var user3 = PersonalInformations.get(formlist.distributorId);
+          if(user3 === null){
+            distributerName = "null";
+          }
+          else{
+            distributerName = user3.name;
+          }
+
+
+     //   alert(formlist[i].creationTime);
+          form = {
+            "id":formlist.id,
+            "status":statusname,
+            "statusColor":statusColor,
+            "value":formlist.grade,
+            "type":servicename,
+            "clientName":formlist.clientName,
+            "clientphone":formlist.clientPhone,
+            "clientunit":formlist.clientWorkplace,
+            "clientaddr":formlist.clientAddress,
+            "engineerId":formlist.engineerId,
+            "engineerName":engineerName,
+            "salerId":formlist.salerId,
+            "salesName":salesName,
+            "distributerId":formlist.distributorId,
+            "distributerName":distributerName,
+            "creatTime":(new Date(formlist.creationTime)),
+            "orderTakeTime":formlist.receiveTime,
+            "finishTime":formlist.completedTime,
+            "auditTime":formlist.checkedTime,
+          };
+        //  console.log("get form creationTime" + formlist[i].creationTime);
+      //     alert("forms[i].distributerName  " + forms[i].distributerName);
+       //   console.log("get form engineername " + forms[i].engineerName);
+
+      });
+            callback(form);
+      })
+      .error(function (response) {
+        console.log("app getForms Fail to get---error message : ", response.error);
+        alert("获取报修单信息失败");
+      })
+
+      return form;
     },
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
@@ -397,18 +701,32 @@ angular.module('starter.service',[])
         }
       }
       return forms;
+    },
+      delete:function(formId,callback){
+
+      $http.get(ipAddress + "/repairforms/delete/" +formId)
+      .success(function(response){
+
+        console.log("删除报修单detail " + response);
+        forms=[];
+       // callback();
+      })
+      .error(function(response){
+        console.log("删除报修单失败" + response);
+
+      })
     }
   };
 })
 
-
-.factory('PersonalForms', function() {
+                                                                                                                                                                                                        
+/*.factory('PersonalForms', function($http, PersonalInfomations) {
   ////////////////////////////////////////////////////
   // 个人报修单列表：
   // 通过http请求用户的个人id来获取列表数据
   ///////////////////////////////////////////////////////////
- 
- var forms = [{
+ var forms =[]; */
+/* var forms = [{
     id: 0,
     NO: 'bx131220237',
     status: '未接',
@@ -438,11 +756,316 @@ angular.module('starter.service',[])
     orderTakeTime: '2016-02-01 12:00',
     finishTime: '2016-03-01 12:00',
     auditTime: '2016-04-01 17:00'
-  }];
+  }]; */
 
-  return {
+ /* return {
     currentId: 0,
-    all: function() {
+    all: function(callback) {
+
+       $http.get(ipAddress + "/repairforms")
+      .success(function (response) {
+        var formlist = response;
+        var statusname;
+        var engineerName;
+        var salesName;
+        var distributerName;
+
+
+         PersonalInformations.all(function(response){
+        for(var i = 0; i < formlist.length; i ++){
+          if(formlist[i].status === 0){
+            statusname = "未接";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 1){
+            statusname = "已接单";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 2){
+            statusname = "已完成";
+            statusColor = "#FF0000";
+          }
+          else if(formlist[i].status === 3){
+            statusname = "已审核";
+            statusColor = "#444444";
+          }
+          var servicename;
+          if(formlist[i].service === 0){
+             servicename = "上门服务";
+          }
+          else if(formlist[i].service === 1){
+            servicename = "安装调试";
+          }
+          else if(formlist[i].service === 2){
+            servicetype = "送货服务";
+          }
+
+     //     alert(PersonalInformations.get(formlist[i].engineerId).length);
+          var user = PersonalInformations.get(formlist[i].engineerId);
+          if(user === null){
+            engineerName = "null";
+          }
+          else{
+           engineerName = user.name;
+
+         }
+         var user2 = PersonalInformations.get(formlist[i].salerId);
+          if(user2 === null){
+            salesName = "null";
+          }
+          else{
+           salesName = user2.name;
+
+         }
+         var user3 = PersonalInformations.get(formlist[i].distributorId);
+          if(user3 === null){
+            distributerName = "null";
+          }
+          else{
+            distributerName = user3.name;
+          }
+
+
+     //   alert(formlist[i].creationTime);
+          forms[i] = {
+            "id":formlist[i].id,
+            "status":statusname,
+            "statusColor":statusColor,
+            "value":formlist[i].grade,
+            "type":servicename,
+            "clientName":formlist[i].clientName,
+            "clientphone":formlist[i].clientPhone,
+            "clientunit":formlist[i].clientWorkplace,
+            "clientaddr":formlist[i].clientAddress,
+            "engineerId":formlist[i].engineerId,
+            "engineerName":engineerName,
+            "salerId":formlist[i].salerId,
+            "salesName":salesName,
+            "distributerId":formlist.distributorId,
+            "distributerName":distributerName,
+            "creatTime":(new Date(formlist[i].creationTime)),
+            "orderTakeTime":formlist[i].receiveTime,
+            "finishTime":formlist[i].completedTime,
+            "auditTime":formlist[i].checkedTime,
+          };
+        //  console.log("get form creationTime" + formlist[i].creationTime);
+      //     alert("forms[i].distributerName  " + forms[i].distributerName);
+       //   console.log("get form engineername " + forms[i].engineerName);
+
+        }
+      });
+            callback(forms);
+      })
+      .error(function (response) {
+        console.log("app getForms Fail to get---error message : ", response.error);
+        alert("获取报修单信息失败");
+      })
+
+      return forms;
+    },
+    getBySalerId: function(salerId, callback) {
+
+       $http.get(ipAddress + "/repairforms/bySalerId/" + salerId)
+      .success(function (response) {
+                  var formlist = response;
+                  var statusname;
+                  var engineerName;
+                  var salesName;
+                  var distributerName;
+
+
+                //    PersonalInformations.all(function(response){
+                //           for(var i = 0; i < formlist.length; i ++)   
+                //           {
+                //                   if(formlist[i].status === 0){
+                //                     statusname = "未接";
+                //                     statusColor = "#FF0000";
+                //                   }
+                //                   else if(formlist[i].status === 1){
+                //                     statusname = "已接单";
+                //                     statusColor = "#FF0000";
+                //                   }
+                //                   else if(formlist[i].status === 2){
+                //                     statusname = "已完成";
+                //                     statusColor = "#FF0000";
+                //                   }
+                //                   else if(formlist[i].status === 3){
+                //                     statusname = "已审核";
+                //                     statusColor = "#444444";
+                //                   }
+                //                   var servicename;
+                //                   if(formlist[i].service === 0){
+                //                      servicename = "上门服务";
+                //                   }
+                //                   else if(formlist[i].service === 1){
+                //                     servicename = "安装调试";
+                //                   }
+                //                   else if(formlist[i].service === 2){
+                //                     servicetype = "送货服务";
+                //                   }
+
+                //                   var user = PersonalInformations.get(formlist[i].engineerId);
+                //                   if(user === null){
+                //                     engineerName = "null";
+                //                   }
+                //                   else{
+                //                    engineerName = user.name;
+
+                //                  }
+                //                  var user2 = PersonalInformations.get(formlist[i].salerId);
+                //                   if(user2 === null){
+                //                     salesName = "null";
+                //                   }
+                //                   else{
+                //                    salesName = user2.name;
+
+                //                  }
+                //                  var user3 = PersonalInformations.get(formlist[i].distributorId);
+                //                   if(user3 === null){
+                //                     distributerName = "null";
+                //                   }
+                //                   else{
+                //                     distributerName = user3.name;
+                //                   }
+
+
+                //                   forms[i] = {
+                //                         "id":formlist[i].id,
+                //                         "status":statusname,
+                //                         "statusColor":statusColor,
+                //                         "value":formlist[i].grade,
+                //                         "type":servicename,
+                //                         "clientName":formlist[i].clientName,
+                //                         "clientphone":formlist[i].clientPhone,
+                //                         "clientunit":formlist[i].clientWorkplace,
+                //                         "clientaddr":formlist[i].clientAddress,
+                //                         "engineerId":formlist[i].engineerId,
+                //                         "engineerName":engineerName,
+                //                         "salerId":formlist[i].salerId,
+                //                         "salesName":salesName,
+                //                         "distributerId":formlist.distributorId,
+                //                         "distributerName":distributerName,
+                //                         "creatTime":(new Date(formlist[i].creationTime)),
+                //                         "orderTakeTime":formlist[i].receiveTime,
+                //                         "finishTime":formlist[i].completedTime,
+                //                         "auditTime":formlist[i].checkedTime
+                //                   };
+                //   //  console.log("get form creationTime" + formlist[i].creationTime);
+                // //     alert("forms[i].distributerName  " + forms[i].distributerName);
+                //  //   console.log("get form engineername " + forms[i].engineerName);
+
+                //           }
+                //    });
+                //   callback(forms);
+        })
+        .error(function (response) {
+          console.log("app getForms Fail to get---error message : ", response.error);
+          alert("获取销售员报修单信息失败");
+        })
+
+      return forms;
+    },
+    getByEngineerId: function(engineerId, callback) {
+
+       $http.get(ipAddress + "/repairforms/byEngineerId/" + engineerId)
+      .success(function (response) {
+        var formlist = response;
+        var statusname;
+        var engineerName;
+        var salesName;
+        var distributerName;
+
+
+     //     PersonalInformations.all(function(response){
+     //    for(var i = 0; i < formlist.length; i ++){
+     //      if(formlist[i].status === 0){
+     //        statusname = "未接";
+     //        statusColor = "#FF0000";
+     //      }
+     //      else if(formlist[i].status === 1){
+     //        statusname = "已接单";
+     //        statusColor = "#FF0000";
+     //      }
+     //      else if(formlist[i].status === 2){
+     //        statusname = "已完成";
+     //        statusColor = "#FF0000";
+     //      }
+     //      else if(formlist[i].status === 3){
+     //        statusname = "已审核";
+     //        statusColor = "#444444";
+     //      }
+     //      var servicename;
+     //      if(formlist[i].service === 0){
+     //         servicename = "上门服务";
+     //      }
+     //      else if(formlist[i].service === 1){
+     //        servicename = "安装调试";
+     //      }
+     //      else if(formlist[i].service === 2){
+     //        servicetype = "送货服务";
+     //      }
+
+     // //     alert(PersonalInformations.get(formlist[i].engineerId).length);
+     //      var user = PersonalInformations.get(formlist[i].engineerId);
+     //      if(user === null){
+     //        engineerName = "null";
+     //      }
+     //      else{
+     //       engineerName = user.name;
+
+     //     }
+     //     var user2 = PersonalInformations.get(formlist[i].salerId);
+     //      if(user2 === null){
+     //        salesName = "null";
+     //      }
+     //      else{
+     //       salesName = user2.name;
+
+     //     }
+     //     var user3 = PersonalInformations.get(formlist[i].distributorId);
+     //      if(user3 === null){
+     //        distributerName = "null";
+     //      }
+     //      else{
+     //        distributerName = user3.name;
+     //      }
+
+
+     //   alert(formlist[i].creationTime);
+          forms[i] = {
+            "id":formlist[i].id,
+            "status":statusname,
+            "statusColor":statusColor,
+            "value":formlist[i].grade,
+            "type":servicename,
+            "clientName":formlist[i].clientName,
+            "clientphone":formlist[i].clientPhone,
+            "clientunit":formlist[i].clientWorkplace,
+            "clientaddr":formlist[i].clientAddress,
+            "engineerId":formlist[i].engineerId,
+            "engineerName":engineerName,
+            "salerId":formlist[i].salerId,
+            "salesName":salesName,
+            "distributerId":formlist.distributorId,
+            "distributerName":distributerName,
+            "creatTime":(new Date(formlist[i].creationTime)),
+            "orderTakeTime":formlist[i].receiveTime,
+            "finishTime":formlist[i].completedTime,
+            "auditTime":formlist[i].checkedTime,
+          };
+        //  console.log("get form creationTime" + formlist[i].creationTime);
+      //     alert("forms[i].distributerName  " + forms[i].distributerName);
+       //   console.log("get form engineername " + forms[i].engineerName);
+
+     //   }
+    //  });
+            callback(forms);
+      })
+      .error(function (response) {
+        console.log("app getForms Fail to get---error message : ", response.error);
+        alert("获取工程师报修单信息失败");
+      })
+
       return forms;
     },
     remove: function(form) {
@@ -474,7 +1097,7 @@ angular.module('starter.service',[])
       return forms;
     }
   };
-})
+}) */
 
 .factory('MyInformation',function($http,UserService) {
   /*var myInformation = {

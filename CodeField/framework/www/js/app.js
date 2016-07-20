@@ -73,7 +73,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.my',{
        url:'/my',
-       cache:false,
+      // cache:false,
        views: {
          'menuContent': {
            templateUrl:'templates/menu-my.html',
@@ -116,6 +116,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
     .state('app.viewForms-editForm',{
       url:'/viewForms/viewForms-editForm',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl:'templates/viewForms-editForm.html',
@@ -125,6 +126,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
     .state('app.viewForms-detail',{
       url:'/viewForms/:formId',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl:'templates/viewForms-detail.html',
