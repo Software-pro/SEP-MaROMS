@@ -6,8 +6,8 @@
 
     <div class="list" >
       <li class="item item-divider"></li>
-      <ion-item class="item item-icon-right" ng-repeat="message_info in message_infos" type="item-text-wrap" 
-         ng-click="itemClicked(message_info.type,message_info.id)">
+      <ion-item class="item item-icon-right" ng-repeat="message_info in message_infos.slice().reverse()" type="item-text-wrap" 
+         ng-click="itemClicked(message_info.ID,message_info.type,message_info.id)">
      
 
       <div ng-switch = "{{message_info.type}}">

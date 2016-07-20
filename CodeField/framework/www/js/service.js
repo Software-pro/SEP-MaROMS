@@ -218,7 +218,7 @@ angular.module('starter.service',[])
   }
 })
 
-.factory('Forms', function($http,PersonalInformations) {
+.factory('Forms', function($http,PersonalInformations,Message_infos) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -743,11 +743,16 @@ angular.module('starter.service',[])
 
     },
       delete:function(formId,callback){
+      var tmp = this.get(formId);
+      Message_infos.create(5,formId,tmp.engineerId);
+      Message_infos.create(5,formId,tmp.salerId);
+      Message_infos.create(5,formId,tmp.distributerId);
+      Message_infos.create(5,formId,1);
 
       $http.get(ipAddress + "/repairforms/delete/" +formId)
       .success(function(response){
 
-        console.log("删除报修单detail " + response);
+        console.log("删除报修单detail" + response);
         forms=[];
        // callback();
       })
@@ -1281,36 +1286,6 @@ angular.module('starter.service',[])
   //   id:'bx131220733',
   //   tag:0,
   //   time:'2016-1-8 16:00'
-  // },
-  // {
-  //   type:1,
-  //   id:'pd00001',
-  //   tag:0,
-  //   time:'2016-1-8 16:00'
-  // },
-  // {
-  //   type:2,
-  //   id:'pd00003',
-  //   tag:1,
-  //   time:'2016-1-8 12:00'
-  // },
-  // {
-  //   type:3,
-  //   id:'bx131220283',
-  //   tag:0,
-  //   time:'2016-11-8 16:00'
-  // },
-  // {
-  //   type:4,
-  //   id:'bx131220233',
-  //   tag:0,
-  //   time:'2016-1-18 16:00'
-  // },
-  // {
-  //   type:5,
-  //   id:'bx131220233',
-  //   tag:0,
-  //   time:'2016-2-18 16:00'
   // }
 
   // ];
@@ -1346,15 +1321,15 @@ angular.module('starter.service',[])
   //    $http.get(ipAddress + "/messages/byReceiverId/1")
       .success(function (response) {
    //console.log(response);
-   var messages=[];
-    for(var i = 0; i < response.length; i ++){
-      if(Number(response[i].receiverId) === Number(UserService.getUserId())){
-        messages.push(response[i]);
+       var messages=[];
+        for(var i = 0; i < response.length; i ++){
+          if(Number(response[i].receiverId) === Number(UserService.getUserId())){
+            messages.push(response[i]);
 
-      }
-      else{
-      }
-    }
+          }
+          else{
+          }
+        }
  //   console.log(messages[0]);
  //           alert("response length = " + messages.length);
 
@@ -1388,13 +1363,21 @@ angular.module('starter.service',[])
     },
     getUnreadCount:function(){//获得未读消息数
       var count = 0;
-    //  alert("message_infos length " + message_infos.length);
       for(var i = 0; i < message_infos.length; i ++){
         if(message_infos[i].tag === 0){
            count ++;
         }
       }
       return count;
+    },
+    read:function(id){
+      $http.get(ipAddress + "/task/read/" + id)
+      .success(function(response){
+        console.log(response);
+      })
+      .error(function(response){
+        console.log(response);
+      })
     }
   };
 }) 

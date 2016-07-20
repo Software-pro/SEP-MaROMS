@@ -722,27 +722,39 @@ angular.module('starter.controllers',['ionic'])
 
 .controller("messageCtrl",function($scope,Message_infos,Forms,UserService,$state,$stateParams) {
 
+
   $scope.message_infos = [];
   Message_infos.all(
     function(response){
      $scope.message_infos = response;
+     for(var i = 0; i < $scope.message_infos.length;i ++){
+      var time = new Date($scope.message_infos[i]);
+      $scope.message_infos[i].time = (new Date($scope.message_infos[i].time)).toLocaleString();
+     }
     }
   ); 
   $scope.doRefresh = function(){
      Message_infos.all(
       function(response){
        $scope.message_infos = response; 
-    $scope.$broadcast('scroll.refreshComplete');
-    //     alert($scope.message_infos.length);
+       $scope.$broadcast('scroll.refreshComplete');
       }); 
   }
    // $scope.form = Forms.get($stateParams.id);
-  $scope.itemClicked = function(type,id){
-   // alert(id);
+  $scope.itemClicked = function(ID,type,id){
+
+    Message_infos.read(ID);
+
     if(type === 0){
     $stateParams.contentid = id;
   //  alert("in messageCtrl id = " + id );
-      $state.go('app.message-modify',{contentid:id});
+      var tmp = Forms.get(id);
+      if(tmp === null){
+         alert("该报修单已经不存在");
+      }
+      else{
+        $state.go('app.message-modify',{contentid:id});
+      }
     }
     else if(type === 1){
     $stateParams.contentid = id;
@@ -1945,6 +1957,15 @@ Date.prototype.pattern=function(fmt) {
  // $scope.form = Forms.get($stateParams.formId);
  // alert($stateParams.contentid);
   $scope.form = Forms.getByNo($stateParams.contentid);
+  if($scope.form === null){
+    alert("该报修单已经不存在");
+  }
+  else{
+    $scope.form.creatTime = (new Date($scope.form.creatTime)).toLocaleString();
+    $scope.form.orderTakeTime = (new Date($scope.form.orderTakeTime)).toLocaleString();
+    $scope.form.finishTime = (new Date($scope.form.finishTime)).toLocaleString();
+    $scope.form.auditTime = (new Date($scope.form.auditTime)).toLocaleString();
+  }
 
 })
 .controller('messagePasswordForgetCtrl',function($scope,$stateParams,PersonalInformations,$location){
