@@ -1171,12 +1171,6 @@ angular.module('starter.service',[])
   //   time:'2016-1-8 16:00'
   // },
   // {
-  //   type:0,
-  //   id:'bx131220283',
-  //   tag:1,
-  //   time:'2016-10-8 16:00'
-  // },
-  // {
   //   type:2,
   //   id:'pd00003',
   //   tag:1,
@@ -1235,28 +1229,28 @@ angular.module('starter.service',[])
       .success(function (response) {
    //console.log(response);
    var messages=[];
-    messages = response;
+    for(var i = 0; i < response.length; i ++){
+      if(Number(response[i].receiverId) === Number(UserService.getUserId())){
+        messages.push(response[i]);
+
+      }
+      else{
+      }
+    }
  //   console.log(messages[0]);
  //           alert("response length = " + messages.length);
 
         for(var i = 0; i < messages.length; i ++){
           message_infos[i] = {
+            "ID":messages[i].id,
             "type":messages[i].type,
             "tag":messages[i].status,
             "id":messages[i].senderId,
-            "time":messages[i].time
+            "time":new Date(messages[i].time)
           };
 
-           //console.log("get message " + message_infos[i].type);
          }
 
-          // message_infos[0]={
-          // "type":response.type,
-          //   "tag":response.status,
-          //   "id":response.senderId,
-          //   "time":response.time
-
-          // }
          callback(message_infos);
 
       })

@@ -3,7 +3,6 @@ angular.module('starter.controllers',['ionic'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos,UserService) {
   Message_infos.all(function(){
-   // alert("haha");
       $scope.count = Message_infos.getUnreadCount();
     }
   );
@@ -1003,13 +1002,14 @@ Date.prototype.pattern=function(fmt) {
         console.log(response);
 
         alert("修改完成");
+      if(mark.value != previousMark){
+        alert(previousMark + " " + mark.value);
+        Message_infos.create(0,$scope.form.id,1);
+        alert("send message");
+      }
      $ionicHistory.goBack();
       })
 
-      if(mark.value != previousMark){
-        alert(previousMark + " " + mark.value);
-        alert("send message");
-      }
 
       alert("修改完成");
 
