@@ -64,6 +64,25 @@ angular.module('starter.service',[])
       }
       return null;
     },
+    getDistributors:function(){
+      var distributors = [];
+      for(var i = 0; i < users.length; i ++){
+        if(users[i].position == "派单员"){
+           distributors.push(users[i]);
+        }
+      }
+      alert(distributors.length);
+      return distributors;
+
+    },
+    getEngineers:function(){
+
+    },
+    getSalers:function(){
+
+    },
+
+
     getByName:function(name, position) {
       for(var i = 0; i<users.length; i++){
         if(name == users[i].name && position == users[i].position) {
@@ -92,7 +111,6 @@ angular.module('starter.service',[])
         .then(function(response) {
           console.log(UserName.value + " " + response.name);
           if(response.data['success']) {
-            alert(UserName);
             users = [];
             callback();
             alert("添加成功！");
