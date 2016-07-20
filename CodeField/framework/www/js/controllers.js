@@ -1010,10 +1010,7 @@ Date.prototype.pattern=function(fmt) {
         alert(previousMark + " " + mark.value);
         alert("send message");
       }
-<<<<<<< HEAD
-     /* alert("修改完成");
-     $ionicHistory.goBack(); */
-=======
+
       alert("修改完成");
 
 
@@ -1023,7 +1020,6 @@ Date.prototype.pattern=function(fmt) {
        $ionicHistory.goBack(-1);
       // alert("");
 
->>>>>>> 14b0b56cf37df1f89f1dfcc9a44a22ae4ef30c42
     }
   }
 else  {
