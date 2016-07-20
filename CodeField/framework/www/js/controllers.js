@@ -785,6 +785,20 @@ angular.module('starter.controllers',['ionic'])
 
  $scope.form = Forms.get($stateParams.formId);
 
+//   alert("orderTakeTime " + $scope.form.orderTakeTime);
+
+//   alert("new Date(null) " + (new Date(null)));
+// alert((new Date(null)).getTime());
+
+//   alert($scope.form.orderTakeTime.getTime() ===  (new Date(null)).getTime());
+ 
+ $scope.getTime = function(){
+  alert( (new Date(null)).getTime());
+  return (new Date(null)).getTime();
+
+ }
+
+
  $scope.userPosition = UserService.getUserPosition();
 //  $scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员')
@@ -809,29 +823,30 @@ angular.module('starter.controllers',['ionic'])
  //alert(userPosition);
   // TODO:get form by 'http'
    $scope.yearNums = [];
- for(var i=0;i<10; i++)
+  for(var i=0;i<10; i++)
     $scope.yearNums.push([i+2016].join(""));
   $scope.dayNums = [];
   for(var i=0; i<31;i++)
     $scope.dayNums.push([i+1].join(""));
-  $scope.monthNames=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+ // $scope.monthNames=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  $scope.monthNames=[1,2,3,4,5,6,7,8,9,10,11,12];
   $scope.hourNums=[];
   for(var i=0; i<15; i++)
-      $scope.hourNums.push([i+8].join(""));
+    $scope.hourNums.push([i+8].join(""));
     $scope.minuteNums=[0, 10, 20, 30, 40, 50];
-    $scope.engineerDetail = function() {
-      //$scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
-      $location.path("app/contacts/" + $scope.form.engineerId);
-    }
-    $scope.salesmanDetail = function() {
-      //$scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
-      $location.path("app/contacts/" + $scope.form.salerId);
-    } 
-  //alert(userPosition);   
+  $scope.engineerDetail = function() {
+    //$scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
+    $location.path("app/contacts/" + $scope.form.engineerId);
+  }
+  $scope.salesmanDetail = function() {
+    //$scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员');
+    $location.path("app/contacts/" + $scope.form.salerId);
+  } 
+//alert(userPosition);   
   $scope.editClick = function() {
     Forms.currentId = $stateParams.formId;
   }
-    $scope.deleteForm = function(){
+  $scope.deleteForm = function(){
     Forms.delete($stateParams.formId);
     alert("Delete this form!");
     $ionicHistory.goBack();
@@ -865,8 +880,11 @@ angular.module('starter.controllers',['ionic'])
       alert("上门时间未填写完整！");
       return;
     }
-    var visitTime = new Date(year.value,5,day.value);
-    alert(year.value + " " + month.value + " " + day.value);
+
+
+    alert("month.value = " + month.value);
+
+    var visitTime = new Date(year.value,month.value,day.value,hour.value,minute.value, 0);
 
 
     Forms.receive($stateParams.formId,visitTime,function(){

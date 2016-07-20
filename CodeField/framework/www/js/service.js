@@ -334,14 +334,10 @@ angular.module('starter.service',[])
             "distributerId":formlist.distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
+            "orderTakeTime":(new Date(formlist[i].receivedTime)),
+            "finishTime":(new Date(formlist[i].completedTime)),
+            "auditTime":(new Date(formlist[i].checkedTime)),
           };
-        //  console.log("get form creationTime" + formlist[i].creationTime);
-      //     alert("forms[i].distributerName  " + forms[i].distributerName);
-       //   console.log("get form engineername " + forms[i].engineerName);
-
         }
       });
             callback(forms);
@@ -437,13 +433,12 @@ angular.module('starter.service',[])
             "distributerId":formlist.distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
+            "orderTakeTime":(new Date(formlist[i].receivedTime)),
+            "finishTime":(new Date(formlist[i].completedTime)),
+            "auditTime":(new Date(formlist[i].checkedTime)),
           };
             //alert("forms in service: " + forms[i].id);
         //  console.log("get form creationTime" + formlist[i].creationTime);
-      //     alert("forms[i].distributerName  " + forms[i].distributerName);
        //   console.log("get form engineername " + forms[i].engineerName);
         }
       });
@@ -542,9 +537,9 @@ angular.module('starter.service',[])
             "distributerId":formlist.distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
+            "orderTakeTime":(new Date(formlist[i].receivedTime)),
+            "finishTime":(new Date(formlist[i].completedTime)),
+            "auditTime":(new Date(formlist[i].checkedTime)),
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
@@ -645,9 +640,9 @@ angular.module('starter.service',[])
             "distributerId":formlist.distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist.creationTime)),
-            "orderTakeTime":formlist.receiveTime,
-            "finishTime":formlist.completedTime,
-            "auditTime":formlist.checkedTime,
+            "orderTakeTime":(new Date(formlist.receivedTime)),
+            "finishTime":(new Date(formlist.completedTime)),
+            "auditTime":(new Date(formlist.checkedTime)),
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
@@ -763,12 +758,13 @@ angular.module('starter.service',[])
     },
 
     receive:function(formId,visitTime,callback){
+      alert("in service.js receive() visitTime:" + visitTime);
       $http({
         method:'POST',
         url:ipAddress + '/task/receive',
         data:{
           'id':formId,
-          'visitTime':visitTime
+          'visitTime':(new Date(visitTime))
         },
         headers:{
           'Content-Type':'application/json'
@@ -776,12 +772,8 @@ angular.module('starter.service',[])
         withCredentials:'true'
       })
       .then(function(response){
-        alert(response["success"]);
-        alert(response["info"]);
         console.log(response);
-        console.log(response["info"]);
         callback();
-        all(function(){});
       })
     },
 
