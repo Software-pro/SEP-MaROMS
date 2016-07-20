@@ -445,7 +445,7 @@ angular.module('starter.service',[])
             "finishTime":formlist[i].completedTime,
             "auditTime":formlist[i].checkedTime,
           };
-            alert("forms in service: " + forms[i].id);
+            //alert("forms in service: " + forms[i].id);
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
        //   console.log("get form engineername " + forms[i].engineerName);
@@ -553,7 +553,7 @@ angular.module('starter.service',[])
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
        //   console.log("get form engineername " + forms[i].engineerName);
-             alert("forms in service: " + forms[i].id);
+             //alert("forms in service: " + forms[i].id);
 
         }
 

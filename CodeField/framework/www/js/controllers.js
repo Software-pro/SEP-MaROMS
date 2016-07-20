@@ -294,14 +294,14 @@ angular.module('starter.controllers',['ionic'])
    // $scope.forms = Forms.all();
       var userPosition = UserService.getUserPosition();
       var userId =  UserService.getUserId();
-      alert(userPosition);
-      alert(userId);
+  //    alert(userPosition);
+ //     alert(userId);
       if(userPosition === "派单员" || userPosition === "管理员") {
           Forms.all(function(response){
               $scope.forms = response;
-              for(var i = 0; i<$scope.forms.length; i++) {
-                alert("formsId: " + $scope.forms[i].id);
-              }
+         //     for(var i = 0; i<$scope.forms.length; i++) {
+         //       alert("formsId: " + $scope.forms[i].id);
+         //     }
               $scope.isShow = false;
               if(userPosition === "派单员")  {
                 //alert("feipaidan");
@@ -312,18 +312,18 @@ angular.module('starter.controllers',['ionic'])
       else if(userPosition === "工程师") {
         Forms.getByEngineerId(userId, function(response) {
             $scope.forms = response;
-             for(var i = 0; i<$scope.forms.length; i++) {
-                alert("formsId: " + $scope.forms[i].id);
-              }
+       //      for(var i = 0; i<$scope.forms.length; i++) {
+      //          alert("formsId: " + $scope.forms[i].id);
+     //         }
             $scope.isShow = false;
         });
       }
       else if(userPosition === "销售员") {
         Forms.getBySalerId(userId, function(response) {
           $scope.forms = response;
-           for(var i = 0; i<$scope.forms.length; i++) {
-                alert("formsId: " + $scope.forms[i].id);
-              }
+     //      for(var i = 0; i<$scope.forms.length; i++) {
+     //           alert("formsId: " + $scope.forms[i].id);
+     //         }
           $scope.isShow = false;
         }) ;
       }
@@ -612,8 +612,8 @@ angular.module('starter.controllers',['ionic'])
     $scope.myinformation = response; 
 });
 
-  $scope.data={};
-  $scope.editphonenum = function() {
+ /* $scope.data={};
+ $scope.editphonenum = function() {
     $ionicPopup.show({
       template: "<input type = 'phoneNum' ng-model='data.phoneNum'>",
       title:"请输入新的电话号码",
@@ -632,7 +632,7 @@ angular.module('starter.controllers',['ionic'])
         }
       ]
     })
-  }
+  } */
   $scope.markClicked = function(){
     $location.path("app/mark" + $scope.myinformation.id);
   }
@@ -1642,23 +1642,23 @@ Date.prototype.pattern=function(fmt) {
 .controller('PersonalFormsCtrl', function($scope, $stateParams, Forms,  PersonalInformations, $state, $location, $ionicScrollDelegate) {
   //PersonalInformations.all(function(response) {
   //  users = response;
-  alert($stateParams.personId);
+//  alert($stateParams.personId);
     $scope.position = PersonalInformations.get($stateParams.personId).position;
-    alert($scope.position);
+ //   alert($scope.position);
     if($scope.position === "销售员") { 
       Forms.getBySalerId($stateParams.personId, function(response){
         $scope.personalforms = response;
-         for(var i = 0; i<$scope.personalforms.length; i++) {
-                alert("formsId: " + $scope.personalforms[i].id);
-              }
+      //   for(var i = 0; i<$scope.personalforms.length; i++) {
+          //      alert("formsId: " + $scope.personalforms[i].id);
+          //    }
       });
     }
     else if($scope.position === "工程师") {
       Forms.getByEngineerId($stateParams.personId, function(response) {
         $scope.personalforms = response;
-         for(var i = 0; i<$scope.personalforms.length; i++) {
-                alert("formsId: " + $scope.personalforms[i].id);
-              }
+       //  for(var i = 0; i<$scope.personalforms.length; i++) {
+      //          alert("formsId: " + $scope.personalforms[i].id);
+       //       }
       });
     } 
 // });
