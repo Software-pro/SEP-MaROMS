@@ -47,12 +47,15 @@ public class RepairForm {
     private long salerId;
     @NotNull
     private long distributorId;
-    private String distributorPhone;
+
+    private String serialNumber;
+    private String feedbackInfo;
 
     private Date creationTime;
     private Date receivedTime;
     private Date completedTime;
     private Date checkedTime;
+    private Date visitTime;
 
     public RepairForm() {
     }
@@ -60,7 +63,7 @@ public class RepairForm {
     public RepairForm(
             int status, int grade, int service,
             String clientName, String clientPhone, String clientWorkplace, String clientAddress,
-            long engineerId, long salerId, long distributorId, String distributorPhone,
+            long engineerId, long salerId, long distributorId,
             Date creationTime, Date receivedTime, Date completedTime, Date checkedTime) {
         this.status = status;
         this.grade = grade;
@@ -74,7 +77,6 @@ public class RepairForm {
         this.engineerId = engineerId;
         this.salerId = salerId;
         this.distributorId = distributorId;
-        this.distributorPhone = distributorPhone;
 
         this.creationTime = creationTime;
         this.receivedTime=receivedTime;
@@ -94,12 +96,11 @@ public class RepairForm {
         this.engineerId = repairFormCreateRequest.getEngineerId();
         this.salerId = repairFormCreateRequest.getSalerId();
         this.distributorId = repairFormCreateRequest.getDistributorId();
-        //this.distributorPhone = repairFormCreateRequest.getDistributorPhone();
 
         this.creationTime = repairFormCreateRequest.getCreationTime();
     }
 
-    public RepairForm(RepairFormEditRequest repairFormEditRequest) {
+    public void setFormFromEdit(RepairFormEditRequest repairFormEditRequest) {
 
         this.id=repairFormEditRequest.getId();
         this.grade = repairFormEditRequest.getGrade();
@@ -113,7 +114,6 @@ public class RepairForm {
         this.engineerId = repairFormEditRequest.getEngineerId();
         this.salerId = repairFormEditRequest.getSalerId();
         this.distributorId = repairFormEditRequest.getDistributorId();
-        this.distributorPhone = repairFormEditRequest.getDistributorPhone();
 
     }
 
@@ -205,14 +205,21 @@ public class RepairForm {
         this.distributorId = distributorId;
     }
 
-    public String getDistributorPhone() {
-        return distributorPhone;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setDistributorPhone(String distributorPhone) {
-        this.distributorPhone = distributorPhone;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
+    public String getFeedbackInfo() {
+        return feedbackInfo;
+    }
+
+    public void setFeedbackInfo(String feedbackInfo) {
+        this.feedbackInfo = feedbackInfo;
+    }
 
     public Date getCreationTime() {
         return creationTime;
@@ -244,5 +251,13 @@ public class RepairForm {
 
     public void setCheckedTime(Date checkedTime) {
         this.checkedTime = checkedTime;
+    }
+
+    public Date getVisitTime() {
+        return visitTime;
+    }
+
+    public void setVisitTime(Date visitTime) {
+        this.visitTime = visitTime;
     }
 }

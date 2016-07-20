@@ -69,7 +69,7 @@ public class LoginTest {
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
-        LoginResponse response = new LoginResponse(true,0,null);
+        LoginResponse response = new LoginResponse(true,null,0);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -99,7 +99,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "The user do not exists.";
-        LoginResponse response = new LoginResponse(false,-1,info);
+        LoginResponse response = new LoginResponse(false,info,-1);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -129,7 +129,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info ="Wrong password.";
-        LoginResponse response = new LoginResponse(false,-1,info);
+        LoginResponse response = new LoginResponse(false,info,-1);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -158,7 +158,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "The user do not exists.";
-        LoginResponse response = new LoginResponse(false,-1,info);
+        LoginResponse response = new LoginResponse(false,info,-1);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -188,7 +188,7 @@ public class LoginTest {
 
         /**预计结果*/
         String info = "Wrong password.";
-        LoginResponse response = new LoginResponse(false,-1,info);
+        LoginResponse response = new LoginResponse(false,info,-1);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -217,7 +217,7 @@ public class LoginTest {
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
-        LoginResponse response = new LoginResponse(true,1,null);
+        LoginResponse response = new LoginResponse(true,null,1);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -246,7 +246,7 @@ public class LoginTest {
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
-        LoginResponse response = new LoginResponse(true,2,null);
+        LoginResponse response = new LoginResponse(true,null,2);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/
@@ -276,7 +276,7 @@ public class LoginTest {
         String postInformation = gson.toJson(request);
 
         /**预计结果*/
-        LoginResponse response = new LoginResponse(true,3,null);
+        LoginResponse response = new LoginResponse(true,null,3);
         String expectedInformation = gson.toJson(response);
 
         /**发送请求*/

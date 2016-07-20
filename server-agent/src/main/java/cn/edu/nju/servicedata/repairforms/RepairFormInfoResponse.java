@@ -48,7 +48,6 @@ public class RepairFormInfoResponse {
         this.engineerId = repairForm.getEngineerId();
         this.salerId = repairForm.getSalerId();
         this.distributorId = repairForm.getDistributorId();
-        this.distributorPhone = repairForm.getDistributorPhone();
 
         this.creationTime = repairForm.getCreationTime();
         this.receivedTime = repairForm.getReceivedTime();

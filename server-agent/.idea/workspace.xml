@@ -14,14 +14,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/server-agent$cn_edu_nju_in_server_agent.coverage" NAME="cn.edu.nju in server-agent Coverage Results" MODIFIED="1468989342631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>cn.edu.nju.*</FILTER>
-    </SUITE>
-  </component>
-  <component name="CoverageViewManager">
-    <option name="myFlattenPackages" value="true" />
-  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -38,14 +30,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InitialRepairForms.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/RepairFormTest/InitialRepairForms.java">
+      <file leaf-file-name="CreateAndDeleteUserTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/CreateAndDeleteUserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="73" column="17" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-779">
+              <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerAgentApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/ServerAgentApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="665">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/LoginTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GlobalVar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/GlobalVar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetUserInformationTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserInformationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpRequest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,6 +95,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -72,6 +113,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/example/ServerAgentApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/HttpRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/MyRestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/GlobalVar.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/UserInfoResponse.java" />
@@ -81,48 +126,41 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/SuccessResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/LoginResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/LoginRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/Message.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/RepairFormRespository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/RepairFormInfoResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/TestRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/MyRestController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/ServerAgentApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/PasswordResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/PasswordChangeRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormInfoResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormEditRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/ChangeGradeRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/RepairFormController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/UserRespository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/UserInfoResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UsersTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/mainTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormInfoResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/messages/MessageCreateRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/messages/MessageInfoResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/MessageController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/ServerAgentApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/MessageRespository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/Message.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/LoginResponse.java" />
         <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserListTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserInformationTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/CreateAndDeleteUserTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/GlobalVar.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/InitialUser.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/GetUserPasswordTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/PasswordChangeTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/HostValue.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/CreateAndDeleteUserTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/PasswordChangeTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserInformationTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserPasswordTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/LoginTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/InitialUser.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserListTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormCreateRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/MyRestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/RepairFormController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/RepairFormRespository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/task/ReceiveRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/task/SubmitRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/RepairForm.java" />
-        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/RepairFormTest/InitialRepairForms.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/TaskController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormCreateRequest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/LoginTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/GlobalVar.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java" />
       </list>
     </option>
   </component>
@@ -196,6 +234,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -271,10 +311,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="nju" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RepairFormTest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -408,6 +444,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="task" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-agent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server-agent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nju" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="servicedata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="repairforms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -505,8 +575,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -522,90 +590,37 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="cn.edu.nju" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SEP-MaROMS\server-agent\src\test\java\cn\edu\nju" />
+    </key>
   </component>
   <component name="RunManager" selected="JUnit.cn.edu.nju.UserTest in server-agent">
-    <configuration default="false" name="PasswordChangeTest.test06" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.edu.nju.UserTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="false" name="ServerAgentApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.nju.ServerAgentApplication" />
       <module name="server-agent" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cn.edu.nju.UserTest" />
-      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.UserTest.PasswordChangeTest" />
-      <option name="METHOD_NAME" value="test06" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
       <envs />
-      <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="GetUserPasswordTest.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.edu.nju.UserTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="server-agent" />
+    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cn.edu.nju.UserTest" />
-      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.UserTest.GetUserPasswordTest" />
-      <option name="METHOD_NAME" value="test01" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="GetUserPasswordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.edu.nju.UserTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <module name="server-agent" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="cn.edu.nju.UserTest" />
-      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.UserTest.GetUserPasswordTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
       <envs />
-      <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="cn.edu.nju in server-agent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="LoginTest.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="cn.edu.nju.UserTest.*" />
+          <option name="PATTERN" value="cn.edu.nju.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -613,9 +628,9 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="cn.edu.nju" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.LoginTest" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -642,6 +657,32 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="GetUserInformationTest.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.edu.nju.UserTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="server-agent" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="cn.edu.nju.UserTest" />
+      <option name="MAIN_CLASS_NAME" value="cn.edu.nju.UserTest.GetUserInformationTest" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1140,26 +1181,26 @@
     </configuration>
     <configuration default="false" name="ServerAgentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.edu.nju.ServerAgentApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.ServerAgentApplication" />
       <module name="server-agent" />
       <envs />
       <method />
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.ServerAgentApplication" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.PasswordChangeTest.test06" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.GetUserPasswordTest.test01" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.GetUserPasswordTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.cn.edu.nju in server-agent" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.cn.edu.nju.UserTest in server-agent" />
+      <item index="1" class="java.lang.String" itemvalue="Spring Boot.ServerAgentApplication (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.test02" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.cn.edu.nju.UserTest in server-agent" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.GetUserInformationTest.test02" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.cn.edu.nju.UserTest in server-agent" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.cn.edu.nju in server-agent" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.GetUserPasswordTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.GetUserPasswordTest.test01" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.PasswordChangeTest.test06" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.GetUserInformationTest.test02" />
+        <item index="2" class="java.lang.String" itemvalue="Spring Boot.ServerAgentApplication (1)" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.test02" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -1190,47 +1231,43 @@
       <workItem from="1468569476157" duration="10667000" />
       <workItem from="1468657128517" duration="5812000" />
       <workItem from="1468719906718" duration="20408000" />
-      <workItem from="1468808157918" duration="985000" />
-      <workItem from="1468829613739" duration="2045000" />
-      <workItem from="1468841573565" duration="123000" />
-      <workItem from="1468841716064" duration="41694000" />
+      <workItem from="1468808157918" duration="19682000" />
+      <workItem from="1468921058889" duration="12105000" />
+      <workItem from="1468998430072" duration="782000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GetUserPasswordTest - 2016.07.19 at 20h 40m 32s.xml">
-      <configuration name="GetUserPasswordTest" configurationId="JUnit" />
+    <history-entry file="GetUserInformationTest_test02 - 2016.07.20 at 15h 15m 25s.xml">
+      <configuration name="GetUserInformationTest.test02" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GetUserPasswordTest_test01 - 2016.07.19 at 20h 32m 13s.xml">
-      <configuration name="GetUserPasswordTest.test01" configurationId="JUnit" />
+    <history-entry file="GetUserInformationTest_test02 - 2016.07.20 at 15h 17m 57s.xml">
+      <configuration name="GetUserInformationTest.test02" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 12h 48m 58s.xml">
+    <history-entry file="GetUserInformationTest_test02 - 2016.07.20 at 15h 18m 19s.xml">
+      <configuration name="GetUserInformationTest.test02" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test02 - 2016.07.18 at 18h 37m 29s.xml">
+      <configuration name="LoginTest.test02" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test02 - 2016.07.18 at 18h 39m 44s.xml">
+      <configuration name="LoginTest.test02" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginTest_test02 - 2016.07.19 at 14h 25m 30s.xml">
+      <configuration name="LoginTest.test02" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 15h 12m 43s.xml">
       <configuration name="cn.edu.nju.UserTest in server-agent" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 12h 49m 23s.xml">
+    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 15h 13m 48s.xml">
       <configuration name="cn.edu.nju.UserTest in server-agent" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 12h 49m 57s.xml">
+    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 15h 19m 11s.xml">
       <configuration name="cn.edu.nju.UserTest in server-agent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="cn_edu_nju_UserTest_in_server-agent - 2016.07.20 at 12h 50m 47s.xml">
-      <configuration name="cn.edu.nju.UserTest in server-agent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="cn_edu_nju_in_server-agent - 2016.07.19 at 20h 41m 08s.xml">
-      <configuration name="cn.edu.nju in server-agent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="cn_edu_nju_in_server-agent - 2016.07.19 at 20h 50m 54s.xml">
-      <configuration name="cn.edu.nju in server-agent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="cn_edu_nju_in_server-agent - 2016.07.20 at 12h 33m 11s.xml">
-      <configuration name="cn.edu.nju in server-agent" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="cn_edu_nju_in_server-agent - 2016.07.20 at 12h 35m 45s.xml">
-      <configuration name="cn.edu.nju in server-agent" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146821000" />
+    <option name="totallyTimeSpent" value="134543000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1242,38 +1279,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24709609" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28112033" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24604012" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25053534" sideWeight="0.5042644" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937758" sideWeight="0.5042644" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2015625" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25131994" sideWeight="0.49573562" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42864582" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31784582" sideWeight="0.49573562" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5235546" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13490364" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19635417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19427083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16908993" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19640972" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40041494" sideWeight="0.49573562" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.4978678" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1294,33 +1330,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/CreateAndDeleteUserTest.java</url>
-          <line>109</line>
-          <properties class="cn.edu.nju.UserTest.CreateAndDeleteUserTest" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/CreateAndDeleteUserTest.java</url>
-          <line>73</line>
-          <properties class="cn.edu.nju.UserTest.CreateAndDeleteUserTest" />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/LoginTest.java</url>
-          <line>114</line>
-          <properties class="cn.edu.nju.UserTest.LoginTest" method="test04" />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/UserInfoResponse.java</url>
-          <line>14</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1384,6 +1394,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/PasswordResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/UserCreateRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/PasswordChangeRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormEditRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="e#477#478#0" expanded="false" />
+            <element signature="e#502#503#0" expanded="false" />
+            <element signature="e#536#537#0" expanded="false" />
+            <element signature="e#564#565#0" expanded="false" />
+            <element signature="e#593#594#0" expanded="false" />
+            <element signature="e#621#622#0" expanded="false" />
+            <element signature="e#660#661#0" expanded="false" />
+            <element signature="e#694#695#0" expanded="false" />
+            <element signature="e#725#726#0" expanded="false" />
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#798#799#0" expanded="false" />
+            <element signature="e#836#837#0" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#906#907#0" expanded="false" />
+            <element signature="e#958#959#0" expanded="false" />
+            <element signature="e#1002#1003#0" expanded="false" />
+            <element signature="e#1040#1041#0" expanded="false" />
+            <element signature="e#1074#1075#0" expanded="false" />
+            <element signature="e#1128#1129#0" expanded="false" />
+            <element signature="e#1174#1175#0" expanded="false" />
+            <element signature="e#1216#1217#0" expanded="false" />
+            <element signature="e#1254#1255#0" expanded="false" />
+            <element signature="e#1316#1317#0" expanded="false" />
+            <element signature="e#1370#1371#0" expanded="false" />
+            <element signature="e#1410#1411#0" expanded="false" />
+            <element signature="e#1446#1447#0" expanded="false" />
+            <element signature="e#1504#1505#0" expanded="false" />
+            <element signature="e#1554#1555#0" expanded="false" />
+            <element signature="e#1589#1590#0" expanded="false" />
+            <element signature="e#1622#1623#0" expanded="false" />
+            <element signature="e#1672#1673#0" expanded="false" />
+            <element signature="e#1716#1717#0" expanded="false" />
+            <element signature="e#1748#1749#0" expanded="false" />
+            <element signature="e#1778#1779#0" expanded="false" />
+            <element signature="e#1822#1823#0" expanded="false" />
+            <element signature="e#1860#1861#0" expanded="false" />
+            <element signature="e#1898#1899#0" expanded="false" />
+            <element signature="e#1934#1935#0" expanded="false" />
+            <element signature="e#1990#1991#0" expanded="false" />
+            <element signature="e#2040#2041#0" expanded="false" />
+            <element signature="e#2083#2084#0" expanded="false" />
+            <element signature="e#2122#2123#0" expanded="false" />
+            <element signature="e#2186#2187#0" expanded="false" />
+            <element signature="e#2242#2243#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/ChangeGradeRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="e#190#191#0" expanded="false" />
+            <element signature="e#215#216#0" expanded="false" />
+            <element signature="e#249#250#0" expanded="false" />
+            <element signature="e#277#278#0" expanded="false" />
+            <element signature="e#306#307#0" expanded="false" />
+            <element signature="e#334#335#0" expanded="false" />
+            <element signature="e#373#374#0" expanded="false" />
+            <element signature="e#407#408#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/UserInfoResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1393,15 +1508,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormInfoResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="38" column="39" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormEditRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="1220">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1412,88 +1521,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/ChangeGradeRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/messages/MessageCreateRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        <state relative-caret-position="280">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/messages/MessageInfoResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.7/gson-2.7.jar!/com/google/gson/JsonObject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="61" column="19" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/mainTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/MyRestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/UserCreateRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="400">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/SuccessResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
+        <state relative-caret-position="380">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#522#523#0" expanded="false" />
@@ -1502,207 +1546,237 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/PasswordResponse.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/MessageRespository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="220">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/PasswordChangeRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/MessageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-445">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/UserInfoResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-          <folding>
-            <element signature="e#470#471#0" expanded="true" />
-            <element signature="e#495#496#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/LoginTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/LoginResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="320">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/users/LoginRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="200">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="99" column="46" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/HostValue.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/MyRestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="160">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/GlobalVar.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="340">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserPasswordTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/RepairFormController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        <state relative-caret-position="393">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <element signature="e#5475#5476#0" expanded="false" />
+            <element signature="e#5537#5538#0" expanded="false" />
+            <element signature="e#5698#5699#0" expanded="false" />
+            <element signature="e#5761#5762#0" expanded="false" />
+            <element signature="e#5924#5925#0" expanded="false" />
+            <element signature="e#5991#5992#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/RepairFormRespository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/PasswordChangeTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/task/ReceiveRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#202#203#0" expanded="true" />
+            <element signature="e#227#228#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
+            <element signature="e#345#346#0" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserListTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/RepairForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+        <state relative-caret-position="403">
+          <caret line="207" column="37" selection-start-line="207" selection-start-column="37" selection-end-line="207" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="false" />
+            <element signature="e#5184#5185#0" expanded="false" />
+            <element signature="e#5234#5235#0" expanded="false" />
+            <element signature="e#5308#5309#0" expanded="false" />
+            <element signature="e#5364#5365#0" expanded="false" />
+            <element signature="e#5412#5413#0" expanded="false" />
+            <element signature="e#5451#5452#0" expanded="false" />
+            <element signature="e#5486#5487#0" expanded="false" />
+            <element signature="e#5542#5543#0" expanded="false" />
+            <element signature="e#5590#5591#0" expanded="false" />
+            <element signature="e#6320#6321#0" expanded="false" />
+            <element signature="e#6352#6353#0" expanded="false" />
+            <element signature="e#6400#6401#0" expanded="false" />
+            <element signature="e#6442#6443#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/ServerAgentApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/task/SubmitRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="190">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <element signature="e#245#246#0" expanded="true" />
+            <element signature="e#279#280#0" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#346#347#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#437#438#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/TaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2451">
+          <caret line="129" column="38" selection-start-line="129" selection-start-column="38" selection-end-line="129" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-194">
-          <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
+        <state relative-caret-position="520">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/respository/RepairFormRespository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
-          <folding>
-            <element signature="e#1090#1091#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserInformationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/LoginTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/servicedata/repairforms/RepairFormCreateRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
-          <folding>
-            <marker date="1468994512883" expanded="false" signature="2117:2128" ph=" { " />
-            <marker date="1468994512883" expanded="false" signature="2169:2175" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/InitialUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="100" column="4" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+        <state relative-caret-position="177">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/datatables/RepairForm.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="96" column="9" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="9" />
+        <state relative-caret-position="548">
+          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="65" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="64" column="32" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/CreateAndDeleteUserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/controller/RepairFormController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
+        <state relative-caret-position="-779">
+          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/RepairFormTest/InitialRepairForms.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/ServerAgentApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="73" column="17" selection-start-line="73" selection-start-column="17" selection-end-line="73" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="665">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/LoginTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="278" column="62" selection-start-line="278" selection-start-column="62" selection-end-line="278" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/GlobalVar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/nju/UserTest/GetUserInformationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/nju/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="49" column="38" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

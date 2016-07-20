@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -28,13 +27,11 @@ public class UserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
     public List<UserInfoResponse> findUsers() {
 
-        Iterable<User> all = userRespository.findAll();
+        List<UserInfoResponse> users = new ArrayList<>();
 
-        List<UserInfoResponse> users = new ArrayList<UserInfoResponse>();
+        for (User user : userRespository.findAll()) {
 
-        for (Iterator<User> user = all.iterator(); user.hasNext(); ) {
-            User user_t = user.next();
-            users.add(new UserInfoResponse(user_t));
+            users.add(new UserInfoResponse(user));
         }
 
         return users;

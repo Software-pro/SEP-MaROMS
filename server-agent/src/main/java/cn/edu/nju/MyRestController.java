@@ -26,7 +26,7 @@ public class MyRestController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String hello(){
-        return_str= HttpRequest.sendGet("http://"+host+":8080/","");
+        return_str= "Test success!";
         return return_str;
     }
 

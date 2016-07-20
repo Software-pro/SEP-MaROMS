@@ -26,16 +26,16 @@ public class LoginController {
         LoginResponse loginResponse;
 
         if(user==null){
-            loginResponse=new LoginResponse(false,-1,"The user do not exists.");
+            loginResponse=new LoginResponse(false, "The user do not exists.", -1);
             return loginResponse;
         }
 
         if (!(loginRequest.getPassword().equals(user.getPassword()))){
-            loginResponse=new LoginResponse(false,-1,"Wrong password.");
+            loginResponse=new LoginResponse(false, "Wrong password.", -1);
             return loginResponse;
         }
 
-        loginResponse = new LoginResponse(true,user.getType(),null);
+        loginResponse = new LoginResponse(true, null, user.getType());
 
         return loginResponse;
     }
