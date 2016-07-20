@@ -33,13 +33,10 @@ angular.module('starter.service',[])
             "phoneNum":userlist[i].phone,
             "position":position
           };
-           console.log("get user " + users[i].id);
 
         }
         //   alert("time1");
         //    alert("in service.js "+users.length);
-        console.log("response count " + response.length);
-        console.log("user count " + users.length);
             callback(users);
       })
       .error(function (response) {
@@ -109,7 +106,6 @@ angular.module('starter.service',[])
             withCredentials:'true'    
           })
         .then(function(response) {
-          console.log(UserName.value + " " + response.name);
           if(response.data['success']) {
             users = [];
             callback();
@@ -706,6 +702,46 @@ angular.module('starter.service',[])
       }
       return forms;
     },
+
+    edit:function(id,mark,serviceId,clientName,clientPhone,clientUnit,clientAddr,engineerId,salerId,distributor,callback){
+
+         $http({
+          method:'POST',
+          url:'http://115.159.225.109/repairforms/edit',
+          data:{
+            'id':id,
+            'grade':mark,
+            'service':serviceId,
+            'clientName':clientName,
+            'clientPhone':clientPhone,
+            'clientWorkplace':clientUnit,
+            'clientAddress':clientAddr,
+            'engineerId':engineerId,
+            'salerId':salerId,
+            'distributorId':distributor
+          },
+          headers:{
+            'Content-Type':'application/json'
+          },
+          withCredentials:'true'
+        })
+        .then(function(response) {
+          console.log(response);
+
+          alert("修改完成");
+          callback();
+
+
+       //  if(mark.value != previousMark){
+       //    alert(previousMark + " " + mark.value);
+       //    Message_infos.create(0,$scope.form.id,1);
+       // //   alert("send message");
+       //  }
+       // $ionicHistory.goBack();
+        })
+
+
+    },
       delete:function(formId,callback){
 
       $http.get(ipAddress + "/repairforms/delete/" +formId)
@@ -721,6 +757,84 @@ angular.module('starter.service',[])
       })
     },
 
+    receive:function(formId,visitTime,callback){
+      $http({
+        method:'POST',
+        url:ipAddress + '/task/receive',
+        data:{
+          'id':formId,
+          'visitTime':visitTime
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+      })
+      .then(function(response){
+        alert(response["success"]);
+        alert(response["info"]);
+        console.log(response);
+        console.log(response["info"]);
+        callback();
+        all(function(){});
+      })
+    },
+
+    unreceive:function(id,callback){
+      $http.get(ipAddress + "/task/unreceive/" + id)
+      .success(function(response){
+        if(response["success"] === true){
+          
+        }
+        else{
+          console.log(response["info"]);
+        }
+        callback();
+
+      })
+      .error(function(response){
+          console.log(response["info"]);
+
+      })
+    },
+
+    submit:function(id,serialNumber,feedbackInfo,callback){
+      $http({
+        method:'POST',
+        url:ipAddress + '/task/submit',
+        data:{
+          'id':id,
+          'serialNumber':serialNumber,
+          'feedbackInfo':feedbackInfo
+        },
+         headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+
+      })
+      .then(function(response){
+         console.log(response);
+         callback();
+      })
+
+
+    },
+
+    check:function(id,callback){
+      $http.get(ipAddress + "/task/check/" + id)
+      .success(function(response){
+        console.log(response);
+        callback();
+      })
+      .then(function(response){
+        console.log(response);
+        callback();
+      })
+
+    }
+
+    
   };
 })
 
@@ -1134,7 +1248,6 @@ angular.module('starter.service',[])
             "phoneNum":information.phone,
             "position":position
           };
-           console.log("get user " + myInformation.id);
 
         //   alert("time1");
         //    alert("in service.js "+users.length);

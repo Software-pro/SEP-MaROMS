@@ -1,7 +1,7 @@
 <ion-view title = "详情">
 <ion-header-bar align="center" style="background-color:#00BFFF;border: none;">
  	 
-        <button class="button button-icon icon ion-chevron-left button-dark" ng-click = "back()"></button> 
+        <button class="button button-icon icon ion-chevron-left button-dark" ng-click = "goback()"></button> 
       
             <h1 class="title light" style="font-size: 20px;" >反馈</h1>
     </ion-header-bar>
@@ -12,13 +12,13 @@
 
 	<span class = "input-label">序列号:</span>
 	<label class = 'item item-input item-stacked-label'>
-		<input type = "text">
+		<input id = "serial" type = "text">
 	</label>
 
 
 	<span class = "input-label">反馈信息:</span>
 	<div class = 'item item-input item-stacked-label'>
-		<textarea rows = 5 cols = 5 placeholder="在这里输入反馈信息哦~" ></textarea>
+		<textarea id = "feedback" rows = 5 cols = 5 placeholder="在这里输入反馈信息哦~" ></textarea>
 	<!-- 	<button class = "button" style = "font-size:100px;background-color:transparent;"  ng-click = "finish()"> -->
 			<i class = "icon ion-ios-camera" style = "font-size:60px;" ng-click = "choosephoto()"></i>
 	<!-- 	</button> -->
@@ -27,7 +27,7 @@
 	</div>
 
    <div class = "button-bar padding-left padding-right">
-            <a id = "finishButton" class = "button button-block button-lightblue" ng-click = "finish()">提交</a>
+            <a id = "finishButton" class = "button button-block button-lightblue" ng-click = "finish()">提交完成</a>
       </div>
 </div>
 

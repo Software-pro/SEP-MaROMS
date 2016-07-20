@@ -224,7 +224,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
      .state('detail-feedback',{
-      url:'/detail-feedback',
+      url:'/detail-feedback/:formId',
       cache:false,
       templateUrl:'templates/detail-feedback.html',
       controller:'feedbackCtrl'

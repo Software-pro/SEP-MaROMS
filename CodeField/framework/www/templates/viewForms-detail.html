@@ -90,7 +90,11 @@
       </div>
 
       <div class="item" >
-        接单时间： {{form.accepttime}}
+        接单时间： {{form.orderTakeTime}}
+      </div>
+      
+      <div class = "item">
+        上门时间: {{form.doortime}}
       </div>
 
       <div class="item">
@@ -135,7 +139,7 @@
             <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "cancelOrderTaking()">取消接单</button>
           </div>
           <div class="padding">
-            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "submitComplete()">提交完成</button>
+            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "submitComplete()">提交反馈</button>
           </div>
         </div>
         <div ng-switch-when = "未接">

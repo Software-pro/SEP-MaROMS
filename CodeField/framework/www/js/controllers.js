@@ -407,7 +407,6 @@ angular.module('starter.controllers',['ionic'])
     $scope.itemClicked = function(formId) {
       if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
         $location.path("app/viewForms/" + formId);
-        alert(formId);
       }
       else {
         $scope.menu1Var = true;
@@ -828,15 +827,20 @@ angular.module('starter.controllers',['ionic'])
 
   $scope.cancelOrderTaking = function(){
     alert("取消接单!");
-    $ionicHistory.goBack();
+    Forms.unreceive($stateParams.formId,function(){
+      $ionicHistory.goBack();
+    });
   }
   $scope.reviewForm = function(){
-    alert("订单已审核!");
+
+    Forms.check($stateParams.formId,function(){
     $ionicHistory.goBack();
+    })
   }
   $scope.submitComplete = function() {
-    alert("订单已完成！");
-    $state.go('detail-feedback');
+  //  alert("订单已完成！");
+    alert($stateParams.formId);
+    $state.go('detail-feedback',{formId:$stateParams.formId});
   }
    $scope.takeForm = function(){
     var success=1;
@@ -849,8 +853,15 @@ angular.module('starter.controllers',['ionic'])
       alert("上门时间未填写完整！");
       return;
     }
+    var visitTime = new Date(year.value,5,day.value);
+    alert(year.value + " " + month.value + " " + day.value);
+
+
+    Forms.receive($stateParams.formId,visitTime,function(){
+
     alert("已经接单");
     $ionicHistory.goBack();
+    });
   }
 })
 .controller("editFormCtrl",function($scope,$state,Forms,UserService,PersonalInformations,Message_infos,$ionicHistory,$http) {
@@ -926,178 +937,188 @@ Date.prototype.pattern=function(fmt) {
 }    
 
   $scope.editComplete = function() {
-     if($scope.form.status == "未接") {
-    var success = 1;
-    var  mark = document.getElementById('mark');
-    var clientName = document.getElementById("clientName");
-    var clientPhone = document.getElementById("clientPhone");
-    var clientUnit = document.getElementById("clientUnit");
-    var clientAddr = document.getElementById("clientAddr"); 
-    var service = document.getElementById("service");
-    var engineer = document.getElementById("engineer");
-    var salesman = document.getElementById("salesman");
-    var distributor = UserService.getUserId();
-    if(mark.value.length == 0) {
-      $scope.errorBorder1 = "red";
-      success = 0;
-    }
-    if(clientName.value.length == 0) {
-      $scope.errorBorder2 = "red";
-      success = 0;
-    }
-     if(clientPhone.value.length == 0) {
-      $scope.errorBorder3 = "red";
-      success = 0;
-    }
-     if(clientUnit.value.length == 0) {
-      $scope.errorBorder4 = "red";
-      success = 0;
-    }
-     if(clientAddr.value.length == 0) {
-      $scope.errorBorder5 = "red";
-      success = 0;
-    }
-     if(service.value.length == 0) {
-      $scope.errorBorder6= "red";
-      success = 0;
-    }
-     if(engineer.value.length == 0) {
-      $scope.errorBorder7 = "red";
-      success = 0;
-    }
-     if(salesman.value.length == 0) {
-      $scope.errorBorder8 = "red";
-      success = 0;
-    }
-     /*if(distributor.value.length == 0) {
-      $scope.errorBorder9 = "red";
-      success = 0;
-    }
-     if(distributorPhone.value.length == 0) {
-      $scope.errorBorder10 = "red";
-      success = 0;
-    } */
-    if(success == 0) {
-      alert("请将内容填写完整后再提交！‘*'表示必填内容.");
-      return;
-    }
-    if(success == 1) {
-       if(service.value === "上门服务") {
-        serviceId = 0;
-     }
-     else if (service.value === "送货服务") {
-        serviceId = 1;
-     }
-     else if(service.value === "安装调试") {
-        serviceId = 2;
-     }
-     var engineerId = new Array();
-     var salerId = [];
-     var tag = 0;
-     for(var i = 0, j = 0; i < engineer.value.length - 1; i ++){
-         if(tag === 1){
+  if($scope.form.status == "未接") {
+      var success = 1;
+      var  mark = document.getElementById('mark');
+      var clientName = document.getElementById("clientName");
+      var clientPhone = document.getElementById("clientPhone");
+      var clientUnit = document.getElementById("clientUnit");
+      var clientAddr = document.getElementById("clientAddr"); 
+      var service = document.getElementById("service");
+      var engineer = document.getElementById("engineer");
+      var salesman = document.getElementById("salesman");
+      var distributor = UserService.getUserId();
+      if(mark.value.length == 0) {
+        $scope.errorBorder1 = "red";
+        success = 0;
+      }
+      if(clientName.value.length == 0) {
+        $scope.errorBorder2 = "red";
+        success = 0;
+      }
+       if(clientPhone.value.length == 0) {
+        $scope.errorBorder3 = "red";
+        success = 0;
+      }
+       if(clientUnit.value.length == 0) {
+        $scope.errorBorder4 = "red";
+        success = 0;
+      }
+       if(clientAddr.value.length == 0) {
+        $scope.errorBorder5 = "red";
+        success = 0;
+      }
+       if(service.value.length == 0) {
+        $scope.errorBorder6= "red";
+        success = 0;
+      }
+       if(engineer.value.length == 0) {
+        $scope.errorBorder7 = "red";
+        success = 0;
+      }
+       if(salesman.value.length == 0) {
+        $scope.errorBorder8 = "red";
+        success = 0;
+      }
+       /*if(distributor.value.length == 0) {
+        $scope.errorBorder9 = "red";
+        success = 0;
+      }
+       if(distributorPhone.value.length == 0) {
+        $scope.errorBorder10 = "red";
+        success = 0;
+      } */
+      if(success == 0) {
+        alert("请将内容填写完整后再提交！‘*'表示必填内容.");
+        return;
+      }
+      if(success == 1) {
+         if(service.value === "上门服务") {
+          serviceId = 0;
+       }
+       else if (service.value === "送货服务") {
+          serviceId = 1;
+       }
+       else if(service.value === "安装调试") {
+          serviceId = 2;
+       }
+       var engineerId = new Array();
+       var salerId = [];
+       var tag = 0;
+       for(var i = 0, j = 0; i < engineer.value.length - 1; i ++){
+           if(tag === 1){
 
-          engineerId.push(engineer.value[i]);
-   //       alert(engineerId.value[j]);
+            engineerId.push(engineer.value[i]);
+     //       alert(engineerId.value[j]);
+            j ++;
+           }
+     //      alert(engineername.value[i]);
+           if(engineer.value[i] === ':'){
+           // alert(engineername.value[i]);
+            tag = 1;
+           }
+       }
+       //alert(engineerId.length);
+       //alert(engineerId.join(""));
+       tag = 0;
+       for(var i = 0, j = 0; i < salesman.value.length - 1; i ++){
+        if(tag === 1){
+          salerId.push(salesman.value[i]);
           j ++;
-         }
-   //      alert(engineername.value[i]);
-         if(engineer.value[i] === ':'){
-         // alert(engineername.value[i]);
+        }
+        if(salesman.value[i] === ':'){
           tag = 1;
-         }
-     }
-     //alert(engineerId.length);
-     //alert(engineerId.join(""));
-     tag = 0;
-     for(var i = 0, j = 0; i < salesman.value.length - 1; i ++){
-      if(tag === 1){
-        salerId.push(salesman.value[i]);
-        j ++;
+        }
       }
-      if(salesman.value[i] === ':'){
-        tag = 1;
+
+      var eng = parseInt(engineerId.join(""));
+      var sale = parseInt(salerId.join(""));
+      Forms.edit($scope.form.id,mark.value,serviceId,clientName.value,clientPhone.value,clientUnit.value,clientAddr.value,eng,sale,distributor,function(){
+
+
+        //Forms.all(function(response){});
+
+        if(mark.value != previousMark){
+          alert(previousMark + " " + mark.value);
+          Message_infos.create(0,$scope.form.id,1);
+         //   alert("send message");
+          }
+
+         Forms.all(function(response){
+           $ionicHistory.goBack();
+         });
+
+      });
+
+      
+       //  $http({
+       //    method:'POST',
+       //    url:'http://115.159.225.109/repairforms/edit',
+       //    data:{
+       //      'id':$scope.form.id,
+       //      'grade':mark.value,
+       //      'service':serviceId,
+       //      'clientName':clientName.value,
+       //      'clientPhone':clientPhone.value,
+       //      'clientWorkplace':clientUnit.value,
+       //      'clientAddress':clientAddr.value,
+       //      'engineerId':parseInt(engineerId.join("")),
+       //      'salerId':parseInt(salerId.join("")),
+       //      'distributorId':distributor
+       //    },
+       //    headers:{
+       //      'Content-Type':'application/json'
+       //    },
+       //    withCredentials:'true'
+       //  })
+       //  .then(function(response) {
+       //    console.log(response);
+
+       //    alert("修改完成");
+
+       //    Forms.all(function(response){});
+
+       //  if(mark.value != previousMark){
+       //    alert(previousMark + " " + mark.value);
+       //    Message_infos.create(0,$scope.form.id,1);
+       // //   alert("send message");
+       //  }
+       // $ionicHistory.goBack();
+       //  })
+
+
+
       }
     }
-
-      $http({
-        method:'POST',
-        url:'http://115.159.225.109/repairforms/edit',
-        data:{
-          'id':$scope.form.id,
-          'grade':mark.value,
-          'service':serviceId,
-          'clientName':clientName.value,
-          'clientPhone':clientPhone.value,
-          'clientWorkplace':clientUnit.value,
-          'clientAddress':clientAddr.value,
-          'engineerId':parseInt(engineerId.join("")),
-          'salerId':parseInt(salerId.join("")),
-          'distributorId':distributor
-        },
-        headers:{
-          'Content-Type':'application/json'
-        },
-        withCredentials:'true'
-      })
-      .then(function(response) {
-        console.log(response);
-
-        alert("修改完成");
-
-    
-
-      if(mark.value != previousMark){
-        alert(previousMark + " " + mark.value);
-        Message_infos.create(0,$scope.form.id,1);
-        alert("send message");
+    else  {
+      var mark = document.getElementById("mark");
+      if(mark.value.length == 0) {
+        $scope.errorBorder1 = "red";
+        alert("未填写分值！");
+        return;
       }
-     $ionicHistory.goBack();
-      })
+      else {
+        $http({
+            method:'POST',
+            url:'http://115.159.225.109/repairforms/changeGrade',
+            data:{
+              'id':$scope.form.id,
+              'grade':mark.value,
+            },
+            headers:{
+              'Content-Type':'application/json'
+            },
+            withCredentials:'true'
+          })
+          .then(function(response) {
+            console.log(response);
 
-
-
-      //alert("修改完成");
-
-
-
-       // $ionicHistory.goBack();              //返回上一页
-        // $scope.$emit('editComplete','123');
-        // $ionicHistory.clearCache();
-       $ionicHistory.goBack(-2);
-      // alert("");
-
+        alert("修改完成！");
+        $ionicHistory.goBack();
+          })
+      }
     }
   }
-else  {
-  var mark = document.getElementById("mark");
-  if(mark.value.length == 0) {
-    $scope.errorBorder1 = "red";
-    alert("未填写分值！");
-    return;
-  }
-  else {
-    $http({
-        method:'POST',
-        url:'http://115.159.225.109/repairforms/changeGrade',
-        data:{
-          'id':$scope.form.id,
-          'grade':mark.value,
-        },
-        headers:{
-          'Content-Type':'application/json'
-        },
-        withCredentials:'true'
-      })
-      .then(function(response) {
-        console.log(response);
-
-    alert("修改完成！");
-    $ionicHistory.goBack();
-      })
-  }
-}
-}
 })
 
 
@@ -1938,7 +1959,8 @@ Date.prototype.pattern=function(fmt) {
 
 })
 
-.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout,$ionicHistory){
+.controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout,$ionicHistory,$stateParams,Forms){
+  alert($stateParams.formId);
   $scope.goback = function(){
      $state.go("app.viewForms");
   }
@@ -2014,7 +2036,16 @@ Date.prototype.pattern=function(fmt) {
     }
 
   $scope.finish = function(){
-    alert("提交完成");
+    var serial = document.getElementById("serial").value;
+    var feedback = document.getElementById("feedback").value;
+
+    Forms.submit($stateParams.formId,serial,feedback,function(){
+        
+    
+       alert("提交完成");
+       $state.go("app.viewForms");
+    })
+
   }
 })
 
