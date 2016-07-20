@@ -1,9 +1,18 @@
 package cn.edu.nju.UserTest;
 
 import cn.edu.nju.HttpRequest;
+import cn.edu.nju.servicedata.users.UserInfoResponse;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static cn.edu.nju.UserTest.InitialUser.host;
 import static org.junit.Assert.assertNotNull;
@@ -47,8 +56,19 @@ public class GetUserListTest {
         /**发送请求*/
         String ret = HttpRequest.sendGet(url,"");
 
+        Gson gson = new Gson();
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(ret);
+        JsonArray jsonArray = jsonElement.getAsJsonArray();
+
+        Iterator iterator = jsonArray.iterator();
+        while(iterator.hasNext()){
+            JsonElement element = (JsonElement)iterator.next();
+            System.out.println(gson.toJson(element));
+        }
+
         /**打印列表信息在控制台查看*/
-        System.out.println("GetUserListTest:\n"+ret);
+        System.out.println("----------GetUserListTest");
 
         /**检查返回值跟预期值是否位空*/
         assertNotNull(ret);

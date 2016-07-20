@@ -4,13 +4,20 @@ import cn.edu.nju.HttpRequest;
 import cn.edu.nju.UserTest.InitialUser;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.repairforms.RepairFormCreateRequest;
-import com.google.gson.Gson;
+import cn.edu.nju.servicedata.repairforms.RepairFormInfoResponse;
+import com.google.gson.*;
+import javafx.scene.input.DataFormat;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -20,6 +27,26 @@ public class InitialRepairForms {
     /**host值*/
     //static String host = "115.159.225.109";
     public static String host = "localhost";
+
+    /**gson日期序列化，在数据传递过程中Date值为一个long型数据*/
+    static JsonSerializer< Date>  ser = new JsonSerializer< Date> () {
+        @Override
+        public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext
+                context) {
+            return src == null ? null : new JsonPrimitive(src.getTime());
+        }
+    };
+
+    static JsonDeserializer< Date>  deser = new JsonDeserializer< Date> () {
+        @Override
+        public Date deserialize(JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) throws JsonParseException {
+            return json == null ? null : new Date(json.getAsLong());
+        }
+    };
+    public static Gson gson = new GsonBuilder().registerTypeAdapter(Date.class,ser).registerTypeAdapter(Date.class,deser).create();
+
+
 
     public static boolean createRepairForms(
              int grade,               //分值
@@ -50,9 +77,10 @@ public class InitialRepairForms {
         request.setDistributorId(distributorId);
         request.setCreationTime(creationTime);
 
-        Gson gson = new Gson();
+
         String postInformation = gson.toJson(request);
         String returnInformation = HttpRequest.sendPost(url,postInformation);
+
         SuccessResponse response = gson.fromJson(returnInformation,SuccessResponse.class);
         returnInformation = gson.toJson(response);
 
@@ -70,30 +98,33 @@ public class InitialRepairForms {
     public static long getRepairFormsId(long id){
          /**通过工程师ID查看特定保修单ID*/
         String url = "http://"+host+"/repairforms/byEngineerId/"+id;
-        String retrunInformation = HttpRequest.sendGet(url,"");
-        return 0;
+        String returnInformation = HttpRequest.sendGet(url,"");
+
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(returnInformation);
+        JsonArray jsonArray = jsonElement.getAsJsonArray();
+
+        Iterator iterator = jsonArray.iterator();
+        while(iterator.hasNext()) {
+            JsonElement element = (JsonElement) iterator.next();
+            return gson.fromJson(gson.toJson(element),RepairFormInfoResponse.class).getId();
+        }
+        return -1;
     }
 
-    @BeforeClass
-    public static void initial(){
-        /**初始化测试用户*/
-        assertTrue(InitialUser.createUser(99999,"chezeyu","chezeyu19951010","18651615329",0));
-        assertTrue(InitialUser.createUser(99998,"test1","test119951010","18651615328",1));
-        assertTrue(InitialUser.createUser(99997,"test2","test219951010","18651615327",2));
-        assertTrue(InitialUser.createUser(99996,"test3","test319951010","18651615326",3));
-    }
-    @AfterClass
-    public static void delete(){
-        /**删除测试用户*/
-        assertTrue(InitialUser.deleteUser(99999));
-        assertTrue(InitialUser.deleteUser(99998));
-        assertTrue(InitialUser.deleteUser(99997));
-        assertTrue(InitialUser.deleteUser(99996));
+    public static boolean deleteRepairForm(long id){
+        /**删除报修单*/
+        String url = "http://"+host+"/repairforms/delete/"+id;
+
+        String returnInformation = HttpRequest.sendGet(url,"");
+        SuccessResponse temp = gson.fromJson(returnInformation,SuccessResponse.class);
+        returnInformation = gson.toJson(temp);
+
+        SuccessResponse expect = new SuccessResponse(true);
+        expect.setInfo(null);
+        String expectedInformation = gson.toJson(expect);
+
+        return expectedInformation.equals(returnInformation);
     }
 
-    @Test
-    public void test(){
-        Date date = new Date();
-        assertTrue(createRepairForms(111,111,"chezeyu","18651615328","Nanjing University","Nanjing University",99998,99997,99996,date));
-    }
 }
