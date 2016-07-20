@@ -45,17 +45,25 @@ public class RepairFormController {
     }
 
     @RequestMapping(value = "/repairforms/byEngineerId/{id}", method = RequestMethod.GET, produces = "application/json")
-    public RepairFormInfoResponse findRepairformsByEngineerId(@PathVariable long id) {
-        RepairForm repairForm=repairFormRespository.findByEngineerId(id);
+    public List<RepairFormInfoResponse> findRepairformsByEngineerId(@PathVariable long id) {
+        List<RepairFormInfoResponse> repairFormInfoResponses=new ArrayList<>();
 
-        return new RepairFormInfoResponse(repairForm);
+        for (RepairForm repairForm : repairFormRespository.findByEngineerId(id)){
+            repairFormInfoResponses.add(new RepairFormInfoResponse(repairForm));
+        }
+
+        return repairFormInfoResponses;
     }
 
     @RequestMapping(value = "/repairforms/bySalerId/{id}", method = RequestMethod.GET, produces = "application/json")
-    public RepairFormInfoResponse findRepairformsBySalerId(@PathVariable long id) {
-        RepairForm repairForm=repairFormRespository.findBySalerId(id);
+    public List<RepairFormInfoResponse> findRepairformsBySalerId(@PathVariable long id) {
+        List<RepairFormInfoResponse> repairFormInfoResponses=new ArrayList<>();
 
-        return new RepairFormInfoResponse(repairForm);
+        for (RepairForm repairForm : repairFormRespository.findBySalerId(id)){
+            repairFormInfoResponses.add(new RepairFormInfoResponse(repairForm));
+        }
+
+        return repairFormInfoResponses;
     }
 
     @RequestMapping(value = "/repairforms/create", method = RequestMethod.POST, produces = "application/json")
@@ -78,7 +86,9 @@ public class RepairFormController {
             return successResponse;
         }
 
-        RepairForm repairForm=new RepairForm(repairFormEditRequest);
+        RepairForm repairForm=repairFormRespository.findOne(repairFormEditRequest.getId());
+
+        repairForm.setFormFromEdit(repairFormEditRequest);
 
         if (repairForm.getStatus()!=0) {
             successResponse.setSuccess(false);
@@ -134,6 +144,19 @@ public class RepairFormController {
         return successResponse;
     }
 
+    @RequestMapping(value = "/repairforms/clientNames", method = RequestMethod.GET, produces = "application/json")
+    public List<String> findClientNames(){
+        return repairFormRespository.findClientNames();
+    }
 
+    @RequestMapping(value = "/repairforms/clientPhones", method = RequestMethod.GET, produces = "application/json")
+    public List<String> findClientPhones(){
+        return repairFormRespository.findClientPhones();
+    }
+
+    @RequestMapping(value = "/repairforms/clientWorkspaces", method = RequestMethod.GET, produces = "application/json")
+    public List<String> findWorkspaces(){
+        return repairFormRespository.findClientWorkplaces();
+    }
 
 }

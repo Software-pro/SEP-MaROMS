@@ -18,6 +18,8 @@ public class ServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApplication.class, args);
+
+
 	}
 
 	@RestController
@@ -32,8 +34,8 @@ public class ServerApplication {
 				public void afterPropertiesSet() throws Exception {
 
 					Group group = identityService.newGroup("user");
-					group.setName("users");
-					group.setType("security-role");
+					group.setName("managers");
+					group.setType("manager");
 					identityService.saveGroup(group);
 
 					User admin = identityService.newUser("admin");

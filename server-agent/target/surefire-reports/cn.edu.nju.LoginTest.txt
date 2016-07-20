@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: cn.edu.nju.LoginTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.248 sec <<< FAILURE! - in cn.edu.nju.LoginTest
+test02(cn.edu.nju.LoginTest)  Time elapsed: 0.135 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<{"success":true,"type":0,"info":""}> but was:<{"success":true,"info":null,"type":0}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test02(LoginTest.java:57)
+
+test03(cn.edu.nju.LoginTest)  Time elapsed: 0.015 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"The user do not exists."}> but was:<{"success":false,"info":"The user do not exists.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test03(LoginTest.java:83)
+
+test04(cn.edu.nju.LoginTest)  Time elapsed: 0.016 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"Wrong password."}> but was:<{"success":false,"info":"Wrong password.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test04(LoginTest.java:109)
+
+test05(cn.edu.nju.LoginTest)  Time elapsed: 0.016 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"The user do not exists."}> but was:<{"success":false,"info":"The user do not exists.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test05(LoginTest.java:134)
+
+test06(cn.edu.nju.LoginTest)  Time elapsed: 0.016 sec  <<< FAILURE!
+java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"Wrong password."}> but was:<{"success":false,"info":"Wrong password.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test06(LoginTest.java:159)
+
