@@ -18,8 +18,92 @@ angular.module('starter.controllers',['ionic'])
   $scope.alphabet = iterateAlphabet();
   $scope.sorted_users;
 
+  
+  $scope.groups = [];
+
+  $scope.menuContent = "全部";
+  $scope.menuVar = true;
+
+
+    $scope.hideCancel = true;
+    $scope.searchcontent = '';
+
+  $scope.menu = function(){
+   // $scope.menuVar = true;
+    $scope.menuColor = '#FFFFFF';
+    $scope.menuVar = !$scope.menuVar;
+    if($scope.menuVar === false){
+      $scope.menuColor = "#FAFAFA";
+    }
+    else{
+      $scope.menuColor = "#FFFFFF";
+    }
+
+  }
+
+  $scope.chooseAll = function(){
+    $scope.menuVar = true;
+    $scope.menuColor = "#FFFFFF";
+    $scope.menuContent = "全部";
+ 
+     $scope.doRefresh();
+  }
+
+  $scope.chooseDistributor = function(){
+    $scope.menuVar = true;
+    $scope.menuColor = "#FFFFFF";
+    $scope.menuContent = "派单员";
+     
+     $scope.doRefresh();
+  //  $scope.users = PersonalInformations.getDistributors();
+  //  alert("in controllers.js " + $scope.users.length);
+
+  }
+   $scope.chooseEngineer = function(){
+    $scope.menuVar = true;
+    $scope.menuColor = "#FFFFFF";
+    $scope.menuContent = "工程师"; 
+     $scope.doRefresh();
+
+  }
+
+   $scope.chooseSaler = function(){
+    $scope.menuVar = true;
+    $scope.menuColor = "#FFFFFF";
+    $scope.menuContent = "销售员"; 
+     $scope.doRefresh();
+
+  }
+  
+  
   PersonalInformations.all(function(response){
+
+    if($scope.menuContent === "派单员"){
+      for(var i = 0; i < response.length; i ++){
+        if(response[i].position === "派单员"){
+          $scope.users.push(response[i]);
+        }
+      }
+    }
+    else if($scope.menuContent === "工程师"){
+       for(var i = 0; i < response.length; i ++){
+        if(response[i].position === "工程师"){
+          $scope.users.push(response[i]);
+        }
+      }
+    }
+    else if($scope.menuContent === "销售员"){
+       for(var i = 0; i < response.length; i ++){
+        if(response[i].position === "销售员"){
+          $scope.users.push(response[i]);
+        }
+      }
+    }
+    else if($scope.menuContent === "全部"){
+
+
     $scope.users=response;
+    }
     users = $scope.users;
 
     $scope.sorted_users = {};
@@ -33,20 +117,68 @@ angular.module('starter.controllers',['ionic'])
     //Sort user list by first letter of name
     for(i = 0; i < users.length; i++){
       var letter=users[i].name.toUpperCase().charAt(0);
+
+ // alert("in before" + users[i].name);
       tmp[letter].push( users[i] );
     }
     $scope.sorted_users = tmp;
+
+
+
+
+
+  for (var i = 0; i < 10; i++) {
+    $scope.groups[i] = {
+      name: i,
+      items: []
+    };
+    for (var j=0; j<3; j++) {
+      $scope.groups[i].items.push(i + '-' + j);
+    }
+  }
+
+
+    $scope.hideCancel = true;
+    $scope.searchcontent = '';
+
+  
 
   }); 
   //$scope.users = PersonalInformations.all();
    
   $scope.doRefresh = function(){
 
+
     PersonalInformations.all(function(response){
-      alert(response.length);
-      $scope.users = response;
+       $scope.users = [];
+       users = [];
+      if($scope.menuContent === "派单员"){
+        for(var i = 0; i < response.length; i ++){
+          if(response[i].position === "派单员"){
+            $scope.users.push(response[i]);
+          }
+        }
+      }
+      else if($scope.menuContent === "工程师"){
+       for(var i = 0; i < response.length; i ++){
+        if(response[i].position === "工程师"){
+          $scope.users.push(response[i]);
+        }
+       }
+      }
+      else if($scope.menuContent === "销售员"){
+       for(var i = 0; i < response.length; i ++){
+        if(response[i].position === "销售员"){
+          $scope.users.push(response[i]);
+        }
+      }
+     }
+      else if($scope.menuContent === "全部"){
+      $scope.users=response;
+      }
+
       users = $scope.users;
-     $scope.sorted_users = {};
+       $scope.sorted_users = {};
       var tmp = {};
       for(var i = 0; i < str.length; i++)
       {
@@ -57,12 +189,41 @@ angular.module('starter.controllers',['ionic'])
     //Sort user list by first letter of name
     for(i = 0; i < users.length; i++){
       var letter=users[i].name.toUpperCase().charAt(0);
-      alert(letter + " " + users[i].name);
+
+
       tmp[letter].push( users[i] );
     }
     $scope.sorted_users = tmp;
-      $scope.$broadcast("scroll.refreshComplete");  
+    $scope.$broadcast("scroll.refreshComplete");  
 
+
+    //  for(var i = 0; i < str.length; i++)
+    //   {
+    //     var nextChar = str.charAt(i);
+    //     if(tmp[nextChar].length === 0){
+
+
+    //     }
+    //     else{
+    //       alert(nextChar + " 不为空");
+    //     }
+    //   }
+
+    // alert("tmp length " + tmp.length);
+    // alert("$scope.sorted_users length " + $scope.sorted_users.length);
+
+      for (var i = 0; i < 10; i++) {
+        $scope.groups[i] = {
+          name: i,
+          items: []
+        };
+        for (var j=0; j<3; j++) {
+          $scope.groups[i].items.push(i + '-' + j);
+        }
+      }
+      
+    $scope.hideCancel = true;
+    $scope.searchcontent = '';
 
     });
   }
@@ -86,18 +247,6 @@ angular.module('starter.controllers',['ionic'])
   }
 
 
-  $scope.groups = [];
-
-
-  for (var i = 0; i < 10; i++) {
-    $scope.groups[i] = {
-      name: i,
-      items: []
-    };
-    for (var j=0; j<3; j++) {
-      $scope.groups[i].items.push(i + '-' + j);
-    }
-  }
   
   /*
    * if given group is the selected group, deselect it
@@ -113,10 +262,6 @@ angular.module('starter.controllers',['ionic'])
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
-
-
-    $scope.hideCancel = true;
-    $scope.searchcontent = '';
 
   $scope.searchClick = function() {
       $scope.hideCancel = false;
@@ -1169,7 +1314,6 @@ Date.prototype.pattern=function(fmt) {
     var UserId = document.getElementById("userId");
     var UserPassword = document.getElementById("userPassword");
     var UserName = document.getElementById("userName");
-    alert("in newtactsCtrl " + UserName.value);
     var UserPhone = document.getElementById("userPhone");
     var UserType= document.getElementById("userType");  // int!
     var UserTypeInt = 0;
@@ -1219,8 +1363,6 @@ Date.prototype.pattern=function(fmt) {
            {
                UserTypeInt = 3;
            }
- //   alert(UserName.value);
-           alert("in newtactsCtrl end UserName = " + UserName.value);
          PersonalInformations.create(UserId.value,UserName.value,UserPassword.value,UserPhone.value,UserTypeInt,function(){ $state.go("app.contacts");});
        
            

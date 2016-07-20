@@ -12,6 +12,9 @@
       </div>
 
       </ion-nav-buttons> 
+
+
+
       <div class="bar bar-subheader bar-stable item-input-inset search-bar">
         <label class="item-input-wrapper" style="border:none">
           <i class="ion-search dark"></i>
@@ -20,27 +23,49 @@
         <button class="button-clear search-cancel" ng-hide="hideCancel" ng-click="searchCancel()">取消</button> 
       </div>
      
-      <ion-content class="has-subheader">
+
+      <div class = "bar bar-subheader bar-light filter-subHeader" style = "margin-top: 43px;"align = "center" >
+        <a class = "button button-clear" id = "subHeaderMenu" ng-click = "menu()"  style = "backgroud-color:{{menuColor}}">{{menuContent}}<i class = "ion-ios-arrow-down"></i></a>
+      </div>
+
+    <ul class = "list has-subheader subHeaderMenuList" ng-hide = "menuVar" style = "margin-top:27px;">
+      
+       <li class = "item subHeaderMenuOption" ng-click = "chooseAll()">
+         <span class = "SubHeaderMenuContent">全部</span>
+       </li>
+       <li class = "item subHeaderMenuOption" ng-click = "chooseDistributor()">
+         <span class = "SubHeaderMenuContent">派单员</span>
+       </li>
+       <li class = "item subHeaderMenuOption" ng-click = "chooseEngineer()">
+         <span class = "SubHeaderMenuContent">工程师</span>
+       </li>
+       <li class = "item subHeaderMenuOption" ng-click = "chooseSaler()">
+         <span class = "SubHeaderMenuContent">销售员</span>
+       </li>
+
+    </ul>
+
+      <ion-content class="has-subheader" style = "padding-top:40px;">
       
        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
        </ion-refresher>
           <div id="contactsHeader"></div>
-          <div data-ng-repeat="(letter, users) in sorted_users" class="alpha_list" ng-show="hideCancel">
+          <div data-ng-repeat="(letter, uusers) in sorted_users" class="alpha_list" ng-show="hideCancel">
             <!-- <div ng-show="{{users[0]}}" id="index_{{letter}}"> -->
             <div id="index_{{letter}}">
-              <ion-item class="item item-divider" ng-show="{{users[0]}}"  style="border-width: 0; height: 12px; padding-top: 6px; padding-bottom: 6px; color: #989898;">
+              <ion-item class="item item-divider" ng-show="uusers[0]"  style="border-width: 0; height: 12px; padding-top: 6px; padding-bottom: 6px; color: #989898;">
                   {{letter}}
               </ion-item>
-              <ion-item ng-show="{{users[0]}}" ng-repeat="user in users | orderBy: 'name'"  style="border-width: 0; border-top-width: 1px; border-bottom-width: 1px; border-color: #f5f5f5;" href="#/app/contacts/{{user.id}}">
+              <ion-item ng-show="{{uusers[0]}}" ng-repeat="user in uusers | orderBy: 'name'"  style="border-width: 0; border-top-width: 1px; border-bottom-width: 1px; border-color: #f5f5f5;" href="#/app/contacts/{{user.id}}">
                   {{user.name}}
               </ion-item>
             </div>
           </div>
 
-          <div data-ng-repeat="(letter, users) in sorted_users" class="alpha_list" ng-hide="hideCancel">
+          <div data-ng-repeat="(letter, uusers) in sorted_users" class="alpha_list" ng-hide="hideCancel">
             <!-- <div ng-show="{{users[0]}}" id="index_{{letter}}"> -->
             <div id="index_{{letter}}">
-              <ion-item ng-show="{{users[0]}}" ng-repeat="user in users | orderBy: 'name' | filter: searchFilter"  style="border-width: 0; border-top-width: 1px; border-bottom-width: 1px; border-color: #f5f5f5;" href="#/app/contacts/{{user.id}}">
+              <ion-item ng-show="{{uusers[0]}}" ng-repeat="user in uusers | orderBy: 'name' | filter: searchFilter"  style="border-width: 0; border-top-width: 1px; border-bottom-width: 1px; border-color: #f5f5f5;" href="#/app/contacts/{{user.id}}">
                   {{user.name}}
               </ion-item>
             </div>
