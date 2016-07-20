@@ -214,6 +214,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
 
      .state('app.detail-personalForms',{
       url:'/detail-personalForms/:personId',
+      cache:false,
       views: {
         'menuContent': {
           templateUrl:'templates/detail-personalForms.html',

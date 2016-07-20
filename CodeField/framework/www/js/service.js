@@ -358,7 +358,7 @@ angular.module('starter.service',[])
       return forms;
     },
     getByEngineerId: function(engineerId, callback) {
-
+      forms=[];
        $http.get(ipAddress + "/repairforms/byEngineerId/" + engineerId)
       .success(function (response) {
         var formlist = response;
@@ -421,7 +421,7 @@ angular.module('starter.service',[])
           else{
             distributerName = user3.name;
           }
-
+        //  alert("formsId" + formlist[i].id);
 
      //   alert(formlist[i].creationTime);
           forms[i] = {
@@ -445,10 +445,10 @@ angular.module('starter.service',[])
             "finishTime":formlist[i].completedTime,
             "auditTime":formlist[i].checkedTime,
           };
+            //alert("forms in service: " + forms[i].id);
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
        //   console.log("get form engineername " + forms[i].engineerName);
-
         }
       });
             callback(forms);
@@ -461,6 +461,7 @@ angular.module('starter.service',[])
       return forms;
     },
     getBySalerId: function(salerId, callback) {
+      forms = [];
 
        $http.get(ipAddress + "/repairforms/bySalerId/" + salerId)
       .success(function (response) {
@@ -470,7 +471,7 @@ angular.module('starter.service',[])
         var salesName;
         var distributerName;
 
-
+       
          PersonalInformations.all(function(response){
         for(var i = 0; i < formlist.length; i ++){
           if(formlist[i].status === 0){
@@ -500,6 +501,7 @@ angular.module('starter.service',[])
             servicetype = "送货服务";
           }
 
+          // alert("formsId" + formlist[i].id);
      //     alert(PersonalInformations.get(formlist[i].engineerId).length);
           var user = PersonalInformations.get(formlist[i].engineerId);
           if(user === null){
@@ -551,10 +553,12 @@ angular.module('starter.service',[])
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
        //   console.log("get form engineername " + forms[i].engineerName);
+             //alert("forms in service: " + forms[i].id);
 
         }
-      });
+
             callback(forms);
+      });
       })
       .error(function (response) {
         console.log("app getForms Fail to get---error message : ", response.error);
@@ -715,7 +719,8 @@ angular.module('starter.service',[])
         console.log("删除报修单失败" + response);
 
       })
-    }
+    },
+
   };
 })
 

@@ -291,24 +291,66 @@ angular.module('starter.controllers',['ionic'])
 .controller('ViewFormsCtrl', function($scope, Forms, PersonalInformations,$state, $location, $ionicScrollDelegate, UserService) {
    // $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
-   Forms.all(function(response){
-    $scope.forms = response;
-   var userPosition = UserService.getUserPosition();
-    $scope.isShow = false;
-      if(userPosition === "派单员")  {
-        //alert("feipaidan");
-        $scope.isShow = true;
-
-      } 
-
-   });
+      var userPosition = UserService.getUserPosition();
+      var userId =  UserService.getUserId();
+  //    alert(userPosition);
+ //     alert(userId);
+      if(userPosition === "派单员" || userPosition === "管理员") {
+          Forms.all(function(response){
+              $scope.forms = response;
+         //     for(var i = 0; i<$scope.forms.length; i++) {
+         //       alert("formsId: " + $scope.forms[i].id);
+         //     }
+              $scope.isShow = false;
+              if(userPosition === "派单员")  {
+                //alert("feipaidan");
+                     $scope.isShow = true;
+              }   
+            });
+      }
+      else if(userPosition === "工程师") {
+        Forms.getByEngineerId(userId, function(response) {
+            $scope.forms = response;
+       //      for(var i = 0; i<$scope.forms.length; i++) {
+      //          alert("formsId: " + $scope.forms[i].id);
+     //         }
+            $scope.isShow = false;
+        });
+      }
+      else if(userPosition === "销售员") {
+        Forms.getBySalerId(userId, function(response) {
+          $scope.forms = response;
+     //      for(var i = 0; i<$scope.forms.length; i++) {
+     //           alert("formsId: " + $scope.forms[i].id);
+     //         }
+          $scope.isShow = false;
+        }) ;
+      }
 
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
-      Forms.all(function(forms){
-           $scope.forms = forms;
+      var userPosition = UserService.getUserPosition();
+      var userId =  UserService.getUserId();
+        if(userPosition === "派单员" || userPosition === "管理员")  {
+      Forms.all(function(response){
+           $scope.forms = response;
       $scope.$broadcast("scroll.refreshComplete");     
       });
+    }
+     else if(userPosition === "工程师") {
+        Forms.getByEngineerId(userId, function(response) {
+            $scope.forms = response;
+         //   $scope.isShow = false;
+         $scope.$broadcast("scroll.refreshComplete");   
+        });
+      }
+      else if(userPosition === "销售员") {
+        Forms.getBySalerId(userId, function(response) {
+          $scope.forms = response;
+         // $scope.isShow = false;
+         $scope.$broadcast("scroll.refreshComplete");   
+        }) ;
+      }
     };
 
     $scope.order = 'creatTime';
@@ -569,8 +611,8 @@ angular.module('starter.controllers',['ionic'])
     $scope.myinformation = response; 
 });
 
-  $scope.data={};
-  $scope.editphonenum = function() {
+ /* $scope.data={};
+ $scope.editphonenum = function() {
     $ionicPopup.show({
       template: "<input type = 'phoneNum' ng-model='data.phoneNum'>",
       title:"请输入新的电话号码",
@@ -589,7 +631,7 @@ angular.module('starter.controllers',['ionic'])
         }
       ]
     })
-  }
+  } */
   $scope.markClicked = function(){
     $location.path("app/mark" + $scope.myinformation.id);
   }
@@ -741,11 +783,11 @@ angular.module('starter.controllers',['ionic'])
     Forms.all(function(response){
       $scope.forms = response;
       var userPosition = UserService.getUserPosition();
-      $scope.isShow = false;
-      if(userPosition === "派单员")  {
+      //$scope.isShow = false;
+    //  if(userPosition === "派单员")  {
         //alert("feipaidan");
-        $scope.isShow = true;
-      } 
+       // $scope.isShow = true;
+     // } 
       //刷新--重新从后台载入数据
       $scope.form = Forms.get($stateParams.formId);
 
@@ -1002,6 +1044,9 @@ Date.prototype.pattern=function(fmt) {
         console.log(response);
 
         alert("修改完成");
+
+    
+
       if(mark.value != previousMark){
         alert(previousMark + " " + mark.value);
         Message_infos.create(0,$scope.form.id,1);
@@ -1011,13 +1056,15 @@ Date.prototype.pattern=function(fmt) {
       })
 
 
-      alert("修改完成");
+
+      //alert("修改完成");
+
 
 
        // $ionicHistory.goBack();              //返回上一页
         // $scope.$emit('editComplete','123');
         // $ionicHistory.clearCache();
-       $ionicHistory.goBack(-1);
+       $ionicHistory.goBack(-2);
       // alert("");
 
     }
@@ -1599,17 +1646,23 @@ Date.prototype.pattern=function(fmt) {
 .controller('PersonalFormsCtrl', function($scope, $stateParams, Forms,  PersonalInformations, $state, $location, $ionicScrollDelegate) {
   //PersonalInformations.all(function(response) {
   //  users = response;
+//  alert($stateParams.personId);
     $scope.position = PersonalInformations.get($stateParams.personId).position;
-    alert($scope.position);
+ //   alert($scope.position);
     if($scope.position === "销售员") { 
       Forms.getBySalerId($stateParams.personId, function(response){
-        $scope.forms = response;
+        $scope.personalforms = response;
+      //   for(var i = 0; i<$scope.personalforms.length; i++) {
+          //      alert("formsId: " + $scope.personalforms[i].id);
+          //    }
       });
     }
     else if($scope.position === "工程师") {
-      alert($stateParams.personId);
       Forms.getByEngineerId($stateParams.personId, function(response) {
-        $scope.forms = response;
+        $scope.personalforms = response;
+       //  for(var i = 0; i<$scope.personalforms.length; i++) {
+      //          alert("formsId: " + $scope.personalforms[i].id);
+       //       }
       });
     } 
 // });
@@ -1617,9 +1670,18 @@ Date.prototype.pattern=function(fmt) {
 
     $scope.doRefresh = function() {
       //刷新--重新从后台载入数据
-      $scope.forms = PersonalForms.all();
+      if($scope.position === "销售员") { 
+      Forms.getBySalerId($stateParams.personId, function(response){
+        $scope.personalforms = response;
+      });
+    }
+    else if($scope.position === "工程师") {
+      Forms.getByEngineerId($stateParams.personId, function(response) {
+        $scope.personalforms = response;
+      });
+    } 
       $scope.$broadcast("scroll.refreshComplete");     
-    };
+    }
 
     $scope.order = 'creatTime';
     $scope.timeLabel = '创建时间：';
@@ -1808,7 +1870,7 @@ Date.prototype.pattern=function(fmt) {
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按创建时间 ';
-      $scope.forms = PersonalForms.setTime("creatTime");
+      $scope.personalforms = PersonalForms.setTime("creatTime");
       $scope.timeLabel = '创建时间：';
       /**TODO: 后台排序，更新forms**/
       $location.hash("personalFormsHeader");
@@ -1821,7 +1883,7 @@ Date.prototype.pattern=function(fmt) {
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按接单时间 ';
-      $scope.forms = PersonalForms.setTime("orderTakeTime");
+      $scope.personalforms = PersonalForms.setTime("orderTakeTime");
       $scope.timeLabel = '接单时间：';
       /**TODO: 后台排序，更新forms**/
       $location.hash("personalFormsHeader");
@@ -1834,7 +1896,7 @@ Date.prototype.pattern=function(fmt) {
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按完成时间 ';
-      $scope.forms = PersonalForms.setTime("finishTime");
+      $scope.personalforms = PersonalForms.setTime("finishTime");
       $scope.timeLabel = '完成时间：';
       $location.hash("personalFormsHeader");
       $ionicScrollDelegate.anchorScroll();
@@ -1847,7 +1909,7 @@ Date.prototype.pattern=function(fmt) {
       $scope.menu2Color = '#FFFFFF';
 
       $scope.menu2Content = '按审核时间 ';
-      $scope.forms = PersonalForms.setTime("auditTime");
+      $scope.personalforms = PersonalForms.setTime("auditTime");
       $scope.timeLabel = '审核时间：';
       /**TODO: 后台排序，更新forms**/
       $location.hash("personalFormsHeader");
