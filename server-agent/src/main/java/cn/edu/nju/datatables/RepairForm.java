@@ -94,7 +94,7 @@ public class RepairForm {
         this.engineerId = repairFormCreateRequest.getEngineerId();
         this.salerId = repairFormCreateRequest.getSalerId();
         this.distributorId = repairFormCreateRequest.getDistributorId();
-        this.distributorPhone = repairFormCreateRequest.getDistributorPhone();
+        //this.distributorPhone = repairFormCreateRequest.getDistributorPhone();
 
         this.creationTime = repairFormCreateRequest.getCreationTime();
     }

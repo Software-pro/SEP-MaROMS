@@ -1,5 +1,6 @@
-package cn.edu.nju;
+package cn.edu.nju.UserTest;
 
+import cn.edu.nju.HttpRequest;
 import cn.edu.nju.datatables.User;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.users.UserCreateRequest;
@@ -7,7 +8,8 @@ import cn.edu.nju.servicedata.users.UserInfoResponse;
 import com.google.gson.Gson;
 import org.junit.Test;
 
-import static cn.edu.nju.GlobalVar.host;
+
+import static cn.edu.nju.UserTest.InitialUser.host;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

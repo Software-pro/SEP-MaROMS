@@ -1,18 +1,18 @@
-package cn.edu.nju;
+package cn.edu.nju.UserTest;
 
+import cn.edu.nju.HttpRequest;
 import cn.edu.nju.datatables.User;
 import com.google.gson.Gson;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
+import static cn.edu.nju.UserTest.InitialUser.host;
 import static org.junit.Assert.assertEquals;
 
-import static cn.edu.nju.GlobalVar.host;
+
 import static org.junit.Assert.assertTrue;
 
 /**

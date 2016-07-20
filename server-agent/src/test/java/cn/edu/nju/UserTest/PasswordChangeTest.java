@@ -1,17 +1,16 @@
-package cn.edu.nju;
+package cn.edu.nju.UserTest;
 
+import cn.edu.nju.HttpRequest;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.users.PasswordChangeRequest;
-import cn.edu.nju.servicedata.users.UserInfoResponse;
 import com.google.gson.Gson;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static cn.edu.nju.GlobalVar.host;
+;
+import static cn.edu.nju.UserTest.InitialUser.host;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -247,6 +246,5 @@ public class PasswordChangeTest {
         /**检查密码是否被修改*/
         assertEquals(InitialUser.getPassword(99999),"chezeyu19951010");
     }
-
 
 }

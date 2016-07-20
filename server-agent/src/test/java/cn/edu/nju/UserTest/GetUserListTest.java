@@ -1,10 +1,11 @@
-package cn.edu.nju;
+package cn.edu.nju.UserTest;
 
+import cn.edu.nju.HttpRequest;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static cn.edu.nju.GlobalVar.host;
+import static cn.edu.nju.UserTest.InitialUser.host;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -47,7 +48,7 @@ public class GetUserListTest {
         String ret = HttpRequest.sendGet(url,"");
 
         /**打印列表信息在控制台查看*/
-        System.out.println(ret);
+        System.out.println("GetUserListTest:\n"+ret);
 
         /**检查返回值跟预期值是否位空*/
         assertNotNull(ret);

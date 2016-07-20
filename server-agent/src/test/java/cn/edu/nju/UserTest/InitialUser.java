@@ -1,5 +1,6 @@
-package cn.edu.nju;
+package cn.edu.nju.UserTest;
 
+import cn.edu.nju.HttpRequest;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.users.PasswordResponse;
 import cn.edu.nju.servicedata.users.UserCreateRequest;
@@ -7,7 +8,6 @@ import cn.edu.nju.servicedata.users.UserInfoResponse;
 import com.google.gson.Gson;
 import org.junit.Test;
 
-import static cn.edu.nju.GlobalVar.host;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -15,6 +15,11 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class InitialUser {
+
+    /**host值*/
+    //static String host = "115.159.225.109";
+    public static String host = "localhost";
+
     public static boolean createUser(long id, String name, String password, String phone, int type){
         /**
          * 创建用户
@@ -97,7 +102,6 @@ public class InitialUser {
     @Test
     public void test(){
         assertTrue(createUser(99999,"chezeyu","chezeyu19951010","18651615328",0));
-        System.out.println(getPassword(99999));
         assertTrue(deleteUser(99999));
     }
 }

@@ -1,17 +1,18 @@
-package cn.edu.nju;
+package cn.edu.nju.UserTest;
 
+import cn.edu.nju.HttpRequest;
 import cn.edu.nju.servicedata.users.LoginRequest;
 
 import cn.edu.nju.servicedata.users.LoginResponse;
 import com.google.gson.Gson;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static cn.edu.nju.UserTest.InitialUser.host;
 import static org.junit.Assert.assertEquals;
 
-import static cn.edu.nju.GlobalVar.host;
+
 import static org.junit.Assert.assertTrue;
 
 /**
