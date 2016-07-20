@@ -60,20 +60,20 @@
     </ion-refresher>
     <ion-list>
     <div id="personalFormsHeader"></div>
-      <ion-item class="item" ng-repeat="form in forms | orderBy:order | filter: searchFilter" type="item-text-wrap" id="listItem" ng-click="itemClicked(form.id)">
+      <ion-item class="item" ng-repeat="personalform in personalforms | orderBy:order | filter: searchFilter" type="item-text-wrap" id="listItem" ng-click="itemClicked(personalform.id)">
         <p id="formTitle" >
-          报修单号：{{form.NO}}
+          报修单号：{{personalform.id}}
         </p>
         <p style="margin-top: 10px;">
           状态：
-          <span style="color: {{form.statusColor}}">
-            {{form.status}}
+          <span style="color: {{personalform.statusColor}}">
+            {{personalform.status}}
           </span>
         </p>
         <div>
           <div id="formValueBackground">
             <span id="formValue">
-              {{form.value}}
+              {{personalform.value}}
             </span>
           </div>
         </div>
@@ -81,31 +81,31 @@
         <p>
           客户姓名：
           <span id="blackFont">
-            {{form.clientName}}
+            {{personalform.clientName}}
           </span>
         </p>
         <p>
           服务项目：
           <span id="blackFont">
-            {{form.type}}
+            {{personalform.type}}
           </span>
         </p>
         <p>
           工程师：
           <span id="blackFont">
-            {{form.engineerName}}
+            {{personalform.engineerId}}
           </span>
         </p>
         <p>
           销售人员：
           <span id="blackFont">
-            {{form.salesName}}
+            {{personalform.salerId}}
           </span>
         </p>
         <p>
           {{timeLabel}}
           <span id="blackFont">
-            {{form.time}}
+            {{personalform.creatTime}}
           </span>
         </p>
 
