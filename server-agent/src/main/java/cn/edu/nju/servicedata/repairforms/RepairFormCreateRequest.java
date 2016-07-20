@@ -18,7 +18,6 @@ public class RepairFormCreateRequest {
     private long engineerId;
     private long salerId;
     private long distributorId;
-    private String distributorPhone;
 
     private Date creationTime;
 
@@ -92,14 +91,6 @@ public class RepairFormCreateRequest {
 
     public void setDistributorId(long distributorId) {
         this.distributorId = distributorId;
-    }
-
-    public String getDistributorPhone() {
-        return distributorPhone;
-    }
-
-    public void setDistributorPhone(String distributorPhone) {
-        this.distributorPhone = distributorPhone;
     }
 
     public Date getCreationTime() {

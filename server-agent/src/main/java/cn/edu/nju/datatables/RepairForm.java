@@ -48,10 +48,14 @@ public class RepairForm {
     @NotNull
     private long distributorId;
 
+    private String serialNumber;
+    private String feedbackInfo;
+
     private Date creationTime;
     private Date receivedTime;
     private Date completedTime;
     private Date checkedTime;
+    private Date visitTime;
 
     public RepairForm() {
     }
@@ -201,6 +205,22 @@ public class RepairForm {
         this.distributorId = distributorId;
     }
 
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getFeedbackInfo() {
+        return feedbackInfo;
+    }
+
+    public void setFeedbackInfo(String feedbackInfo) {
+        this.feedbackInfo = feedbackInfo;
+    }
+
     public Date getCreationTime() {
         return creationTime;
     }
@@ -231,5 +251,13 @@ public class RepairForm {
 
     public void setCheckedTime(Date checkedTime) {
         this.checkedTime = checkedTime;
+    }
+
+    public Date getVisitTime() {
+        return visitTime;
+    }
+
+    public void setVisitTime(Date visitTime) {
+        this.visitTime = visitTime;
     }
 }
