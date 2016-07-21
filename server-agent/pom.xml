@@ -66,6 +66,12 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+
 	</dependencies>
 	
 	<build>

@@ -62,8 +62,11 @@ public class RepairForm {
     private String processId;
 
     private int imgSize = 0;
+    @Lob
     private Blob img1;
+    @Lob
     private Blob img2;
+    @Lob
     private Blob img3;
 
     public RepairForm() {

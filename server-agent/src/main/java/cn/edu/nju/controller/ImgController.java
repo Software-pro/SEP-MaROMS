@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dell on 2016/7/21.
@@ -19,12 +18,12 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class UploadController {
+public class ImgController {
 
     @Autowired
     RepairFormRepository repairFormRepository;
 
-    @RequestMapping(value = "/upload/{id}/img",method = RequestMethod.POST, consumes = "image/jpeg")
+    @RequestMapping(value = "/upload/{id}/img",method = RequestMethod.POST, consumes = "image/jpeg",produces = "application/json")
     public SuccessResponse uploadImg (@PathVariable long id, HttpServletRequest request) throws Exception {
         SuccessResponse successResponse = new SuccessResponse(true);
 
@@ -35,17 +34,19 @@ public class UploadController {
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRepository.findOne(id);
 
-        BufferedReader bufferedReader=request.getReader();
+        BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(request.getInputStream()));
 
-        String buffer="";
-        String temp;
-        while ((temp=bufferedReader.readLine())!= null){
-            buffer+=temp;
+        StringBuilder stringBuilder=new StringBuilder();
+        String line;
+
+        while ((line=bufferedReader.readLine())!=null){
+            stringBuilder.append(line);
         }
 
-        Blob blob=new SerialBlob(buffer.getBytes());
+        Blob blob=new SerialBlob(stringBuilder.toString().getBytes());
+
+        RepairForm repairForm = repairFormRepository.findOne(id);
 
         switch (repairForm.getImgSize()){
             case 0:
@@ -70,27 +71,30 @@ public class UploadController {
     }
 
     @RequestMapping(value = "/get/{id}/img",method = RequestMethod.GET, produces = "image/jpeg")
-    public List<Blob> getImgs(@PathVariable long id){
-        List<Blob> blobs=new ArrayList<>();
+    public Blob getImgs(@PathVariable long id){
+//        List<Blob> blobs=new ArrayList<>();
         RepairForm repairForm = repairFormRepository.findOne(id);
-        switch (repairForm.getImgSize()){
-            case 1:
-                blobs.add(repairForm.getImg1());
-                break;
-            case 2:
-                blobs.add(repairForm.getImg1());
-                blobs.add(repairForm.getImg2());
-                break;
-            case 3:
-                blobs.add(repairForm.getImg1());
-                blobs.add(repairForm.getImg2());
-                blobs.add(repairForm.getImg3());
-                break;
-            default:
-                System.out.println("Why it is more than 3?");
-        }
-
-        return blobs;
+//        switch (repairForm.getImgSize()){
+//            case 0:
+//                break;
+//            case 1:
+//                blobs.add(repairForm.getImg1());
+//                break;
+//            case 2:
+//                blobs.add(repairForm.getImg1());
+//                blobs.add(repairForm.getImg2());
+//                break;
+//            case 3:
+//                blobs.add(repairForm.getImg1());
+//                blobs.add(repairForm.getImg2());
+//                blobs.add(repairForm.getImg3());
+//                break;
+//            default:
+//                System.out.println("Why it is more than 3?");
+//        }
+//
+//        return blobs;
+        return repairForm.getImg1();
     }
 
 }
