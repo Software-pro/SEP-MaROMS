@@ -407,7 +407,7 @@ angular.module('starter.controllers',['ionic'])
     $scope.itemClicked = function(formId) {
       if (($scope.menu1Var == true) && ($scope.menu2Var == true)) {
         $location.path("app/viewForms/" + formId);
-        alert(formId);
+        //alert(formId);
       }
       else {
         $scope.menu1Var = true;
@@ -938,43 +938,44 @@ Date.prototype.pattern=function(fmt) {
     var salesman = document.getElementById("salesman");
     var distributor = UserService.getUserId();
     if(mark.value.length == 0) {
-      $scope.errorBorder1 = "red";
       success = 0;
     }
+
     if(clientName.value.length == 0) {
-      $scope.errorBorder2 = "red";
       success = 0;
     }
      if(clientPhone.value.length == 0) {
-      $scope.errorBorder3 = "red";
       success = 0;
     }
      if(clientUnit.value.length == 0) {
-      $scope.errorBorder4 = "red";
       success = 0;
     }
      if(clientAddr.value.length == 0) {
-      $scope.errorBorder5 = "red";
       success = 0;
     }
      if(service.value.length == 0) {
-      $scope.errorBorder6= "red";
       success = 0;
     }
      if(engineer.value.length == 0) {
-      $scope.errorBorder7 = "red";
       success = 0;
     }
      if(salesman.value.length == 0) {
-      $scope.errorBorder8 = "red";
+      success = 0;
+    }
+    for(var i = 0; i<3; i++) {
+      if(mark.value[i]<'0' || mark.value[i]>'9') {
+        success = 0;
+        // alert("success= " + success);
+        break;
+      }
+    }
+    if(mark.value.length == 3 && parseInt(mark.value)>100) {
       success = 0;
     }
      /*if(distributor.value.length == 0) {
-      $scope.errorBorder9 = "red";
       success = 0;
     }
      if(distributorPhone.value.length == 0) {
-      $scope.errorBorder10 = "red";
       success = 0;
     } */
     if(success == 0) {
@@ -1064,7 +1065,7 @@ Date.prototype.pattern=function(fmt) {
        // $ionicHistory.goBack();              //返回上一页
         // $scope.$emit('editComplete','123');
         // $ionicHistory.clearCache();
-       $ionicHistory.goBack(-2);
+       //$ionicHistory.goBack(-2);
       // alert("");
 
     }
@@ -1072,7 +1073,6 @@ Date.prototype.pattern=function(fmt) {
 else  {
   var mark = document.getElementById("mark");
   if(mark.value.length == 0) {
-    $scope.errorBorder1 = "red";
     alert("未填写分值！");
     return;
   }
@@ -1194,7 +1194,7 @@ else  {
 .controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,Message_infos,$ionicHistory,$http) {
 
 //date类型转成string
-<!--      
+      
 /**      
 * 对Date的扩展，将 Date 转化为指定格式的String      
 * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符      
@@ -1208,7 +1208,7 @@ else  {
 */        
 //var date = new Date();      
 //window.alert(date.pattern("yyyy-MM-dd hh:mm:ss"));   
-// -->   
+//    
 
 Date.prototype.pattern=function(fmt) {         
     var o = {         
@@ -1275,48 +1275,47 @@ Date.prototype.pattern=function(fmt) {
     var mark = document.getElementById("mark");
      var serviceId;
     if(clientname.value.length == 0) {
-      $scope.errorBorder1 = 'red';
-      su辨析ccess = 0;
-    }
-     if(clientphone.value.length == 0) {
-      $scope.errorBorder2 = 'red';
       success = 0;
+     // alert("success= " + success);
     }
-     if(clientaddr.value.length == 0) {
-      $scope.errorBorder3 = 'red';
+    else if(clientphone.value.length == 0) {
+      success = 0;
+      // alert("success= " + success);
+    }
+    else  if(clientaddr.value.length == 0) {
      success = 0;
+     // alert("success= " + success);
     }
-     if(clientunit.value.length == 0) {
-      $scope.errorBorder4 = 'red';
+    else if(clientunit.value.length == 0) {
       success = 0;
+      // alert("success= " + success);
     }
-     if(salesname.value === "请选择销售人员") {
-      $scope.errorBorder5 = 'red';
+    else  if(salesname.value === "请选择销售人员") {
       success = 0;
+      // alert("success= " + success);
     }
-    if( engineername.value === "请选择工程师") {
-      $scope.errorBorder6 = 'red';
+    else if( engineername.value === "请选择工程师") {
       success = 0;
+      // alert("success= " + success);
     }
-     if( service.value === "请选择服务") {
-      $scope.errorBorder7 = 'red';
+    else  if( service.value === "请选择服务") {
       success = 0;
+     //  alert("success= " + success);
     }
-    if(mark.value.length == 0 && mark.value.length >= 4) {
-      $scope.errorBorder8 = 'red';
+    else if(mark.value.length == 0 && mark.value.length >= 4) {
       success = 0;
+     //  alert("success= " + success);
     }
     for(var i = 0; i<3; i++) {
       if(mark.value[i]<'0' || mark.value[i]>'9') {
-        $scope.errorBorder8 = 'red';
         success = 0;
+        // alert("success= " + success);
         break;
       }
     }
     if(mark.value.length == 3 && parseInt(mark.value)>100) {
-      $scope.errorBorder8 = 'red';
       success = 0;
-      return;
+      // alert("success= " + success);
     }
     if(success == 0 ) {
       alert("请将内容填写完整后再提交！‘*'表示必填内容.");

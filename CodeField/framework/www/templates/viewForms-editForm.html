@@ -15,7 +15,7 @@
 
           <div class="itemDivider"></div>
 
-          <div class="item item-input" style="border-style: solid; border-color: {{errorBorder1}};"  >
+          <div class="item item-input" >
             <span class="input-label">分值<span style="color: red;">  *</span></span>
             <input id="mark" type = "text" value = "{{form.value}}">
           </div>
@@ -25,22 +25,22 @@
 
               <div class="itemDivider"></div>
 
-              <div class="item item-input" style="border-style: solid; border-color: {{errorBorder2}};"  >
+              <div class="item item-input"  >
                 <span  class="input-label">客户姓名<span style="color: red;">  *</span></span>
                 <input id="clientName" type = "text" value = "{{form.clientName}}">
               </div>
       
-              <div class = "item item-input " style="border-style: solid; border-color: {{errorBorder3}};"> 
+              <div class = "item item-input " > 
                 <span class="input-label">客户电话<span style="color: red;">  *</span></span>
                 <input id="clientPhone" type = "text" value = "{{form.clientphone}}">
               </div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder4}};" >
+              <div class="item item-input"   >
                 <span class="input-label">客户单位<span style="color: red;">  *</span></span>
                 <input id="clientUnit" type = "text" value = "{{form.clientunit}}">
               </div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder5}};" >
+              <div class="item item-input"   >
                 <span class="input-label">客户地址<span style="color: red;">  *</span></span>
                 <input id="clientAddr" type = "text" value = "{{form.clientaddr}}">
               </div>
@@ -49,7 +49,7 @@
               <div ng-switch-when="上门服务">
               <div class="itemDivider"></div>
 
-              <div class="item item-input"   style="border-style: solid; border-color: {{errorBorder6}}">
+              <div class="item item-input" >  
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option selected>上门服务</option>
@@ -61,7 +61,7 @@
               <div ng-switch-when="送货服务">
               <div class="itemDivider"></div>
 
-              <div class="item item-input"  style="border-style: solid; border-color:  {{errorBorder6}}">
+              <div class="item item-input"  >
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option>上门服务</option>
@@ -73,7 +73,7 @@
               <div ng-switch-when="安装调试">
               <div class="itemDivider"></div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder6}}">
+              <div class="item item-input"  >
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
                   <option >上门服务</option>
@@ -85,17 +85,17 @@
               <div ng-switch-default>
               <div class="itemDivider"></div>
 
-              <div class="item item-input"  style="border-style: solid; border-color: {{errorBorder6}};">
+              <div class="item item-input" >
                 <span class="input-label">服务项目<span style="color: red;">  *</span></span>
                 <select id="service" >
-                  <option >上门服务</option>
+                  <option>上门服务</option>
                   <option>送货服务</option>
                   <option>安装调试</option>
                 </select>
               </div>
               </div>
 
-              <div class="item item-input"  style=" border-style: solid; border-color:  {{errorBorder7}};"  >
+              <div class="item item-input">
                 <span class="input-label">工程师<span style="color: red;">  *</span></span>
                 <select id="engineer">
                 <option selected> {{form.engineerName}}(ID: {{form.engineerId}}) </option>
@@ -103,7 +103,7 @@
                 </select>
               </div>
 
-              <div class="item item-input "  style="border-style: solid; border-color: {{errorBorder8}};"  >
+              <div class="item item-input "  >
                 <span class="input-label">销售人员<span style="color: red;">  *</span></span>
                 <select id="salesman">
                 <option selected>{{form.salesName}}(ID: {{form.salerId}})</option>

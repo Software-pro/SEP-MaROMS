@@ -71,7 +71,7 @@ angular.module('starter.service',[])
            distributors.push(users[i]);
         }
       }
-      alert(distributors.length);
+      //alert(distributors.length);
       return distributors;
 
     },
@@ -255,7 +255,7 @@ angular.module('starter.service',[])
   return {
     currentId: 0,
     all: function(callback) {
-
+      forms = [];
        $http.get(ipAddress + "/repairforms")
       .success(function (response) {
         var formlist = response;
