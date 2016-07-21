@@ -7,8 +7,16 @@ import cn.edu.nju.respository.RepairFormRespository;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.task.ReceiveRequest;
 import cn.edu.nju.servicedata.task.SubmitRequest;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by dell on 2016/7/20.
@@ -23,6 +31,14 @@ public class TaskController {
 
     @Autowired
     RepairFormRespository repairFormRespository;
+
+    @Autowired
+    private RuntimeService runtimeService;
+
+    @Autowired
+    private TaskService taskService;
+
+    private ProcessInstance processInstance;
 
     @RequestMapping(value = "/task/read/{id}", method = RequestMethod.GET, produces = "application/json")
     public SuccessResponse readMessage(@PathVariable long id){
@@ -66,7 +82,15 @@ public class TaskController {
         }
 
         repairForm.setStatus(1);
-        repairForm.setVisitTime(receiveRequest.getDate());
+        repairForm.setVisitTime(receiveRequest.getVisitTime());
+        repairForm.setReceivedTime(new Date());
+
+        //activiti相关
+        Map<String, Object> vars=new HashMap<>();
+        vars.put("state",0);
+        processInstance = runtimeService.startProcessInstanceByKey("orderwithservice",vars);
+
+        repairForm.setProcessId(processInstance.getId());
 
         repairFormRespository.save(repairForm);
 
@@ -97,6 +121,11 @@ public class TaskController {
 
         repairForm.setStatus(0);
         repairForm.setVisitTime(null);
+        repairForm.setReceivedTime(null);
+
+        //activiti相关
+        runtimeService.deleteProcessInstance(repairForm.getProcessId(),"unreceive");
+        repairForm.setProcessId(null);
 
         repairFormRespository.save(repairForm);
 
@@ -128,6 +157,11 @@ public class TaskController {
         repairForm.setStatus(2);
         repairForm.setSerialNumber(submitRequest.getSerialNumber());
         repairForm.setFeedbackInfo(submitRequest.getFeedbackInfo());
+        repairForm.setCompletedTime(new Date());
+
+        //activiti相关
+        Task task=taskService.createTaskQuery().processInstanceId(repairForm.getProcessId()).singleResult();
+        taskService.complete(task.getId());
 
         repairFormRespository.save(repairForm);
 
@@ -157,6 +191,11 @@ public class TaskController {
         }
 
         repairForm.setStatus(3);
+        repairForm.setCheckedTime(new Date());
+
+        //activiti相关
+        Task task=taskService.createTaskQuery().processInstanceId(repairForm.getProcessId()).singleResult();
+        taskService.complete(task.getId());
 
         repairFormRespository.save(repairForm);
 

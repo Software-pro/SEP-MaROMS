@@ -26,7 +26,7 @@ public class Message {
     private int status;
 
     @NotNull
-    private long senderId;
+    private long infoId;
 
     @NotNull
     private long receiverId;
@@ -41,16 +41,16 @@ public class Message {
 
     public Message(MessageCreateRequest messageCreateRequest){
         this.type=messageCreateRequest.getType();
-        this.senderId=messageCreateRequest.getSenderId();
+        this.infoId =messageCreateRequest.getInfoId();
         this.receiverId=messageCreateRequest.getReceiverId();
         this.time=messageCreateRequest.getTime();
         this.content=messageCreateRequest.getContent();
     }
 
-    public Message(int type,long senderId,long receiverId,Date time,String content){
+    public Message(int type, long infoId, long receiverId, Date time, String content){
 
         this.type=type;
-        this.senderId=senderId;
+        this.infoId = infoId;
         this.receiverId=receiverId;
         this.time=time;
         this.content=content;
@@ -81,12 +81,12 @@ public class Message {
         this.status = status;
     }
 
-    public long getSenderId() {
-        return senderId;
+    public long getInfoId() {
+        return infoId;
     }
 
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
+    public void setInfoId(long infoId) {
+        this.infoId = infoId;
     }
 
     public long getReceiverId() {
