@@ -84,6 +84,29 @@
 
       <div class="itemDivider"></div>
       
+<div ng-switch = "form.status">
+  <div ng-switch-when = "已完成">
+      <div class = "item item-icon-right" ng-click = "showfeedback()">
+         反馈信息
+         <div>
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
+         </div>
+      </div>
+  </div>
+  
+  <div ng-switch-when = "已审核">
+       <div class = "item item-icon-right" ng-click = "showfeedback()">
+         反馈信息
+
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
+      </div>
+
+  </div>
+
+</div>
+      
+
+      <div class="itemDivider"></div>
 
       <div class="item" >
         创建时间： {{form.creatTime.toLocaleString()}}
@@ -103,7 +126,7 @@
     </div>
   </div>
       
-<div ng-switch = "{{form.doortime.getTime()}}">
+<div ng-switch = "{{form.visitTime.getTime()}}">
   <div ng-switch-when = "0">
     <div class = "item">
       上门时间：
@@ -112,7 +135,7 @@
     <div ng-switch-default>
 
       <div class = "item">
-        上门时间: {{form.doortime.toLocaleString()}}
+        上门时间: {{form.visitTime.toLocaleString()}}
       </div>
     </div>
   </div>

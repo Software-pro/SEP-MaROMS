@@ -1,11 +1,21 @@
 angular.module('starter.controllers',['ionic'])
 
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos,UserService) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,Message_infos,UserService,Picture) {
+  
   Message_infos.all(function(){
+
       $scope.count = Message_infos.getUnreadCount();
     }
   );
+
+  $scope.refresh = function(){
+   // alert("haha");
+     
+     Picture.sendPicture();
+
+     $scope.count = Message_infos.getUnreadCount();
+  }
 })
 
  .controller("contactsCtrl",function($scope, $state, PersonalInformations,UserService, $location, $ionicScrollDelegate,$http) {
@@ -607,94 +617,11 @@ angular.module('starter.controllers',['ionic'])
     $scope.myinformation = response; 
     });
 
- /* $scope.data={};
- $scope.editphonenum = function() {
-    $ionicPopup.show({
-      template: "<input type = 'phoneNum' ng-model='data.phoneNum'>",
-      title:"请输入新的电话号码",
-      scope: $scope,
-      buttons: [
-        {
-            text: "取消" ,
-        },
-        {
-            text: "<b>保存</b>",
-            type: "button-positive",
-            onTap: function(e) {
-              $scope.myinformation.phoneNum = $scope.data.phoneNum;
-              return $scope.myinformation.phoneNum;
-            }
-        }
-      ]
-    })
-  } */
+
   $scope.markClicked = function(){
     $location.path("app/mark/" + $scope.myinformation.id);
   }
-  /*$scope.editphoto = function() {
-    var hideSheet = $ionicActionSheet.show({
-        titleText: "上传新头像",
-        buttons: [
-          {text: "拍照"},
-          {text: "从相册中选择"}
-        ],
-        buttonClicked: function(index) {
-          if(index == 0) {
-            $scope. takePicture();
-          }
-          else if(index == 1) {
-            $scope.readAlbum();
-          }
-        },
-        cancelText: "取消",
-        cancel: function() {         
-        }
-    })
-  }
-      $scope.readAlbum = function () {
 
-      if (!window.imagePicker) {
-        alert('您的环境不支持相册上传');
-        return;
-      }
-
-      var options = {
-        maximumImagesCount: 2,
-        width: 800,
-        height: 800,
-        quality: 80
-      };
-
-      imagePicker.getPictures(function (result) {
-        for (var i in result){
-          $scope.images.push(result[i]);
-        }
-      }, function (error) {
-        alert(error);
-      }, options);
-    }
-
-    $scope.takePicture = function() {
-      if (!navigator.camera) {
-        alert('请在真机环境中使用拍照上传。')
-        return;
-      }
-
-      var options = {
-        quality: 75,
-        targetWidth: 800,
-        targetHeight: 800,
-        saveToPhotoAlbum: false
-      };
-
-      Camera.getPicture(options).then(function(picUrl) {
-        alert(picUrl);
-        $scope.images.push(picUrl);
-      }, function(err) {
-        //alert("拍照错误：" + err);
-      });
-
-    } */
   $scope.exit = function(){
      $ionicPopup.show({
         title: "您确定要登出吗",
@@ -782,18 +709,12 @@ angular.module('starter.controllers',['ionic'])
 
  $scope.form = Forms.get($stateParams.formId);
 
-//   alert("orderTakeTime " + $scope.form.orderTakeTime);
-
+  
 //   alert("new Date(null) " + (new Date(null)));
 // alert((new Date(null)).getTime());
 
 //   alert($scope.form.orderTakeTime.getTime() ===  (new Date(null)).getTime());
  
- $scope.getTime = function(){
-  alert( (new Date(null)).getTime());
-  return (new Date(null)).getTime();
-
- }
 
 
  $scope.userPosition = UserService.getUserPosition();
@@ -804,6 +725,8 @@ angular.module('starter.controllers',['ionic'])
  $scope.doRefresh = function() {
     Forms.all(function(response){
       $scope.forms = response;
+
+      //alert("in controllers.js " + $scope.forms.length);
       var userPosition = UserService.getUserPosition();
       //$scope.isShow = false;
     //  if(userPosition === "派单员")  {
@@ -813,13 +736,16 @@ angular.module('starter.controllers',['ionic'])
       //刷新--重新从后台载入数据
       $scope.form = Forms.get($stateParams.formId);
 
+//alert($scope.form.length);
+    //  alert($scope.form.id + $scope.form.clientname);
+
       $scope.$broadcast("scroll.refreshComplete");
     });
 }
  
  //alert(userPosition);
   // TODO:get form by 'http'
-   $scope.yearNums = [];
+  $scope.yearNums = [];
   for(var i=0;i<10; i++)
     $scope.yearNums.push([i+2016].join(""));
   $scope.dayNums = [];
@@ -830,7 +756,18 @@ angular.module('starter.controllers',['ionic'])
   $scope.hourNums=[];
   for(var i=0; i<15; i++)
     $scope.hourNums.push([i+8].join(""));
-    $scope.minuteNums=[0, 10, 20, 30, 40, 50];
+  $scope.minuteNums=[0, 10, 20, 30, 40, 50];
+
+  $scope.showfeedback = function(){
+    $state.go("app.feedback",{formId:$stateParams.formId});
+
+
+   // $location.path("app/feedback/" + $stateParams.formId);
+
+
+  }
+
+
   $scope.engineerDetail = function() {
     //$scope.engineer = PersonalInformations.getByName($scope.form.engineerName, '工程师' );
     $location.path("app/contacts/" + $scope.form.engineerId);
@@ -863,8 +800,8 @@ angular.module('starter.controllers',['ionic'])
   }
   $scope.submitComplete = function() {
   //  alert("订单已完成！");
-    alert($stateParams.formId);
-    $state.go('detail-feedback',{formId:$stateParams.formId});
+  //  alert($stateParams.formId);
+    $state.go('app.detail-feedback',{formId:$stateParams.formId});
   }
    $scope.takeForm = function(){
     var success=1;
@@ -879,9 +816,7 @@ angular.module('starter.controllers',['ionic'])
     }
 
 
-    alert("month.value = " + month.value);
-
-    var visitTime = new Date(year.value,month.value,day.value,hour.value,minute.value, 0);
+    var visitTime = new Date(year.value,month.value - 1,day.value,hour.value,minute.value, 0);
 
 
     Forms.receive($stateParams.formId,visitTime,function(){
@@ -929,39 +864,6 @@ var previousMark;
     else return user.position.indexOf('销售员')>=0;
     }
 
-Date.prototype.pattern=function(fmt) {         
-    var o = {         
-    "M+" : this.getMonth()+1, //月份         
-    "d+" : this.getDate(), //日         
-    "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时         
-    "H+" : this.getHours(), //小时         
-    "m+" : this.getMinutes(), //分         
-    "s+" : this.getSeconds(), //秒         
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
-    "S" : this.getMilliseconds() //毫秒         
-    };         
-    var week = {         
-    "0" : "\u65e5",         
-    "1" : "\u4e00",         
-    "2" : "\u4e8c",         
-    "3" : "\u4e09",         
-    "4" : "\u56db",         
-    "5" : "\u4e94",         
-    "6" : "\u516d"        
-    };         
-    if(/(y+)/.test(fmt)){         
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
-    }         
-    if(/(E+)/.test(fmt)){         
-        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);         
-    }         
-    for(var k in o){         
-        if(new RegExp("("+ k +")").test(fmt)){         
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
-        }         
-    }         
-    return fmt;         
-}    
 
   $scope.editComplete = function() {
   if($scope.form.status == "未接") {
@@ -1066,7 +968,7 @@ Date.prototype.pattern=function(fmt) {
         //Forms.all(function(response){});
 
         if(mark.value != previousMark){
-          alert(previousMark + " " + mark.value);
+        //  alert(previousMark + " " + mark.value);
           Message_infos.create(0,$scope.form.id,1);
          //   alert("send message");
           }
@@ -1076,43 +978,6 @@ Date.prototype.pattern=function(fmt) {
          });
 
       });
-
-      
-       //  $http({
-       //    method:'POST',
-       //    url:'http://115.159.225.109/repairforms/edit',
-       //    data:{
-       //      'id':$scope.form.id,
-       //      'grade':mark.value,
-       //      'service':serviceId,
-       //      'clientName':clientName.value,
-       //      'clientPhone':clientPhone.value,
-       //      'clientWorkplace':clientUnit.value,
-       //      'clientAddress':clientAddr.value,
-       //      'engineerId':parseInt(engineerId.join("")),
-       //      'salerId':parseInt(salerId.join("")),
-       //      'distributorId':distributor
-       //    },
-       //    headers:{
-       //      'Content-Type':'application/json'
-       //    },
-       //    withCredentials:'true'
-       //  })
-       //  .then(function(response) {
-       //    console.log(response);
-
-       //    alert("修改完成");
-
-       //    Forms.all(function(response){});
-
-       //  if(mark.value != previousMark){
-       //    alert(previousMark + " " + mark.value);
-       //    Message_infos.create(0,$scope.form.id,1);
-       // //   alert("send message");
-       //  }
-       // $ionicHistory.goBack();
-       //  })
-
 
 
       }
@@ -1140,6 +1005,9 @@ Date.prototype.pattern=function(fmt) {
           .then(function(response) {
             console.log(response);
 
+        if(mark.value != previousMark){
+          Message_infos.create(0,$scope.form.id,1);
+          }
         alert("修改完成！");
         $ionicHistory.goBack();
           })
@@ -1470,7 +1338,6 @@ Date.prototype.pattern=function(fmt) {
     var UserPhone = document.getElementById("userPhone");
     var UserType= document.getElementById("userType");  // int!
     var UserTypeInt = 0;
-    alert(UserName.value);
     if(UserId.value.length == 0)
     {
       success = 0;
@@ -1671,7 +1538,7 @@ Date.prototype.pattern=function(fmt) {
     $state.go('login');
   }
   $scope.yz = function(){
-    alert("aaa");
+  //  alert("aaa");
     var phone = document.getElementById("phonenumber");
     var button = document.getElementById("submitbutton");
     if(phone.value.length === 0){
@@ -2001,11 +1868,24 @@ Date.prototype.pattern=function(fmt) {
 
 })
 
+.controller('feedCtrl',function($scope,$state,$stateParams,$ionicHistory,Forms){
+//  alert($stateParams.formId);
+  $scope.form = Forms.get($stateParams.formId);
+
+  // $scope.goback = function(){
+  //    //$state.go('app.viewForms-detail',{formId:$stateParams.formId});
+
+  //   $ionicHistory.goBack();
+  // }
+
+})
+
 .controller('feedbackCtrl',function($scope, $ionicActionSheet,$state,$timeout,$ionicHistory,$stateParams,Forms){
-  alert($stateParams.formId);
-  $scope.goback = function(){
-     $state.go("app.viewForms");
-  }
+ // alert($stateParams.formId);
+  // $scope.goback = function(){
+  //    $state.go("app.viewForms");
+
+  // }
   $scope.images = [];
   $scope.choosephoto = function(){
      var hideSheet = $ionicActionSheet.show({
@@ -2085,7 +1965,9 @@ Date.prototype.pattern=function(fmt) {
         
     
        alert("提交完成");
-       $state.go("app.viewForms");
+ //      $state.go("app.viewForms");
+ 
+    $ionicHistory.goBack();
     })
 
   }

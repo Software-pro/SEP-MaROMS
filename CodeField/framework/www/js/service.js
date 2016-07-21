@@ -68,7 +68,7 @@ angular.module('starter.service',[])
            distributors.push(users[i]);
         }
       }
-      alert(distributors.length);
+     // alert(distributors.length);
       return distributors;
 
     },
@@ -251,6 +251,7 @@ angular.module('starter.service',[])
   return {
     currentId: 0,
     all: function(callback) {
+       forms=[];
 
        $http.get(ipAddress + "/repairforms")
       .success(function (response) {
@@ -331,15 +332,20 @@ angular.module('starter.service',[])
             "engineerName":engineerName,
             "salerId":formlist[i].salerId,
             "salesName":salesName,
-            "distributerId":formlist.distributorId,
+            "distributerId":formlist[i].distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
             "orderTakeTime":(new Date(formlist[i].receivedTime)),
             "finishTime":(new Date(formlist[i].completedTime)),
             "auditTime":(new Date(formlist[i].checkedTime)),
+            "visitTime":(new Date(formlist[i].visitTime)),
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
         }
       });
+
+       //alert("forms.length in service.js " + forms.length);
             callback(forms);
       })
       .error(function (response) {
@@ -436,10 +442,14 @@ angular.module('starter.service',[])
             "orderTakeTime":(new Date(formlist[i].receivedTime)),
             "finishTime":(new Date(formlist[i].completedTime)),
             "auditTime":(new Date(formlist[i].checkedTime)),
+            "visitTime":(new Date(formlist[i].visitTime)),
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
             //alert("forms in service: " + forms[i].id);
-        //  console.log("get form creationTime" + formlist[i].creationTime);
-       //   console.log("get form engineername " + forms[i].engineerName);
+            console.log(formlist);
+          console.log("get form creationTime" + formlist[i].creationTime);
+          console.log("get form visitTime " + forms[i].visitTime);
         }
       });
             callback(forms);
@@ -534,12 +544,15 @@ angular.module('starter.service',[])
             "engineerName":engineerName,
             "salerId":formlist[i].salerId,
             "salesName":salesName,
-            "distributerId":formlist.distributorId,
+            "distributerId":formlist[i].distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
             "orderTakeTime":(new Date(formlist[i].receivedTime)),
             "finishTime":(new Date(formlist[i].completedTime)),
             "auditTime":(new Date(formlist[i].checkedTime)),
+            "visitTime":(new Date(formlist[i].visitTime)),
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
@@ -643,6 +656,9 @@ angular.module('starter.service',[])
             "orderTakeTime":(new Date(formlist.receivedTime)),
             "finishTime":(new Date(formlist.completedTime)),
             "auditTime":(new Date(formlist.checkedTime)),
+            "visitTime":(new Date(formlist.visitTime)),
+            "serialNumber":formlist.serialNumber,
+            "feedbackInfo":formlist.feedbackInfo
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
@@ -660,8 +676,13 @@ angular.module('starter.service',[])
     },
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
+      //  alert(formId + " vs " + forms[i].id);
         if (forms[i].id === parseInt(formId)) {
+       //   alert("equal");
           return forms[i];
+        }
+        else{
+       //   alert("not equal");
         }
       }
       return null;
@@ -727,18 +748,13 @@ angular.module('starter.service',[])
           callback();
 
 
-       //  if(mark.value != previousMark){
-       //    alert(previousMark + " " + mark.value);
-       //    Message_infos.create(0,$scope.form.id,1);
-       // //   alert("send message");
-       //  }
-       // $ionicHistory.goBack();
         })
 
 
     },
       delete:function(formId,callback){
       var tmp = this.get(formId);
+      
       Message_infos.create(5,formId,tmp.engineerId);
       Message_infos.create(5,formId,tmp.salerId);
       Message_infos.create(5,formId,tmp.distributerId);
@@ -758,7 +774,6 @@ angular.module('starter.service',[])
     },
 
     receive:function(formId,visitTime,callback){
-      alert("in service.js receive() visitTime:" + visitTime);
       $http({
         method:'POST',
         url:ipAddress + '/task/receive',
@@ -882,6 +897,94 @@ angular.module('starter.service',[])
   };
 })
 
+.factory('Picture',function($http){
+
+  return{
+  sendPicture:function(){
+
+    for(var i = 0; i < 1; i++ ){
+  //    var picUrl = images[i];
+  var picUrl = "img/ionic.png";
+
+      var str = picUrl.split(".");
+      var type = str[str.length - 1];
+
+      var s = "image/";
+
+      if(type[0] == 'j')
+        s += "jpeg";
+      if(type[0] == 'p')
+        s += "png";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("get",picUrl,true);
+      xhr.responseType = "blob";
+      console.log("s " + s);
+     xhr.onload = function(){
+        if (this.status == 200) {
+          var blob = this.response;
+          console.log(blob.size);
+         alert(blob.size);
+          $http({
+            method : "POST",
+  //          url : ipAddress + "/information/" + information.id + "/images",
+            url : ipAddress + "/upload/"+ id + "/img",
+            data: blob,
+            headers : {
+              'Content-Type' : s
+            }
+          }).success(function (response) {
+      //      information.images[i] = response;
+
+            console.log("发送图片成功");
+          }).error(function (error) {
+            alert("发送图片失败")
+            console.log("发送图片失败");
+          })
+
+      }
+      else{
+
+        if (this.status == 0){
+            var blob = this.response;
+            console.log(blob.size);
+
+            $http({
+              method : "POST",
+     //         url : ipAddress + "/information/" + information.id + "/images",
+            url : ipAddress + "/upload/"+ id +"/img",
+
+              data : blob,
+              headers : {
+                'Content-Type' : s,
+                'Content-Length' : blob.size,
+                Authorization : auth
+              }
+            }).success(function (response) {
+           //   information.images[i] = response;
+
+              console.log("发送图片成功");
+            }).error(function (error) {
+
+              console.log("发送图片失败");
+            })
+
+          }
+          else {
+            console.log("失败");
+          }
+
+      }
+    }
+    xhr.send();
+  }
+}
+}
+
+
+})
+
+
 .factory('Message_infos',function($http,UserService) {
   //type = 0 分值改动的消息通知
   //type = 1 用户申请找回密码的消息通知
@@ -910,7 +1013,7 @@ angular.module('starter.service',[])
         url:'http://115.159.225.109/messages/create',
          data:{
           'type':type,
-          'senderId':senderId,
+          'infoId':senderId,
           'receiverId':receiverId,
           'time':new Date()
         },
@@ -932,29 +1035,32 @@ angular.module('starter.service',[])
       $http.get(ipAddress + "/messages")
   //    $http.get(ipAddress + "/messages/byReceiverId/1")
       .success(function (response) {
-   //console.log(response);
-       var messages=[];
+  // console.log(response);
+  // alert(UserService.getUserId());
+       message_infos=[];
+       var messages = response;
+
         for(var i = 0; i < response.length; i ++){
           if(Number(response[i].receiverId) === Number(UserService.getUserId())){
-            messages.push(response[i]);
+            
+            var tmp= {
+            "ID":messages[i].id,
+            "type":messages[i].type,
+            "tag":messages[i].status,
+            "id":messages[i].infoId,
+            "time":new Date(messages[i].time)
+            };
+
+            message_infos.push(tmp);
 
           }
           else{
+
           }
         }
  //   console.log(messages[0]);
  //           alert("response length = " + messages.length);
 
-        for(var i = 0; i < messages.length; i ++){
-          message_infos[i] = {
-            "ID":messages[i].id,
-            "type":messages[i].type,
-            "tag":messages[i].status,
-            "id":messages[i].senderId,
-            "time":new Date(messages[i].time)
-          };
-
-         }
 
          callback(message_infos);
 
