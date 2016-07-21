@@ -1,7 +1,7 @@
 package cn.edu.nju.controller;
 
 import cn.edu.nju.datatables.User;
-import cn.edu.nju.respository.UserRespository;
+import cn.edu.nju.repository.UserRepository;
 import cn.edu.nju.servicedata.users.LoginRequest;
 import cn.edu.nju.servicedata.users.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    UserRespository userRespository;
+    UserRepository userRepository;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST,produces = "application/json")
     public LoginResponse login(@RequestBody LoginRequest loginRequest) throws Exception{
 
-        User user = userRespository.findOne(loginRequest.getId());
+        User user = userRepository.findOne(loginRequest.getId());
 
         LoginResponse loginResponse;
 

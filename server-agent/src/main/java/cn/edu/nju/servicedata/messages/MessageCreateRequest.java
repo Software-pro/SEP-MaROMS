@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class MessageCreateRequest {
     private int type;
-    private int infoId;
+    private long infoId;
     private long receiverId;
     private Date time;
     private String content;
@@ -20,11 +20,11 @@ public class MessageCreateRequest {
         this.type = type;
     }
 
-    public int getInfoId() {
+    public long getInfoId() {
         return infoId;
     }
 
-    public void setInfoId(int infoId) {
+    public void setInfoId(long infoId) {
         this.infoId = infoId;
     }
 
