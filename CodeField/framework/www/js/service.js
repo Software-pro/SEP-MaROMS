@@ -68,7 +68,7 @@ angular.module('starter.service',[])
            distributors.push(users[i]);
         }
       }
-      alert(distributors.length);
+     // alert(distributors.length);
       return distributors;
 
     },
@@ -251,6 +251,7 @@ angular.module('starter.service',[])
   return {
     currentId: 0,
     all: function(callback) {
+       forms=[];
 
        $http.get(ipAddress + "/repairforms")
       .success(function (response) {
@@ -338,11 +339,13 @@ angular.module('starter.service',[])
             "finishTime":(new Date(formlist[i].completedTime)),
             "auditTime":(new Date(formlist[i].checkedTime)),
             "visitTime":(new Date(formlist[i].visitTime)),
-            "serialNumber":formlist.serialNumber,
-            "feedbackInfo":formlist.feedbackInfo
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
         }
       });
+
+       //alert("forms.length in service.js " + forms.length);
             callback(forms);
       })
       .error(function (response) {
@@ -673,8 +676,13 @@ angular.module('starter.service',[])
     },
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
+      //  alert(formId + " vs " + forms[i].id);
         if (forms[i].id === parseInt(formId)) {
+       //   alert("equal");
           return forms[i];
+        }
+        else{
+       //   alert("not equal");
         }
       }
       return null;
@@ -1268,6 +1276,94 @@ angular.module('starter.service',[])
     }
   };
 })
+
+.factory('Picture',function($http){
+
+  return{
+  sendPicture:function(){
+
+    for(var i = 0; i < 1; i++ ){
+  //    var picUrl = images[i];
+  var picUrl = "img/ionic.png";
+
+      var str = picUrl.split(".");
+      var type = str[str.length - 1];
+
+      var s = "image/";
+
+      if(type[0] == 'j')
+        s += "jpeg";
+      if(type[0] == 'p')
+        s += "png";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("get",picUrl,true);
+      xhr.responseType = "blob";
+      console.log("s " + s);
+     xhr.onload = function(){
+        if (this.status == 200) {
+          var blob = this.response;
+          console.log(blob.size);
+         alert(blob.size);
+          $http({
+            method : "POST",
+  //          url : ipAddress + "/information/" + information.id + "/images",
+            url : ipAddress + "/upload/"+ id + "/img",
+            data: blob,
+            headers : {
+              'Content-Type' : s
+            }
+          }).success(function (response) {
+      //      information.images[i] = response;
+
+            console.log("发送图片成功");
+          }).error(function (error) {
+            alert("发送图片失败")
+            console.log("发送图片失败");
+          })
+
+      }
+      else{
+
+        if (this.status == 0){
+            var blob = this.response;
+            console.log(blob.size);
+
+            $http({
+              method : "POST",
+     //         url : ipAddress + "/information/" + information.id + "/images",
+            url : ipAddress + "/upload/"+ id +"/img",
+
+              data : blob,
+              headers : {
+                'Content-Type' : s,
+                'Content-Length' : blob.size,
+                Authorization : auth
+              }
+            }).success(function (response) {
+           //   information.images[i] = response;
+
+              console.log("发送图片成功");
+            }).error(function (error) {
+
+              console.log("发送图片失败");
+            })
+
+          }
+          else {
+            console.log("失败");
+          }
+
+      }
+    }
+    xhr.send();
+  }
+}
+}
+
+
+})
+
 
 .factory('Message_infos',function($http,UserService) {
   //type = 0 分值改动的消息通知
