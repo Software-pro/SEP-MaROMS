@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cn.edu.nju.LoginTest" time="0.244" tests="6" errors="0" skipped="0" failures="5">
+  <properties>
+    <property name="idea.version" value="2016.1.3"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="D:\program files\java\jdk 8\jre\bin"/>
+    <property name="java.vm.version" value="25.91-b14"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="idea.launcher.port" value="7533"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="E:\zavier\SEP-MaROMS\server-agent"/>
+    <property name="java.runtime.version" value="1.8.0_91-b14"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="D:\program files\java\jdk 8\jre\lib\endorsed"/>
+    <property name="os.arch" value="x86"/>
+    <property name="java.io.tmpdir" value="C:\Users\dell\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="D:\program files\IntelliJ IDEA 2016.1.2\plugins\maven\lib\maven3\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.library.path" value="D:\program files\java\jdk 8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\program files\java\jdk 8\bin;D:\program files\curl-7.49.0-win32-mingw\bin;D:\program files\node js\;D:\program files\apache-maven-3.3.9\bin\;C:\Users\dell\AppData\Roaming\npm;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\dell"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="idea.launcher.bin.path" value="D:\program files\IntelliJ IDEA 2016.1.2\bin"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="dell"/>
+    <property name="java.class.path" value="D:\program files\IntelliJ IDEA 2016.1.2\plugins\maven\lib\maven3\boot\plexus-classworlds-2.4.jar;D:\program files\IntelliJ IDEA 2016.1.2\lib\idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="32"/>
+    <property name="java.home" value="D:\program files\java\jdk 8\jre"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=2016.1.3 package"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="1.8.0_91"/>
+    <property name="java.ext.dirs" value="D:\program files\java\jdk 8\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="D:\program files\java\jdk 8\jre\lib\resources.jar;D:\program files\java\jdk 8\jre\lib\rt.jar;D:\program files\java\jdk 8\jre\lib\sunrsasign.jar;D:\program files\java\jdk 8\jre\lib\jsse.jar;D:\program files\java\jdk 8\jre\lib\jce.jar;D:\program files\java\jdk 8\jre\lib\charsets.jar;D:\program files\java\jdk 8\jre\lib\jfr.jar;D:\program files\java\jdk 8\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="D:\program files\IntelliJ IDEA 2016.1.2\plugins\maven\lib\maven3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
+  </properties>
+  <testcase name="test01" classname="cn.edu.nju.LoginTest" time="0.046"/>
+  <testcase name="test02" classname="cn.edu.nju.LoginTest" time="0.135">
+    <failure message="expected:&lt;{&quot;success&quot;:true,&quot;type&quot;:0,&quot;info&quot;:&quot;&quot;}&gt; but was:&lt;{&quot;success&quot;:true,&quot;info&quot;:null,&quot;type&quot;:0}&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<{"success":true,"type":0,"info":""}> but was:<{"success":true,"info":null,"type":0}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test02(LoginTest.java:57)
+]]></failure>
+    <system-out><![CDATA[14:25:07.755 [main] DEBUG org.apache.commons.beanutils.converters.BooleanConverter - Setting default value: false
+14:25:07.755 [main] DEBUG org.apache.commons.beanutils.converters.BooleanConverter - Converting 'Boolean' value 'false' to type 'Boolean'
+14:25:07.755 [main] DEBUG org.apache.commons.beanutils.converters.BooleanConverter -     No conversion required, value is already a Boolean
+14:25:07.758 [main] DEBUG org.apache.commons.beanutils.converters.ByteConverter - Setting default value: 0
+14:25:07.758 [main] DEBUG org.apache.commons.beanutils.converters.ByteConverter - Converting 'Integer' value '0' to type 'Byte'
+14:25:07.758 [main] DEBUG org.apache.commons.beanutils.converters.ByteConverter -     Converted to Byte value '0'
+14:25:07.758 [main] DEBUG org.apache.commons.beanutils.converters.CharacterConverter - Setting default value:  
+14:25:07.758 [main] DEBUG org.apache.commons.beanutils.converters.CharacterConverter - Converting 'Character' value ' ' to type 'Character'
+14:25:07.758 [main] DEBUG org.apache.commons.beanutils.converters.CharacterConverter -     No conversion required, value is already a Character
+14:25:07.759 [main] DEBUG org.apache.commons.beanutils.converters.DoubleConverter - Setting default value: 0
+14:25:07.759 [main] DEBUG org.apache.commons.beanutils.converters.DoubleConverter - Converting 'Integer' value '0' to type 'Double'
+14:25:07.759 [main] DEBUG org.apache.commons.beanutils.converters.DoubleConverter -     Converted to Double value '0.0'
+14:25:07.759 [main] DEBUG org.apache.commons.beanutils.converters.FloatConverter - Setting default value: 0
+14:25:07.759 [main] DEBUG org.apache.commons.beanutils.converters.FloatConverter - Converting 'Integer' value '0' to type 'Float'
+14:25:07.760 [main] DEBUG org.apache.commons.beanutils.converters.FloatConverter -     Converted to Float value '0.0'
+14:25:07.760 [main] DEBUG org.apache.commons.beanutils.converters.IntegerConverter - Setting default value: 0
+14:25:07.760 [main] DEBUG org.apache.commons.beanutils.converters.IntegerConverter - Converting 'Integer' value '0' to type 'Integer'
+14:25:07.760 [main] DEBUG org.apache.commons.beanutils.converters.IntegerConverter -     No conversion required, value is already a Integer
+14:25:07.761 [main] DEBUG org.apache.commons.beanutils.converters.LongConverter - Setting default value: 0
+14:25:07.761 [main] DEBUG org.apache.commons.beanutils.converters.LongConverter - Converting 'Integer' value '0' to type 'Long'
+14:25:07.761 [main] DEBUG org.apache.commons.beanutils.converters.LongConverter -     Converted to Long value '0'
+14:25:07.762 [main] DEBUG org.apache.commons.beanutils.converters.ShortConverter - Setting default value: 0
+14:25:07.762 [main] DEBUG org.apache.commons.beanutils.converters.ShortConverter - Converting 'Integer' value '0' to type 'Short'
+14:25:07.762 [main] DEBUG org.apache.commons.beanutils.converters.ShortConverter -     Converted to Short value '0'
+14:25:07.762 [main] DEBUG org.apache.commons.beanutils.converters.BigDecimalConverter - Setting default value: 0.0
+14:25:07.762 [main] DEBUG org.apache.commons.beanutils.converters.BigDecimalConverter - Converting 'BigDecimal' value '0.0' to type 'BigDecimal'
+14:25:07.762 [main] DEBUG org.apache.commons.beanutils.converters.BigDecimalConverter -     No conversion required, value is already a BigDecimal
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.BigIntegerConverter - Setting default value: 0
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.BigIntegerConverter - Converting 'BigInteger' value '0' to type 'BigInteger'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.BigIntegerConverter -     No conversion required, value is already a BigInteger
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.BooleanConverter - Setting default value: false
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.BooleanConverter - Converting 'Boolean' value 'false' to type 'Boolean'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.BooleanConverter -     No conversion required, value is already a Boolean
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.ByteConverter - Setting default value: 0
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.ByteConverter - Converting 'Integer' value '0' to type 'Byte'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.ByteConverter -     Converted to Byte value '0'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.CharacterConverter - Setting default value:  
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.CharacterConverter - Converting 'Character' value ' ' to type 'Character'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.CharacterConverter -     No conversion required, value is already a Character
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.DoubleConverter - Setting default value: 0
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.DoubleConverter - Converting 'Integer' value '0' to type 'Double'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.DoubleConverter -     Converted to Double value '0.0'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.FloatConverter - Setting default value: 0
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.FloatConverter - Converting 'Integer' value '0' to type 'Float'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.FloatConverter -     Converted to Float value '0.0'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.IntegerConverter - Setting default value: 0
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.IntegerConverter - Converting 'Integer' value '0' to type 'Integer'
+14:25:07.763 [main] DEBUG org.apache.commons.beanutils.converters.IntegerConverter -     No conversion required, value is already a Integer
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.LongConverter - Setting default value: 0
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.LongConverter - Converting 'Integer' value '0' to type 'Long'
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.LongConverter -     Converted to Long value '0'
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.ShortConverter - Setting default value: 0
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.ShortConverter - Converting 'Integer' value '0' to type 'Short'
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.ShortConverter -     Converted to Short value '0'
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.StringConverter - Setting default value: 
+14:25:07.764 [main] DEBUG org.apache.commons.beanutils.converters.StringConverter - Converting 'String' value '' to type 'String'
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Z@153f538
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'boolean[]' value '[Z@153f538' to type 'boolean[]'
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a boolean[]
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [B@14593bf
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'byte[]' value '[B@14593bf' to type 'byte[]'
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a byte[]
+14:25:07.772 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [C@1b4de6a
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'char[]' value '[C@1b4de6a' to type 'char[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a char[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [D@1a18f1b
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'double[]' value '[D@1a18f1b' to type 'double[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a double[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [F@18f5f62
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'float[]' value '[F@18f5f62' to type 'float[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a float[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [I@68e947
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'int[]' value '[I@68e947' to type 'int[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a int[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [J@1c222ae
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'long[]' value '[J@1c222ae' to type 'long[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a long[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [S@ecb35a
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'short[]' value '[S@ecb35a' to type 'short[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a short[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.math.BigDecimal;@1cd892a
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'BigDecimal[]' value '[Ljava.math.BigDecimal;@1cd892a' to type 'BigDecimal[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a BigDecimal[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.math.BigInteger;@b87145
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'BigInteger[]' value '[Ljava.math.BigInteger;@b87145' to type 'BigInteger[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a BigInteger[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Boolean;@83f5ae
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Boolean[]' value '[Ljava.lang.Boolean;@83f5ae' to type 'Boolean[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Boolean[]
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Byte;@19afc07
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Byte[]' value '[Ljava.lang.Byte;@19afc07' to type 'Byte[]'
+14:25:07.773 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Byte[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Character;@2db087
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Character[]' value '[Ljava.lang.Character;@2db087' to type 'Character[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Character[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Double;@1d4cc9e
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Double[]' value '[Ljava.lang.Double;@1d4cc9e' to type 'Double[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Double[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Float;@169cf
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Float[]' value '[Ljava.lang.Float;@169cf' to type 'Float[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Float[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Integer;@27c60c
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Integer[]' value '[Ljava.lang.Integer;@27c60c' to type 'Integer[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Integer[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Long;@15bfd87
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Long[]' value '[Ljava.lang.Long;@15bfd87' to type 'Long[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Long[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Short;@3e710e
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Short[]' value '[Ljava.lang.Short;@3e710e' to type 'Short[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Short[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.String;@1f23557
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'String[]' value '[Ljava.lang.String;@1f23557' to type 'String[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a String[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.lang.Class;@10f8e03
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Class[]' value '[Ljava.lang.Class;@10f8e03' to type 'Class[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Class[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.util.Date;@166ebe0
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Date[]' value '[Ljava.util.Date;@166ebe0' to type 'Date[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Date[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.util.Calendar;@698dc7
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'Calendar[]' value '[Ljava.util.Calendar;@698dc7' to type 'Calendar[]'
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a Calendar[]
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.io.File;@1baae6e
+14:25:07.774 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'java.io.File[]' value '[Ljava.io.File;@1baae6e' to type 'java.io.File[]'
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a java.io.File[]
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.sql.Date;@1fe3806
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'java.sql.Date[]' value '[Ljava.sql.Date;@1fe3806' to type 'java.sql.Date[]'
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a java.sql.Date[]
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.sql.Time;@17acb34
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'java.sql.Time[]' value '[Ljava.sql.Time;@17acb34' to type 'java.sql.Time[]'
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a java.sql.Time[]
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.sql.Timestamp;@4a7dd4
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'java.sql.Timestamp[]' value '[Ljava.sql.Timestamp;@4a7dd4' to type 'java.sql.Timestamp[]'
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a java.sql.Timestamp[]
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Setting default value: [Ljava.net.URL;@b9e255
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter - Converting 'java.net.URL[]' value '[Ljava.net.URL;@b9e255' to type 'java.net.URL[]'
+14:25:07.775 [main] DEBUG org.apache.commons.beanutils.converters.ArrayConverter -     No conversion required, value is already a java.net.URL[]
+]]></system-out>
+  </testcase>
+  <testcase name="test03" classname="cn.edu.nju.LoginTest" time="0.015">
+    <failure message="expected:&lt;{&quot;success&quot;:false,&quot;type&quot;:-1,&quot;info&quot;:&quot;The user do not exists.&quot;}&gt; but was:&lt;{&quot;success&quot;:false,&quot;info&quot;:&quot;The user do not exists.&quot;,&quot;type&quot;:-1}&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"The user do not exists."}> but was:<{"success":false,"info":"The user do not exists.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test03(LoginTest.java:83)
+]]></failure>
+  </testcase>
+  <testcase name="test04" classname="cn.edu.nju.LoginTest" time="0.016">
+    <failure message="expected:&lt;{&quot;success&quot;:false,&quot;type&quot;:-1,&quot;info&quot;:&quot;Wrong password.&quot;}&gt; but was:&lt;{&quot;success&quot;:false,&quot;info&quot;:&quot;Wrong password.&quot;,&quot;type&quot;:-1}&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"Wrong password."}> but was:<{"success":false,"info":"Wrong password.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test04(LoginTest.java:109)
+]]></failure>
+  </testcase>
+  <testcase name="test05" classname="cn.edu.nju.LoginTest" time="0.016">
+    <failure message="expected:&lt;{&quot;success&quot;:false,&quot;type&quot;:-1,&quot;info&quot;:&quot;The user do not exists.&quot;}&gt; but was:&lt;{&quot;success&quot;:false,&quot;info&quot;:&quot;The user do not exists.&quot;,&quot;type&quot;:-1}&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"The user do not exists."}> but was:<{"success":false,"info":"The user do not exists.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test05(LoginTest.java:134)
+]]></failure>
+  </testcase>
+  <testcase name="test06" classname="cn.edu.nju.LoginTest" time="0.016">
+    <failure message="expected:&lt;{&quot;success&quot;:false,&quot;type&quot;:-1,&quot;info&quot;:&quot;Wrong password.&quot;}&gt; but was:&lt;{&quot;success&quot;:false,&quot;info&quot;:&quot;Wrong password.&quot;,&quot;type&quot;:-1}&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: expected:<{"success":false,"type":-1,"info":"Wrong password."}> but was:<{"success":false,"info":"Wrong password.","type":-1}>
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at cn.edu.nju.LoginTest.test06(LoginTest.java:159)
+]]></failure>
+  </testcase>
+</testsuite>
