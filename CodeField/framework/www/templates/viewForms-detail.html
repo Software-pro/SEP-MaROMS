@@ -84,23 +84,108 @@
 
       <div class="itemDivider"></div>
       
+<div ng-switch = "form.status">
+  <div ng-switch-when = "已完成">
+      <div class = "item item-icon-right" ng-click = "showfeedback()">
+         反馈信息
+         <div>
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
+         </div>
+      </div>
+  </div>
+  
+  <div ng-switch-when = "已审核">
+       <div class = "item item-icon-right" ng-click = "showfeedback()">
+         反馈信息
 
-      <div class="item" >
-        创建时间： {{form.creatTime}}
+            <i class = "icon ion-ios-arrow-right" style="padding: 3px; padding-left: 10px; color: #DDDDDD"></i> 
       </div>
 
+  </div>
+
+</div>
+      
+
+      <div class="itemDivider"></div>
+
       <div class="item" >
-        接单时间： {{form.accepttime}}
+        创建时间： {{form.creatTime.toLocaleString()}}
       </div>
 
+<div ng-switch = "{{form.orderTakeTime.getTime()}}"> 
+     <div ng-switch-when = "0">
+         <div class="item" >
+         接单时间：
+        </div>
+     </div>
+      
+      <div ng-switch-default>
+      <div class="item" >
+        接单时间： {{form.orderTakeTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
+      
+<div ng-switch = "{{form.visitTime.getTime()}}">
+  <div ng-switch-when = "0">
+    <div class = "item">
+      上门时间：
+    </div>
+  </div>
+    <div ng-switch-default>
+
+      <div class = "item">
+        上门时间: {{form.visitTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
+
+
+<div ng-switch = "{{form.finishTime.getTime()}}">
+  <div ng-switch-when = "0">
+    <div class = "item">
+      完成时间
+    </div>
+  </div>
+
+    <div ng-switch-default>
       <div class="item">
-        完成时间： {{form.completedTime}}
+        完成时间： {{form.finishTime.toLocaleString()}}
       </div>
-      <div class="item" >
-        审核时间： {{form.checkedTime}}
-      </div>
+    </div>
+  </div>
 
- </div>
+
+  <div ng-switch = "{{form.auditTime.getTime()}}">
+  <div ng-switch-when = "0">
+    <div class = "item">
+      审核时间
+    </div>
+  </div>
+
+    <div ng-switch-default>
+      <div class="item">
+        审核时间： {{form.auditTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
+
+
+<!-- <div ng-switch = "{{form.auditTime.getTime()}}">
+    <div ng-switch-when = "0">
+      <div class = "item">
+        审核时间:{{form.auditTime.getTime()}}
+      </div>
+    </div>
+
+
+   <div ng-switch-defalut>
+      <div class="item" >
+        审核时间： {{form.auditTime.toLocaleString()}}{{form.auditTime.getTime()}}
+      </div>
+    </div>
+
+ </div> -->
 
 
 <div ng-switch="userPosition">
@@ -135,7 +220,7 @@
             <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "cancelOrderTaking()">取消接单</button>
           </div>
           <div class="padding">
-            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "submitComplete()">提交完成</button>
+            <button id="fontSet" type="submit" class="button button-block stable"  style = "background-color:#00BFFF;border-color:#00BFFF" ng-click = "submitComplete()">提交反馈</button>
           </div>
         </div>
         <div ng-switch-when = "未接">

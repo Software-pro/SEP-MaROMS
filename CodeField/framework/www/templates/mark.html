@@ -9,21 +9,16 @@
     4. ju ti nei rong
     -->
 
-    <div style="border: solid; border-width: 2px; border-color: #DDDDDD; margin: 10px;">
-    	<div ng-repeat="markChange in markList" ng-click="detailClicked($index)">
-            <ion-item class="item" type="item-text-wrap" style="border-width: 0;">
-                <div style="float: left;">
-                    <div class="rectangle" style="width: {{markChange.value}}px;"></div>
-                    <span style="margin-left:5px; color: #00BFFF; font-size: 13px;font-weight:bold;">{{markChange.value}}</span>
-                </div>
-                <div class="item-note" style="float: right;">{{markChange.time}}</div>
-            </ion-item>
-            <div ng-hide="markChange.hide">
-                <ion-item ng-repeat="detail in markList[$index].details"  type="item-text-wrap" class="mark-detail">
-                    - {{detail.content}}  <span style="font-weight:bold;" >{{detail.change}}</span>
+        <div style="border: solid; border-width: 2px; border-color: #DDDDDD; margin: 10px;">
+        	<div ng-repeat="mark in markChanges">
+                <ion-item class="item" type="item-text-wrap" style="border-width: 0;">
+                    <div style="float: left;">
+                        <div class="rectangle" style="width: {{mark.length}}px;"></div>
+                        <span style="margin-left:5px; color: #00BFFF; font-size: 13px;font-weight:bold;">{{mark.value}}</span>
+                    </div>
+                    <div class="item-note" style="float: right;">{{mark.time}}月</div>
                 </ion-item>
             </div>
-        </div>
         </div>
 
 	</div>

@@ -33,13 +33,10 @@ angular.module('starter.service',[])
             "phoneNum":userlist[i].phone,
             "position":position
           };
-           console.log("get user " + users[i].id);
 
         }
         //   alert("time1");
         //    alert("in service.js "+users.length);
-        console.log("response count " + response.length);
-        console.log("user count " + users.length);
             callback(users);
       })
       .error(function (response) {
@@ -71,7 +68,7 @@ angular.module('starter.service',[])
            distributors.push(users[i]);
         }
       }
-      //alert(distributors.length);
+
       return distributors;
 
     },
@@ -109,7 +106,6 @@ angular.module('starter.service',[])
             withCredentials:'true'    
           })
         .then(function(response) {
-          console.log(UserName.value + " " + response.name);
           if(response.data['success']) {
             users = [];
             callback();
@@ -222,7 +218,7 @@ angular.module('starter.service',[])
   }
 })
 
-.factory('Forms', function($http,PersonalInformations) {
+.factory('Forms', function($http,PersonalInformations,Message_infos) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -255,7 +251,9 @@ angular.module('starter.service',[])
   return {
     currentId: 0,
     all: function(callback) {
-      forms = [];
+
+       forms=[];
+
        $http.get(ipAddress + "/repairforms")
       .success(function (response) {
         var formlist = response;
@@ -335,19 +333,20 @@ angular.module('starter.service',[])
             "engineerName":engineerName,
             "salerId":formlist[i].salerId,
             "salesName":salesName,
-            "distributerId":formlist.distributorId,
+            "distributerId":formlist[i].distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
+            "orderTakeTime":(new Date(formlist[i].receivedTime)),
+            "finishTime":(new Date(formlist[i].completedTime)),
+            "auditTime":(new Date(formlist[i].checkedTime)),
+            "visitTime":(new Date(formlist[i].visitTime)),
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
-        //  console.log("get form creationTime" + formlist[i].creationTime);
-      //     alert("forms[i].distributerName  " + forms[i].distributerName);
-       //   console.log("get form engineername " + forms[i].engineerName);
-
         }
       });
+
+       //alert("forms.length in service.js " + forms.length);
             callback(forms);
       })
       .error(function (response) {
@@ -441,14 +440,17 @@ angular.module('starter.service',[])
             "distributerId":formlist.distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
+            "orderTakeTime":(new Date(formlist[i].receivedTime)),
+            "finishTime":(new Date(formlist[i].completedTime)),
+            "auditTime":(new Date(formlist[i].checkedTime)),
+            "visitTime":(new Date(formlist[i].visitTime)),
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
             //alert("forms in service: " + forms[i].id);
-        //  console.log("get form creationTime" + formlist[i].creationTime);
-      //     alert("forms[i].distributerName  " + forms[i].distributerName);
-       //   console.log("get form engineername " + forms[i].engineerName);
+            console.log(formlist);
+          console.log("get form creationTime" + formlist[i].creationTime);
+          console.log("get form visitTime " + forms[i].visitTime);
         }
       });
             callback(forms);
@@ -543,12 +545,15 @@ angular.module('starter.service',[])
             "engineerName":engineerName,
             "salerId":formlist[i].salerId,
             "salesName":salesName,
-            "distributerId":formlist.distributorId,
+            "distributerId":formlist[i].distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
+            "orderTakeTime":(new Date(formlist[i].receivedTime)),
+            "finishTime":(new Date(formlist[i].completedTime)),
+            "auditTime":(new Date(formlist[i].checkedTime)),
+            "visitTime":(new Date(formlist[i].visitTime)),
+            "serialNumber":formlist[i].serialNumber,
+            "feedbackInfo":formlist[i].feedbackInfo
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
@@ -649,9 +654,12 @@ angular.module('starter.service',[])
             "distributerId":formlist.distributorId,
             "distributerName":distributerName,
             "creatTime":(new Date(formlist.creationTime)),
-            "orderTakeTime":formlist.receiveTime,
-            "finishTime":formlist.completedTime,
-            "auditTime":formlist.checkedTime,
+            "orderTakeTime":(new Date(formlist.receivedTime)),
+            "finishTime":(new Date(formlist.completedTime)),
+            "auditTime":(new Date(formlist.checkedTime)),
+            "visitTime":(new Date(formlist.visitTime)),
+            "serialNumber":formlist.serialNumber,
+            "feedbackInfo":formlist.feedbackInfo
           };
         //  console.log("get form creationTime" + formlist[i].creationTime);
       //     alert("forms[i].distributerName  " + forms[i].distributerName);
@@ -669,8 +677,13 @@ angular.module('starter.service',[])
     },
     get: function(formId) {
       for (var i = 0; i < forms.length; i++) {
+      //  alert(formId + " vs " + forms[i].id);
         if (forms[i].id === parseInt(formId)) {
+       //   alert("equal");
           return forms[i];
+        }
+        else{
+       //   alert("not equal");
         }
       }
       return null;
@@ -706,12 +719,52 @@ angular.module('starter.service',[])
       }
       return forms;
     },
+
+    edit:function(id,mark,serviceId,clientName,clientPhone,clientUnit,clientAddr,engineerId,salerId,distributor,callback){
+
+         $http({
+          method:'POST',
+          url:'http://115.159.225.109/repairforms/edit',
+          data:{
+            'id':id,
+            'grade':mark,
+            'service':serviceId,
+            'clientName':clientName,
+            'clientPhone':clientPhone,
+            'clientWorkplace':clientUnit,
+            'clientAddress':clientAddr,
+            'engineerId':engineerId,
+            'salerId':salerId,
+            'distributorId':distributor
+          },
+          headers:{
+            'Content-Type':'application/json'
+          },
+          withCredentials:'true'
+        })
+        .then(function(response) {
+          console.log(response);
+
+          alert("修改完成");
+          callback();
+
+
+        })
+
+
+    },
       delete:function(formId,callback){
+      var tmp = this.get(formId);
+      
+      Message_infos.create(5,formId,tmp.engineerId);
+      Message_infos.create(5,formId,tmp.salerId);
+      Message_infos.create(5,formId,tmp.distributerId);
+      Message_infos.create(5,formId,1);
 
       $http.get(ipAddress + "/repairforms/delete/" +formId)
       .success(function(response){
 
-        console.log("删除报修单detail " + response);
+        console.log("删除报修单detail" + response);
         forms=[];
        // callback();
       })
@@ -721,388 +774,82 @@ angular.module('starter.service',[])
       })
     },
 
+    receive:function(formId,visitTime,callback){
+      $http({
+        method:'POST',
+        url:ipAddress + '/task/receive',
+        data:{
+          'id':formId,
+          'visitTime':(new Date(visitTime))
+        },
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+      })
+      .then(function(response){
+        console.log(response);
+        callback();
+      })
+    },
+
+    unreceive:function(id,callback){
+      $http.get(ipAddress + "/task/unreceive/" + id)
+      .success(function(response){
+        if(response["success"] === true){
+          
+        }
+        else{
+          console.log(response["info"]);
+        }
+        callback();
+
+      })
+      .error(function(response){
+          console.log(response["info"]);
+
+      })
+    },
+
+    submit:function(id,serialNumber,feedbackInfo,callback){
+      $http({
+        method:'POST',
+        url:ipAddress + '/task/submit',
+        data:{
+          'id':id,
+          'serialNumber':serialNumber,
+          'feedbackInfo':feedbackInfo
+        },
+         headers:{
+          'Content-Type':'application/json'
+        },
+        withCredentials:'true'
+
+      })
+      .then(function(response){
+         console.log(response);
+         callback();
+      })
+
+
+    },
+
+    check:function(id,callback){
+      $http.get(ipAddress + "/task/check/" + id)
+      .success(function(response){
+        console.log(response);
+        callback();
+      })
+      .then(function(response){
+        console.log(response);
+        callback();
+      })
+
+    }
+
+    
   };
 })
-
-                                                                                                                                                                                                        
-/*.factory('PersonalForms', function($http, PersonalInfomations) {
-  ////////////////////////////////////////////////////
-  // 个人报修单列表：
-  // 通过http请求用户的个人id来获取列表数据
-  ///////////////////////////////////////////////////////////
- var forms =[]; */
-/* var forms = [{
-    id: 0,
-    NO: 'bx131220237',
-    status: '未接',
-    statusColor: '#FF0000',
-    value: 12,
-    clientName: '彭滟茹',
-    type: '安装调试',
-    engineerName: '',
-    salesName: '王二麻',
-    time: '',
-    creatTime: '2016-01-03 12:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 15:00'
-  }, {
-    id: 1,
-    NO: 'bx131220233',
-    status: '已审核',
-    statusColor: '#444444',
-    value: 12,
-    clientName: '彭滟茹',
-    type: '安装调试',
-    engineerName: '王小利',
-    salesName: '王二麻',
-    time: '',
-    creatTime: '2016-01-01 15:00',
-    orderTakeTime: '2016-02-01 12:00',
-    finishTime: '2016-03-01 12:00',
-    auditTime: '2016-04-01 17:00'
-  }]; */
-
- /* return {
-    currentId: 0,
-    all: function(callback) {
-
-       $http.get(ipAddress + "/repairforms")
-      .success(function (response) {
-        var formlist = response;
-        var statusname;
-        var engineerName;
-        var salesName;
-        var distributerName;
-
-
-         PersonalInformations.all(function(response){
-        for(var i = 0; i < formlist.length; i ++){
-          if(formlist[i].status === 0){
-            statusname = "未接";
-            statusColor = "#FF0000";
-          }
-          else if(formlist[i].status === 1){
-            statusname = "已接单";
-            statusColor = "#FF0000";
-          }
-          else if(formlist[i].status === 2){
-            statusname = "已完成";
-            statusColor = "#FF0000";
-          }
-          else if(formlist[i].status === 3){
-            statusname = "已审核";
-            statusColor = "#444444";
-          }
-          var servicename;
-          if(formlist[i].service === 0){
-             servicename = "上门服务";
-          }
-          else if(formlist[i].service === 1){
-            servicename = "安装调试";
-          }
-          else if(formlist[i].service === 2){
-            servicetype = "送货服务";
-          }
-
-     //     alert(PersonalInformations.get(formlist[i].engineerId).length);
-          var user = PersonalInformations.get(formlist[i].engineerId);
-          if(user === null){
-            engineerName = "null";
-          }
-          else{
-           engineerName = user.name;
-
-         }
-         var user2 = PersonalInformations.get(formlist[i].salerId);
-          if(user2 === null){
-            salesName = "null";
-          }
-          else{
-           salesName = user2.name;
-
-         }
-         var user3 = PersonalInformations.get(formlist[i].distributorId);
-          if(user3 === null){
-            distributerName = "null";
-          }
-          else{
-            distributerName = user3.name;
-          }
-
-
-     //   alert(formlist[i].creationTime);
-          forms[i] = {
-            "id":formlist[i].id,
-            "status":statusname,
-            "statusColor":statusColor,
-            "value":formlist[i].grade,
-            "type":servicename,
-            "clientName":formlist[i].clientName,
-            "clientphone":formlist[i].clientPhone,
-            "clientunit":formlist[i].clientWorkplace,
-            "clientaddr":formlist[i].clientAddress,
-            "engineerId":formlist[i].engineerId,
-            "engineerName":engineerName,
-            "salerId":formlist[i].salerId,
-            "salesName":salesName,
-            "distributerId":formlist.distributorId,
-            "distributerName":distributerName,
-            "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
-          };
-        //  console.log("get form creationTime" + formlist[i].creationTime);
-      //     alert("forms[i].distributerName  " + forms[i].distributerName);
-       //   console.log("get form engineername " + forms[i].engineerName);
-
-        }
-      });
-            callback(forms);
-      })
-      .error(function (response) {
-        console.log("app getForms Fail to get---error message : ", response.error);
-        alert("获取报修单信息失败");
-      })
-
-      return forms;
-    },
-    getBySalerId: function(salerId, callback) {
-
-       $http.get(ipAddress + "/repairforms/bySalerId/" + salerId)
-      .success(function (response) {
-                  var formlist = response;
-                  var statusname;
-                  var engineerName;
-                  var salesName;
-                  var distributerName;
-
-
-                //    PersonalInformations.all(function(response){
-                //           for(var i = 0; i < formlist.length; i ++)   
-                //           {
-                //                   if(formlist[i].status === 0){
-                //                     statusname = "未接";
-                //                     statusColor = "#FF0000";
-                //                   }
-                //                   else if(formlist[i].status === 1){
-                //                     statusname = "已接单";
-                //                     statusColor = "#FF0000";
-                //                   }
-                //                   else if(formlist[i].status === 2){
-                //                     statusname = "已完成";
-                //                     statusColor = "#FF0000";
-                //                   }
-                //                   else if(formlist[i].status === 3){
-                //                     statusname = "已审核";
-                //                     statusColor = "#444444";
-                //                   }
-                //                   var servicename;
-                //                   if(formlist[i].service === 0){
-                //                      servicename = "上门服务";
-                //                   }
-                //                   else if(formlist[i].service === 1){
-                //                     servicename = "安装调试";
-                //                   }
-                //                   else if(formlist[i].service === 2){
-                //                     servicetype = "送货服务";
-                //                   }
-
-                //                   var user = PersonalInformations.get(formlist[i].engineerId);
-                //                   if(user === null){
-                //                     engineerName = "null";
-                //                   }
-                //                   else{
-                //                    engineerName = user.name;
-
-                //                  }
-                //                  var user2 = PersonalInformations.get(formlist[i].salerId);
-                //                   if(user2 === null){
-                //                     salesName = "null";
-                //                   }
-                //                   else{
-                //                    salesName = user2.name;
-
-                //                  }
-                //                  var user3 = PersonalInformations.get(formlist[i].distributorId);
-                //                   if(user3 === null){
-                //                     distributerName = "null";
-                //                   }
-                //                   else{
-                //                     distributerName = user3.name;
-                //                   }
-
-
-                //                   forms[i] = {
-                //                         "id":formlist[i].id,
-                //                         "status":statusname,
-                //                         "statusColor":statusColor,
-                //                         "value":formlist[i].grade,
-                //                         "type":servicename,
-                //                         "clientName":formlist[i].clientName,
-                //                         "clientphone":formlist[i].clientPhone,
-                //                         "clientunit":formlist[i].clientWorkplace,
-                //                         "clientaddr":formlist[i].clientAddress,
-                //                         "engineerId":formlist[i].engineerId,
-                //                         "engineerName":engineerName,
-                //                         "salerId":formlist[i].salerId,
-                //                         "salesName":salesName,
-                //                         "distributerId":formlist.distributorId,
-                //                         "distributerName":distributerName,
-                //                         "creatTime":(new Date(formlist[i].creationTime)),
-                //                         "orderTakeTime":formlist[i].receiveTime,
-                //                         "finishTime":formlist[i].completedTime,
-                //                         "auditTime":formlist[i].checkedTime
-                //                   };
-                //   //  console.log("get form creationTime" + formlist[i].creationTime);
-                // //     alert("forms[i].distributerName  " + forms[i].distributerName);
-                //  //   console.log("get form engineername " + forms[i].engineerName);
-
-                //           }
-                //    });
-                //   callback(forms);
-        })
-        .error(function (response) {
-          console.log("app getForms Fail to get---error message : ", response.error);
-          alert("获取销售员报修单信息失败");
-        })
-
-      return forms;
-    },
-    getByEngineerId: function(engineerId, callback) {
-
-       $http.get(ipAddress + "/repairforms/byEngineerId/" + engineerId)
-      .success(function (response) {
-        var formlist = response;
-        var statusname;
-        var engineerName;
-        var salesName;
-        var distributerName;
-
-
-     //     PersonalInformations.all(function(response){
-     //    for(var i = 0; i < formlist.length; i ++){
-     //      if(formlist[i].status === 0){
-     //        statusname = "未接";
-     //        statusColor = "#FF0000";
-     //      }
-     //      else if(formlist[i].status === 1){
-     //        statusname = "已接单";
-     //        statusColor = "#FF0000";
-     //      }
-     //      else if(formlist[i].status === 2){
-     //        statusname = "已完成";
-     //        statusColor = "#FF0000";
-     //      }
-     //      else if(formlist[i].status === 3){
-     //        statusname = "已审核";
-     //        statusColor = "#444444";
-     //      }
-     //      var servicename;
-     //      if(formlist[i].service === 0){
-     //         servicename = "上门服务";
-     //      }
-     //      else if(formlist[i].service === 1){
-     //        servicename = "安装调试";
-     //      }
-     //      else if(formlist[i].service === 2){
-     //        servicetype = "送货服务";
-     //      }
-
-     // //     alert(PersonalInformations.get(formlist[i].engineerId).length);
-     //      var user = PersonalInformations.get(formlist[i].engineerId);
-     //      if(user === null){
-     //        engineerName = "null";
-     //      }
-     //      else{
-     //       engineerName = user.name;
-
-     //     }
-     //     var user2 = PersonalInformations.get(formlist[i].salerId);
-     //      if(user2 === null){
-     //        salesName = "null";
-     //      }
-     //      else{
-     //       salesName = user2.name;
-
-     //     }
-     //     var user3 = PersonalInformations.get(formlist[i].distributorId);
-     //      if(user3 === null){
-     //        distributerName = "null";
-     //      }
-     //      else{
-     //        distributerName = user3.name;
-     //      }
-
-
-     //   alert(formlist[i].creationTime);
-          forms[i] = {
-            "id":formlist[i].id,
-            "status":statusname,
-            "statusColor":statusColor,
-            "value":formlist[i].grade,
-            "type":servicename,
-            "clientName":formlist[i].clientName,
-            "clientphone":formlist[i].clientPhone,
-            "clientunit":formlist[i].clientWorkplace,
-            "clientaddr":formlist[i].clientAddress,
-            "engineerId":formlist[i].engineerId,
-            "engineerName":engineerName,
-            "salerId":formlist[i].salerId,
-            "salesName":salesName,
-            "distributerId":formlist.distributorId,
-            "distributerName":distributerName,
-            "creatTime":(new Date(formlist[i].creationTime)),
-            "orderTakeTime":formlist[i].receiveTime,
-            "finishTime":formlist[i].completedTime,
-            "auditTime":formlist[i].checkedTime,
-          };
-        //  console.log("get form creationTime" + formlist[i].creationTime);
-      //     alert("forms[i].distributerName  " + forms[i].distributerName);
-       //   console.log("get form engineername " + forms[i].engineerName);
-
-     //   }
-    //  });
-            callback(forms);
-      })
-      .error(function (response) {
-        console.log("app getForms Fail to get---error message : ", response.error);
-        alert("获取工程师报修单信息失败");
-      })
-
-      return forms;
-    },
-    remove: function(form) {
-      forms.splice(forms.indexOf(form), 1);
-    },
-    get: function(formId) {
-      for (var i = 0; i < forms.length; i++) {
-        if (i === parseInt(formId)) {
-          return forms[i];
-        }
-      }
-      return null;
-    },
-    setTime: function(timeKind) {
-      for (var i = 0; i < forms.length; i++) {
-        if (timeKind === "creatTime") {
-          forms[i].time = forms[i].creatTime;
-        }
-        else if (timeKind === "orderTakeTime") {
-          forms[i].time = forms[i].orderTakeTime;
-        }
-        else if (timeKind === "finishTime") {
-          forms[i].time = forms[i].finishTime;
-        }
-        else if (timeKind === "auditTime") {
-          forms[i].time = forms[i].auditTime;
-        }
-      }
-      return forms;
-    }
-  };
-}) */
 
 .factory('MyInformation',function($http,UserService) {
   /*var myInformation = {
@@ -1134,7 +881,6 @@ angular.module('starter.service',[])
             "phoneNum":information.phone,
             "position":position
           };
-           console.log("get user " + myInformation.id);
 
         //   alert("time1");
         //    alert("in service.js "+users.length);
@@ -1152,6 +898,94 @@ angular.module('starter.service',[])
   };
 })
 
+.factory('Picture',function($http){
+
+  return{
+  sendPicture:function(){
+
+    for(var i = 0; i < 1; i++ ){
+  //    var picUrl = images[i];
+  var picUrl = "img/ionic.png";
+
+      var str = picUrl.split(".");
+      var type = str[str.length - 1];
+
+      var s = "image/";
+
+      if(type[0] == 'j')
+        s += "jpeg";
+      if(type[0] == 'p')
+        s += "png";
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("get",picUrl,true);
+      xhr.responseType = "blob";
+      console.log("s " + s);
+     xhr.onload = function(){
+        if (this.status == 200) {
+          var blob = this.response;
+          console.log(blob.size);
+         alert(blob.size);
+          $http({
+            method : "POST",
+  //          url : ipAddress + "/information/" + information.id + "/images",
+            url : ipAddress + "/upload/"+ id + "/img",
+            data: blob,
+            headers : {
+              'Content-Type' : s
+            }
+          }).success(function (response) {
+      //      information.images[i] = response;
+
+            console.log("发送图片成功");
+          }).error(function (error) {
+            alert("发送图片失败")
+            console.log("发送图片失败");
+          })
+
+      }
+      else{
+
+        if (this.status == 0){
+            var blob = this.response;
+            console.log(blob.size);
+
+            $http({
+              method : "POST",
+     //         url : ipAddress + "/information/" + information.id + "/images",
+            url : ipAddress + "/upload/"+ id +"/img",
+
+              data : blob,
+              headers : {
+                'Content-Type' : s,
+                'Content-Length' : blob.size,
+                Authorization : auth
+              }
+            }).success(function (response) {
+           //   information.images[i] = response;
+
+              console.log("发送图片成功");
+            }).error(function (error) {
+
+              console.log("发送图片失败");
+            })
+
+          }
+          else {
+            console.log("失败");
+          }
+
+      }
+    }
+    xhr.send();
+  }
+}
+}
+
+
+})
+
+
 .factory('Message_infos',function($http,UserService) {
   //type = 0 分值改动的消息通知
   //type = 1 用户申请找回密码的消息通知
@@ -1168,36 +1002,6 @@ angular.module('starter.service',[])
   //   id:'bx131220733',
   //   tag:0,
   //   time:'2016-1-8 16:00'
-  // },
-  // {
-  //   type:1,
-  //   id:'pd00001',
-  //   tag:0,
-  //   time:'2016-1-8 16:00'
-  // },
-  // {
-  //   type:2,
-  //   id:'pd00003',
-  //   tag:1,
-  //   time:'2016-1-8 12:00'
-  // },
-  // {
-  //   type:3,
-  //   id:'bx131220283',
-  //   tag:0,
-  //   time:'2016-11-8 16:00'
-  // },
-  // {
-  //   type:4,
-  //   id:'bx131220233',
-  //   tag:0,
-  //   time:'2016-1-18 16:00'
-  // },
-  // {
-  //   type:5,
-  //   id:'bx131220233',
-  //   tag:0,
-  //   time:'2016-2-18 16:00'
   // }
 
   // ];
@@ -1210,7 +1014,7 @@ angular.module('starter.service',[])
         url:'http://115.159.225.109/messages/create',
          data:{
           'type':type,
-          'senderId':senderId,
+          'infoId':senderId,
           'receiverId':receiverId,
           'time':new Date()
         },
@@ -1232,29 +1036,32 @@ angular.module('starter.service',[])
       $http.get(ipAddress + "/messages")
   //    $http.get(ipAddress + "/messages/byReceiverId/1")
       .success(function (response) {
-   //console.log(response);
-   var messages=[];
-    for(var i = 0; i < response.length; i ++){
-      if(Number(response[i].receiverId) === Number(UserService.getUserId())){
-        messages.push(response[i]);
+  // console.log(response);
+  // alert(UserService.getUserId());
+       message_infos=[];
+       var messages = response;
 
-      }
-      else{
-      }
-    }
- //   console.log(messages[0]);
- //           alert("response length = " + messages.length);
-
-        for(var i = 0; i < messages.length; i ++){
-          message_infos[i] = {
+        for(var i = 0; i < response.length; i ++){
+          if(Number(response[i].receiverId) === Number(UserService.getUserId())){
+            
+            var tmp= {
             "ID":messages[i].id,
             "type":messages[i].type,
             "tag":messages[i].status,
-            "id":messages[i].senderId,
+            "id":messages[i].infoId,
             "time":new Date(messages[i].time)
-          };
+            };
 
-         }
+            message_infos.push(tmp);
+
+          }
+          else{
+
+          }
+        }
+ //   console.log(messages[0]);
+ //           alert("response length = " + messages.length);
+
 
          callback(message_infos);
 
@@ -1275,89 +1082,63 @@ angular.module('starter.service',[])
     },
     getUnreadCount:function(){//获得未读消息数
       var count = 0;
-    //  alert("message_infos length " + message_infos.length);
       for(var i = 0; i < message_infos.length; i ++){
         if(message_infos[i].tag === 0){
            count ++;
         }
       }
       return count;
+    },
+    read:function(id){
+      $http.get(ipAddress + "/task/read/" + id)
+      .success(function(response){
+        console.log(response);
+      })
+      .error(function(response){
+        console.log(response);
+      })
     }
   };
 }) 
 
-.factory("MarkChanges",function() {
-  var markChanges = [{
-    id:0,
-    currentValue: 50,
-    changeValue: +10,
-    time: "2016-11",
-    content:"完成修理工作"
-  },{
-    id:1,
-    currentValue: 650,
-    changeValue: +10,
-    time: "2016-11",
-    content:"遭到顾客投诉"
-  },{
-    id:2,
-    currentValue: 75,
-    changeValue: +15,
-    time: "2016-11",
-    content:"顾客给出五星好评"
-  },{
-    id:3,
-    currentValue: 80,
-    changeValue: +5,
-    time: "2016-10",
-    content:"遭到顾客投诉"
-  },{
-    id:4,
-    currentValue: 70,
-    changeValue: -10,
-    time: "2016-10",
-    content:"顾客给出五星好评"
-  },{
-    id:5,
-    currentValue: 65,
-    changeValue: -5,
-    time: "2016-10",
-    content:"遭到顾客投诉"
-  },{
-    id:6,
-    currentValue: 75,
-    changeValue: +10,
-    time: "2016-9",
-    content:"顾客给出五星好评"
-  },{
-    id:7,
-    currentValue: 85,
-    changeValue: +10,
-    time: "2016-8",
-    content:"遭到顾客投诉"
-  },{
-    id:8,
-    currentValue: 80,
-    changeValue: -5,
-    time: "2016-8",
-    content:"顾客给出五星好评"
-  },{
-    id:9,
-    currentValue: 90,
-    changeValue: +10,
-    time: "2016-7",
-    content:"遭到顾客投诉"
-  },{
-    id:10,
-    currentValue: 70,
-    changeValue: -20,
-    time: "2016-7",
-    content:"顾客给出五星好评"
-  }];
+.factory("MarkChanges",function($http) {
+  var marks = [];
+   return {
+    all: function(userId) {
+      alert("");
+     //alert("userId: " + UserService.getUserId());
+      //alert("userId:  "+ userId);
+      $http.get(ipAddress + "/users/getGrade/" + userId)
+      .success(function (response) {
+        alert(response.grade);
+        return response.grade;
 
-  return {
-    all:function() {
-      return markChanges;
+          
+
+      })
+      .error(function (response) {
+        console.log("app getMarks Fail to get---error message : ", response.error);
+        alert("获取分值统计信息失败");
+      })
+      //alert("time2");
+    },
+    get: function(userId,callback) {
+alert("");
+     //alert("userId: " + UserService.getUserId());
+      //alert("userId:  "+ userId);
+      $http.get(ipAddress + "/users/getGrade/" + userId)
+      .success(function (response) {
+alert(response.grade);
+        callback(response.grade);
+
+          
+
+      })
+      .error(function (response) {
+        console.log("app getMarks Fail to get---error message : ", response.error);
+        alert("获取分值统计信息失败");
+      })
+      //alert("time2");
     }
   };
 })

@@ -189,7 +189,7 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
     })
 
      .state('app.mark', {
-      url:'/mark:personId',
+      url:'/mark/:personId',
       views: {
         'menuContent': {
           templateUrl:'templates/mark.html',
@@ -223,12 +223,28 @@ angular.module('starter',['ionic','starter.controllers','starter.service'])
       }
     })
 
-     .state('detail-feedback',{
-      url:'/detail-feedback',
+     .state('app.feedback',{
+      url:'/feedback/:formId',
       cache:false,
-      templateUrl:'templates/detail-feedback.html',
-      controller:'feedbackCtrl'
+      views:{
+        'menuContent':{
+         templateUrl:'templates/feedback.html',
+         controller:'feedCtrl'
+       }
+      }
      })
+
+     .state('app.detail-feedback',{
+      url:'/detail-feedback/:formId',
+      cache:false,
+      views:{
+        'menuContent':{
+         templateUrl:'templates/detail-feedback.html',
+         controller:'feedbackCtrl'
+       }
+     }
+     })
+
      ;
     $urlRouterProvider.otherwise('/login');     
 
