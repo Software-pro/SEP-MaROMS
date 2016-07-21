@@ -1,16 +1,16 @@
 package cn.edu.nju.controller;
 
+import cn.edu.nju.datatables.RepairForm;
 import cn.edu.nju.datatables.User;
+import cn.edu.nju.respository.RepairFormRespository;
 import cn.edu.nju.respository.UserRespository;
 import cn.edu.nju.servicedata.*;
-import cn.edu.nju.servicedata.users.PasswordChangeRequest;
-import cn.edu.nju.servicedata.users.PasswordResponse;
-import cn.edu.nju.servicedata.users.UserCreateRequest;
-import cn.edu.nju.servicedata.users.UserInfoResponse;
+import cn.edu.nju.servicedata.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserRespository userRespository;
+
+    @Autowired
+    RepairFormRespository repairFormRespository;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
     public List<UserInfoResponse> findUsers() {
@@ -133,5 +136,49 @@ public class UserController {
         return successResponse;
     }
 
+    @RequestMapping(value = "/users/getGrade/{id}", method = RequestMethod.GET, produces = "application/json")
+    public GradeResponse getGrade(@PathVariable long id){
+        GradeResponse gradeResponse=new GradeResponse();
+
+        if (!(userRespository.exists(id))) {
+            gradeResponse.setSuccess(false);
+            gradeResponse.setInfo("The id do not exist.");
+
+            return gradeResponse;
+        }
+
+        User user = userRespository.findOne(id);
+
+        int[] grade=new int[12];
+
+        for (int i=0;i<=11;i++){
+            grade[i]=0;
+        }
+
+        if (user.getType()==1){
+            for (RepairForm repairForm:repairFormRespository.findGradeByEngineerId(user.getId())){
+                System.out.println(repairForm.getCompletedTime().getMonth());
+                grade[repairForm.getCompletedTime().getMonth()]+=repairForm.getGrade();
+            }
+        }else if (user.getType()==2){
+            for (RepairForm repairForm:repairFormRespository.findGradeBySalerId(user.getId())){
+                System.out.println(repairForm.getCompletedTime().getMonth());
+                grade[repairForm.getCompletedTime().getMonth()]+=repairForm.getGrade();
+            }
+        }else{
+            gradeResponse.setSuccess(false);
+            gradeResponse.setInfo("The user must be an engineer or a saler.");
+
+            return gradeResponse;
+        }
+
+        gradeResponse.setSuccess(true);
+        String result=Arrays.toString(grade).replace(", ","_");
+        result=result.replace("[","");
+        result=result.replace("]","");
+        gradeResponse.setGrade(result);
+
+        return gradeResponse;
+    }
 
 }

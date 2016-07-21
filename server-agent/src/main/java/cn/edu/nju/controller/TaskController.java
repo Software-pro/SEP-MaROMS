@@ -92,8 +92,6 @@ public class TaskController {
 
         repairForm.setProcessId(processInstance.getId());
 
-        System.out.println(taskService.createTaskQuery().processInstanceId(repairForm.getProcessId()).singleResult());
-
         repairFormRespository.save(repairForm);
 
         return successResponse;

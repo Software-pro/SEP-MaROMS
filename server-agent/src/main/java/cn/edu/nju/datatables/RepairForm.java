@@ -50,6 +50,7 @@ public class RepairForm {
 
     private String serialNumber;
     private String feedbackInfo;
+    private String imgUrl;
 
     private Date creationTime;
     private Date receivedTime;
@@ -218,6 +219,14 @@ public class RepairForm {
 
     public void setFeedbackInfo(String feedbackInfo) {
         this.feedbackInfo = feedbackInfo;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Date getCreationTime() {

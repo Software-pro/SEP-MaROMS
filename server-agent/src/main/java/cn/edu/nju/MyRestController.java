@@ -30,7 +30,7 @@ public class MyRestController {
         return return_str;
     }
 
-    @RequestMapping(value = "/test",method = RequestMethod.POST,produces = "application/json")
+    @RequestMapping(value = "/img/upload",method = RequestMethod.POST,produces = "application/json")
     public String test(@RequestBody TestRequest testRequest){
         System.out.println(testRequest.getDate());
         return "hehe";

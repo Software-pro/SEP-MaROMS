@@ -16,6 +16,12 @@ public interface RepairFormRespository extends CrudRepository<RepairForm, Long>{
     Iterable<RepairForm> findByEngineerId(long engineerId);
     Iterable<RepairForm> findBySalerId(long salerId);
 
+    @Query("select r from RepairForm r where r.status=3 and r.engineerId=?1")
+    Iterable<RepairForm> findGradeByEngineerId(long engineerId);
+
+    @Query("select r from RepairForm r where r.status=3 and r.salerId=?1")
+    Iterable<RepairForm> findGradeBySalerId(long salerId);
+
     @Query("select r.clientName from RepairForm r")
     List<String> findClientNames();
 
@@ -24,4 +30,5 @@ public interface RepairFormRespository extends CrudRepository<RepairForm, Long>{
 
     @Query("select r.clientWorkplace from RepairForm r")
     List<String> findClientWorkplaces();
+
 }
