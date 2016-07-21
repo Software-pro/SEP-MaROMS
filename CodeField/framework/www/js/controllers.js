@@ -785,18 +785,12 @@ angular.module('starter.controllers',['ionic'])
 
  $scope.form = Forms.get($stateParams.formId);
 
-//   alert("orderTakeTime " + $scope.form.orderTakeTime);
-
+  
 //   alert("new Date(null) " + (new Date(null)));
 // alert((new Date(null)).getTime());
 
 //   alert($scope.form.orderTakeTime.getTime() ===  (new Date(null)).getTime());
  
- $scope.getTime = function(){
-  alert( (new Date(null)).getTime());
-  return (new Date(null)).getTime();
-
- }
 
 
  $scope.userPosition = UserService.getUserPosition();
@@ -882,9 +876,7 @@ angular.module('starter.controllers',['ionic'])
     }
 
 
-    alert("month.value = " + month.value);
-
-    var visitTime = new Date(year.value,month.value,day.value,hour.value,minute.value, 0);
+    var visitTime = new Date(year.value,month.value - 1,day.value,hour.value,minute.value, 0);
 
 
     Forms.receive($stateParams.formId,visitTime,function(){
@@ -932,39 +924,6 @@ var previousMark;
     else return user.position.indexOf('销售员')>=0;
     }
 
-Date.prototype.pattern=function(fmt) {         
-    var o = {         
-    "M+" : this.getMonth()+1, //月份         
-    "d+" : this.getDate(), //日         
-    "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时         
-    "H+" : this.getHours(), //小时         
-    "m+" : this.getMinutes(), //分         
-    "s+" : this.getSeconds(), //秒         
-    "q+" : Math.floor((this.getMonth()+3)/3), //季度         
-    "S" : this.getMilliseconds() //毫秒         
-    };         
-    var week = {         
-    "0" : "\u65e5",         
-    "1" : "\u4e00",         
-    "2" : "\u4e8c",         
-    "3" : "\u4e09",         
-    "4" : "\u56db",         
-    "5" : "\u4e94",         
-    "6" : "\u516d"        
-    };         
-    if(/(y+)/.test(fmt)){         
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));         
-    }         
-    if(/(E+)/.test(fmt)){         
-        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);         
-    }         
-    for(var k in o){         
-        if(new RegExp("("+ k +")").test(fmt)){         
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));         
-        }         
-    }         
-    return fmt;         
-}    
 
   $scope.editComplete = function() {
   if($scope.form.status == "未接") {
@@ -1080,43 +1039,6 @@ Date.prototype.pattern=function(fmt) {
 
       });
 
-      
-       //  $http({
-       //    method:'POST',
-       //    url:'http://115.159.225.109/repairforms/edit',
-       //    data:{
-       //      'id':$scope.form.id,
-       //      'grade':mark.value,
-       //      'service':serviceId,
-       //      'clientName':clientName.value,
-       //      'clientPhone':clientPhone.value,
-       //      'clientWorkplace':clientUnit.value,
-       //      'clientAddress':clientAddr.value,
-       //      'engineerId':parseInt(engineerId.join("")),
-       //      'salerId':parseInt(salerId.join("")),
-       //      'distributorId':distributor
-       //    },
-       //    headers:{
-       //      'Content-Type':'application/json'
-       //    },
-       //    withCredentials:'true'
-       //  })
-       //  .then(function(response) {
-       //    console.log(response);
-
-       //    alert("修改完成");
-
-       //    Forms.all(function(response){});
-
-       //  if(mark.value != previousMark){
-       //    alert(previousMark + " " + mark.value);
-       //    Message_infos.create(0,$scope.form.id,1);
-       // //   alert("send message");
-       //  }
-       // $ionicHistory.goBack();
-       //  })
-
-
 
       }
     }
@@ -1143,6 +1065,9 @@ Date.prototype.pattern=function(fmt) {
           .then(function(response) {
             console.log(response);
 
+        if(mark.value != previousMark){
+          Message_infos.create(0,$scope.form.id,1);
+          }
         alert("修改完成！");
         $ionicHistory.goBack();
           })
@@ -1467,7 +1392,6 @@ Date.prototype.pattern=function(fmt) {
     var UserPhone = document.getElementById("userPhone");
     var UserType= document.getElementById("userType");  // int!
     var UserTypeInt = 0;
-    alert(UserName.value);
     if(UserId.value.length == 0)
     {
       success = 0;

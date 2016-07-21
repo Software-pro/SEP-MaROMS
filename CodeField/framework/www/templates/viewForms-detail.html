@@ -103,7 +103,7 @@
     </div>
   </div>
       
-<div ng-switch = "{{form.doortime.getTime()}}">
+<div ng-switch = "{{form.visitTime.getTime()}}">
   <div ng-switch-when = "0">
     <div class = "item">
       上门时间：
@@ -112,7 +112,7 @@
     <div ng-switch-default>
 
       <div class = "item">
-        上门时间: {{form.doortime.toLocaleString()}}
+        上门时间: {{form.visitTime.toLocaleString()}}
       </div>
     </div>
   </div>

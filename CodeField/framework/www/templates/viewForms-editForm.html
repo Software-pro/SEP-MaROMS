@@ -132,18 +132,64 @@
             创建时间： {{form.creatTime}}
           </div>
 
-          <div class="item" >
-            接单时间： {{form.ordertakeTime}}
-          </div>
+     <div ng-switch = "{{form.orderTakeTime.getTime()}}"> 
+     <div ng-switch-when = "0">
+         <div class="item" >
+         接单时间：
+        </div>
+     </div>
+      
+      <div ng-switch-default>
+      <div class="item" >
+        接单时间： {{form.orderTakeTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
+      
+<div ng-switch = "{{form.visitTime.getTime()}}">
+  <div ng-switch-when = "0">
+    <div class = "item">
+      上门时间：
+    </div>
+  </div>
+    <div ng-switch-default>
 
-          <div class="item" >
-            完成时间： {{form.finishTime}}
-          </div>
+      <div class = "item">
+        上门时间: {{form.visitTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
 
-          <div class="item" >
-          审核时间： {{form.auditTime}}
-            </div>
-          </div>
+
+<div ng-switch = "{{form.finishTime.getTime()}}">
+  <div ng-switch-when = "0">
+    <div class = "item">
+      完成时间
+    </div>
+  </div>
+
+    <div ng-switch-default>
+      <div class="item">
+        完成时间： {{form.finishTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
+
+
+  <div ng-switch = "{{form.auditTime.getTime()}}">
+  <div ng-switch-when = "0">
+    <div class = "item">
+      审核时间
+    </div>
+  </div>
+
+    <div ng-switch-default>
+      <div class="item">
+        审核时间： {{form.auditTime.toLocaleString()}}
+      </div>
+    </div>
+  </div>
+
 
           <div ng-switch-default>
 

@@ -27,7 +27,7 @@
         </ion-item>
         <ion-item ng-class="{true:'tab-red-point',false:''}[true]" icon-off="ion-msg" icon-on="ion-msg-selected"   menu-close href="#/app/message">
           消息通知
-             <i class="icon ion-ios7-telephone-outline"><span class="badge badge-assertive icon-badge">{{count}}</span></i>
+             <i ng-show = "count" class="icon ion-ios7-telephone-outline"><span class="badge badge-assertive icon-badge">{{count}}</span></i>
         </ion-item>
         <ion-item menu-close href="#/app/my">
           我
