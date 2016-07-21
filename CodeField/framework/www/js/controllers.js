@@ -877,7 +877,7 @@ var previousMark;
       var engineer = document.getElementById("engineer");
       var salesman = document.getElementById("salesman");
       var distributor = UserService.getUserId();
-    if(mark.value.length == 0) {
+    if(mark.value.length == 0 || mark.value.length >= 4) {
       success = 0;
     }
 
@@ -950,11 +950,7 @@ var previousMark;
      }
      //alert(engineerId.length);
      //alert(engineerId.join(""));
-     tag = 0;
-     for(var i = 0, j = 0; i < salesman.value.length - 1; i ++){
-      if(tag === 1){
-        salerId.push(salesman.value[i]);
-        j ++;
+
  
        /*if(distributor.value.length == 0) {
         $scope.errorBorder9 = "red";
@@ -964,36 +960,7 @@ var previousMark;
         $scope.errorBorder10 = "red";
         success = 0;
       } */
-      if(success == 0) {
-        alert("请将内容填写完整后再提交！‘*'表示必填内容.");
-        return;
-      }
-      if(success == 1) {
-         if(service.value === "上门服务") {
-          serviceId = 0;
-       }
-       else if (service.value === "送货服务") {
-          serviceId = 1;
-       }
-       else if(service.value === "安装调试") {
-          serviceId = 2;
-       }
-       var engineerId = new Array();
-       var salerId = [];
-       var tag = 0;
-       for(var i = 0, j = 0; i < engineer.value.length - 1; i ++){
-           if(tag === 1){
-
-            engineerId.push(engineer.value[i]);
-     //       alert(engineerId.value[j]);
-            j ++;
-           }
-     //      alert(engineername.value[i]);
-           if(engineer.value[i] === ':'){
-           // alert(engineername.value[i]);
-            tag = 1;
-           }
-       }
+    
        //alert(engineerId.length);
        //alert(engineerId.join(""));
        tag = 0;
@@ -1019,7 +986,7 @@ var previousMark;
           }
 
          Forms.all(function(response){
-           $ionicHistory.goBack();
+           $ionicHistory.goBack(-2);
          });
 
       });
@@ -1054,12 +1021,13 @@ var previousMark;
           Message_infos.create(0,$scope.form.id,1);
           }
         alert("修改完成！");
-        $ionicHistory.goBack();
+        $ionicHistory.goBack(-2);
           })
       }
     }
   }
 })
+
 
 
 
