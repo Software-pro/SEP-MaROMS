@@ -285,9 +285,6 @@ angular.module('starter.controllers',['ionic'])
   }
 })
 
-
-   
-
 .controller('ViewFormsCtrl', function($scope, Forms, PersonalInformations,$state, $location, $ionicScrollDelegate, UserService) {
    // $scope.forms = Forms.setTime("creatTime");
    // $scope.forms = Forms.all();
@@ -608,7 +605,7 @@ angular.module('starter.controllers',['ionic'])
   $scope.myinformation;
    MyInformation.all(function(response) {
     $scope.myinformation = response; 
-});
+    });
 
  /* $scope.data={};
  $scope.editphonenum = function() {
@@ -632,7 +629,7 @@ angular.module('starter.controllers',['ionic'])
     })
   } */
   $scope.markClicked = function(){
-    $location.path("app/mark" + $scope.myinformation.id);
+    $location.path("app/mark/" + $scope.myinformation.id);
   }
   /*$scope.editphoto = function() {
     var hideSheet = $ionicActionSheet.show({
@@ -1152,59 +1149,6 @@ Date.prototype.pattern=function(fmt) {
 })
 
 
-.controller("markCtrl", function($scope, MarkChanges, $stateParams) {
-  $scope.markChanges = MarkChanges.all();
-
-  $scope.markList = [];
-  $scope.markList[0] = {
-      value: $scope.markChanges[0].currentValue,
-      time: $scope.markChanges[0].time,
-      hide: 1,
-      details: []
-  };
-  $scope.markList[0].details[0] = {
-      content: $scope.markChanges[0].content,
-      change: $scope.markChanges[0].changeValue
-  };
-
-  var current = 0;
-  var currentDetail = 0;
-  for (var i = 1; i < $scope.markChanges.length; i++) {
-    if ($scope.markChanges[i].time === $scope.markList[current].time) {
-      currentDetail++;
-      $scope.markList[current].details[currentDetail] = {
-        content: $scope.markChanges[i].content,
-        change: $scope.markChanges[i].changeValue
-      };
-      $scope.markList[current].value = $scope.markChanges[i].currentValue;
-    }
-    else {
-      current++;
-      currentDetail = 0;
-      $scope.markList[current] = {
-        value: $scope.markChanges[i].currentValue,
-        time: $scope.markChanges[i].time,
-        hide: 1,
-        details: []
-      };
-      $scope.markList[current].details[currentDetail] = {
-          content: $scope.markChanges[i].content,
-          change: $scope.markChanges[i].changeValue
-      };
-    }
-  }
-
-  $scope.detailClicked = function(index) {
-    if ($scope.markList[index].hide == 0) {
-      $scope.markList[index].hide = 1;
-    }
-    else {
-      $scope.markList[index].hide = 0;
-    }
-  }
-
-
-})
 
 .controller("contactdetailCtrl",function($scope,$state, $stateParams, PersonalInformations, $location, $ionicPopup,MyInformation) {
   $scope.user = PersonalInformations.get($stateParams.personId);
@@ -1219,7 +1163,7 @@ Date.prototype.pattern=function(fmt) {
     $location.path("app/detail-personalForms/" + $stateParams.personId);
   }
   $scope.markClicked = function() {
-    $location.path("app/mark" + $stateParams.personId);
+    $location.path("app/mark/" + $stateParams.personId);
   }
   $scope.delete = function(){
 
@@ -1242,10 +1186,69 @@ Date.prototype.pattern=function(fmt) {
   }
 })
 
+.controller("markCtrl", function($scope, MarkChanges, $stateParams, $window) {
+  $scope.marks = "0_0_0_10_0_60_0_0_500_0_0_0"
+
+  var marklist = [];
+  var maxLength;
+
+  marklist = $scope.marks.split('_');
+  $scope.markChanges = [];
+  maxLength = 0;
+
+
+
+  for (var i = 0; i < 12; i++) {
+    var value = marklist[i];
+    if (maxLength < Number(value)) {
+      maxLength = Number(value);
+    }
+  }
+ // alert($window.innerWidth + " " + Number(marklist[i]) + " " + maxLength);
+  for (var i = 0; i < 12; i++) {
+   // alert($window.innerWidth + " " + Number(marklist[i]) + " " + maxLength);
+    $scope.markChanges[i] = {
+      "value": marklist[i],
+      "length": 5 + Number(marklist[i]) * $window.innerWidth * 0.75/ maxLength,
+      "time": i + 1
+    };
+   // alert($scope.markChanges[i].length);
+  }
+
+
+//   $scope.marks = "";
+//   var marklist = [];
+//   var maxLength;
+//   MarkChanges.get($stateParams.personId,function(response){
+
+// $scope.marks = response;
+//     marklist = $scope.marks.split('_');
+//     $scope.markChanges = [];
+//     maxLength = 0;
+
+
+
+//   for (var i = 0; i < 12; i++) {
+//     var value = marklist[i];
+//     maxLength = maxLength + Number(value);
+//   }
+//   for (var i = 0; i < 12; i++) {
+//     $scope.markChanges[i] = {
+//       "value": marklist[i],
+//       "length": 5 + Number(marklist[i]) * 800 / maxLength,
+//       "time": i + 1
+//     };
+//   }
+
+
+//   });
+
+})
+
 .controller("newFormCtrl",function($scope,$state, PersonalInformations,UserService,Message_infos,$ionicHistory,$http) {
 
 //date类型转成string
-<!--      
+//<!--      
 /**      
 * 对Date的扩展，将 Date 转化为指定格式的String      
 * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符      
