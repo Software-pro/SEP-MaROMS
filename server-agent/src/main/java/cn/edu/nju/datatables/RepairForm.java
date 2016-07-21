@@ -57,6 +57,8 @@ public class RepairForm {
     private Date checkedTime;
     private Date visitTime;
 
+    private String processId;
+
     public RepairForm() {
     }
 
@@ -64,7 +66,7 @@ public class RepairForm {
             int status, int grade, int service,
             String clientName, String clientPhone, String clientWorkplace, String clientAddress,
             long engineerId, long salerId, long distributorId,
-            Date creationTime, Date receivedTime, Date completedTime, Date checkedTime) {
+            Date creationTime) {
         this.status = status;
         this.grade = grade;
         this.service = service;
@@ -79,9 +81,6 @@ public class RepairForm {
         this.distributorId = distributorId;
 
         this.creationTime = creationTime;
-        this.receivedTime=receivedTime;
-        this.completedTime=completedTime;
-        this.checkedTime=checkedTime;
     }
 
     public RepairForm(RepairFormCreateRequest repairFormCreateRequest) {
@@ -259,5 +258,13 @@ public class RepairForm {
 
     public void setVisitTime(Date visitTime) {
         this.visitTime = visitTime;
+    }
+
+    public String getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(String processId) {
+        this.processId = processId;
     }
 }

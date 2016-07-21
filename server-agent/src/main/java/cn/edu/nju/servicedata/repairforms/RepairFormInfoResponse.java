@@ -28,6 +28,10 @@ public class RepairFormInfoResponse {
     private Date receivedTime;
     private Date completedTime;
     private Date checkedTime;
+    private Date visitTime;
+
+    private String serialNumber;
+    private String feedbackInfo;
 
     public RepairFormInfoResponse(){
 
@@ -53,6 +57,10 @@ public class RepairFormInfoResponse {
         this.receivedTime = repairForm.getReceivedTime();
         this.completedTime = repairForm.getCompletedTime();
         this.checkedTime = repairForm.getCheckedTime();
+        this.visitTime = repairForm.getVisitTime();
+
+        this.serialNumber=repairForm.getSerialNumber();
+        this.feedbackInfo=repairForm.getFeedbackInfo();
 
     }
 
@@ -183,5 +191,29 @@ public class RepairFormInfoResponse {
 
     public void setCheckedTime(Date checkedTime) {
         this.checkedTime = checkedTime;
+    }
+
+    public Date getVisitTime() {
+        return visitTime;
+    }
+
+    public void setVisitTime(Date visitTime) {
+        this.visitTime = visitTime;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getFeedbackInfo() {
+        return feedbackInfo;
+    }
+
+    public void setFeedbackInfo(String feedbackInfo) {
+        this.feedbackInfo = feedbackInfo;
     }
 }

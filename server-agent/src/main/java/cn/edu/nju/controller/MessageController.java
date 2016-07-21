@@ -39,8 +39,14 @@ public class MessageController {
     }
 
     @RequestMapping(value = "/messages/byReceiverId/{id}", method = RequestMethod.GET, produces = "application/json")
-    public MessageInfoResponse findMessagebyReceiverId(@PathVariable long id){
-        return new MessageInfoResponse(messageRespository.findByReceiverId(id));
+    public List<MessageInfoResponse> findMessagebyReceiverId(@PathVariable long id){
+        List<MessageInfoResponse> messageInfoResponses=new ArrayList<>();
+
+        for (Message message:messageRespository.findByReceiverId(id)){
+            messageInfoResponses.add(new MessageInfoResponse((message)));
+        }
+
+        return messageInfoResponses;
     }
 
     @RequestMapping(value = "/messages/create", method = RequestMethod.POST, produces = "application/json")

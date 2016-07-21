@@ -11,7 +11,7 @@ public class MessageInfoResponse {
     private long id;
     private int type;
     private int status;
-    private long senderId;
+    private long infoId;
     private long receiverId;
     private Date time;
     private String content;
@@ -24,7 +24,7 @@ public class MessageInfoResponse {
         this.id=message.getId();
         this.type=message.getType();
         this.status=message.getStatus();
-        this.senderId=message.getSenderId();
+        this.infoId =message.getInfoId();
         this.receiverId=message.getReceiverId();
         this.time=message.getTime();
         this.content=message.getContent();
@@ -54,12 +54,12 @@ public class MessageInfoResponse {
         this.status = status;
     }
 
-    public long getSenderId() {
-        return senderId;
+    public long getInfoId() {
+        return infoId;
     }
 
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
+    public void setInfoId(long infoId) {
+        this.infoId = infoId;
     }
 
     public long getReceiverId() {

@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface MessageRespository extends CrudRepository<Message, Long> {
-    public Message findByReceiverId(long receiverId);
+    Iterable<Message> findByReceiverId(long receiverId);
 }

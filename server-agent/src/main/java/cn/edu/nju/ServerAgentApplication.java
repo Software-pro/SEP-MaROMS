@@ -43,10 +43,10 @@ public class ServerAgentApplication {
             repairFormRespository.save(new RepairForm(
                     0,20,0,
                     "zavier","15850538991","Nanjing university","Mars",
-                    101,201,301,new Date(),new Date(),new Date(),new Date()
+                    101,201,301,new Date()
             ));
 
-            messageRespository.save(new Message(0,1,101,new Date(),null));
+            messageRespository.save(new Message(0,1,1,new Date(),null));
 
         };
     }

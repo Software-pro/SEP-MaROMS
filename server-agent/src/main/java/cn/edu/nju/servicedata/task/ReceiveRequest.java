@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class ReceiveRequest {
     private long id;
-    private Date date;
+    private Date visitTime;
 
     public long getId() {
         return id;
@@ -17,11 +17,11 @@ public class ReceiveRequest {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getVisitTime() {
+        return visitTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setVisitTime(Date visitTime) {
+        this.visitTime = visitTime;
     }
 }
