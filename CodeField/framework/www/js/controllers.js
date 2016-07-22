@@ -722,26 +722,26 @@ angular.module('starter.controllers',['ionic'])
 //  $scope.salesman =  PersonalInformations.getByName($scope.form.salesName, '销售员')
 
 
- $scope.doRefresh = function() {
-    Forms.all(function(response){
-      $scope.forms = response;
+ //$scope.doRefresh = function() {
+    //Forms.all(function(response){
+      //$scope.forms = response;
 
       //alert("in controllers.js " + $scope.forms.length);
-      var userPosition = UserService.getUserPosition();
+      //var userPosition = UserService.getUserPosition();
       //$scope.isShow = false;
     //  if(userPosition === "派单员")  {
         //alert("feipaidan");
        // $scope.isShow = true;
      // } 
       //刷新--重新从后台载入数据
-      $scope.form = Forms.get($stateParams.formId);
+      //$scope.form = Forms.get($stateParams.formId);
 
 //alert($scope.form.length);
     //  alert($scope.form.id + $scope.form.clientname);
 
-      $scope.$broadcast("scroll.refreshComplete");
-    });
-}
+      //$scope.$broadcast("scroll.refreshComplete");
+    //});
+//}
  
  //alert(userPosition);
   // TODO:get form by 'http'
