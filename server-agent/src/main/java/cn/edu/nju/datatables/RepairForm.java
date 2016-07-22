@@ -5,6 +5,7 @@ import cn.edu.nju.servicedata.repairforms.RepairFormEditRequest;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Blob;
 import java.util.Date;
 
 /**
@@ -59,6 +60,11 @@ public class RepairForm {
     private Date visitTime;
 
     private String processId;
+
+    private int imgSize = 0;
+    private Blob img1;
+    private Blob img2;
+    private Blob img3;
 
     public RepairForm() {
     }
@@ -275,5 +281,41 @@ public class RepairForm {
 
     public void setProcessId(String processId) {
         this.processId = processId;
+    }
+
+    public int getImgSize() {
+        return imgSize;
+    }
+
+    public void addImgSize(){
+        imgSize+=1;
+    }
+
+    public void setImgSize(int imgSize) {
+        this.imgSize = imgSize;
+    }
+
+    public Blob getImg1() {
+        return img1;
+    }
+
+    public void setImg1(Blob img1) {
+        this.img1 = img1;
+    }
+
+    public Blob getImg2() {
+        return img2;
+    }
+
+    public void setImg2(Blob img2) {
+        this.img2 = img2;
+    }
+
+    public Blob getImg3() {
+        return img3;
+    }
+
+    public void setImg3(Blob img3) {
+        this.img3 = img3;
     }
 }

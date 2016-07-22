@@ -1,4 +1,4 @@
-package cn.edu.nju.respository;
+package cn.edu.nju.repository;
 
 import cn.edu.nju.datatables.Message;
 import org.springframework.data.repository.CrudRepository;
@@ -9,6 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface MessageRespository extends CrudRepository<Message, Long> {
+public interface MessageRepository extends CrudRepository<Message, Long> {
     Iterable<Message> findByReceiverId(long receiverId);
 }

@@ -162,9 +162,7 @@ public class InitialRepairForms {
         request.setFeedbackInfo(feedbackInfo);
 
         String postInformation = gson.toJson(request);
-        System.out.println(postInformation);
         String returnInformation = HttpRequest.sendPost(url,postInformation);
-        System.out.println(returnInformation);
 
         SuccessResponse response = gson.fromJson(returnInformation,SuccessResponse.class);
         returnInformation = gson.toJson(response);

@@ -2,8 +2,8 @@ package cn.edu.nju.controller;
 
 import cn.edu.nju.datatables.Message;
 import cn.edu.nju.datatables.RepairForm;
-import cn.edu.nju.respository.MessageRespository;
-import cn.edu.nju.respository.RepairFormRespository;
+import cn.edu.nju.repository.MessageRepository;
+import cn.edu.nju.repository.RepairFormRepository;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.task.ReceiveRequest;
 import cn.edu.nju.servicedata.task.SubmitRequest;
@@ -27,10 +27,10 @@ import java.util.Map;
 public class TaskController {
 
     @Autowired
-    MessageRespository messageRespository;
+    MessageRepository messageRepository;
 
     @Autowired
-    RepairFormRespository repairFormRespository;
+    RepairFormRepository repairFormRepository;
 
     @Autowired
     private RuntimeService runtimeService;
@@ -45,16 +45,16 @@ public class TaskController {
 
         SuccessResponse successResponse=new SuccessResponse(true);
 
-        if (!(messageRespository.exists(id))) {
+        if (!(messageRepository.exists(id))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The id do not exist.");
 
             return successResponse;
         }
 
-        Message message = messageRespository.findOne(id);
+        Message message = messageRepository.findOne(id);
         message.setStatus(1);
-        messageRespository.save(message);
+        messageRepository.save(message);
 
         return successResponse;
 
@@ -65,14 +65,14 @@ public class TaskController {
 
         SuccessResponse successResponse=new SuccessResponse(true);
 
-        if (!(repairFormRespository.exists(receiveRequest.getId()))) {
+        if (!(repairFormRepository.exists(receiveRequest.getId()))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The id do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRespository.findOne(receiveRequest.getId());
+        RepairForm repairForm = repairFormRepository.findOne(receiveRequest.getId());
 
         if (repairForm.getStatus()!=0){
             successResponse.setSuccess(false);
@@ -92,7 +92,7 @@ public class TaskController {
 
         repairForm.setProcessId(processInstance.getId());
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         return successResponse;
 
@@ -103,14 +103,14 @@ public class TaskController {
 
         SuccessResponse successResponse=new SuccessResponse(true);
 
-        if (!(repairFormRespository.exists(id))) {
+        if (!(repairFormRepository.exists(id))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The id do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRespository.findOne(id);
+        RepairForm repairForm = repairFormRepository.findOne(id);
 
         if (repairForm.getStatus()!=1){
             successResponse.setSuccess(false);
@@ -127,7 +127,7 @@ public class TaskController {
         runtimeService.deleteProcessInstance(repairForm.getProcessId(),"unreceive");
         repairForm.setProcessId(null);
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         return successResponse;
 
@@ -138,14 +138,14 @@ public class TaskController {
 
         SuccessResponse successResponse=new SuccessResponse(true);
 
-        if (!(repairFormRespository.exists(submitRequest.getId()))) {
+        if (!(repairFormRepository.exists(submitRequest.getId()))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The id do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRespository.findOne(submitRequest.getId());
+        RepairForm repairForm = repairFormRepository.findOne(submitRequest.getId());
 
         if (repairForm.getStatus()!=1){
             successResponse.setSuccess(false);
@@ -163,7 +163,7 @@ public class TaskController {
         Task task=taskService.createTaskQuery().processInstanceId(repairForm.getProcessId()).singleResult();
         taskService.complete(task.getId());
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         return successResponse;
 
@@ -174,14 +174,14 @@ public class TaskController {
 
         SuccessResponse successResponse=new SuccessResponse(true);
 
-        if (!(repairFormRespository.exists(id))) {
+        if (!(repairFormRepository.exists(id))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The id do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRespository.findOne(id);
+        RepairForm repairForm = repairFormRepository.findOne(id);
 
         if (repairForm.getStatus()!=2){
             successResponse.setSuccess(false);
@@ -197,7 +197,7 @@ public class TaskController {
         Task task=taskService.createTaskQuery().processInstanceId(repairForm.getProcessId()).singleResult();
         taskService.complete(task.getId());
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         return successResponse;
 

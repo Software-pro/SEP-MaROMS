@@ -17,8 +17,8 @@ import static org.junit.Assert.assertTrue;
 public class InitialUser {
 
     /**host值*/
-    //static String host = "115.159.225.109";
-    public static String host = "localhost";
+    public static String host = "115.159.225.109";
+    //public static String host = "localhost";
 
     public static boolean createUser(long id, String name, String password, String phone, int type){
         /**

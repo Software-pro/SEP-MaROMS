@@ -79,25 +79,27 @@ public class GetUserInformationTest {
         testModel(99996,"test3","18651615326",3);
     }
 
-    @Test
-    public void test02() throws IOException {
-        /**
-         * test02(验证通过id查询单个人信息，id不存在))
-         * 输入：id = 0
-         * 预计输出：get请求发送失败
-         */
-
-        /**
-         * 测试说明：对于不存在的id，服务器应返回相关错误信息。
-         */
-
-        /**预计结果*/
-        String expectedInformation = "发送GET请求出现异常！";
-
-        /**发送请求*/
-        String returnInformation = HttpRequest.sendGet(url + 0, "");
-
-        /**检查返回值跟预期值是否一致*/
-        assertTrue(returnInformation.contains(expectedInformation));
-    }
+    
+//    @Test
+//    public void test02() throws IOException {
+//        /**
+//         * test02(验证通过id查询单个人信息，id不存在))
+//         * 输入：id = 0
+//         * 预计输出：get请求发送失败
+//         */
+//
+//        /**
+//         * 测试说明：对于不存在的id，服务器应返回相关错误信息。
+//         */
+//
+//        /**预计结果*/
+//        String expectedInformation = "发送GET请求出现异常！";
+//
+//        /**发送请求*/
+//        String returnInformation = HttpRequest.sendGet(url + 0, "");
+//
+//        /**检查返回值跟预期值是否一致*/
+//        assertTrue(returnInformation.contains(expectedInformation));
+//    }
+	
 }

@@ -1,4 +1,4 @@
-package cn.edu.nju.respository;
+package cn.edu.nju.repository;
 
 import cn.edu.nju.datatables.User;
 import org.springframework.data.repository.CrudRepository;
@@ -9,5 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface UserRespository extends CrudRepository<User, Long>{
+public interface UserRepository extends CrudRepository<User, Long>{
 }

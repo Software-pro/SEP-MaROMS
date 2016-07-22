@@ -1,7 +1,7 @@
 package cn.edu.nju.controller;
 
 import cn.edu.nju.datatables.RepairForm;
-import cn.edu.nju.respository.RepairFormRespository;
+import cn.edu.nju.repository.RepairFormRepository;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.repairforms.ChangeGradeRequest;
 import cn.edu.nju.servicedata.repairforms.RepairFormCreateRequest;
@@ -22,14 +22,14 @@ import java.util.List;
 public class RepairFormController {
 
     @Autowired
-    RepairFormRespository repairFormRespository;
+    RepairFormRepository repairFormRepository;
 
     @RequestMapping(value = "/repairforms", method = RequestMethod.GET, produces = "application/json")
     public List<RepairFormInfoResponse> repairforms() {
 
         List<RepairFormInfoResponse> repairForms = new ArrayList<>();
 
-        for (RepairForm repairForm:repairFormRespository.findAll()){
+        for (RepairForm repairForm: repairFormRepository.findAll()){
 
             repairForms.add(new RepairFormInfoResponse(repairForm));
         }
@@ -39,7 +39,7 @@ public class RepairFormController {
 
     @RequestMapping(value = "/repairforms/{id}", method = RequestMethod.GET, produces = "application/json")
     public RepairFormInfoResponse findRepairformsById(@PathVariable long id) {
-        RepairForm repairForm=repairFormRespository.findOne(id);
+        RepairForm repairForm= repairFormRepository.findOne(id);
 
         return new RepairFormInfoResponse(repairForm);
     }
@@ -48,7 +48,7 @@ public class RepairFormController {
     public List<RepairFormInfoResponse> findRepairformsByEngineerId(@PathVariable long id) {
         List<RepairFormInfoResponse> repairFormInfoResponses=new ArrayList<>();
 
-        for (RepairForm repairForm : repairFormRespository.findByEngineerId(id)){
+        for (RepairForm repairForm : repairFormRepository.findByEngineerId(id)){
             repairFormInfoResponses.add(new RepairFormInfoResponse(repairForm));
         }
 
@@ -59,7 +59,7 @@ public class RepairFormController {
     public List<RepairFormInfoResponse> findRepairformsBySalerId(@PathVariable long id) {
         List<RepairFormInfoResponse> repairFormInfoResponses=new ArrayList<>();
 
-        for (RepairForm repairForm : repairFormRespository.findBySalerId(id)){
+        for (RepairForm repairForm : repairFormRepository.findBySalerId(id)){
             repairFormInfoResponses.add(new RepairFormInfoResponse(repairForm));
         }
 
@@ -70,7 +70,7 @@ public class RepairFormController {
     public SuccessResponse createRepairform(@RequestBody RepairFormCreateRequest repairFormCreateRequest){
         RepairForm repairForm=new RepairForm(repairFormCreateRequest);
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         return new SuccessResponse(true);
     }
@@ -79,14 +79,14 @@ public class RepairFormController {
     public SuccessResponse editRepairform(@RequestBody RepairFormEditRequest repairFormEditRequest){
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(repairFormRespository.exists(repairFormEditRequest.getId()))) {
+        if (!(repairFormRepository.exists(repairFormEditRequest.getId()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The repairform do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm=repairFormRespository.findOne(repairFormEditRequest.getId());
+        RepairForm repairForm= repairFormRepository.findOne(repairFormEditRequest.getId());
 
         repairForm.setFormFromEdit(repairFormEditRequest);
 
@@ -97,7 +97,7 @@ public class RepairFormController {
             return successResponse;
         }
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         successResponse.setSuccess(true);
 
@@ -108,18 +108,18 @@ public class RepairFormController {
     public SuccessResponse changeGrade(@RequestBody ChangeGradeRequest changeGradeRequest){
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(repairFormRespository.exists(changeGradeRequest.getId()))) {
+        if (!(repairFormRepository.exists(changeGradeRequest.getId()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The repairform do not exist.");
 
             return successResponse;
         }
 
-        RepairForm repairForm = repairFormRespository.findOne(changeGradeRequest.getId());
+        RepairForm repairForm = repairFormRepository.findOne(changeGradeRequest.getId());
 
         repairForm.setGrade(changeGradeRequest.getGrade());
 
-        repairFormRespository.save(repairForm);
+        repairFormRepository.save(repairForm);
 
         successResponse.setSuccess(true);
 
@@ -131,14 +131,14 @@ public class RepairFormController {
     public SuccessResponse deleteRepairform(@PathVariable long id) {
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(repairFormRespository.exists(id))) {
+        if (!(repairFormRepository.exists(id))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The repairform do not exist.");
 
             return successResponse;
         }
 
-        repairFormRespository.delete(id);
+        repairFormRepository.delete(id);
 
         successResponse.setSuccess(true);
         return successResponse;
@@ -146,17 +146,17 @@ public class RepairFormController {
 
     @RequestMapping(value = "/repairforms/clientNames", method = RequestMethod.GET, produces = "application/json")
     public List<String> findClientNames(){
-        return repairFormRespository.findClientNames();
+        return repairFormRepository.findClientNames();
     }
 
     @RequestMapping(value = "/repairforms/clientPhones", method = RequestMethod.GET, produces = "application/json")
     public List<String> findClientPhones(){
-        return repairFormRespository.findClientPhones();
+        return repairFormRepository.findClientPhones();
     }
 
     @RequestMapping(value = "/repairforms/clientWorkspaces", method = RequestMethod.GET, produces = "application/json")
     public List<String> findWorkspaces(){
-        return repairFormRespository.findClientWorkplaces();
+        return repairFormRepository.findClientWorkplaces();
     }
 
 }

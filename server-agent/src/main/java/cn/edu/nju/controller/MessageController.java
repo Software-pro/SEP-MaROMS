@@ -1,7 +1,7 @@
 package cn.edu.nju.controller;
 
 import cn.edu.nju.datatables.Message;
-import cn.edu.nju.respository.MessageRespository;
+import cn.edu.nju.repository.MessageRepository;
 import cn.edu.nju.servicedata.SuccessResponse;
 import cn.edu.nju.servicedata.messages.MessageCreateRequest;
 import cn.edu.nju.servicedata.messages.MessageInfoResponse;
@@ -20,13 +20,13 @@ import java.util.List;
 public class MessageController {
 
     @Autowired
-    MessageRespository messageRespository;
+    MessageRepository messageRepository;
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET, produces = "application/json")
     public List<MessageInfoResponse> findMessages(){
         List<MessageInfoResponse> messageInfoResponses = new ArrayList<>();
 
-        for (Message message : messageRespository.findAll()){
+        for (Message message : messageRepository.findAll()){
             messageInfoResponses.add(new MessageInfoResponse(message));
         }
 
@@ -35,14 +35,14 @@ public class MessageController {
 
     @RequestMapping(value = "/messages/{id}", method = RequestMethod.GET, produces = "application/json")
     public MessageInfoResponse findMessageById(@PathVariable long id){
-        return new MessageInfoResponse(messageRespository.findOne(id));
+        return new MessageInfoResponse(messageRepository.findOne(id));
     }
 
     @RequestMapping(value = "/messages/byReceiverId/{id}", method = RequestMethod.GET, produces = "application/json")
     public List<MessageInfoResponse> findMessagebyReceiverId(@PathVariable long id){
         List<MessageInfoResponse> messageInfoResponses=new ArrayList<>();
 
-        for (Message message:messageRespository.findByReceiverId(id)){
+        for (Message message: messageRepository.findByReceiverId(id)){
             messageInfoResponses.add(new MessageInfoResponse((message)));
         }
 
@@ -51,7 +51,7 @@ public class MessageController {
 
     @RequestMapping(value = "/messages/create", method = RequestMethod.POST, produces = "application/json")
     public SuccessResponse createMessage(@RequestBody MessageCreateRequest messageCreateRequest){
-        messageRespository.save(new Message(messageCreateRequest));
+        messageRepository.save(new Message(messageCreateRequest));
 
         return new SuccessResponse(true);
     }
@@ -60,14 +60,14 @@ public class MessageController {
     public SuccessResponse deleteMessage(@PathVariable long id){
         SuccessResponse successResponse = new SuccessResponse(true);
 
-        if (!(messageRespository.exists(id))) {
+        if (!(messageRepository.exists(id))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The message do not exist.");
 
             return successResponse;
         }
 
-        messageRespository.delete(id);
+        messageRepository.delete(id);
 
         successResponse.setSuccess(true);
 

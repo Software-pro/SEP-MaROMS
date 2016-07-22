@@ -1,4 +1,4 @@
-package cn.edu.nju.respository;
+package cn.edu.nju.repository;
 
 import cn.edu.nju.datatables.RepairForm;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @Transactional
-public interface RepairFormRespository extends CrudRepository<RepairForm, Long>{
+public interface RepairFormRepository extends CrudRepository<RepairForm, Long>{
     Iterable<RepairForm> findByEngineerId(long engineerId);
     Iterable<RepairForm> findBySalerId(long salerId);
 

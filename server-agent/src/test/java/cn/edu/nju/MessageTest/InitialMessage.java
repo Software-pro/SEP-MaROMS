@@ -8,10 +8,6 @@ import cn.edu.nju.servicedata.messages.MessageCreateRequest;
 import cn.edu.nju.servicedata.messages.MessageInfoResponse;
 import com.google.gson.*;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.Iterator;
@@ -22,13 +18,13 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by chezeyu on 2016/7/21.
  */
-public class MessageTest {
+public class InitialMessage {
     /**
      *  MessageTest：消息测试
      */
     /**host值*/
-    //static String host = "115.159.225.109";
-    public static String host = "localhost";
+    public static String host = "115.159.225.109";
+    //public static String host = "localhost";
 
     /**gson日期序列化，在数据传递过程中Date值为一个long型数据*/
     static JsonSerializer< Date> ser = new JsonSerializer< Date> () {
@@ -87,29 +83,35 @@ public class MessageTest {
         }
         return -1;
     }
+    
+    public static int getMessageStatus(long receiverId){
+    	/**查询报修单状态*/
+    	String url = "http://"+host+"/messages/byReceiverId/"+receiverId;
+        String returnInformation = HttpRequest.sendGet(url,"");
 
-    @BeforeClass
-    public static void initial(){
-        /**初始化测试用户*/
-        assertTrue(InitialUser.createUser(99999,"chezeyu","chezeyu19951010","18651615329",0));
-        assertTrue(InitialUser.createUser(99998,"test1","test119951010","18651615328",1));
-        assertTrue(InitialUser.createUser(99997,"test2","test219951010","18651615327",2));
-        assertTrue(InitialUser.createUser(99996,"test3","test319951010","18651615326",3));
-    }
-    @AfterClass
-    public static void delete(){
-        /**删除测试用户*/
-        assertTrue(InitialUser.deleteUser(99999));
-        assertTrue(InitialUser.deleteUser(99998));
-        assertTrue(InitialUser.deleteUser(99997));
-        assertTrue(InitialUser.deleteUser(99996));
-    }
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(returnInformation);
+        JsonArray jsonArray = jsonElement.getAsJsonArray();
 
-    @Test
-    public void test01(){
-        Date date = new Date();
-        createMessage(0,99999,99998,date,null);
-        getMessageId(99998);
+        Iterator iterator = jsonArray.iterator();
+        while(iterator.hasNext()){
+            JsonElement element = (JsonElement)iterator.next();
+            return gson.fromJson(gson.toJson(element), MessageInfoResponse.class).getStatus();
+        }
+        return -1;
     }
+    public static boolean deleteMessage(long messageId){
+    	/**删除消息*/
+    	 String url = "http://"+host+"/messages/delete/"+messageId;
+         String returnInformation = HttpRequest.sendGet(url,"");
+         SuccessResponse response = gson.fromJson(returnInformation,SuccessResponse.class);
+         returnInformation = gson.toJson(response);
 
+         SuccessResponse expect = new SuccessResponse(true);
+         expect.setInfo(null);
+         String expectedInformation = gson.toJson(expect);
+
+         return expectedInformation.equals(returnInformation);
+    }
+    
 }

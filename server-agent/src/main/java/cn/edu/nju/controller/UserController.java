@@ -2,8 +2,8 @@ package cn.edu.nju.controller;
 
 import cn.edu.nju.datatables.RepairForm;
 import cn.edu.nju.datatables.User;
-import cn.edu.nju.respository.RepairFormRespository;
-import cn.edu.nju.respository.UserRespository;
+import cn.edu.nju.repository.RepairFormRepository;
+import cn.edu.nju.repository.UserRepository;
 import cn.edu.nju.servicedata.*;
 import cn.edu.nju.servicedata.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +22,17 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserRespository userRespository;
+    UserRepository userRepository;
 
     @Autowired
-    RepairFormRespository repairFormRespository;
+    RepairFormRepository repairFormRepository;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
     public List<UserInfoResponse> findUsers() {
 
         List<UserInfoResponse> users = new ArrayList<>();
 
-        for (User user : userRespository.findAll()) {
+        for (User user : userRepository.findAll()) {
 
             users.add(new UserInfoResponse(user));
         }
@@ -46,7 +46,7 @@ public class UserController {
 
         SuccessResponse successResponse;
 
-        if (userRespository.exists(userCreateRequest.getId())) {
+        if (userRepository.exists(userCreateRequest.getId())) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The userId exists.");
 
@@ -55,7 +55,7 @@ public class UserController {
 
         User user = new User(userCreateRequest);
 
-        User check = userRespository.save(user);
+        User check = userRepository.save(user);
 
         return new SuccessResponse(check.getId() == user.getId());
 
@@ -65,7 +65,7 @@ public class UserController {
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json")
     public UserInfoResponse findUserInfo(@PathVariable("id") long id) {
 
-        User user = userRespository.findOne(id);
+        User user = userRepository.findOne(id);
 
         return new UserInfoResponse(user);
 
@@ -76,14 +76,14 @@ public class UserController {
 
         SuccessResponse successResponse = new SuccessResponse(true);
 
-        if (!(userRespository.exists(id))) {
+        if (!(userRepository.exists(id))) {
             successResponse = new SuccessResponse(false);
             successResponse.setInfo("The user do not exist.");
 
             return successResponse;
         }
 
-        userRespository.delete(id);
+        userRepository.delete(id);
 
         return successResponse;
     }
@@ -93,7 +93,7 @@ public class UserController {
 
         PasswordResponse passwordResponse = new PasswordResponse();
 
-        if (!(userRespository.exists(id))) {
+        if (!(userRepository.exists(id))) {
             passwordResponse.setSuccess(false);
             passwordResponse.setInfo("The user do not exist.");
 
@@ -101,7 +101,7 @@ public class UserController {
         }
 
         passwordResponse.setSuccess(true);
-        passwordResponse.setPassword(userRespository.findOne(id).getPassword());
+        passwordResponse.setPassword(userRepository.findOne(id).getPassword());
 
         return passwordResponse;
     }
@@ -111,14 +111,14 @@ public class UserController {
 
         SuccessResponse successResponse = new SuccessResponse();
 
-        if (!(userRespository.exists(passwordChangeRequest.getId()))) {
+        if (!(userRepository.exists(passwordChangeRequest.getId()))) {
             successResponse.setSuccess(false);
             successResponse.setInfo("The user do not exist.");
 
             return successResponse;
         }
 
-        User user = userRespository.findOne(passwordChangeRequest.getId());
+        User user = userRepository.findOne(passwordChangeRequest.getId());
 
         if (!(user.getPassword().equals(passwordChangeRequest.getOldPassword()))) {
             successResponse.setSuccess(false);
@@ -129,7 +129,7 @@ public class UserController {
 
         user.setPassword(passwordChangeRequest.getNewPassword());
 
-        userRespository.save(user);
+        userRepository.save(user);
 
         successResponse.setSuccess(true);
 
@@ -140,14 +140,14 @@ public class UserController {
     public GradeResponse getGrade(@PathVariable long id){
         GradeResponse gradeResponse=new GradeResponse();
 
-        if (!(userRespository.exists(id))) {
+        if (!(userRepository.exists(id))) {
             gradeResponse.setSuccess(false);
             gradeResponse.setInfo("The id do not exist.");
 
             return gradeResponse;
         }
 
-        User user = userRespository.findOne(id);
+        User user = userRepository.findOne(id);
 
         int[] grade=new int[12];
 
@@ -156,12 +156,12 @@ public class UserController {
         }
 
         if (user.getType()==1){
-            for (RepairForm repairForm:repairFormRespository.findGradeByEngineerId(user.getId())){
+            for (RepairForm repairForm: repairFormRepository.findGradeByEngineerId(user.getId())){
                 System.out.println(repairForm.getCompletedTime().getMonth());
                 grade[repairForm.getCompletedTime().getMonth()]+=repairForm.getGrade();
             }
         }else if (user.getType()==2){
-            for (RepairForm repairForm:repairFormRespository.findGradeBySalerId(user.getId())){
+            for (RepairForm repairForm: repairFormRepository.findGradeBySalerId(user.getId())){
                 System.out.println(repairForm.getCompletedTime().getMonth());
                 grade[repairForm.getCompletedTime().getMonth()]+=repairForm.getGrade();
             }
