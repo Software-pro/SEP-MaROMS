@@ -27,8 +27,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class InitialRepairForms {
     /**host值*/
-    //static String host = "115.159.225.109";
-    public static String host = "localhost";
+    public static String host = "115.159.225.109";
+    //public static String host = "localhost";
 
     /**gson日期序列化，在数据传递过程中Date值为一个long型数据*/
     static JsonSerializer< Date>  ser = new JsonSerializer< Date> () {
