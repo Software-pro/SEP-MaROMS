@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: cn.edu.nju.MessageTest.CreateAndDeleteMessageTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 2.157 sec <<< FAILURE! - in cn.edu.nju.MessageTest.CreateAndDeleteMessageTest
+cn.edu.nju.MessageTest.CreateAndDeleteMessageTest  Time elapsed: 2.156 sec  <<< FAILURE!
+java.lang.AssertionError: null
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at cn.edu.nju.MessageTest.CreateAndDeleteMessageTest.initial(CreateAndDeleteMessageTest.java:30)
+
+cn.edu.nju.MessageTest.CreateAndDeleteMessageTest  Time elapsed: 2.157 sec  <<< FAILURE!
+java.lang.AssertionError: null
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at cn.edu.nju.MessageTest.CreateAndDeleteMessageTest.delete(CreateAndDeleteMessageTest.java:38)
+

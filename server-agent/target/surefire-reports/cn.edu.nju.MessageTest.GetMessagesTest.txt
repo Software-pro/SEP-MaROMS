@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: cn.edu.nju.MessageTest.GetMessagesTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.897 sec <<< FAILURE! - in cn.edu.nju.MessageTest.GetMessagesTest
+cn.edu.nju.MessageTest.GetMessagesTest  Time elapsed: 1.896 sec  <<< FAILURE!
+java.lang.AssertionError: null
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at cn.edu.nju.MessageTest.GetMessagesTest.initial(GetMessagesTest.java:36)
+
+cn.edu.nju.MessageTest.GetMessagesTest  Time elapsed: 1.897 sec  <<< FAILURE!
+java.lang.AssertionError: null
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at cn.edu.nju.MessageTest.GetMessagesTest.delete(GetMessagesTest.java:44)
+
