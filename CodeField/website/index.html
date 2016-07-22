@@ -130,17 +130,44 @@
           }
         });
 
-        // add all client informations to list
-        for(var i = 0; i < 10; i++) {
-          $("#clientName-prompt").append("<li class=\"list-group-item clientName-item\">" + "client" + i + "</li>");
-          $("#clientPhone-prompt").append("<li class=\"list-group-item clientPhone-item\">" + "client" + i + "</li>");
-          $("#clientAddr-prompt").append("<li class=\"list-group-item clientAddr-item\">" + "client" + i + "</li>");
-          $("#clientUnit-prompt").append("<li class=\"list-group-item clientUnit-item\">" + "client" + i + "</li>");
+        $.ajax({
+          type:"GET",
+          url:"http://115.159.225.109/repairforms/clientNames",
+          dataType:"json",
+          contentType:"application/json", 
+          success:function(data)
+          {
+            for(var i = 0; i < data.length; i++) {
+                $("#clientName-prompt").append("<li class=\"list-group-item clientName-item\">" + data[i]+ "</li>");
+            }
+          }
+        });
 
-          // BUG WARNING!!!
-          // 相同的信息可能会出现多次（因为属于不同client）
+        $.ajax({
+          type:"GET",
+          url:"http://115.159.225.109/repairforms/clientPhones",
+          dataType:"json",
+          contentType:"application/json", 
+          success:function(data)
+          {
+            for(var i = 0; i < data.length; i++) {
+                $("#clientPhone-prompt").append("<li class=\"list-group-item clientPhone-item\">" + data[i]+ "</li>");
+            }
+          }
+        });
 
-        }
+        $.ajax({
+          type:"GET",
+          url:"http://115.159.225.109/repairforms/clientWorkspaces",
+          dataType:"json",
+          contentType:"application/json", 
+          success:function(data)
+          {
+            for(var i = 0; i < data.length; i++) {
+                $("#clientUnit-prompt").append("<li class=\"list-group-item clientUnit-item\">" + data[i]+ "</li>");
+            }
+          }
+        });
 
 
         /***********************************clientName***********************************/
